@@ -5,7 +5,8 @@ navbar:
   right:
     - text: "test"
       menu:
-        - "test"
+      - text: "test"
+        href: index.html
 
 output:
   html_document:
