@@ -2,3 +2,11 @@ name: "Personal Website"
 output_dir: "."
 navbar:
   title: "Shaun Porwal"
+  right:
+    - text: "test"
+      menu:
+        - "test"
+
+output:
+  html_document:
+    theme: paper
