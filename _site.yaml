@@ -1,0 +1,4 @@
+name: "Personal Website"
+output_dir: "."
+navbar:
+  title: "Shaun Porwal"
