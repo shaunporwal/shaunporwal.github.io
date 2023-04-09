@@ -10,8 +10,9 @@
 
 
 
+<meta name="date" content="2023-04-07" />
 
-<title>index.knit</title>
+<title>Projects</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +30,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,69 +220,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -292,16 +227,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -339,126 +264,63 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Projects</h1>
+<h4 class="date">2023-04-07</h4>
 
 </div>
 
 
 <style type="text/css">
-.contact-box {
-  position: relative;
-  border: 2px solid lightgrey;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
-.contact-wrapper {
+.center {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.contact-text {
-  flex-grow: 1;
+.center img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.link {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-.date {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-weight: bold;
-  padding-left: 10px; /* Add left padding to separate the year from the text */
-}
-
-h2 {
+h1 {
+  font-size: 2.5em;
   margin-bottom: 10px;
-  font-size: 1.3em;
-  margin-right: 50px; /* Add right margin to separate the title from the year */
 }
 
 p {
-  margin-bottom: 0;
+  font-size: 1.1em;
+  text-align: justify;
+  margin-bottom: 20px;
 }
 
-/* Custom CSS for the table of contents */
-.tocify-item {
-  display: block;
-  text-indent: 0em;
-  padding-right: 0em;
+a {
+  color: #1a73e8;
+  text-decoration: none;
 }
 
-.tocify-item .tocify-header1 {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
+a:hover {
+  text-decoration: underline;
 }
-
-.tocify-item .tocify-header2 {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
-}
-
-.tocify-item .tocify-header2 > span {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
-}
-
-.tocify-item.active {
-  background-color: rgba(92, 184, 92, 0.2); /* Green with 50% transparency */
-  color: rgba(92, 184, 92, 0.5);
-}
-
-.tocify-item:hover {
-  background-color: rgba(100, 149, 237, 0.5); /* Light blue with transparency */
-  color: #ffffff;
-}
-
-/* Add or modify the following CSS in your existing CSS code */
-
-.tocify-item.active:hover {
-  background-color: rgba(92, 184, 92, 0.7); /* Slightly transparent version of the active color */
-  color: #ffffff;
-}
-
 </style>
-<p><em>Welcome to my personal space! This site serves as a home for my
-projects, thoughts, and other content.</em></p>
-<div id="thoughts" class="section level1">
-<h1><strong>Thoughts</strong></h1>
-<div class="contact-wrapper contact-box">
-<div class="contact-text">
-<h2>
-<a href="https://www.strava.com/activities/8857158962" class="link">230408
-Strava Running Thoughts</a>
-</h2>
-<span class="date">04/08/23</span>
-<p>
-<p>Man, I just have to say, so many people are so lost in this world,
-and it’s so easy to get distracted by the noise.</p>
-<p>If you always listen to your inner voice and just do what you want,
-while maintaining compassion for others, you can safely disregard
-anything anybody tells you about what they think you “should” do.</p>
-Internal critical thinking is more important to follow than any
-rule/prescription/suggestion from any person, no matter how important.
-</p>
+<p>This page will house projects I’ve done, as well as projects I’m
+working on</p>
+<div id="gravity-chamber" class="section level1">
+<h1>Gravity Chamber</h1>
 </div>
-</div>
+<div id="python-package-dcurves" class="section level1">
+<h1>Python Package: dcurves</h1>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -491,35 +353,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -2,12 +2,13 @@ name: "Personal Website"
 output_dir: "."
 navbar:
   title: "Shaun Porwal"
-  right:
-    - text: "test"
-      menu:
-      - text: "test"
-        href: index.html
-
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "GitHub"
+      href: "https://github.com/shaunporwal"
+    - text: "Projects"
+      href: projects.html
 output:
   html_document:
     theme: paper
