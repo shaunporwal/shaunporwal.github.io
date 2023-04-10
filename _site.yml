@@ -5,10 +5,11 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "GitHub"
-      href: "https://github.com/shaunporwal"
     - text: "Projects"
       href: projects.html
+  right:
+    - text: "GitHub"
+      href: "https://github.com/shaunporwal"
 output:
   html_document:
     theme: paper
