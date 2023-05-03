@@ -105,6 +105,22 @@ p {
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
+<h2><a href="https://www.strava.com/activities/8857158962" class="link">230411 Strava Running Thoughts</a></h2>
+<span class="date">04/08/23</span>
+<p> 
+--Placeholder--
+Even if we don't intend to, we subconsciously end up copying those around us in
+our thoughts and actions. Therefore, other people can only stand in the way of
+self-understanding and development.
+
+This is also why it's easier to run or learn in groups. We can forego the 
+conscious effort in favor of subconscious meme
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
 <h2><a href="https://www.strava.com/activities/8857158962" class="link">230408 Strava Running Thoughts</a></h2>
 <span class="date">04/08/23</span>
 <p> 
