@@ -9,11 +9,9 @@ output:
     toc_collapse: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-```{css, echo=FALSE}
+
+<style type="text/css">
 .contact-box {
   position: relative;
   border: 2px solid lightgrey;
@@ -100,7 +98,7 @@ p {
   color: #ffffff;
 }
 
-```
+</style>
 
 
 This page will house projects I've done, as well as projects I'm working on
@@ -148,5 +146,6 @@ This page will house projects I've done, as well as projects I'm working on
 </p>
 </div>
 </div>
+
 
 

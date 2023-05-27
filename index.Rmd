@@ -140,6 +140,11 @@ rule/prescription/suggestion from any person, no matter how important.
 
 
 
+```{r, echo=FALSE, include=FALSE}
+
+rmarkdown::render('projects.Rmd')
+
+```
 
 
 
