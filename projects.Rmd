@@ -105,20 +105,14 @@ p {
 
 This page will house projects I've done, as well as projects I'm working on
 
-# **WolvRine**
-
-<div class="contact-wrapper contact-box">
-<div class="contact-text">
-<h2>Coming Soon!</h2>
-<span class="date">2023</span>
-<p> 
-</p>
-</div>
-</div>
-
 # **Gravity Chamber**
 
+
+
 <div class="contact-wrapper contact-box">
+<div class="left">
+  <img src="gravitychamber.png" alt="ugoji_pic">
+</div>
 <div class="contact-text">
 <h2><a href="https://github.com/shaunporwal/gravitychamber" class="link">Gravity Chamber Python Code</a></h2>
 <span class="date">2023</span>
@@ -134,6 +128,7 @@ This page will house projects I've done, as well as projects I'm working on
 <h2><a href="https://github.com/MSKCC-Epi-Bio/dcurves" class="link">Decision Curve Analysis Python Package</a></h2>
 <span class="date">2023</span>
 <p> 
+Diagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes, but often require collection of additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the data set on which the models are tested, and can be applied to models that have either continuous or dichotomous results. The dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial (towards the bottom) for a detailed walk-through of various applications. Also, see www.decisioncurveanalysis.org for more information.
 </p>
 </div>
 </div>
@@ -142,10 +137,18 @@ This page will house projects I've done, as well as projects I'm working on
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
-<h2><a href="https://mishkanholdingsllc.org" class="link">Site for UN NGO (1)</a></h2>
+<h2><a href="https://mskcc-epi-bio.github.io/decisioncurveanalysis/" class="link">http://decisioncurveanalysis.org</a></h2>
 <span class="date">2023</span>
-<p> 
-</p>
+<p> I made this site for my boss' statistical method 'Decision Curve Analysis'. This mean is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<span class="date">2023</span>
+<h2><a href="https://mishkanholdingsllc.org" class="link">Site for UN NGO (1)</a></h2>
+<h2><a href="https://politicalaesthetics.github.io" class="link">Site for UN NGO (2)</a></h2>
+<p> I made these sites for my contacts at the UN running NGOs. These are simple sites that I'm iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes. </p>
 </div>
 </div>
 
