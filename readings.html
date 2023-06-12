@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2023-06-12" />
+
+<title>Readings</title>
+
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.2.1/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.2.1/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Shaun Porwal</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="pagedown_resume.html">CV</a>
+</li>
+<li>
+  <a href="projects.html">Projects</a>
+</li>
+<li>
+  <a href="readings.html">Readings</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/shaunporwal">
+    <span class="fa fa-lg fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://linkedin.com/in/shaunporwal">
+    <span class="fa fa-lg fa-linkedin"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/shaunporwal">
+    <span class="fa fa-lg fa-twitter"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Readings</h1>
+<h4 class="date">2023-06-12</h4>
+
+</div>
+
+
+<style>
+.title{
+display: none;
+}
+</style>
+<style type="text/css">
+
+.contact-box {
+position: relative;
+border: 2px solid lightgrey;
+padding: 20px;
+margin-bottom: 20px;
+border-radius: 10px;
+background-color: #f9f9f9;
+display: block;
+width: 100%;
+}
+
+.contact-wrapper {
+display: flex;
+}
+
+.contact-text {
+flex-grow: 1;
+}
+
+.year {
+position: absolute;
+top: 10px;
+right: 10px;
+font-weight: bold;
+padding-left: 10px; /* Add left padding to separate the year from the text */
+}
+
+h2 {
+margin-bottom: 10px;
+font-size: 1.3em;
+margin-right: 50px; /* Add right margin to separate the title from the year */
+}
+
+p {
+margin-bottom: 0;
+}
+
+/* Custom CSS for the table of contents */
+
+.tocify-item {
+display: inline-block;
+text-indent: -10px;
+padding-left: 20px;
+}
+
+.tocify-header {
+display: inline-block;
+text-indent: 10px;
+padding-left: 100px;
+background-color: transparent;
+}
+
+.tocify-header > .tocify-subheader {
+display: inline-block;
+text-indent: 0px;
+padding-left: 15px; /* Increase the left padding for subheaders to create an additional indent */
+}
+
+.list-group-item.highlight {
+background-color: rgba(0,0,0,0);
+border-color: rgba(0,0,0,0);
+}
+
+/* Add hover effect for the TOC items */
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+z-index: 2;
+background-color: rgba(0,0,0,0);
+border-color: rgba(0,0,0,0);
+}
+
+
+
+.list-group-item.active{
+z-index: 2;
+background-color: rgba(0,0,0,0);
+border-color: rgba(0,0,0,0);
+
+
+}
+
+</style>
+<p>This page will house readings &amp; reflections</p>
+<p>My boss Andrew Vickers wants me to read 2 papers from our group each
+day. I will keep a record of my readings and reflections here. All
+articles obtained by searching my teammates’ names on Google Scholar or
+NCBI (Andrew Vickers, Melissa Assel, Amy Tin, Emily Vertosick, Dan
+Sjoberg).</p>
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2>
+<strong>International Prostate Symptom Score Questionnaire</strong>
+</h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/37213479/" class="link">Link to
+the article</a> <span class="year">06/12/23</span>
+<p>
+<p><strong>Notes:</strong> <Notes></p>
+<p>One thing I noted was that the tables and figures are mixed in with
+the results section, which I did not do for my first actual project. In
+my project I grouped the tables and figures at the bottom.</p>
+<p>Additionally, the tables and figures have shortner names that are
+more to-the-point than mine, and they don’t have repeated information
+such as the same exclusion criteria listed among all the
+tables/figures.</p>
+<p><br></p>
+<p>I noticed that, again, the methods and results all flow together to
+paint a picture that answers the initial research question
+unequivocally, which is what I need to do in my papers.</p>
+<p><br></p>
+<p><strong>Criticisms</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>Tables 1&amp;2, variables should be more distinct, and subcategories
+should be indented further</li>
+<li>‘The prevalence of discordance was highest for incomplete emptying
+(24%)’ - I don’t see this 24% anywhere in tables</li>
+</ol>
+</p>
+</div>
+</div>
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2>
+<strong>Cancer Label Impact on Low Grade Prostate Cancer</strong>
+</h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/37285311/" class="link">Link to
+the article</a> <span class="year">06/12/23</span>
+<p>
+<p><strong>Notes:</strong> <Notes> <br> Abstract Parts: <br> 1.
+Background <br> 2. Objective <br> 3. Design Setting and Participants
+<br> 4. Outcome measurements and statitical analysis <br> 5. Results and
+limitations <br> 6. Conclusions</p>
+<p><br></p>
+<p>Key Words I didn’t know:</p>
+<p><strong>discrete choice experiments</strong> (DCE),
+<strong>conditional logit models</strong>, <strong>marginal rates of
+substitution</strong> (MRS)</p>
+<p><br></p>
+<p><strong>Discrete Choice Experiments</strong>: A way of quantifying
+preferences through analyzing decisions made by participants.
+Participants pick between competing scenarios with different
+combinations of attributes from several categorical features.</p>
+<p><br></p>
+<p><strong>Conditional Logit Models</strong>: A conditional logit model
+is a statistical model used to examine and model the relationship
+between a categorical dependent variable and one or more independent
+variables. This is a specific type of logit model that is particularly
+useful in cases where the dependent variable represents a choice, and
+the aim is to understand how different attributes of the choices
+influence the likelihood of each being selected.</p>
+<p><br></p>
+<p>The materials and methods has 4 sections: <strong>Expert
+Panel</strong>, <strong>DCE survey design</strong>, <strong>study
+participants</strong>, <strong>statistical analyses</strong></p>
+<p><br></p>
+<p><strong>Marginal Rates of Substitution</strong>: These portray the
+rates at which respondents are willing to trade their choices in one
+attribute for preferred levels on another attribute</p>
+<p><br></p>
+<p>All in all, throughout the paper, the research question and the
+methods used to answer the question remain lucid, and the results are a
+cogent story that can give insights into the nature of the issue and
+provides a normative statement based on that story.</p>
+<p><br></p>
+<p>Right now, because I don’t have a breadth or depth of knowledge in
+the field, I lack the foundational knowledge to judge papers as
+well/poorly written.</p>
+</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

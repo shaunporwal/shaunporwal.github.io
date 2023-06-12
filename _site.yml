@@ -27,12 +27,14 @@ navbar:
       href: pagedown_resume.html
     - text: "Projects"
       href: projects.html
+    - text: "Readings"
+      href: readings.html
   right:
-    - icon: fab fa-github
+    - icon: fa-lg fa-github
       href: https://github.com/shaunporwal
-    - icon: fab fa-linkedin
+    - icon: fa-lg fa-linkedin
       href: https://linkedin.com/in/shaunporwal
-    - icon: fab fa-twitter
+    - icon: fa-lg fa-twitter
       href: https://twitter.com/shaunporwal
 output:
   html_document:
