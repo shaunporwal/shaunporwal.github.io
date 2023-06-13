@@ -98,6 +98,29 @@ This page will house readings & reflections
 
 My boss Andrew Vickers wants me to read 2 papers from our group each day. I will keep a record of my readings and reflections here. All articles obtained by searching my teammates' names on Google Scholar or NCBI (Andrew Vickers, Melissa Assel, Amy Tin, Emily Vertosick, Dan Sjoberg).
 
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>A Contemporary Prostate Cancer Grading System: A Validated Alternative to the Gleason Score</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/26166626/" class="link">Link to the article</a>
+<span class="year">06/13/23</span>
+<p> 
+
+
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Blood prostate specific antigen levels at age 60</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/24682399/" class="link">Link to the article</a>
+<span class="year">06/13/23</span>
+<p> 
+
+</p>
+</div>
+</div>
+
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
