@@ -98,6 +98,20 @@ This page will house readings & reflections
 
 My boss Andrew Vickers wants me to read 2 papers from our group each day. I will keep a record of my readings and reflections here. All articles obtained by searching my teammates' names on Google Scholar or NCBI (Andrew Vickers, Melissa Assel, Amy Tin, Emily Vertosick, Dan Sjoberg).
 
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>PSA concentration at age 60 and death/metastasis from PCa: case-control study</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/20843935/" class="link">Link to the article</a>
+<span class="year">06/14/23</span>
+<p> 
+
+
+</p>
+</div>
+</div>
+
+
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
 <h2><strong>A Contemporary Prostate Cancer Grading System: A Validated Alternative to the Gleason Score</strong></h2>
@@ -105,6 +119,25 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/13/23</span>
 <p> 
 
+<br>
+
+<strong>Notes:</strong> <Notes>
+
+<br>
+
+Thought the whole point of CoxPH is to use multiple predictors, but here we have 'Separate univariable and multivariable Cox proportional hazards used four possible categorizations of Gleason scores.' Need to look into this.
+
+<br>
+
+What is the difference between 3+4 & 4+3? A Gleason score 7 can represent mostly well-differentiated cancer with a lesser component of more poorly differentiated cancer (Gleason 3 + 4 = 7) or mostly poorly differentiated cancer with a smaller component of well-differentiated cancer (4 + 3 = 7).
+
+<br>
+
+Interesting that there are no commas in numbers above 999 (e.g. 12 345)
+
+<br>
+
+Typically, BCR defined as post-op PSA value ≥0.2 ng/ml
 
 </p>
 </div>
@@ -116,6 +149,46 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://pubmed.ncbi.nlm.nih.gov/24682399/" class="link">Link to the article</a>
 <span class="year">06/13/23</span>
 <p> 
+
+<br>
+
+<strong>Notes:</strong> <Notes>
+
+<br>
+
+Interesting Fact: PSA test was introduced in Sweden in the mid-90s
+
+<br>
+
+EDTA: Ethylenediaminetetraacetic Acid: anticoagulating agent for blood and used to remove heavy metals from blood/body
+
+<br>
+
+This line, have to read up on the reference for it, would like to understand how the PSA values were imputed: 'Owing to the case-control design of the Malmö Preventive Project (three controls matched to each index case), blood was not sampled for some participants and we had to impute their PSA values, using methods previously described'
+
+<br>
+
+This line, have to look into how Nelson-Aalen is used to plot: 'The Nelson-Aalen method was used to plot the cumulative hazards for these events.'
+
+<br>
+
+Why do binomial methods allow for obtaining confidence intervals for risk differences: 'To obtain confidence intervals for risk differences, we used binomial methods.'
+
+<br>
+
+Need to really understand this line, not making sense right now: 'Since there was greater censoring before 15 years in the Gothenburg arm, and because event rates were positively correlated with PSA levels, binomial methods bias against our hypothesis that the benefits of screening are small for men with lower PSA levels.'
+
+<br>
+
+This makes sense, but need it laid out mathematically for more clarity, and also the subsequent calculation for the # needed to be diagnosed: 'We calculated the number needed to screen as the inverse of the absolute risk reduction between the screened and unscreened groups based on 15 years of follow-up.'
+
+<br>
+
+This paper also has results interspersed with figures/tables
+
+<br>
+
+Only read up till discussion (including M&R), did not read discussion
 
 </p>
 </div>
@@ -129,7 +202,11 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/12/23</span>
 <p> 
 
+<br>
+
 <strong>Notes:</strong> <Notes>
+
+<br>
 
 One thing I noted was that the tables and figures are mixed in with the results section, which I did not do for my first actual project. In my project I grouped the tables and figures at the bottom.
 
@@ -142,6 +219,8 @@ I noticed that, again, the methods and results all flow together to paint a pict
 <br>
 
 <strong>Criticisms</strong>:
+
+<br>
 
 1. Tables 1&2, variables should be more distinct, and subcategories should be indented further
 2. 'The prevalence of discordance was highest for incomplete emptying (24%)' - I don't see this 24% anywhere in tables
