@@ -1,8 +1,9 @@
 ---
 title: "Readings"
 output: html_document
-date: "`r Sys.Date()`"
 ---
+
+Last Updated: `r Sys.Date()`
 
 <style>
 .title{
