@@ -99,6 +99,61 @@ This page will house readings & reflections
 
 My boss Andrew Vickers wants me to read 2 papers from our group each day. I will keep a record of my readings and reflections here. All articles obtained by searching my teammates' names on Google Scholar or NCBI (Andrew Vickers, Melissa Assel, Amy Tin, Emily Vertosick, Dan Sjoberg).
 
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Intraoperative Ketorolac Associated with Risk of Reoperation After Mastectomy</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/33629252/" class="link">Link to the article</a>
+<span class="year">06/14/23</span>
+<p> 
+
+<br>
+
+<strong>Notes:</strong> <Notes>
+
+<br>
+
+Why are they using an acronym for enhanced recovery after surgery (ERAS), seems stupid
+
+<br>
+
+Does this REALLY need an acronym?: The postanesthesia care unit (PACU) 
+
+<br>
+
+When they say '...with a multivariable logistic regression model, adjusting for age, BMI,...',
+how do you adjust code-wise?
+
+<br>
+
+Again, exclusions in results, guess this is standard practice
+
+<br>
+
+This table does not seem to be generated using gtsummary, there are cells (maybe this is an option? )
+
+<br>
+
+<strong>Vocab</strong>
+
+<br>
+
+<strong>perioperative</strong>: Perioperative refers to the entire span of surgical management, including the preoperative (before surgery), intraoperative (during surgery), and postoperative (after surgery) phases.
+
+<br>
+
+<strong>Ketorolac</strong>: a non-steroidal anti-inflammatory drug (NSAID) commonly used in Enhanced Recovery After Surgery (ERAS) protocols, inhibits cyclooxygenase, which may lead to slower bone healing, compromised postoperative kidney function, and increased perioperative bleeding.
+
+<br>
+
+<strong>lumpectomy</strong>: lump removed from breast
+
+<br>
+
+<strong>contralateral mastectomy</strong>: A contralateral mastectomy is a preventive surgery to remove the breast not affected by cancer to reduce the risk of future breast cancer.
+
+</p>
+</div>
+</div>
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
@@ -106,6 +161,57 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://pubmed.ncbi.nlm.nih.gov/20843935/" class="link">Link to the article</a>
 <span class="year">06/14/23</span>
 <p> 
+<br>
+<strong>Notes:</strong> <Notes>
+
+<br>
+
+What is 'matching nested' and what is the ratio: Case-control study with 1:3 matching nested
+
+<br>
+
+
+What is the Vickers Team's affiliation with Sweden? Seems like Emily does a lot of work with Sweden too.
+
+<br>
+
+They use LOWESS for non-linear relation between PSA and outcome, could a GAM be used instead?
+
+<br>
+
+This exclusion, shouldn't it be in the methods and not the results?: We excluded one case (a man who died from prostate cancer)... 
+
+<br>
+
+<strong>Vocab</strong>
+
+<br>
+
+<strong>operating characteristics</strong>: Operating characteristics of a medical test refer to its sensitivity, specificity, and predictive values, which collectively indicate its ability to correctly identify those with and without the disease (GPT definition)
+
+<br>
+
+<strong>nested case-control design</strong>: A nested case-control study is a type of observational research within a larger cohort study that compares exposure to certain risk factors between those who develop an outcome of interest ("cases") and a subset of participants who did not develop the outcome ("controls").
+
+<br>
+
+<strong>labile</strong>: easily altered
+
+<br>
+
+<strong>conditional logistic regression</strong>: Conditional logistic regression is a statistical method used to examine the relationship between a binary outcome and one or more independent variables, while accounting for matching in case-control studies, like testing the association between prostate specific antigen concentrations and the occurrence of a certain condition in a prostate health study.
+
+<br>
+
+<strong>matching in case-control studies</strong>: Matching in case-control studies is a process where each case (individual with a condition) is paired with one or more controls (individuals without the condition) who share similar characteristics, such as age or sex, to help isolate the effect of the exposure being studied.
+
+<br>
+
+<strong>Lorenz Curve</strong>: In this study, the Lorenz curve is used to visually represent the distribution of prostate cancer risk across different prostate specific antigen concentrations, providing insight into how much of the total estimated risk is accounted for by different segments of the population.
+
+<br>
+
+
 
 
 </p>
