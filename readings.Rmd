@@ -109,11 +109,19 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <br>
 
-I read this already, but just reading again to let these guidelines sink in.
-
 <strong>Notes</strong>
 
 <br>
+
+This is basically the older version of Melissa's guidelines. Still skimmed through this.
+
+<br>
+
+<strong>Interesting: Avoid reporting sensitivity and specificity for continuous predictors or a model</strong>
+
+<br>
+
+Basically what I'm getting from above and guidelines in Melissa's paper is that if you can help it, do not categorize continuous variables, and avoid reporting sensitivity/specificity for them
 
 </p>
 </div>
@@ -130,7 +138,77 @@ I read this already, but just reading again to let these guidelines sink in.
 
 I read this already, but just reading again to let these guidelines sink in.
 
+<br>
+
 <strong>Notes</strong>
+
+<br>
+
+Comparing this to other papers I've read, it seems that there are many different kinds of papers. There are research papers that report data, analyses conducted, results, and conclusions. Then there are papers that report guidelines like this one. Given the breadth of paper paradigms, I wonder what kind of papers are not allowed. 
+
+<br>
+
+This kind of seems like an opinion piece with suggestions.
+
+<br>
+
+2005 Scales et al. paper reports in the month that papers were analyzed, 71% of papers with comparative stats had at least 1 statistical flaw. Now I have to look into this paper, but I wonder what kind of flaws this paper is referring to. Would including an extra sig. fig. for a result in a table constitute an error? If so, I think saying 71% of papers contain at least 1 flaw is disingenuous.
+
+<br>
+
+This Scales et al. paper should be next on my list of papers to read.
+
+<br>
+
+I hate how pedantic statisticians can be about stats. One thing my current boss did in my initial interview with him was ask me to define a p-value. I got it wrong of course, because the true definition is 'the probability of obtaining observed data assuming that the null hypothesis is true.'
+
+<br>
+
+<strong>Guidelines to read</strong>:
+
+<br>
+
+1. CONSORT for randomized trials
+2. ReMARK for marker studies
+3. TRIPOD for prediction models
+4. STROBE for observational studies
+5. AMSTAR for systematic reviews
+
+<br>
+
+<strong>Guideline 3.5 is interesting</strong>: the more p-values from testings you have, the commensurately higher the probability that you falsely rejected at least one of them. 
+
+<br>
+
+This carries with it the implicit recommendation that you should prioritize on # of questions, and for each question use only 1 p-value (guideline 3.6/7)
+
+<br>
+
+One thing I need to get into the habit of doing is this: when reporting p-values, be clear about which test the p-value is testing.
+
+<br>
+
+<strong>Typo</strong>: For instance, outcomes can be <strong>compared either side of several different cut-points</strong>, and the optimal cut-point chosen as the one associated with the smallest p-value. 
+
+<br>
+
+<strong>Read up to and including 4.14. Too many guidelines, will come back to this later.</strong>
+
+<br>
+
+<strong>Vocab</strong>
+
+<br>
+
+<strong>umbrella trials</strong>: clin trial to test how well a new substances works on patients with single type of cancer, but different mutations/biomarkers
+
+<br>
+
+<strong>treatment allocation</strong>:  putting patients in different treatment groups in a clinical trial
+
+<br>
+
+<strong>interaction term</strong>: looking at how two or more things affect something together, not just individually
 
 <br>
 
