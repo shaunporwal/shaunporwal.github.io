@@ -106,6 +106,56 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/15/23</span>
 <p> 
 
+<strong>Notes:</strong> <Notes>
+
+<br>
+
+One of most common/serious stat errors: ignoring time dependency of covariates in survival analyses (guideline 4.15)
+
+<br>
+
+Common survival analysis techniques, such as Cox regression or the Kaplan-Meier method, assume that all covariates are known at the start of follow-up
+
+<br>
+
+guarantee-time bias” (also known as immortal-time bias)
+
+<br>
+
+landmark analysis technique is appropriate when the covariate of interest is known within a relatively short period of time after the start of follow-up
+
+<br>
+
+when performing a landmark analysis it is essential to report the number of subjects excluded in each group because they experienced the event of inter- est or were censored before the landmark, and the number of subjects whose covariate status changed after the landmark. 
+
+<br>
+
+use of time-dependent covariates in Cox regression may be more appropriate than the landmark analysis approach when the value of a co- variate changes during follow-up, where there is not an obvious landmark time, or when the use of a landmark time would lead to an unacceptable number of exclu- sions
+
+<br>
+
+Analysis of a time-dependent covariate in a Cox regression model requires setup of a special- ized data set in a format known as counting process format, in which patients may have multiple rows of data corresponding to different time intervals.
+
+<br>
+
+If the changing value of a covariate over time is ignored, it is likely that the proportional hazards assumption, upon which Cox regression relies, is violated, which can lead to incorrect estimates and conclusions. 
+
+<br>
+
+An important drawback of the time-dependent covariate approach is that it cannot be used to generate prediction of survival over time, and interpretation of the time- dependent coefficients can be difficult.6,7
+
+<br>
+
+Take Home points:
+
+<br>
+
+The use of traditional survival analysis methods such as Cox regression or Kaplan-Meier analysis require
+that all covariates are known at the start of follow-up and remain constant throughout the follow-up period.
+- Covariates whose status changes during follow-up are known as time-dependent covariates. When the time-de- pendency of covariates is ignored Kaplan-Meier esti- mates are subject to “guarantee-time bias” and the proportional hazards assumption of Cox regression may be violated.
+- Cox regression can accommodate a time-varying co- variate using a data set in the appropriate specialized format. But this method cannot be used to generate sur- vival estimates.
+- Landmark analysis is useful when the covariate of in- terest is known within a relatively short period of time after the start of follow-up. A fixed landmark time is selected and the start of follow-up and covariates status is defined at the time of the landmark. This method can be used to generate survival estimates, but requires exclusion of patients who had the event or were censored prior to the landmark time.
+- Analyses that do not appropriately handle time- dependent covariates violate the assumptions of the standard survival analyses and submissions that do not analyze time-dependent covariates appropri- ately will not pass statistical review at The Journal of Urology!.
 
 
 </p>
