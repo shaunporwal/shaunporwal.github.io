@@ -103,6 +103,33 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
+<h2><strong>The Four-Kallikrein Panel Is Effective in Identifying Aggressive Prostate Cancer in a Multiethnic Population</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/32385116/" class="link">Link to the article</a>
+<span class="year">06/19/23</span>
+<p> 
+
+
+
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Comparison between the four-kallikrein panel and Prostate Health Index (PHI) for predicting prostate cancer</strong></h2>
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4503229/" class="link">Link to the article</a>
+<span class="year">06/19/23</span>
+<p> 
+
+
+
+</p>
+</div>
+</div>
+
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
 <h2><strong>Guidelines for reporting of statistics in European Urology</strong></h2>
 <a href="https://pubmed.ncbi.nlm.nih.gov/25037638/" class="link">Link to the article</a>
 <span class="year">06/16/23</span>
