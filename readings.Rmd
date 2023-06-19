@@ -100,6 +100,16 @@ This page will house readings & reflections
 
 My boss Andrew Vickers wants me to read 2 papers from our group each day. I will keep a record of my readings and reflections here. All articles obtained by searching my teammates' names on Google Scholar or NCBI (Andrew Vickers, Melissa Assel, Amy Tin, Emily Vertosick, Dan Sjoberg).
 
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>A commentary on PSA velocity and doubling time for clinical decisions in prostate cancer</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/24581521/" class="link">Link to the article</a>
+<span class="year">06/19/23</span>
+<p> 
+
+</p>
+</div>
+</div>
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
@@ -108,7 +118,23 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/19/23</span>
 <p> 
 
+<strong>Notes</strong>:
 
+<br>
+
+4k score better at discrimination among those with higher PSAs
+
+<br>
+
+Not too many figures/tables, and didn't use DCA. Wouldn't this have been an ideal place to use it? Could compare all different models (4k, 4k + Polygenic Risk Score (PRS), PSA, fPSA, etc)
+
+<br>
+
+<strong>Vocab</strong>
+
+<br>
+
+<strong>Nested case-control study</strong>: In a nested case-control study, from a big group, you compare people who got a disease ("cases") with similar people who didn't ("controls") to find differences that might explain why the disease occurred.
 
 </p>
 </div>
@@ -120,6 +146,52 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4503229/" class="link">Link to the article</a>
 <span class="year">06/19/23</span>
 <p> 
+
+<br>
+
+<strong>Notes</strong>
+
+<br>
+
+I never knew measuring total PSA produced an excess number of false positives
+
+<br>
+
+Just defining sensitivity and specificity below since I always forget their defns and which one is which
+
+<br>
+
+re this line in paper: 'High-grade cancer was defined as Gleason score ≥7', this is gleason score of 3+4 or higher, but there is debate around 3+4 being high grade. 4+3, however, is definitely high-grade
+
+<br>
+
+re this line: Briefly, decision curve analysis graphically illustrates the net benefit obtained by using the predictive models in a patient by assuming that the threshold probability for having all prostate cancer or highgrade prostate cancer at which a patient would opt for biopsy is informative of how the patient weighs the relative harms of a false-positive and a <strong>false-negative prediction</strong>. <strong>How does DCA take into account false negatives?</strong>
+
+<br>
+
+In this paper, figures/tables at the end. Seems w.r.t. format there's leeway.
+
+<br>
+
+<strong>Vocab</strong>
+
+<br>
+
+<strong>Sensitivity</strong>: Sensitivity (also called the true positive rate, the recall, or probability of detection in some fields) measures the proportion of actual positives that are correctly identified as such. In other words, it's a measure of how well a test correctly identifies a condition when that condition is indeed present.
+
+<br>
+
+<strong>Specificity</strong>: Specificity (also called the true negative rate) measures the proportion of actual negatives that are correctly identified as such. That is, it's a measure of how well a test identifies the absence of a condition.
+
+<br>
+
+<strong>discrimination</strong>: This is the ability of a predictive model to differentiate between positive cases and negative cases. In other words, it's a measure of how well the model can distinguish or 'discriminate' between those who have an event or condition and those who do not. A commonly used statistic for measuring discrimination is the area under the receiver operating characteristic curve (AUC-ROC). A perfect model has a discrimination of 1, while a model that performs no better than random chance has a discrimination of 0.5 when using AUC-ROC.
+
+<br>
+
+<strong>calibration</strong>: This refers to the agreement between predicted probabilities of an event and the observed frequencies of the event. A model is said to be well-calibrated if the probabilities it predicts correspond well with the actual outcome frequencies. For example, among patients who are all predicted to have a 30% chance of a disease, about 30% of them should actually have the disease for the model to be well-calibrated. Calibration can be assessed visually using a calibration plot or more formally using statistics like the Brier score or the Hosmer-Lemeshow test.
+
+
 
 
 
