@@ -102,6 +102,28 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
+<h2><strong>Guidelines for Reporting of Figures and Tables for Clinical Research in Urology</strong></h2>
+<a href="https://www.auajournals.org/doi/10.1097/JU.0000000000001096" class="link">Link to the article</a>
+<span class="year">06/22/23</span>
+<p> 
+
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Writing Up Clinical Research: A Statistician’s View</strong></h2>
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3744309/" class="link">Link to the article</a>
+<span class="year">06/22/23</span>
+<p> 
+
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
 <h2><strong>Defining the Impact of Family History on Detection of High Grade Prostate Cancer in a Large Multi-institutional Cohort</strong></h2>
 <a href="https://pubmed.ncbi.nlm.nih.gov/34980493/" class="link">Link to the article</a>
 <span class="year">06/21/23</span>
@@ -115,7 +137,7 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <div class="contact-text">
 <h2><strong>Impact of an Expanded Definition of Family History on Outcomes of Active Surveillance for Prostate Cancer</strong></h2>
 <a href="https://www.auajournals.org/doi/10.1097/JU.0000000000003396" class="link">Link to the article</a>
-<span class="year">06/20/23</span>
+<span class="year">06/21/23</span>
 <p> 
 
 </p>
@@ -141,6 +163,32 @@ How to evaluate a marker: (1) Marker must be significantly different between con
 
 <br>
 
+This sentence makes sense, but I want to make it click instantaneously: Several groups have reported that PSA velocity fails to improve the specificity of PSA for biopsy, that is, it does not help the decision to biopsy men with elevated PSA.19-23
+
+<br>
+
+The sentence above basically says that PSAV fails to improve specificity for PSA for biopsy (doesn't help decision to biopsy). Basically, it doesn't maximize the TP/(TP + FP). The FPs are still left as is or worse.
+
+<br>
+
+<strong>Ask Andrew about this sentence</strong>: PSA velocity was not found to improve the sensitivity of PSA: using high PSA velocity as a criterion to biopsy men with low PSA would lead to many millions of additional biopsies per year, without a correspondingly important increase in the number of high-grade cancers detected. 
+
+<strong>Regarding the above</strong>, it says PSAV not found to increase sensitivity, but then it says it would lead to additional biopsies without correspondingly important increase in # high-grade cancers detected. The first part and second part don't match, since the second part implies that sensitivity is decreased. If that is the case, why not just say that PSAV decreases sensitivity? If that isn't the case, then the second part is wrong.
+
+<br>
+
+How does use of randomized trial data avoid these issues: In clinical co- horts, it might not be clear how a patient was referred, whether the PSA record is complete, or what the criteria for biopsy were, leading to problems such as verification bias. Use of randomized trial data avoids these problems.
+
+<br>
+
+Answer to above: Randomized trials, through their design, control for factors such as referral methods, biopsy criteria, and ensure complete record-keeping, thereby reducing biases common in clinical cohorts.
+
+<br>
+
+<strong>PSA Velocity should not be used to decide whether or not to do a biopsy</strong>, as it will lead to many unnecessary procedures. However, it can aid patient counselling in advanced disease stages. PSA changes (high velocity) while on treatment for advanced diease can indicate disease resistance to treatment.
+
+<br>
+
 <strong>Vocab</strong>
 
 <br>
@@ -149,21 +197,27 @@ How to evaluate a marker: (1) Marker must be significantly different between con
 
 <br>
 
-<strong></strong>:
+<strong>Receiver Operating Characteristic Curve (ROC)</strong>: plotting TPR vs FPR for single classifier at a variety of thresholds
 
 <br>
 
-<strong></strong>:
+<strong>risk count method for calculating PSA</strong>: Can't find this definition anywhere
 
 <br>
 
-<strong></strong>:
+<strong>verification bias</strong>: occurs during investigations of diagnostic test accuracy when there is a difference in testing strategy between groups of individuals, leading to differing ways of verifying the disease of interest
 
 <br>
 
-<strong></strong>:
+<strong>Standard Arms</strong>: In the context of clinical trials, "standard arms" refers to the control groups that receive the currently accepted and widely used treatment for a condition.
 
 <br>
+
+<strong>metastatic hormone-refractory prostate cancer</strong>: also known as castration-resistant prostate cancer (CRPC), is a form of prostate cancer that continues to progress despite the use of hormone therapy.
+
+<br>
+
+<strong>concordance index</strong>: a measure used in statistics to assess the predictive accuracy of a model, especially in the context of survival analysis or in scenarios where outcomes are ordered (such as risk scores). It is a generalization of the area under the Receiver Operating Characteristic (ROC) curve, which is a graphical plot that illustrates the diagnostic ability of a binary classifier system. 
 
 </p>
 </div>
