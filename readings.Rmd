@@ -111,7 +111,6 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 </div>
 </div>
 
-
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
 <h2><strong>Guidelines for Reporting of Figures and Tables for Clinical Research in Urology</strong></h2>
@@ -186,6 +185,8 @@ The sentence above basically says that PSAV fails to improve specificity for PSA
 <strong>Ask Andrew about this sentence</strong>: PSA velocity was not found to improve the sensitivity of PSA: using high PSA velocity as a criterion to biopsy men with low PSA would lead to many millions of additional biopsies per year, without a correspondingly important increase in the number of high-grade cancers detected. 
 
 <strong>Regarding the above</strong>, it says PSAV not found to increase sensitivity, but then it says it would lead to additional biopsies without correspondingly important increase in # high-grade cancers detected. The first part and second part don't match, since the second part implies that sensitivity is decreased. If that is the case, why not just say that PSAV decreases sensitivity? If that isn't the case, then the second part is wrong.
+
+<strong>Andrew's response</strong>: Additional biopsies have nothing to do with the sensitivity since sensitivity only cares about total # of prostate cancer, 
 
 <br>
 
