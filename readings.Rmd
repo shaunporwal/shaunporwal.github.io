@@ -102,6 +102,19 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
+<h2><strong>Underpowering in randomized trials reporting a sample size calculation</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/12954462/" class="link">Link to the article</a>
+<span class="year">06/23/23</span>
+<p> 
+
+
+</p>
+</div>
+</div>
+
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
 <h2><strong>Parametric versus non-parametric statistics in the analysis of randomized trials with non-normally distributed data</strong></h2>
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1310536/" class="link">Link to the article</a>
 <span class="year">06/23/23</span>
@@ -141,6 +154,20 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/21/23</span>
 <p> 
 
+<strong>Notes</strong>:
+
+<br>
+
+Only read up to end of results
+
+<br>
+
+The researchers used a statistical method called "multiple imputation with chained equations" to fill in missing data for certain variables, and then repeated their main analyses with this filled-in data to ensure their results were not significantly influenced by these missing values.
+
+<br>
+
+Sensitivity analyses using multiple imputation seems to be a common thing when evaluating how missingness affects analyses
+
 </p>
 </div>
 </div>
@@ -151,6 +178,24 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://www.auajournals.org/doi/10.1097/JU.0000000000003396" class="link">Link to the article</a>
 <span class="year">06/21/23</span>
 <p> 
+
+<strong>Notes</strong>:
+
+<br>
+
+I only read up to end of results
+
+<br>
+
+Point of paper is to outline that family history for PCa is a risk factor for PCa, but that family history including history of any other malignancies suggestive of hereditary cancer syndrome can also be a risk factor
+
+<br>
+
+Appears this paper's results section is just repeating what's in the tables
+
+<br>
+
+<strong>Observer Bias</strong>: Refers to the distortion in research results that occurs when an experimenter's expectations or preconceptions unconsciously influence the collection, interpretation, or analysis of data.
 
 </p>
 </div>

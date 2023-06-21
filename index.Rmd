@@ -160,7 +160,6 @@ rule/prescription/suggestion from any person, no matter how important.
 rmarkdown::render('projects.Rmd')
 rmarkdown::render('readings.Rmd')
 
-
 ```
 
 
