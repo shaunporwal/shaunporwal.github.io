@@ -107,7 +107,6 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/23/23</span>
 <p> 
 
-
 </p>
 </div>
 </div>
@@ -131,6 +130,30 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/22/23</span>
 <p> 
 
+<strong>Vocab</strong>:
+
+<strong>Funnel Plot</strong>: scatterplot of treatment effect against study precision
+
+<br>
+
+Only include figures if they importantly improve the reader's ability to understand the study findings. In my case in the Testis project, make sure included Kaplan-Meier plots serve a purpose
+
+<br>
+
+When including figures/plots, make sure that they give an immediate visual impression that cannot be captured similary in some quick words
+
+<br>
+
+Good Kaplan-Meier advice: truncate follow-up time for KM figs when # at risk <5 (or even 10)
+
+<br>
+
+<strong>Interesting</strong>: Avoid repeating in the text the results reported in the tables. Refer to all tables in the text by providing a general summary or overall inter-pretation. <strong>This is a little tricky because you have to know what the literature says to make the interpretations</strong>
+
+<br>
+
+This suggestion is directly relevant to my work on the testis project, since I had to use 'add_global_p' to get the overall p-value for the column, and not the individual predictors, in the multivariable LR tables: For categorical variables, a single hypothesistest is preferable to multiple tests at eachlevel of the category.
+
 </p>
 </div>
 </div>
@@ -141,6 +164,26 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3744309/" class="link">Link to the article</a>
 <span class="year">06/22/23</span>
 <p> 
+
+<strong>Notes</strong>:
+
+A good guideline: Don't mention things that are unfalsifiable, as they hold no value (e.g. “surgeons should carefully consider the extent of surgery”)
+
+<br>
+
+Regarding statistical methods, each method should state specifically what it is testing
+
+<br>
+
+Literature review in discussion should only pertain to the the findings and that's it
+
+<br>
+
+Don't just mention study limitations, but also explain the effects of the study limitations. In this paper Andrew mentions: Discussion of limitations should include both the likelihood and effect size of possible bias.
+
+<br>
+
+Just because you reject the null hypothesis doesn't mean it should lead to clinical recommendations
 
 </p>
 </div>
