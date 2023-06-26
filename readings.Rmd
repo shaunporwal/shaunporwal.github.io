@@ -107,6 +107,12 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <span class="year">06/23/23</span>
 <p> 
 
+<strong>Notes</strong>:
+
+
+
+<strong>Vocab</strong>:
+
 </p>
 </div>
 </div>
@@ -118,6 +124,42 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1310536/" class="link">Link to the article</a>
 <span class="year">06/23/23</span>
 <p> 
+
+<strong>Notes</strong>:
+
+<br>
+
+Only read up to but not including discussion
+
+<br>
+
+I don't understand this sentence: The estimate of the treatment effect from ANCOVA was not importantly biased. How would the ANCOVA estimate be biased? How could we tell that it's biased? 
+
+<br>
+
+If sample size is large enough, say &ge;30 observations in each sample, t-test may be computed on almost any set of continuous data (central limit theorem)
+
+<br>
+
+<strong>Power</strong>: the proportion of times the null hypothesis is rejected (that is, the power)
+
+<br>
+
+"Where data are sampled from a normal distribution, the t-test has very slightly higher power than Mann-Whitney, the non-parametric alternative. However, when data are sampled from any one of a variety of non-normal distributions, Mann-Whitney is superior, often by a large amount."
+
+<br>
+
+<strong>Vocab</strong>:
+
+<strong>Mann-Whitney</strong>: AKA Wilcoxon Rank Sum, statistical tool used to determine if there's significant difference between two independent groups of non-normally distributed data
+
+<br>
+
+<strong>Analysis of Covariance (ANCOVA)</strong>: statistical method that compares the means of a dependent variable across different groups while adjusting for or controlling the influence of one or more other continuous variables, known as covariates
+
+<br>
+
+<strong>iatrogenic</strong>: illness caused by treatment/medical intervention
 
 </p>
 </div>
