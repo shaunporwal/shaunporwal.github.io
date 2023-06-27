@@ -102,14 +102,68 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
-<h2><strong>Underpowering in randomized trials reporting a sample size calculation</strong></h2>
-<a href="https://pubmed.ncbi.nlm.nih.gov/12954462/" class="link">Link to the article</a>
-<span class="year">06/23/23</span>
+<h2><strong>Acupuncture for Chronic Pain: Update of an Individual Patient Data Meta-Analysis</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/29198932/" class="link">Link to the article</a>
+<span class="year">06/27/23</span>
 <p> 
 
 <strong>Notes</strong>:
 
 
+<strong>Vocab</strong>:
+
+</p>
+</div>
+</div>
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Tail risk of contagious diseases</strong></h2>
+<a href="https://www.nature.com/articles/s41567-020-0921-x" class="link">Link to the article</a>
+<span class="year">06/27/23</span>
+<p> 
+
+<strong>Notes</strong>:
+
+<br>
+
+Fat tails are deadly, they indicate events that don't happen to the masses, but can have grave consequence
+
+<br>
+
+Fatalities from infectious diseases are fat-tailed, those from car-accidents/heart attacks/ladder falls are thin-tailed
+
+<br>
+
+Read until third para under 'The tail-wags-the-dog effect'
+
+<strong>Vocab</strong>:
+
+<br>
+
+<strong>Tail Risk of Contagious Diseases</strong>
+
+<strong>Point Forecasts</strong>
+
+<strong>Extreme Value Theory</strong>
+
+<strong>Fréchet distribution</strong> 
+
+</p>
+</div>
+</div>
+
+
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Underpowering in randomized trials reporting a sample size calculation</strong></h2>
+<a href="https://pubmed.ncbi.nlm.nih.gov/12954462/" class="link">Link to the article</a>
+<span class="year">Date NA</span>
+<p> 
+
+<strong>Notes</strong>:
+
+Can't access, will have to look into it or ask AV
 
 <strong>Vocab</strong>:
 
