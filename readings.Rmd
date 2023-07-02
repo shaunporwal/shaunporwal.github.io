@@ -117,8 +117,14 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 <div class="contact-text">
 <h2><strong>Impact of Acute Kidney Injury and Its Duration on Long-term Renal Function After Partial Nephrectomy</strong></h2>
 <a href="https://www.sciencedirect.com/science/article/pii/S0302283819303562" class="link">Link to the article</a>
-<span class="year">06/29/23</span>
+<span class="year">07/02/23</span>
 <p> 
+
+<strong>Notes</strong>:
+
+<br>
+
+In progress
 
 <br>
 
@@ -126,11 +132,30 @@ My boss Andrew Vickers wants me to read 2 papers from our group each day. I will
 
 <br>
 
+<strong>Upstaging</strong>: progression of a disease to a higher stage
+
+
 </p>
 </div>
 </div>
 
 
+<div class="contact-wrapper contact-box">
+<div class="contact-text">
+<h2><strong>Total and Added Sugar Intake: Assessment in Eight Latin American Countries</strong></h2>
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5946174/" class="link">Link to the article</a>
+<span class="year">07/01/23</span>
+<p> 
+
+This paper is hot trash. I did not enjoy reading it. The figures and tables do not tell me anything useful. There were many sentences that I wish I had not read, because I lost precious seconds of my life doing so. The first sentence of the abstract is a general statement that does not flow to the following ideas/thoughts.
+
+<br>
+
+One of the study aims is to verify adherence to WHO recommendations for total and added sugar intake. It's great that the WHO has these recommendations. However, discussion of the origins and validity of these recommendations would have added rigor rather than simply mentioning them.
+
+</p>
+</div>
+</div>
 
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
