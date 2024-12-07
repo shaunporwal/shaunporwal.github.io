@@ -4,9 +4,13 @@ project:
 
 website:
   title: "Shaun Porwal"
-  base-url: /shaunporwal.github.io/
   navbar:
     right:
+      - text: Blog
+        href: index.html
+      - text: cv
+        href: https://rxresu.me/shaunporwal/241206-resume
+        target: _blank
       - text: Projects
         href: projects.html
       - about.qmd
