@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -91,6 +91,10 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://rxresu.me/shaunporwal/241206-resume" target="_blank"> 
+<span class="menu-text">cv</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./projects.html" aria-current="page"> 
@@ -120,8 +124,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#gravity-chamber" id="toc-gravity-chamber" class="nav-link active" data-scroll-target="#gravity-chamber"><strong>Gravity Chamber</strong></a></li>
+  <li><a href="#python-package-dcurves" id="toc-python-package-dcurves" class="nav-link" data-scroll-target="#python-package-dcurves"><strong>Python Package: dcurves</strong></a></li>
+  <li><a href="#sites" id="toc-sites" class="nav-link" data-scroll-target="#sites"><strong>Sites</strong></a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -144,157 +161,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-.title{
-  display: none;
-}
-</style>
-<div class="cell">
-<style type="text/css">
-.contact-box {
-  position: relative;
-  border: 2px solid lightgrey;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.contact-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact-text {
-  flex-grow: 1;
-}
-
-.link {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-.date {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-weight: bold;
-  padding-left: 10px; /* Add left padding to separate the year from the text */
-}
-
-h2 {
-  margin-bottom: 10px;
-  font-size: 1.3em;
-  margin-right: 50px; /* Add right margin to separate the title from the year */
-}
-
-p {
-  margin-bottom: 0;
-}
-
-/* Custom CSS for the table of contents */
-.tocify-item {
-  display: block;
-  text-indent: 0em;
-  padding-right: 0em;
-}
-
-.tocify-item .tocify-header1 {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
-}
-
-.tocify-item .tocify-header2 {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
-}
-
-.tocify-item .tocify-header2 > span {
-  display: inline-block;
-  text-indent: 0;
-  padding-left: 0;
-}
-
-.tocify-item.active {
-  background-color: rgba(92, 184, 92, 0.2); /* Green with 50% transparency */
-  color: rgba(92, 184, 92, 0.5);
-}
-
-.tocify-item:hover {
-  background-color: rgba(100, 149, 237, 0.5); /* Light blue with transparency */
-  color: #ffffff;
-}
-
-/* Add or modify the following CSS in your existing CSS code */
-
-.tocify-item.active:hover {
-  background-color: rgba(92, 184, 92, 0.7); /* Slightly transparent version of the active color */
-  color: #ffffff;
-}
-
-</style>
-</div>
-<p>This page will house projects I’ve done, as well as projects I’m working on</p>
+<p>This page will house projects I’ve done, as well as projects I’m working on.</p>
 <section id="gravity-chamber" class="level1">
 <h1><strong>Gravity Chamber</strong></h1>
 <div class="contact-wrapper contact-box">
 <div class="left">
 <p><img src="media/gravitychamber.gif" alt="gravchamber_gif"></p>
 </div>
-<div class="contact-text">
-<h2 class="anchored" data-anchor-id="gravity-chamber">
-<a href="https://github.com/shaunporwal/gravitychamber" class="link">Gravity Chamber Python Code</a>
-</h2>
+<section id="gravity-chamber-python-code" class="level3 contact-text">
+<h3 class="anchored" data-anchor-id="gravity-chamber-python-code"><a href="https://github.com/shaunporwal/gravitychamber" class="link">Gravity Chamber Python Code</a></h3>
 <p><span class="date">2023</span></p>
-</div>
+</section>
 </div>
 </section>
 <section id="python-package-dcurves" class="level1">
 <h1><strong>Python Package: dcurves</strong></h1>
 <div class="contact-wrapper contact-box">
-<div class="contact-text">
-<h2 class="anchored" data-anchor-id="python-package-dcurves">
-<a href="https://github.com/MSKCC-Epi-Bio/dcurves" class="link">Decision Curve Analysis Python Package</a>
-</h2>
-<span class="date">2023</span>
-<p>
-Diagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes, but often require collection of additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the data set on which the models are tested, and can be applied to models that have either continuous or dichotomous results. The dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial (towards the bottom) for a detailed walk-through of various applications. Also, see www.decisioncurveanalysis.org for more information.
-</p>
-</div>
+<section id="decision-curve-analysis-python-package" class="level3 contact-text">
+<h3 class="anchored" data-anchor-id="decision-curve-analysis-python-package"><a href="https://github.com/MSKCC-Epi-Bio/dcurves" class="link">Decision Curve Analysis Python Package</a></h3>
+<p><span class="date">2023</span></p>
+<p>Diagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes but often require additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the dataset on which the models are tested, and can be applied to models that have either continuous or dichotomous results.</p>
+<p>The <code>dca</code> function performs decision curve analysis for binary and survival outcomes. Review the <a href="http://decisioncurveanalysis.org">DCA tutorial</a> for a detailed walkthrough of various applications.</p>
+</section>
 </div>
 </section>
 <section id="sites" class="level1">
 <h1><strong>Sites</strong></h1>
 <div class="contact-wrapper contact-box">
-<div class="contact-text">
-<h2 class="anchored" data-anchor-id="sites">
-<a href="https://mskcc-epi-bio.github.io/decisioncurveanalysis/" class="link">http://decisioncurveanalysis.org</a>
-</h2>
-<span class="date">2023</span>
-<p>
-I made this site for my boss’ statistical method ‘Decision Curve Analysis’. This mean is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.
-</p>
-</div>
+<section id="decision-curve-analysis-site" class="level3 contact-text">
+<h3 class="anchored" data-anchor-id="decision-curve-analysis-site"><a href="https://mskcc-epi-bio.github.io/decisioncurveanalysis/" class="link">Decision Curve Analysis Site</a></h3>
+<p><span class="date">2023</span></p>
+<p>I made this site for my boss’ statistical method “Decision Curve Analysis”. This method is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.</p>
+</section>
 </div>
 <div class="contact-wrapper contact-box">
 <div class="contact-text">
-<span class="date">2023</span>
-<h2 class="anchored">
-<a href="https://mishkanholdingsllc.org" class="link">Site for UN NGO (1)</a>
-</h2>
-<h2 class="anchored">
-<a href="https://politicalaesthetics.github.io" class="link">Site for UN NGO (2)</a>
-</h2>
-<p>
-I made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes.
-</p>
+<section id="site-for-un-ngo-1" class="level3">
+<h3 class="anchored" data-anchor-id="site-for-un-ngo-1"><a href="https://mishkanholdingsllc.org" class="link">Site for UN NGO (1)</a></h3>
+</section>
+<section id="site-for-un-ngo-2" class="level3">
+<h3 class="anchored" data-anchor-id="site-for-un-ngo-2"><a href="https://politicalaesthetics.github.io" class="link">Site for UN NGO (2)</a></h3>
+<p><span class="date">2023</span></p>
+<p>I made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes.</p>
+</section>
 </div>
 </div>
 

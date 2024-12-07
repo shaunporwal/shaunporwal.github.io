@@ -12,6 +12,11 @@
       }
     ]
   },
+  "Python": {
+    "Version": "3.11.1",
+    "Type": "virtualenv",
+    "Name": "./renv/python/virtualenvs/renv-python-3.11"
+  },
   "Packages": {
     "R6": {
       "Package": "R6",

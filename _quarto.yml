@@ -2,6 +2,10 @@ project:
   type: website
   output-dir: docs
 
+execute:
+  enabled: true
+  python: "./renv/python/virtualenvs/renv-python-3.11/bin/python"
+
 website:
   title: "Shaun Porwal"
   navbar:
@@ -10,7 +14,6 @@ website:
         href: index.html
       - text: cv
         href: https://rxresu.me/shaunporwal/241206-resume
-        target: _blank
       - text: Projects
         href: projects.html
       - about.qmd
@@ -22,6 +25,7 @@ format:
   html:
     theme: cosmo
     css: styles.css
+
 
 editor: visual
 
