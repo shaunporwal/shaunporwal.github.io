@@ -1,9 +1,10 @@
 project:
   type: website
   output-dir: docs
+base_url: https://shaunporwal.github.io
 
 website:
-  title: "shaunporwal.github.io"
+  title: "Shaun Porwal"
   navbar:
     right:
       - about.qmd
