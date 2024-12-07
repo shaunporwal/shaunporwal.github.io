@@ -1,9 +1,10 @@
 project:
   type: website
   output-dir: docs
-  
+
 website:
   title: "Shaun Porwal"
+  base-url: /shaunporwal.github.io/
   navbar:
     right:
       - text: Projects
