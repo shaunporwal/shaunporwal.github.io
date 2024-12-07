@@ -1,6 +1,9 @@
 project:
+  render:
+    - index.qmd
+    - about.qmd
   type: website
-  output-dir: docs
+
 
 website:
   title: "shaunporwal.github.io"
