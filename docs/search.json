@@ -7,6 +7,27 @@
     "text": "About this blog"
   },
   {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "This page will house projects I’ve done, as well as projects I’m working on\n\nGravity Chamber\n\n\n\n\n\n\nGravity Chamber Python Code\n\n2023\n\n\n\n\nPython Package: dcurves\n\n\n\nDecision Curve Analysis Python Package\n\n2023\n\nDiagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes, but often require collection of additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the data set on which the models are tested, and can be applied to models that have either continuous or dichotomous results. The dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial (towards the bottom) for a detailed walk-through of various applications. Also, see www.decisioncurveanalysis.org for more information.\n\n\n\n\n\nSites\n\n\n\nhttp://decisioncurveanalysis.org\n\n2023\n\nI made this site for my boss’ statistical method ‘Decision Curve Analysis’. This mean is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.\n\n\n\n\n\n2023\n\nSite for UN NGO (1)\n\n\nSite for UN NGO (2)\n\n\nI made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "shaunporwal.github.io",

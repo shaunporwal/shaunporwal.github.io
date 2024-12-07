@@ -1,7 +1,7 @@
 project:
   type: website
   output-dir: docs
-base_url: https://shaunporwal.github.io
+base_url: /
 
 website:
   title: "Shaun Porwal"
