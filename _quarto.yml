@@ -1,12 +1,13 @@
 project:
   type: website
   output-dir: docs
-base_url: /
-
+  
 website:
   title: "Shaun Porwal"
   navbar:
     right:
+      - text: Projects
+        href: projects.html
       - about.qmd
       - icon: github
         href: https://github.com/
