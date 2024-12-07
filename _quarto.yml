@@ -12,8 +12,8 @@ website:
     right:
       - text: Blog
         href: index.html
-      - text: cv
-        href: https://rxresu.me/shaunporwal/241206-resume
+      - text: CV
+        href: porwal_resume.pdf
       - text: Projects
         href: projects.html
       - about.qmd
