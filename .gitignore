@@ -43,3 +43,10 @@ site_libs/
 
 
 /.quarto/
+/.Rproj.user/
+/.RData
+/.Rhistory
+/.freeze/
+/docs/
+/renv/
+
