@@ -1,6 +1,6 @@
 ---
-title: "About"
-image: profile.jpg
+title: ""
+image: heron.jpg
 about:
   template: jolla
   links:
@@ -15,4 +15,6 @@ about:
       href: https://github.com
 ---
 
-About this blog
+Personal site.
+
+Interests: **existential contemplation**, **languages**, **exercise**, **nutrition**, **anime**, **coding**

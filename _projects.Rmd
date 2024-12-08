@@ -1,5 +1,5 @@
 ---
-title: "Projects"
+title: ""
 output:
   html_document:
     toc: true

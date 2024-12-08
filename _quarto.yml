@@ -10,13 +10,15 @@ website:
   title: "Shaun Porwal"
   navbar:
     right:
-      - about.qmd
+      - text: About
+        href: about.html
       - text: Blog
         href: index.html
       - text: CV
         href: porwal_resume.pdf
         target: _blank
-      - projects.qmd
+      - text: Projects
+        href: projects.html
       - icon: github
         href: https://github.com/shaunporwal
       - icon: twitter

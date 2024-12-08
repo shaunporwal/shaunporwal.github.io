@@ -2,14 +2,14 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Shaun Porwal",
     "section": "",
-    "text": "About this blog"
+    "text": "Personal site.\nInterests: existential contemplation, languages, exercise, nutrition, anime, coding"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "Projects",
+    "title": "Gravity Chamber",
     "section": "",
     "text": "This page will house projects I’ve done, as well as projects I’m working on.\n\nGravity Chamber\n\n\n\n\n\nGravity Chamber Python Code\n2023\n\n\n\n\nPython Package: dcurves\n\n\nDecision Curve Analysis Python Package\n2023\nDiagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes but often require additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the dataset on which the models are tested, and can be applied to models that have either continuous or dichotomous results.\nThe dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial for a detailed walkthrough of various applications.\n\n\n\n\nSites\n\n\nDecision Curve Analysis Site\n2023\nI made this site for my boss’ statistical method “Decision Curve Analysis”. This method is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.\n\n\n\n\n\nSite for UN NGO (1)\n\n\nSite for UN NGO (2)\n2023\nI made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes."
   },
@@ -37,7 +37,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Blog",
+    "title": "Shaun Porwal",
     "section": "",
     "text": "Site Building Is Incredibly Annoying\n\n\n\n\n\n\nwebdev\n\n\ncode\n\n\n\n\n\n\n\n\n\nDec 7, 2024\n\n\nShaun Porwal\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nDec 6, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nDec 4, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   }
