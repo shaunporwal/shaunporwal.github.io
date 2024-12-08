@@ -8,7 +8,7 @@ format:
     css: styles.css
 ---
 
-This page will house projects I've done, as well as projects I'm working on.
+![Gravity Chamber](media/gravitychamber.gif){fig-align="left"}
 
 # **Gravity Chamber**
 

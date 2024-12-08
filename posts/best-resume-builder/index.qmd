@@ -1,0 +1,8 @@
+---
+title: "The Best Resume Builder I have Ever Used"
+author: "Shaun Porwal"
+date: "2024-12-08"
+categories: [webdev, code]
+image: "./anime_resume.png"
+draft: true
+---

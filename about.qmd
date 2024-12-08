@@ -6,13 +6,16 @@ about:
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://x.com/ShaunPorwal
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://linkedin.com/in/shaunporwal
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/shaunporwal
+    - icon: email
+      text: Email
+      href: mailto:shaun.porwal@gmail.com
 ---
 
 Personal site.

@@ -14,15 +14,11 @@ website:
         href: about.html
       - text: Blog
         href: index.html
+      - text: Projects
+        href: projects.html
       - text: CV
         href: porwal_resume.pdf
         target: _blank
-      - text: Projects
-        href: projects.html
-      - icon: github
-        href: https://github.com/shaunporwal
-      - icon: twitter
-        href: https://x.com/ShaunPorwal
 format:
   html:
     theme: minty
