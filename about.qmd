@@ -5,17 +5,21 @@ about:
   template: jolla
   links:
     - icon: twitter
-      text: Twitter
+      text: X
       href: https://x.com/ShaunPorwal
+      target: _blank
     - icon: linkedin
       text: LinkedIn
       href: https://linkedin.com/in/shaunporwal
+      target: _blank
     - icon: github
       text: Github
       href: https://github.com/shaunporwal
+      target: _blank
     - icon: email
       text: Email
       href: mailto:shaun.porwal@gmail.com
+      target: _blank
 ---
 
 Personal site.
