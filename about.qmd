@@ -1,6 +1,6 @@
 ---
 title: ""
-image: heron.jpg
+image: ./media/heron.jpg
 about:
   template: jolla
   links:

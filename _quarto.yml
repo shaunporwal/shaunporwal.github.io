@@ -15,7 +15,7 @@ website:
       - text: Blog
         href: index.html
       - text: CV
-        href: porwal_resume.pdf
+        href: ./media/porwal_resume.pdf
         target: _blank
 format:
   html:
