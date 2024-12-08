@@ -1,19 +1,49 @@
+# Shaun Porwal's Site Repository
 
+This repository contains the source files for my personal website shaunporwal.com.
 
-#### How to activate renv which handles R & Python dependencies
+---
 
-source ./renv/python/virtualenvs/renv-python-3.11/bin/activate    
+## Virtual Environment Management
 
-#### 241207 - Use venv for virtual env since uv & renv not working for now, set up in env/ in root of repo
+### Using `renv` (Handles R & Python Dependencies)
+Activate `renv` with:  
 
+```bash
+source ./renv/python/virtualenvs/renv-python-3.11/bin/activate
+```
+### Using `venv` (Current Setup)
+Since `uv` and `renv` are not working, use `venv` located in the `env/` directory:  
+```bash
 source ./env/bin/activate
+```
 
-#### How to render site locally
+#### Installing Python Libraries
+Once the virtual environment is activated, install Python libraries as needed:  
+```bash
+pip install <library_name>
+```
+---
 
+## Site Management
+
+### Rendering the Site Locally
+To render the site locally:  
+```bash
 quarto render
-
-#### How to publish to gh-pages to make changes go live (with uv)
-
+```
+### Publishing to GitHub Pages
+To publish changes live on GitHub Pages:  
+```bash
 quarto publish gh-pages
+```
+---
 
-##### And then can pip install whichever Python libraries 
+## Notes
+
+### 2024-12-07 Updates:
+1. Switched to `venv` due to issues with `uv` and `renv`.
+2. Removed the dedicated "Projects" tab:
+   - Projects can now be blog posts with the `project` tag for easy categorization.
+
+---
