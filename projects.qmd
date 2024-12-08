@@ -8,8 +8,6 @@ format:
     css: styles.css
 ---
 
-![Gravity Chamber](media/gravitychamber.gif){fig-align="left"}
-
 # **Gravity Chamber**
 
 ::::: {.contact-wrapper .contact-box}
