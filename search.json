@@ -4,21 +4,21 @@
     "href": "about.html",
     "title": "Shaun Porwal",
     "section": "",
-    "text": "Personal site.\nInterests: existential contemplation, languages, exercise, nutrition, anime, coding"
+    "text": "Personal site.\nInterests: existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Gravity Chamber",
     "section": "",
-    "text": "Gravity Chamber\n\n\n\nGravity Chamber\n\n\n\n\n\nGravity Chamber Python Code\n2023\n\n\n\n\nPython Package: dcurves\n\n\nDecision Curve Analysis Python Package\n2023\nDiagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes but often require additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the dataset on which the models are tested, and can be applied to models that have either continuous or dichotomous results.\nThe dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial for a detailed walkthrough of various applications.\n\n\n\n\nSites\n\n\nDecision Curve Analysis Site\n2023\nI made this site for my boss’ statistical method “Decision Curve Analysis”. This method is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.\n\n\n\n\n\nSite for UN NGO (1)\n\n\nSite for UN NGO (2)\n2023\nI made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes."
+    "text": "Gravity Chamber\n\n\n\n\n\nGravity Chamber Python Code\n2023\n\n\n\n\nPython Package: dcurves\n\n\nDecision Curve Analysis Python Package\n2023\nDiagnostic and prognostic models are typically evaluated with measures of accuracy that do not address clinical consequences. Decision-analytic techniques allow assessment of clinical outcomes but often require additional information that may be cumbersome to apply to models that yield continuous results. Decision Curve Analysis is a method for evaluating and comparing prediction models that incorporates clinical consequences, requiring only the dataset on which the models are tested, and can be applied to models that have either continuous or dichotomous results.\nThe dca function performs decision curve analysis for binary and survival outcomes. Review the DCA tutorial for a detailed walkthrough of various applications.\n\n\n\n\nSites\n\n\nDecision Curve Analysis Site\n2023\nI made this site for my boss’ statistical method “Decision Curve Analysis”. This method is used to evaluate prediction models, molecular markers, and tests, based on clinical consequences.\n\n\n\n\n\nSite for UN NGO (1)\n\n\nSite for UN NGO (2)\n2023\nI made these sites for my contacts at the UN running NGOs. These are simple sites that I’m iterating on as necessary, and I do this pro bono to help out those who are dedicating themselves to noble causes."
   },
   {
     "objectID": "posts/webdev-sucks/index.html",
     "href": "posts/webdev-sucks/index.html",
     "title": "Website Development Is Incredibly Annoying",
     "section": "",
-    "text": "Getting to the point of having a decent site for myself was a very long and arduous journey."
+    "text": "Getting to the point of having a decent site for myself was a very long and arduous journey. I started out using the R markdown framework with GitHub pages free hosting. I created a single index.Rmd, added some text published my first site, if you can even call it that."
   },
   {
     "objectID": "index.html",
