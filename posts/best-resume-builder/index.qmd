@@ -1,8 +1,12 @@
 ---
-title: "The Best Resume Builder I have Ever Used"
+title: "The Best Resume Builder I Have Ever Used"
 author: "Shaun Porwal"
 date: "2024-12-08"
 categories: [resume, convenience]
 image: "./anime_resume.png"
 draft: true
 ---
+
+As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first filled out all of my information using a friend's resume as a template, and sent it off to be seen by absolutely nobody. With each passing rejection I would, at irregular intervals, make revisions, maybe alter the format or font a bit, adjust the verbiage to make sure the content never exceeded a page, and continue fishing in what were usually rough waters.
+
+Eventually as my technical skills grew, along with my frustration at continually wasting time editing my resume with little to show for it, I began exploring ways to automate this process. I looked far and wide for the proverbial giants' shoulders I could firmly step onto.

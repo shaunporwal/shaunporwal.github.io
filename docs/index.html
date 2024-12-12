@@ -186,18 +186,18 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="d2ViZGV2JTJDY29kZQ==" data-listing-date-sort="1733547600000" data-listing-file-modified-sort="1733679904934" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="50">
+<div class="quarto-post image-right" data-index="0" data-categories="d2ViZGV2JTJDY29kZQ==" data-listing-date-sort="1733979600000" data-listing-file-modified-sort="1734022567377" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="359">
 <div class="thumbnail">
-<p><a href="./posts/webdev-sucks/index.html" class="no-external"></a></p><a href="./posts/webdev-sucks/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/webdev-sucks/webdev_frustration.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/webdev-sucks/index.html" class="no-external"></a></p>
+<p><a href="./posts/webdev-is-tricky/index.html" class="no-external"></a></p><a href="./posts/webdev-is-tricky/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/webdev-is-tricky/webdev_frustration.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/webdev-is-tricky/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
 <h3 class="no-anchor listing-title">
-<a href="./posts/webdev-sucks/index.html" class="no-external">Website Development Is Incredibly Annoying</a>
+<a href="./posts/webdev-is-tricky/index.html" class="no-external">It’s all in the framework!</a>
 </h3>
 <div class="listing-subtitle">
-<a href="./posts/webdev-sucks/index.html" class="no-external"></a>
+<a href="./posts/webdev-is-tricky/index.html" class="no-external"></a>
 </div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('d2ViZGV2'); return false;">
@@ -208,13 +208,13 @@ code
 </div>
 </div>
 <div class="listing-description">
-<a href="./posts/webdev-sucks/index.html" class="no-external">Getting to the point of having a decent site for myself was a very long and arduous journey. I started out using the R markdown framework with GitHub pages free hosting. I…</a>
+<a href="./posts/webdev-is-tricky/index.html" class="no-external">Getting to the point of having a decent site for myself was a very long and arduous journey. Unlucky for me, I never took any HTML/CSS/JavaScript classes and was starting…</a>
 </div>
 </div>
 <div class="metadata">
-<a href="./posts/webdev-sucks/index.html" class="no-external">
+<a href="./posts/webdev-is-tricky/index.html" class="no-external">
 <div class="listing-date">
-Dec 7, 2024
+Dec 12, 2024
 </div>
 <div class="listing-author">
 Shaun Porwal
@@ -317,7 +317,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.shaunporwal\.com");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
