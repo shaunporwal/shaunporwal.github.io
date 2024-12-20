@@ -4,15 +4,15 @@ author: "Shaun Porwal"
 date: "2024-12-12"
 categories: [webdev, code]
 image: "./webdev_frustration.png"
-draft: true
+draft: false
 ---
 
 Getting to the point of having a decent site for myself was a very long and arduous journey. Unlucky for me, I never took any HTML/CSS/JavaScript classes and was starting from absolute 0. For someone who's looking to contract it out and has a healthy budget, it can be smooth and seamless. Unfortunately, I have a knack for masochism, an engineering degree, and am always looking for ways to be frugal.
 
-This journey all started when I saw the landing page for the statistical method my boss invented in all its glory (sarcasm). I had been tasked with creating its Python library, so I thought it a good idea to simultaneously make my first foray into front-end development and design an informational and instructional tool for users (https://decisioncurveanalysis.org/). Well-versed in R, I used basic CSS and Rmd files to render my R code into HTML and stored it in a GitHub repo, taking advantage of the GitHub Pages free hosting service.
+This journey all started when I saw the landing page for the statistical method my boss invented in all its glory (sarcasm). I had been tasked with creating its Python library, so I thought it a good idea to simultaneously make my first foray into front-end development and design an informational and instructional page for users (https://decisioncurveanalysis.org/). Well-versed in R, I used basic CSS and Rmd files to render my R code into HTML and stored it in a GitHub repo, taking advantage of the GitHub Pages free hosting service.
 
-At around the same time, I spun up a personal site in the same way, and reused a lot of the same simple code I used for my boss's page. Needless to say, it was neither very functional nor aesthetic. I kept on iterating on it for months and months and before finally putting it down. I was actually so embarrassed by it that I stripped it of its contents and left a note saying 'Under Renovation'.
+At around the same time, I spun up a personal site in the same way, and reused a lot of the same simple code I used for my boss's page. Needless to say, it was neither very functional nor aesthetic. I kept on iterating on it for months and months and before finally putting it down. I was actually so embarrassed by it that I stripped it of its contents and, for a long time, left it bare with a note saying 'Under Renovation'.
 
 A short while ago I encountered someone on GitHub using the **distill** package in R to make their portfolio site, and it came out looking incredible. It fit the bill in terms of aesthetics and having a nice blog and 'about' page, but there were some functionalities that were indispensable for me. I really wanted a framework that could integrate R & Python code seamlessly for my data science projects. After much digging, I finally came across **Quarto**!
 
-**Quarto** is just so amazing. It fully supports Python & R integration, has a very spare, neat aesthetic, and the best part: It's extremely simple to get up and running! This is the first time I've felt empowered rather than encumbered by my web framework!
+**Quarto** is just so amazing. It fully supports Python & R integration, has a very spare, neat aesthetic, and the best part: It's extremely simple to get up and running! This is the first time I've felt empowered rather than encumbered by my web framework.

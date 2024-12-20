@@ -17,6 +17,8 @@ website:
       - text: CV
         href: ./media/porwal_resume.pdf
         target: _blank
+      - text: Projects
+        href: projects.html
 format:
   html:
     theme: minty

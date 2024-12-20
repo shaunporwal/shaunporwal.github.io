@@ -1,0 +1,11 @@
+# dcurves
+
+I wrote a Python package that evaluates binary and survival models. It has been downloaded 20k+ times.
+
+-   PyPI: <https://pypi.org/project/dcurves/>
+
+-   GitHub: <https://github.com/MSKCC-Epi-Bio/dcurves>
+
+-   pypistats: <https://pypistats.org/packages/dcurves>
+
+-   pepy.tech: <https://pepy.tech/projects/dcurves>

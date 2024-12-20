@@ -160,6 +160,10 @@ window.Quarto = {
     <a class="nav-link" href="././media/porwal_resume.pdf" target="_blank"> 
 <span class="menu-text">CV</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -173,7 +177,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViZGV2">webdev <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VUklMkZVWA==">UI/UX <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29udmVuaWVuY2U=">convenience <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmVzdW1l">resume <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2ViZGV2">webdev <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -186,7 +190,7 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="d2ViZGV2JTJDY29kZQ==" data-listing-date-sort="1733979600000" data-listing-file-modified-sort="1734022567377" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="359">
+<div class="quarto-post image-right" data-index="0" data-categories="d2ViZGV2JTJDY29kZQ==" data-listing-date-sort="1733979600000" data-listing-file-modified-sort="1734650755791" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="364">
 <div class="thumbnail">
 <p><a href="./posts/webdev-is-tricky/index.html" class="no-external"></a></p><a href="./posts/webdev-is-tricky/index.html" class="no-external">
 <p><img loading="lazy" src="./posts/webdev-is-tricky/webdev_frustration.png" class="thumbnail-image"></p>
@@ -215,6 +219,45 @@ code
 <a href="./posts/webdev-is-tricky/index.html" class="no-external">
 <div class="listing-date">
 Dec 12, 2024
+</div>
+<div class="listing-author">
+Shaun Porwal
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="cmVzdW1lJTJDY29udmVuaWVuY2UlMkNVSSUyRlVY" data-listing-date-sort="1733634000000" data-listing-file-modified-sort="1734649668896" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="223">
+<div class="thumbnail">
+<p><a href="./posts/best-resume-builder/index.html" class="no-external"></a></p><a href="./posts/best-resume-builder/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/best-resume-builder/anime_resume.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/best-resume-builder/index.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/best-resume-builder/index.html" class="no-external">The Best Resume Builder I Have Ever Used</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/best-resume-builder/index.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('cmVzdW1l'); return false;">
+resume
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Y29udmVuaWVuY2U='); return false;">
+convenience
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VUklMkZVWA=='); return false;">
+UI/UX
+</div>
+</div>
+<div class="listing-description">
+<a href="./posts/best-resume-builder/index.html" class="no-external">As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first filled out all of my…</a>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/best-resume-builder/index.html" class="no-external">
+<div class="listing-date">
+Dec 8, 2024
 </div>
 <div class="listing-author">
 Shaun Porwal
@@ -317,7 +360,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/www\.shaunporwal\.com");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

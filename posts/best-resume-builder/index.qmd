@@ -2,11 +2,13 @@
 title: "The Best Resume Builder I Have Ever Used"
 author: "Shaun Porwal"
 date: "2024-12-08"
-categories: [resume, convenience]
+categories: [resume, convenience, UI/UX]
 image: "./anime_resume.png"
-draft: true
+draft: false
 ---
 
 As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first filled out all of my information using a friend's resume as a template, and sent it off to be seen by absolutely nobody. With each passing rejection I would, at irregular intervals, make revisions, maybe alter the format or font a bit, adjust the verbiage to make sure the content never exceeded a page, and continue fishing in what were usually rough waters.
 
-Eventually as my technical skills grew, along with my frustration at continually wasting time editing my resume with little to show for it, I began exploring ways to automate this process. I looked far and wide for the proverbial giants' shoulders I could firmly step onto.
+Eventually, as my technical skills grew along with my frustration at continually wasting time editing my resume with little to show in return, I began exploring ways to automate this process. I looked far and wide for the proverbial giants' shoulders I could firmly step onto.
+
+I tried using various frameworks that could handle all the formatting with my content, and for years and years I struggled with bugs, troubleshooting, virtual environments, and sometimes all 3 at once. Finally, I found [rxresu.me](https://rxresu.me/), which I warmly recommend to absolutely everyone. It handles all the formatting and allows just enough customization to accommodate any sort of experience or project one would include without losing its intuitive and enjoyable UI. You can check out my resume made by that tool if you click on 'CV' on the top-right.
