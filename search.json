@@ -4,7 +4,21 @@
     "href": "about.html",
     "title": "Shaun Porwal",
     "section": "",
-    "text": "Personal site.\nInterests: existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
+    "text": "existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
+  },
+  {
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "Shaun Porwal",
+    "section": "",
+    "text": "existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
+  },
+  {
+    "objectID": "about.html#currently-on-my-plate",
+    "href": "about.html#currently-on-my-plate",
+    "title": "Shaun Porwal",
+    "section": "Currently on my plate:",
+    "text": "Currently on my plate:\n1. Studying for HSK6 + HSKK-Advanced\n2. Developing Python package for bioequivalence\n3. Strength training\n4. Learning to draw\n5. Watching One Piece"
   },
   {
     "objectID": "projects.html",
