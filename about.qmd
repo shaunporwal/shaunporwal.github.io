@@ -22,6 +22,18 @@ about:
       target: _blank
 ---
 
-Personal site.
+## Interests:
 
-Interests: **existential contemplation**, **languages**, **exercise**, **cooking**, **nutrition**, **anime**, **coding**
+existential contemplation, languages, exercise, cooking, nutrition, anime, coding
+
+## Currently on my plate:
+
+[1.]{.underline} Studying for HSK6 + HSKK-Advanced
+
+[2.]{.underline} Developing Python package for bioequivalence
+
+[3.]{.underline} Strength training
+
+[4.]{.underline} Learning to draw
+
+[5.]{.underline} Watching **One Piece**

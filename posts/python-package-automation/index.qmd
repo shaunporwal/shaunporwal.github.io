@@ -1,7 +1,7 @@
 ---
 title: "How I completely automated my Python Package Development Workflow"
 author: "Shaun Porwal"
-date: "2025-01-09"
+date: "2025-01-10"
 categories: [Python, Packages, CI/CD]
 image: "./automation.png"
 draft: true

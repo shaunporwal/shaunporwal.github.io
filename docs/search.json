@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "Shaun Porwal",
     "section": "",
-    "text": "Personal site.\nInterests: existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
+    "text": "existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
   },
   {
     "objectID": "projects.html",
@@ -39,13 +39,20 @@
     "href": "index.html",
     "title": "Shaun Porwal",
     "section": "",
-    "text": "How I completely automated my Python Package Development Workflow\n\n\n\n\n\n\nPython\n\n\nPackages\n\n\nCI/CD\n\n\n\n\n\n\n\n\n\nJan 9, 2025\n\n\nShaun Porwal\n\n\n\n\n\n\n\n\n\n\n\n\nThe Best Resume Builder I Have Ever Used\n\n\n\n\n\n\nresume\n\n\nconvenience\n\n\nUI/UX\n\n\n\n\n\n\n\n\n\nDec 12, 2024\n\n\nShaun Porwal\n\n\n\n\n\n\n\n\n\n\n\n\nIt’s all in the framework!\n\n\n\n\n\n\nwebdev\n\n\ncode\n\n\n\n\n\n\n\n\n\nDec 8, 2024\n\n\nShaun Porwal\n\n\n\n\n\n\nNo matching items"
+    "text": "The Best Resume Builder I Have Ever Used\n\n\n\n\n\n\nresume\n\n\nconvenience\n\n\nUI/UX\n\n\n\n\n\n\n\n\n\nDec 12, 2024\n\n\nShaun Porwal\n\n\n\n\n\n\n\n\n\n\n\n\nIt’s all in the framework!\n\n\n\n\n\n\nwebdev\n\n\ncode\n\n\n\n\n\n\n\n\n\nDec 8, 2024\n\n\nShaun Porwal\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/python-package-automation/index.html",
-    "href": "posts/python-package-automation/index.html",
-    "title": "How I completely automated my Python Package Development Workflow",
+    "objectID": "about.html#interests",
+    "href": "about.html#interests",
+    "title": "Shaun Porwal",
     "section": "",
-    "text": "Whenever you start doing something, whatever it is, you will be extremely far from efficient at it. I think it’s probably a law of the universe or something. There are also fundamental concepts in machine learning called ‘loss functions’ and ‘gradient descent’ which are analogous to the same phenomenon in humans. The basic idea is that we know there’s a fundamental truth, or something to aim for. We take iterative steps towards the goal, and eventually either we end up at the goal, or we become extremely efficient at achieving it.\nLet’s take this blog as an example. The last 2 posts I wrote are steaming hot trash. I was basically just trying to churn out my thoughts and get into the groove of writing. I tried to articulate myself around 2 topics I was thinking about, and used lots of language I cringe at when I go reread. The style also seems overly formal and the pieces are not too captivating in my perspective. I feel like the tone in this post, however, is closer to what I’d like to maintain on this site. It’s personable, has a flow of consciousness feel to it, and relates disparate ideas in a haphazard way. As a person, I’d say that’s way more representative of who I am as opposed to being focused on a singular topic and rusty with the words I like to use.\nAnyways, around 3-4 years ago, I was asked at work to build a Python package by my boss. Initially, not only did I know nothing about Python packaging and open source, I also knew embarassingly little about Python. I was fresh out of my Master’s degree and very much green around my ears and everywhere else. I started following this dude named neuralnine on YouTube, and his python packaging video was the first thing I ever saw on the subject (YouTube Link). He used twine and some other tools in a rudimentary way to get something up on PyPI.org very quickly. It didn’t have any of the bells and whistles I use today, but it worked, which in hindsight is actually massive.\nHis workflow I probably used for a good while, maybe around 2 years or so, before I was introduced to more experienced people in the field who integrated CI/CD and Poetry, for example, and automating all of the testing. It was actually using the old workflow that I actually had people sending me messages about how they’re using my package and like my implementation, and that they’d like this improvement or that bugfix. Case in point:\n\nAfter several years of maintaining and improving the packge I made, now I have a very fast, headache-free workflow that has allowed me to build something that can cater to a larger audience. I was actually shocked to learn this, but my package recently hit 25k downloads! Have a gander on pepy.tech:\n\nYou always see those shows on [insert your favorite media platform] where the main character goes through a period of hardship or training in order to gain some new power or ability. I feel like the hardships of making this package over the past few years have allowed me to refine my package-building and programming workflow to such a degree that things which would have taken me days or weeks to do previously now take seconds. This is the level of efficiency you can achieve in programming if you put your attention in the right places.\nFor anyone who’s read this far, you deserve this present. Here is the GitHub actions file I’ve generated after much trial and tribulation: GitHub Link.\nThis automates testing on different Python versions, pushing to test.pypi, pypi, and can easily include linting and generating a documentation site. I would have murdered to have had this a few years ago.\nFor all things local, please use Poetry, which is currently far superior to astral-uv. This is my hottest take currently. Poetry is tried and tested, and worked seamlessly, albeit much more slowly, for the entire packaging workflow. With uv I felt like I was passing the largest kidney stone known to man when I was trying to push packages to pypi/test.pypi."
+    "text": "existential contemplation, languages, exercise, cooking, nutrition, anime, coding"
+  },
+  {
+    "objectID": "about.html#currently-on-my-plate",
+    "href": "about.html#currently-on-my-plate",
+    "title": "Shaun Porwal",
+    "section": "Currently on my plate:",
+    "text": "Currently on my plate:\n1. Studying for HSK6 + HSKK-Advanced\n2. Developing Python package for bioequivalence\n3. Strength training\n4. Learning to draw\n5. Watching One Piece"
   }
 ]
