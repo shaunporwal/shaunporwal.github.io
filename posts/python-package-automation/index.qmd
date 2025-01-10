@@ -1,0 +1,14 @@
+---
+title: "How I completely automated my Python Package Development Workflow"
+author: "Shaun Porwal"
+date: "2025-01-09"
+categories: [Python, Packages, CI/CD]
+image: "./automation.png"
+draft: true
+---
+
+Whenever you start doing something, whatever it is, you will be extremely far from efficient at it. I think it's probably a law of the universe or something. There are also fundamental concepts in machine learning called 'loss functions' and 'gradient descent' which are analogous to the same phenomenon in humans. The basic idea is that we know there's a fundamental truth, or something to aim for. We take iterative steps towards the goal, and eventually either we end up at the goal, or we become extremely efficient at achieving it.
+
+Let's take this blog as an example. The last 2 posts I wrote are steaming hot trash. I was basically just trying to churn out my thoughts and get into the groove of writing. I tried to articulate myself around 2 topics I was thinking about, and used lots of language I cringe at when I go reread. The style also seems overly formal and the pieces are not too captivating in my perspective. I feel like the tone in this post, however, is closer to what I'd like to maintain on this site. It's personable, has a flow of consciousness feel to it, and relates disparate ideas in a haphazard way. As a person, I'd say that's way more representative of who I am as opposed to being focused on a singular topic and rusty with the words I like to use. 
+
+Anyways, around 3-4 years ago, I was asked at work to build a Python package by my boss. Initially, not only did I know nothing about Python packaging and open source, I also knew embarassingly little about Python. I was fresh out of my Master's degree and very much green around my ears and everywhere else. I started following this dude named `neuralnine` on YouTube, and his python packaging video was the first thing I ever saw on the subject (`https://www.youtube.com/watch?v=tEFkHEKypLI`). He used `twine` and some other tools in a rudimentary way to get something up on PyPI.org very quickly. It didn't have any of the bells and whistles I use today, but it worked, which in hindsight is actually massive. 
