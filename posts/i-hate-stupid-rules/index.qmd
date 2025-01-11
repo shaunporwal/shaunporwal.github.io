@@ -16,3 +16,5 @@ or:
 `She replied, 'you should think for yourself.'`
 
 In the first example, we see that there is a comma right before the closing quotation mark, and in the second there's a period in that same spot. Why is that? It turns out it's a U.S. standard. From the colonial era around the 17th century until the late 20th century, printing text required manual typesetting using metal to imprint ink on paper. Commas and periods outside the quotes were a challenge in those days, and so it became common practice to keep them inside for aesthetics. This makes no sense to perpetuate now. We are far removed from manual typesetting, and including in quotes punctuation that doesn't belong there only serves to distort source material one would wish to share.
+
+Even before I knew this was a vestigial practice from several hundred years ago, it just made total sense to put the punctuation on the outside, and I believe this type of purposeful disobedience says a ton about one's character.
