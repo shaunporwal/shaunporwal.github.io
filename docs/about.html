@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
  <header id="title-block-header" class="quarto-title-block"></header><main class="content" id="quarto-document-content">
 <section id="interests" class="level2">
 <h2 data-anchor-id="interests">Interests:</h2>
-<p>existential contemplation, languages, exercise, cooking, nutrition, anime, coding</p>
+<p>Existential contemplation, Languages, Exercise, Cooking, Nutrition, Anime, Coding</p>
 </section>
 <section id="currently-on-my-plate" class="level2">
 <h2 data-anchor-id="currently-on-my-plate">Currently on my plate:</h2>
@@ -239,7 +239,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.shaunporwal\.com");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
