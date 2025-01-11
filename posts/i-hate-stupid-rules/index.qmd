@@ -1,0 +1,18 @@
+---
+title: "Why I Will Never Put Outside Punctuation Inside Quotes"
+author: "Shaun Porwal"
+date: "2025-01-10"
+categories: [Personality, Purposeful Disobedience]
+image: ""
+draft: true
+---
+
+Have you ever heard of the rule that certain punctuation around quotes should be inside the quotes? For example:
+
+`He said, 'I always follow the rules,' in a sanctimonious tone.`
+
+or:
+
+`She replied, 'you should think for yourself.'`
+
+In the first example, we see that there is a comma right before the closing quotation mark, and in the second there's a period in that same spot. Why is that? It turns out it's because from the colonial era around the 17th century until the late 20th century, printing text required manual typesetting using metal to imprint ink on paper. Commas and periods outside the quotes were a challenge in those days, and so it became common practice to keep them inside. This makes no sense nowadays if you think about it. We are far removed from manual typesetting, and it doesn't even make sense to put punctuation in quotes that doesn't belong there.
