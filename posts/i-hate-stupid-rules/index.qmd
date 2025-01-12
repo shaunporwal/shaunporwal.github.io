@@ -4,7 +4,7 @@ author: "Shaun Porwal"
 date: "2025-01-11"
 categories: [Personality, Purposeful Disobedience, Grammar]
 image: "./sheepism.png"
-draft: true
+draft: false
 ---
 
 Have you ever heard of the rule that certain punctuation around quotes should be inside the quotes? For example:
@@ -13,7 +13,7 @@ Have you ever heard of the rule that certain punctuation around quotes should be
 
 or:
 
-`She replied, 'you should think for yourself.'`
+`She replied, 'You should think for yourself.'`
 
 In the first example, we see that there is a comma right before the closing quotation mark, and in the second there's a period in that same spot. Why is that? It turns out it's a U.S. standard. From the colonial era around the 17th century until the late 20th century, printing text required manual typesetting using metal to imprint ink on paper. Commas and periods outside the quotes were a challenge in those days, and so it became common practice to keep them inside for aesthetics. This makes no sense to perpetuate now. We are far removed from manual typesetting, and including in quotes punctuation that doesn't belong there only serves to distort source material one would wish to share.
 
@@ -23,7 +23,6 @@ If you see something you don't agree with but you've been taught differently in 
 
 It's crazy I see sheep-like behavior everywhere. Maybe it's my RAS (reticular activating system) which has gotten good at identifying sheepism. Just the other day I went on a run with my friend, and afterward we stopped by a falafel/schwarma joint to refuel. I wanted to avoid excess carbs and increase the protein content, and so I asked the server/cashier if I could get a slightly customized order. I wanted rice on the side which my friend was going to eat, and the main dish to be just the salad and protein. He couldn't wrap his mind around deviating from the menu, and said that he was not allowed to do that. The main platter dish came with rice, salad, and protein. He could remove the rice but would still charge the same price, and could add it as a side which would increase the price of the new order to 150% of the original one.
 
-Because we weren't big fans of the food for the price and nutritional content, they did not get our patronage which could have been easily won. Mind you this place was basically deserted, and was not fancy. It's not like they were unable to accommodate deviations. The dude could not cater to a very simple request because of his sheepism, and lost easy business. 
+Because we weren't big fans of the food for the price and nutritional content, they did not get our patronage which could have been easily won. Mind you this place was basically deserted, and was not fancy. It's not like they were unable to accommodate deviations. The dude could not cater to a very simple request and lost easy business. 
 
-Of course we could be cynical and say that he wasn't an owner of the establishment, and he was just saving himself the hassle.
-
+Of course we could be cynical and suppose that he wasn't an owner of the establishment, and he was just saving himself the hassle. In that case, he would be a subpar employee who is not thinking in the best interest of his employer. Him not doing his best would be a poor decision in a series of poor decisions that led him to giving dissatisfactory service at a job he is not fond of. Whether it's his inability to think outside boxes or his laziness, it's sheepism at play, my disdain for which I will never include punctuation inside my quotes. 
