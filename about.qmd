@@ -28,7 +28,7 @@ Existential contemplation, Languages, Exercise, Cooking, Nutrition, Anime, Codin
 
 ## Currently on my plate:
 
-[1.]{.underline} Studying for HSK6 + HSKK-Advanced
+[1.]{.underline} Increasing Mandarin Vocab Until I can comfortably read + write like an adult
 
 [2.]{.underline} Developing Python package for bioequivalence
 

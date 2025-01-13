@@ -8,6 +8,7 @@ execute:
 
 website:
   title: "Shaun Porwal"
+  favicon: './media/personal_site_favicon.png'
   navbar:
     right:
       - text: About
@@ -19,6 +20,7 @@ website:
         target: _blank
       - text: Projects
         href: projects.html
+
 format:
   html:
     theme: minty
