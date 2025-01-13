@@ -8,7 +8,7 @@ execute:
 
 website:
   title: "Shaun Porwal"
-  favicon: './media/personal_site_favicon.png'
+  favicon: './media/favicon.png'
   navbar:
     right:
       - text: About
