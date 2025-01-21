@@ -9,3 +9,11 @@ I wrote a Python package that evaluates binary and survival models. It has been 
 -   pypistats: <https://pypistats.org/packages/dcurves>
 
 -   pepy.tech: <https://pepy.tech/projects/dcurves>
+
+# islet
+
+I created an R package to house functions in accordance with the DRY (Don't Repeat Yourself) principle.
+
+-   GitHub: https://github.com/shaunporwal/islet
+
+-   Site: https://www.shaunporwal.com/islet

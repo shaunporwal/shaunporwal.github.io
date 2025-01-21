@@ -23,7 +23,7 @@
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "dcurves",
+    "title": "Shaun Porwal",
     "section": "",
     "text": "dcurves\nI wrote a Python package that evaluates binary and survival models. It has been downloaded 20k+ times.\n\nPyPI: https://pypi.org/project/dcurves/\nGitHub: https://github.com/MSKCC-Epi-Bio/dcurves\npypistats: https://pypistats.org/packages/dcurves\npepy.tech: https://pepy.tech/projects/dcurves"
   },
