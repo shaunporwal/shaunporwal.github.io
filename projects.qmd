@@ -1,19 +1,11 @@
 # dcurves
 
-I wrote a Python package that evaluates binary and survival models. It has been downloaded 20k+ times.
+I wrote a Python package that evaluates binary and survival models. It has been downloaded 25k+ times.
 
--   PyPI: <https://pypi.org/project/dcurves/>
-
--   GitHub: <https://github.com/MSKCC-Epi-Bio/dcurves>
-
--   pypistats: <https://pypistats.org/packages/dcurves>
-
--   pepy.tech: <https://pepy.tech/projects/dcurves>
+-   [PyPI](https://pypi.org/project/dcurves/), [GitHub](https://github.com/MSKCC-Epi-Bio/dcurves){.uri}, [Download Stats](https://pepy.tech/projects/dcurves){.uri}
 
 # islet
 
 I created an R package to house functions in accordance with the DRY (Don't Repeat Yourself) principle.
 
--   GitHub: https://github.com/shaunporwal/islet
-
--   Site: https://www.shaunporwal.com/islet
+-   [GitHub](https://github.com/shaunporwal/islet), [Site](https://www.shaunporwal.com/islet)
