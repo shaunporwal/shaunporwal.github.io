@@ -4,8 +4,14 @@ I wrote a Python package that evaluates binary and survival models. It has been 
 
 -   [PyPI](https://pypi.org/project/dcurves/), [GitHub](https://github.com/MSKCC-Epi-Bio/dcurves){.uri}, [Download Stats](https://pepy.tech/projects/dcurves){.uri}
 
+# funcshauns
+
+I wrote a Python package to house functions I use in accordance with the DRY (Don't Repeat Yourself) principle.
+
+-   [PyPI](https://pypi.org/project/funcshauns/), [GitHub](https://github.com/shaunporwal/funcshauns)
+
 # islet
 
-I created an R package to house functions in accordance with the DRY (Don't Repeat Yourself) principle.
+I created an R package to house my R functions.
 
 -   [GitHub](https://github.com/shaunporwal/islet), [Site](https://www.shaunporwal.com/islet)
