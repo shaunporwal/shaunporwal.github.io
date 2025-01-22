@@ -41,7 +41,6 @@ vignettes/*.pdf
 # .gitignore
 site_libs/
 
-
 /.quarto/
 /.Rproj.user/
 /.RData
@@ -50,5 +49,7 @@ site_libs/
 /docs/
 /renv/
 
-
 /env/
+
+# .DS_store
+.DS_store
