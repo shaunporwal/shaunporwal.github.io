@@ -46,7 +46,7 @@
     "href": "projects.html",
     "title": "dcurves",
     "section": "",
-    "text": "dcurves\nI wrote a Python package that evaluates binary and survival models. It has been downloaded 25k+ times.\n\nPyPI, GitHub, Download Stats\n\n\n\nfuncshauns\nI wrote a Python package to house functions I use in accordance with the DRY (Don’t Repeat Yourself) principle.\n\nPyPI, GitHub\n\n\n\nislet\nI created an R package to house my R functions.\n\nGitHub, Site"
+    "text": "dcurves\nI wrote a Python package that evaluates binary and survival models. It has been downloaded 25k+ times.\n\nPyPI, GitHub, Download Stats\n\n\n\nbioeq\nI wrote a Python package to run PK/PD calculations for bioequivalence analysis in phase 1 clinical trials.\n\nPyPI, GitHub\n\n\n\nfuncshauns\nI wrote a Python package to house functions I use in accordance with the DRY (Don’t Repeat Yourself) principle.\n\nPyPI, GitHub\n\n\n\nislet\nI created an R package to house my R functions.\n\nGitHub, Site"
   },
   {
     "objectID": "posts/python-package-automation/index.html",
