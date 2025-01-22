@@ -4,6 +4,12 @@ I wrote a Python package that evaluates binary and survival models. It has been 
 
 -   [PyPI](https://pypi.org/project/dcurves/), [GitHub](https://github.com/MSKCC-Epi-Bio/dcurves){.uri}, [Download Stats](https://pepy.tech/projects/dcurves){.uri}
 
+# bioeq
+
+I wrote a Python package to run PK/PD calculations for bioequivalence analysis in phase 1 clinical trials.
+
+-   [PyPI](https://pypi.org/project/bioeq/), [GitHub](https://github.com/juntotechnologies/bioeq)
+
 # funcshauns
 
 I wrote a Python package to house functions I use in accordance with the DRY (Don't Repeat Yourself) principle.
