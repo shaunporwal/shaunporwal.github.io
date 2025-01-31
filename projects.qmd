@@ -1,6 +1,6 @@
 # dcurves
 
-I wrote a Python package that evaluates binary and survival models. It has been downloaded 20k+ times.
+I wrote a Python package that evaluates binary and survival models. It has been downloaded 25k+ times.
 
 -   PyPI: <https://pypi.org/project/dcurves/>
 
