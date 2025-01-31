@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="currently-on-my-plate" class="level2">
 <h2 data-anchor-id="currently-on-my-plate">Currently on my plate:</h2>
-<p><u>1.</u> Increasing Mandarin Vocab Until I can comfortably read + write like an adult</p>
+<p><u>1.</u> Increasing Mandarin vocab until I can comfortably read + write like an adult</p>
 <p><u>2.</u> Developing Python package for bioequivalence</p>
 <p><u>3.</u> Strength training</p>
 <p><u>4.</u> Watching <strong>One Piece</strong></p>
@@ -239,7 +239,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.shaunporwal\.com");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

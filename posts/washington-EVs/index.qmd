@@ -1,0 +1,10 @@
+---
+title: "What is up with EVs in Washington?"
+author: "Shaun Porwal"
+date: "2025-01-21"
+categories: [Fishing, Electric Vehicles, Python, Analysis]
+image: "./coming_soon.png"
+draft: true
+---
+
+This is an experiment to see how data analysis would go in blog posts.

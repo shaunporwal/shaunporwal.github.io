@@ -1,49 +1,34 @@
 # Shaun Porwal's Site Repository
 
 This repository contains the source files for my personal website shaunporwal.com.
+### Development Setup
+##### Prerequisites
+- Python 3.11 or higher
+- Poetry (for dependency management)
 
----
+##### Local Development
 
-## Virtual Environment Management
+1. Clone the repository: git clone https://github.com/shaunporwal/shaunporwal.github.io.git
+2. Install dependencies with Poetry: poetry install
+3. Activate the Poetry virtual environment: poetry shell
 
-### Using `renv` (Handles R & Python Dependencies)
-Activate `renv` with:  
+### Site Management
+##### Local Preview
+To preview the site locally:
+poetry run quarto preview
 
-```bash
-source ./renv/python/virtualenvs/renv-python-3.11/bin/activate
-```
-### Using `venv` (Current Setup)
-Since `uv` and `renv` are not working, use `venv` located in the `env/` directory:  
-```bash
-source ./env/bin/activate
-```
+##### Deployment
+The site is automatically deployed to GitHub Pages when changes are pushed to the main branch. The GitHub Actions workflow will:
 
-#### Installing Python Libraries
-Once the virtual environment is activated, install Python libraries as needed:  
-```bash
-pip install <library_name>
-```
----
+1. Render the Quarto project
+2. Deploy to the gh-pages branch
+3. Make the changes live on the website
 
-## Site Management
+No manual deployment steps are needed! 🎉
 
-### Rendering the Site Locally
-To render the site locally:  
-```bash
-quarto render
-```
-### Publishing to GitHub Pages
-To publish changes live on GitHub Pages:  
-```bash
-quarto publish gh-pages
-```
----
+##### Project Structure
 
-## Notes
-
-### 2024-12-07 Updates:
-1. Switched to `venv` due to issues with `uv` and `renv`.
-2. Removed the dedicated "Projects" tab:
-   - Projects can now be blog posts with the `project` tag for easy categorization.
-
----
+- `posts/`: Blog posts and project write-ups
+- `about/`: About page content
+- `_quarto.yml`: Quarto configuration
+- `.github/workflows/`: Deployment automation
