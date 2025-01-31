@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.shaunporwal.com/about.html</loc>
-    <lastmod>2025-01-31T06:02:13.419Z</lastmod>
-  </url>
-  <url>
     <loc>https://www.shaunporwal.com/projects.html</loc>
-    <lastmod>2025-01-31T06:03:13.729Z</lastmod>
+    <lastmod>2025-01-31T06:04:31.293Z</lastmod>
   </url>
   <url>
     <loc>https://www.shaunporwal.com/posts/webdev-is-tricky/index.html</loc>
-    <lastmod>2024-12-23T19:36:42.186Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/posts/best-resume-builder/index.html</loc>
-    <lastmod>2024-12-23T19:36:04.899Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/posts/no-punctuation-in-quotes/index.html</loc>
-    <lastmod>2025-01-31T06:02:13.421Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/posts/python-package-automation/index.html</loc>
-    <lastmod>2025-01-12T04:29:28.912Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/old_files/projects.html</loc>
-    <lastmod>2024-12-08T05:44:17.437Z</lastmod>
+    <lastmod>2025-01-31T06:04:31.293Z</lastmod>
   </url>
   <url>
     <loc>https://www.shaunporwal.com/index.html</loc>
-    <lastmod>2024-12-16T15:34:19.246Z</lastmod>
+    <lastmod>2025-01-31T06:04:31.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/about.html</loc>
+    <lastmod>2025-01-31T06:04:31.276Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/old_files/projects.html</loc>
+    <lastmod>2025-01-31T06:04:31.288Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/posts/best-resume-builder/index.html</loc>
+    <lastmod>2025-01-31T06:04:31.289Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/posts/no-punctuation-in-quotes/index.html</loc>
+    <lastmod>2025-01-31T06:04:31.290Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/posts/python-package-automation/index.html</loc>
+    <lastmod>2025-01-31T06:04:31.291Z</lastmod>
   </url>
 </urlset>
