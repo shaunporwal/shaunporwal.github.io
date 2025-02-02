@@ -21,7 +21,8 @@ website:
       - text: Projects
         href: projects.html
       - text: X
-        href: x.com/shaunporwal
+        href: https://x.com/shaunporwal
+        target: _blank
 
 format:
   html:
