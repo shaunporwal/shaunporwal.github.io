@@ -8,7 +8,7 @@ execute:
 
 website:
   title: "Shaun Porwal"
-  favicon: './media/favicon.png'
+  favicon: "./media/favicon.png"
   navbar:
     right:
       - text: About
@@ -20,6 +20,8 @@ website:
         target: _blank
       - text: Projects
         href: projects.html
+      - text: X
+        href: x.com/shaunporwal
 
 format:
   html:
