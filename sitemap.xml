@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.shaunporwal.com/projects.html</loc>
-    <lastmod>2025-02-12T04:18:53.087Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/posts/webdev-is-tricky/index.html</loc>
-    <lastmod>2025-02-12T04:18:53.086Z</lastmod>
-  </url>
-  <url>
     <loc>https://www.shaunporwal.com/index.html</loc>
-    <lastmod>2025-02-12T04:18:53.071Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/about.html</loc>
-    <lastmod>2025-02-12T04:18:53.070Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.shaunporwal.com/posts/best-resume-builder/index.html</loc>
-    <lastmod>2025-02-12T04:18:53.083Z</lastmod>
+    <lastmod>2025-02-14T16:57:26.430Z</lastmod>
   </url>
   <url>
     <loc>https://www.shaunporwal.com/posts/no-punctuation-in-quotes/index.html</loc>
-    <lastmod>2025-02-12T04:18:53.083Z</lastmod>
+    <lastmod>2025-02-14T16:57:26.442Z</lastmod>
   </url>
   <url>
     <loc>https://www.shaunporwal.com/posts/python-package-automation/index.html</loc>
-    <lastmod>2025-02-12T04:18:53.085Z</lastmod>
+    <lastmod>2025-02-14T16:57:26.444Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/about.html</loc>
+    <lastmod>2025-02-14T16:57:26.429Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/posts/best-resume-builder/index.html</loc>
+    <lastmod>2025-02-14T16:57:26.442Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/posts/webdev-is-tricky/index.html</loc>
+    <lastmod>2025-02-14T16:57:26.445Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.shaunporwal.com/projects.html</loc>
+    <lastmod>2025-02-14T16:57:26.446Z</lastmod>
   </url>
 </urlset>
