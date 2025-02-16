@@ -12,6 +12,7 @@ execute:
 website:
   title: "Shaun Porwal"
   favicon: "./media/favicon.png"
+  google-analytics: "G-17E2H549JP"
   navbar:
     right:
       - text: About
