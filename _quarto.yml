@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "media/nft_monkey.glb"
 
 execute:
   enabled: true
