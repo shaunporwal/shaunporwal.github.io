@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - "media/nft_monkey.glb"
+    - "media/heron.glb"
 
 execute:
   enabled: true
