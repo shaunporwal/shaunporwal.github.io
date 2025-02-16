@@ -16,7 +16,7 @@ format:
             .message {
               font-size: 24px;
               margin-bottom: 30px;
-              color: #333;
+              color: #ffffff;
             }
             model-viewer {
               width: 100%;
@@ -27,8 +27,9 @@ format:
 
 <div class="container">
   <div class="message">
-    Congrats you found me!<br>
-    Please contact me at shaun.porwal@gmail.com
+    Congrats you found me!
+
+    Please contact me at shaun.porwal2@gmail.com
   </div>
   <model-viewer
       src="nft_monkey.glb"

@@ -29,7 +29,8 @@ website:
 
 format:
   html:
-    theme: minty
+    theme:
+      dark: darkly
     css: styles.css
 
 editor: visual
