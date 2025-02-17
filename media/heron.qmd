@@ -35,7 +35,7 @@ Please contact me at shaun.porwal2@gmail.com
 :::
 
 <model-viewer
-      src="heron_v2.glb"
+      src="heron.glb"
       camera-controls
       auto-rotate
       shadow-intensity="1"

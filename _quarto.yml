@@ -4,6 +4,7 @@ project:
   resources:
     - "media/nft_monkey.glb"
     - "media/heron.glb"
+    - "media/banana3.glb"
 
 execute:
   enabled: true
