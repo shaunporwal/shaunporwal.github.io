@@ -2,9 +2,9 @@ project:
   type: website
   output-dir: docs
   resources:
-    - "media/nft_monkey.glb"
     - "media/heron.glb"
     - "media/banana3.glb"
+    - "media/banana_remeshed1.glb"
 
 execute:
   enabled: true
