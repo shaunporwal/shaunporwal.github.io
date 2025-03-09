@@ -1,0 +1,10 @@
+---
+title: "Thoughts After Coding for 100 Days Straight"
+author: "Shaun Porwal"
+date: "2025-03-31"
+categories: [Consistency, Habits, Goals]
+image: "./coming_soon.png"
+draft: true
+---
+
+Here are some of the projects I've worked on in the past 100 days.
