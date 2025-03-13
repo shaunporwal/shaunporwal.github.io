@@ -8,3 +8,11 @@ draft: true
 ---
 
 Here are some of the projects I've worked on in the past 100 days.
+
+One of the biggest benefits of deciding to code every day is that it has greatly fueled my
+creativity. This is because coding consistently and not forcing myself to live up to any standard
+gives me the freedom to fail consistently, and that organically grows my skills and comfort with
+being a producer.
+
+I always used to get writer's block in school. Looking back, if I had kept up a daily practice of
+writing without expectations of quality, I would've saved so much time and become a better writer.
