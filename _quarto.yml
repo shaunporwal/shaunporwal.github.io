@@ -23,8 +23,9 @@ website:
       - text: CV
         href: ./media/porwal_resume.pdf
         target: _blank
-      - text: Projects
-        href: projects.html
+      - icon: github
+        href: https://github.com/shaunporwal
+        target: _blank
       - text: X
         href: https://x.com/shaunporwal
         target: _blank
