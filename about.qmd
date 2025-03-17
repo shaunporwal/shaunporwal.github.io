@@ -22,16 +22,6 @@ about:
       target: _blank
 ---
 
-## Interests:
+## Welcome!
 
-Existential contemplation, Languages, Exercise, Cooking, Nutrition, Anime, Coding
-
-## Currently on my plate:
-
-[1.]{.underline} Increasing Mandarin vocab until I can comfortably read + write like an adult
-
-[2.]{.underline} Developing Python package for bioequivalence
-
-[3.]{.underline} Strength training
-
-[4.]{.underline} Watching **One Piece**
+Trying to keep my thinking + writing sharp by writing in public.
