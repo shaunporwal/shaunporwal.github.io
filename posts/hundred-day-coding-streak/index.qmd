@@ -7,7 +7,21 @@ image: "./coming_soon.png"
 draft: true
 ---
 
-Here are some of the projects I've worked on in the past 100 days.
+How did this all begin? If you look at my GitHub, you'll see a sea of black in 2024 followed by a relatively abrupt yet sustained wall of green. What's not shown is that in 2024 I ran ~1400 miles, towards the end of which I ran the NYC marathon. My life was in a large part consumed by jogging around Central Jersey and Manhattan. 
+
+I kept up a daily running streak for many months, and only broke it after facing extreme sickness that necessitated going to the NYU Langone Emergency Department to face the most intense pain I'd ever felt in my entire life. At my peak last year I was running 60 miles/week, and on one of those weeks I nearly ran the entire perimeter of Manhattan (~24/31 miles). 
+
+In Q1/Q2 of last year, I found myself in North Carolina attending a family friend's wedding. At the wedding I was introduced to a student at UNC Chapel hill. Upon sharing my hobby with her, she told me I should look into the Tarheels 10-miler, which would take place around 10 hours later in the morning. Registration was closed, but I resolved myself to run that race anyway even though I had not planned it. I ran it and PR'ed in the 2-mile, 5k, and 10k, all in the same race. 
+
+After the marathon, I stopped running. I traded in exercise for House & Attack on Titan, binging them among other content every moment outside of work. I had decided to follow what my body and mind were telling me, which was to cease 95 percent of my prior socializing and spend time alone. 
+
+Then, one day, my friend invited me to swim and sauna, and I obliged. We finished up, and I suddenly felt a wave of energy and a sense of inspiration to do something productive. I wanted to build, and I wanted to meet up with my close friend. A few moments later we found ourselves at the Bryant Park library in a quiet area working on our individual projects. I decided to finally create a presentable personal site for myself. 
+
+It was hard to focus. For over a month I had been binging shows and lying around, and my brain was not in the habit of focusing on a task for more than a few minutes. Come to think of it, my productivity was lacking the whole year outside of running, and I was getting sick at the frequency of around once a month. Maybe running was draining prescious resources my body needed to focus on tasks and fight off ailments? 
+
+I was somehow able to muster the focus to prevent doom-scrolling for the entire session at the library, which was around 2-3 hours. I hadn't done that in a long long time. I made the important realization that attention can be trained, and a few days later I decided to put some effort into maintaining my nascent daily coding habit. I promised myself at least 1 commit a day on any project, to outsiders a seemingly paltry amount. 
+
+---
 
 One of the biggest benefits of deciding to code every day is that it has greatly fueled my
 creativity. This is because coding consistently and not forcing myself to live up to any standard
