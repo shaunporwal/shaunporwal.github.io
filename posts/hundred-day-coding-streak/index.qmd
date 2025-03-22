@@ -19,7 +19,11 @@ Then, one day, my friend invited me to swim and sauna, and I obliged. We finishe
 
 It was hard to focus. For over a month I had been binging shows and lying around, and my brain was not in the habit of focusing on a task for more than a few minutes. Come to think of it, my productivity was lacking the whole year outside of running, and I was getting sick at the frequency of around once a month. Maybe running was draining prescious resources my body needed to focus on tasks and fight off ailments? 
 
-I was somehow able to muster the focus to prevent doom-scrolling for the entire session at the library, which was around 2-3 hours. I hadn't done that in a long long time. I made the important realization that attention can be trained, and a few days later I decided to put some effort into maintaining my nascent daily coding habit. I promised myself at least 1 commit a day on any project, to outsiders a seemingly paltry amount. 
+I was somehow able to muster the focus to prevent doom-scrolling for the entire session at the library, which was around 2-3 hours. I hadn't done that in a long long time, and it took every ounce of willpower I could muster. Later that evening I made the important realization that attention can be trained, and a few days later I decided to put some effort into maintaining my nascent daily coding habit. I told myself I would push at least 1 commit a day on any project, to outsiders a seemingly paltry amount. 
+
+At first I stuck to the bare minimum. At times I pushed off the single commit until 11:55pm. What happened next I never would have imagined. 2 months in, I started naturally pushing to do more and more with the various projects I had been committing to. Pushing is the wrong word, rather, I was being pulled (italicize this). I couldn't stop myself. 
+
+Around 90 days in, my coding sessions started putting me in the flow state sporadically. I would sit down to work and fall into a state where I was intensely focused.
 
 ---
 
