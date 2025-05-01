@@ -23,7 +23,7 @@ website:
       - text: Docs
         menu:
           - text: CV
-            href: ./media/porwal_resume.pdf
+            href: ./media/porwal-resume.pdf
             target: _blank
           - text: 2015 NTU Mandarin
             href: ./media/2015_ntu_mandarin_cert_and_grade.pdf
