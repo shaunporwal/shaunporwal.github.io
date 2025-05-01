@@ -37,8 +37,7 @@ website:
 
 format:
   html:
-    theme:
-      dark: darkly
+    theme: darkly
     css: styles.css
 
 editor: visual
