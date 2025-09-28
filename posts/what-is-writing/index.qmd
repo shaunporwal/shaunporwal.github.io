@@ -1,0 +1,10 @@
+---
+title: "What Writing Actually Is"
+author: "Shaun Porwal"
+date: "2025-09-27"
+categories: [Writing, Building, Manifesting, Statistics]
+image: "./sheepism.png"
+draft: true
+---
+
+
