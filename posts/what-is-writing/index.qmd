@@ -8,3 +8,13 @@ draft: true
 ---
 
 
+Writing is a constructive and destructive process. When you write something down, it leaves a trail of prior thoughts that can be resumed or re-digested. These thoughts can then be refined by altering and reducing verbiage. 
+
+One problem I have these days is in starting the writing process. I'm not able to start writing because I don't think I have anything interesting to write about. Then even if I begin to write, I don't get around to finishing the pieces I began. I think this is mainly due to not having the chops to sit down and write on a daily basis.
+
+If we look back at the past 10 months, I've been relatively consistent with coding, and did it by sticking to a daily maintainable coding of committing just once a day. Once the neural pathways form for habitual action, engaging in the activity becomes pleasurable. This happened on my running journey as well when I trained for the 2024 NYC marathon, running up to 60mi/week. 
+
+- what I think writing is
+    - sequential contruction of thoughts, ideas, what things are, plans, etc
+    - iterative, additive and reductive (add more content, refine by making more pithy)
+    - record for others to go down same vein
