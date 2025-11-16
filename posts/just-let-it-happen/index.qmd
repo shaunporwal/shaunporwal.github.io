@@ -1,0 +1,8 @@
+---
+title: "Just let it happen"
+author: "Shaun Porwal"
+date: "2025-11-15"
+categories: 
+image: ""
+draft: true
+---
