@@ -17,6 +17,26 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Fix PDF metadata
+        run: |
+          pip install pypdf -q
+          python3 << 'EOF'
+          import pypdf, pathlib, datetime
+
+          for pdf_path in pathlib.Path("media").glob("**/*.pdf"):
+              reader = pypdf.PdfReader(str(pdf_path))
+              writer = pypdf.PdfWriter()
+              for page in reader.pages:
+                  writer.add_page(page)
+              meta = dict(reader.metadata or {})
+              meta["/Title"] = "Shaun Porwal Resume"
+              meta["/Author"] = "Shaun Porwal"
+              writer.add_metadata(meta)
+              with open(str(pdf_path), "wb") as f:
+                  writer.write(f)
+              print(f"Patched: {pdf_path}")
+          EOF
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
