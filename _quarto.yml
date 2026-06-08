@@ -3,8 +3,9 @@ project:
   output-dir: docs
   resources:
     - "media/heron.glb"
-    - "media/banana3.glb"
-    - "media/banana_remeshed1.glb"
+    - "media/nft_monkey.glb"
+    - "media/banana_upright2.glb"
+    - "media/260608-iphone-macro-eye.png"
 
 execute:
   enabled: true
@@ -21,6 +22,8 @@ website:
         target: _blank
       - text: About
         href: about.html
+      - text: Stuff
+        href: stuff.html
       - text: Blog
         href: index.html
       - text: Docs
@@ -45,5 +48,6 @@ format:
       - styles/palette.css
       - styles/base.css
       - styles/navbar.css
+      - styles/models.css
 
 editor: visual
