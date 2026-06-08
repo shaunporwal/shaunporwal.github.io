@@ -58,3 +58,5 @@ site_libs/
 .DS_Store
 */.DS_Store
 README_files/
+
+**/*.quarto_ipynb
