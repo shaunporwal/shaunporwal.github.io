@@ -16,6 +16,9 @@ website:
   google-analytics: "G-17E2H549JP"
   navbar:
     right:
+      - text: "📅 Book a Call"
+        href: "https://cal.com/shaun-porwal/30min?overlayCalendar=true"
+        target: _blank
       - text: About
         href: about.html
       - text: Blog
@@ -38,6 +41,9 @@ website:
 format:
   html:
     theme: darkly
-    css: styles.css
+    css:
+      - styles/palette.css
+      - styles/base.css
+      - styles/navbar.css
 
 editor: visual
