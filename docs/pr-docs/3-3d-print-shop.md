@@ -1,6 +1,6 @@
-# PR planned: Zero-Overhead 3D Print Shop & Multi-Channel Sales Funnel
+# PR 3: Zero-Overhead 3D Print Shop & Multi-Channel Sales Funnel
 
-Status: planned
+Status: underway
 
 Branch: `feature/3d-print-shop`
 
