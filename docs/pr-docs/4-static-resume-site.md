@@ -96,6 +96,7 @@ Ordered from least consequential/complex to highest blast radius.
 - [x] README was accumulating generated-content bookkeeping detail (per-script table, full "adding a post" walkthrough) better suited as reference material than something read on every visit — moved that detail to `docs/development.md`, README is now just Quick Start commands + a pointer. `CLAUDE.md` §9 trimmed the same way, pointing at `docs/development.md`.
 - [x] Fixed a real mobile bug: the two images in `posts/python-package-automation/index.html` used leftover Bootstrap classes (`img-fluid figure-img`) that don't exist in `site.css`, so they had no width constraint and would overflow a phone viewport. Added a global `img, video { max-width: 100%; height: auto; }` rule to `site.css` (plus `pre, code { overflow-x: auto; }`), and removed the dead classes (added real `alt` text while touching those tags).
 - [x] `resume.html`: `.entry-meta` (date ranges) and the skills/education grid now stack instead of staying `white-space: nowrap` under 420px, so long date/location strings can't force horizontal overflow on small phones.
+- [x] Nav collapses into a hamburger (☰) dropdown under 700px, via a CSS-only checkbox toggle in `templates/nav.html` (no JS, consistent with the rest of the site) — `scripts/sync_nav.py` propagated it to every page.
 
 ## Product Decisions
 
