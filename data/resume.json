@@ -38,11 +38,10 @@
       "bullets": [
         "Engineered SQL-sourced data pipelines and statistical code for [Amplio](https://www.mskcc.org/amplio-system), enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to **benchmark patient outcomes** against peers",
         "Built an **AI radiology pipeline** (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists",
-        "Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a [landmark study](https://pubmed.ncbi.nlm.nih.gov/40073938/) on **post-chemotherapy RPLND policy** in testicular cancer, published in Annals of Oncology",
+        "Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a [landmark study](https://pubmed.ncbi.nlm.nih.gov/40073938/) on **post-chemotherapy RPLND policy** in testicular cancer, published in Annals of Oncology; contributed statistics to additional [publications](https://scholar.google.com/citations?user=eR7hro0AAAAJ&hl=en) on prostate cancer and robot-assisted surgery outcomes",
         "Developed [dcurves](https://pypi.org/project/dcurves/), a Python package for **Decision Curve Analysis** ({dcurves} PyPI downloads); built and maintain the instructional site [decisioncurveanalysis.org](https://decisioncurveanalysis.org)",
         "Engineered a Llama 3.1:70B + RAG **text-to-SQL tool** (`no-more-sql`) with Streamlit and FAISS for natural-language querying of MSKCC's SQL databases",
-        "Completed a large **patient-comorbidity analysis** using take-home survey data, with `pointblank` data validation, to demonstrate accurate billing-level assignment",
-        "Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)"
+        "Completed a large **patient-comorbidity analysis** using take-home survey data, with `pointblank` data validation, to demonstrate accurate billing-level assignment"
       ]
     },
     {
