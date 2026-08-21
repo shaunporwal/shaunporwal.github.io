@@ -85,11 +85,14 @@
   .projects .entry-title { font-weight: 600; }
   .projects .entry-sub a { word-break: break-all; }
 
-  footer.print-note {
-    margin-top: 2.5rem;
+  .print-note {
+    margin-bottom: 1.5rem;
+    padding: 0.6rem 0.9rem;
     text-align: center;
     color: var(--muted);
     font-size: 0.8rem;
+    background: #f4f4f4;
+    border-radius: 6px;
   }
 
   @media (max-width: 420px) {
@@ -100,17 +103,23 @@
   }
 
   @media print {
-    body { padding: 0; font-size: 12.5px; max-width: none; }
+    body { padding: 0; font-size: 12px; max-width: none; line-height: 1.35; }
     a { color: var(--ink); }
-    footer.print-note { display: none; }
-    h2.section { break-after: avoid; }
-    .entry { break-inside: avoid; }
+    .print-note { display: none; }
+    header.resume-header { margin-bottom: 1rem; }
+    h2.section { break-after: avoid; margin: 1rem 0 0.4rem; }
+    .entry { break-inside: avoid; margin-bottom: 0.6rem; }
+    .bullets { margin-top: 0.2rem; }
+    .bullets .bullet { margin-bottom: 0.1rem; }
+    .bullets .bullet-break { height: 0.3em; }
   }
 </style>
 </head>
 <body>
 
 <!-- RESUME:START -->
+<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy (no date/title/page-number strip), open "More settings" in the print dialog and uncheck "Headers and footers".</div>
+
 <header class="resume-header">
   <h1>Shaun Porwal</h1>
   <div class="contact">
@@ -262,8 +271,6 @@
   <dt>Languages</dt><dd>English &amp; Hindi (native), Mandarin Chinese (fluent), Japanese (conversational), Spanish (basic)</dd>
   <dt>Certifications</dt><dd>Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)</dd>
 </dl>
-
-<footer class="print-note">To save as PDF: File → Print → Save as PDF.</footer>
 <!-- RESUME:END -->
 
 </body>

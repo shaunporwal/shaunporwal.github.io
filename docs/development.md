@@ -43,4 +43,6 @@ Each is a thin `main()` around testable functions; `lib_posts.py` and `lib_resum
 | `gen_sitemap.py` | `site/sitemap.xml` |
 | `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (must run *after* `gen_resume.py`, since that writes a static placeholder) |
 
+`tests/test_resume_page_count.sh` (run via `make test`) renders `site/resume.html` to PDF with `npx playwright` and fails if it exceeds 2 printed pages — a safety net against `data/resume.json` quietly growing past what the print CSS was tuned for. If it fails: trim a bullet, or tighten `@media print` in `site/resume.html`.
+
 All six run in order from `.githooks/pre-commit` on every commit, or on demand via `make sync`.

@@ -12,5 +12,13 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
+      - name: Set up Node (for the resume page-count check)
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Chromium for Playwright
+        run: npx --yes playwright install --with-deps chromium
+
       - name: Run tests
         run: make test

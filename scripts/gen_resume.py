@@ -95,7 +95,9 @@ def build_html_block(data: dict) -> str:
         for label, value in data["skills"].items()
     )
 
-    body = f"""<header class="resume-header">
+    body = f"""<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy (no date/title/page-number strip), open "More settings" in the print dialog and uncheck "Headers and footers".</div>
+
+<header class="resume-header">
   <h1>{render_html(data["name"])}</h1>
   <div class="contact">
 {contact}
@@ -118,9 +120,7 @@ def build_html_block(data: dict) -> str:
 
 <dl class="skills-grid">
 {skills}
-</dl>
-
-<footer class="print-note">To save as PDF: File → Print → Save as PDF.</footer>"""
+</dl>"""
 
     return f"<!-- RESUME:START -->\n{body}\n<!-- RESUME:END -->"
 

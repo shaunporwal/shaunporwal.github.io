@@ -6,6 +6,7 @@ dev:
 test:
 	python3 -m unittest discover -s tests -p "test_*.py"
 	bash tests/test_update_dcurves_downloads.sh
+	bash tests/test_resume_page_count.sh
 
 sync:
 	python3 scripts/gen_resume.py
