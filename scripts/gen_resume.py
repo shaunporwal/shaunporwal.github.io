@@ -35,14 +35,22 @@ def load_data(repo_root: pathlib.Path) -> dict:
 
 
 def _experience_html(e: dict) -> str:
-    # Each bullet is its own <div> (not a <ul>/<li>), with a literal "- "
-    # text prefix rather than a CSS list marker. Rich-text editors like
-    # LinkedIn's post composer collapse <li> into single-spaced lines on
-    # paste but give block-level siblings (<div>/<p>) real paragraph
-    # spacing — so this both matches LinkedIn's own dash convention and
-    # gets the double-spaced look on paste, matching the hanging indent
-    # via .bullets div { ... } in the page's <style>.
-    bullets = "\n".join(f'    <div class="bullet">- {render_html(b)}</div>' for b in e["bullets"])
+    # Each bullet is its own <div> (not a <ul>/<li>) with a literal "- "
+    # text prefix rather than a CSS list marker, matching LinkedIn's own
+    # dash convention on copy/paste. A blank-line gap between bullets can't
+    # be done with CSS margin — margin is layout, not text, so it never
+    # survives copy/paste into another editor. Instead each pair of bullets
+    # gets a literal blank-line spacer div in the DOM (a real block-level
+    # element with a &nbsp;), visually collapsed to zero height on the page
+    # itself (see .bullet-break in the page's <style>) but still walked by
+    # the browser's selection-to-text serialization, so paste gets a real
+    # blank line between bullets while the resume page stays compact.
+    parts = []
+    for i, b in enumerate(e["bullets"]):
+        if i > 0:
+            parts.append('    <div class="bullet-break">&nbsp;</div>')
+        parts.append(f'    <div class="bullet">- {render_html(b)}</div>')
+    bullets = "\n".join(parts)
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'

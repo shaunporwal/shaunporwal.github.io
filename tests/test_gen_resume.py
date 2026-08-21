@@ -54,6 +54,26 @@ class TestBuildHtmlBlock(unittest.TestCase):
         block = gen_resume.build_html_block(SAMPLE_DATA)
         self.assertIn('<div class="bullet">- Did a', block)
 
+    def test_bullet_break_spacer_between_bullets_not_around(self):
+        # CSS margin isn't real text and never survives copy/paste, so a
+        # blank-line gap between bullets needs a literal spacer element in
+        # the DOM. Exactly one spacer between each pair of bullets, none
+        # before the first or after the last.
+        data = dict(SAMPLE_DATA)
+        data["experience"] = [
+            {
+                "title": "Engineer",
+                "org": "Acme Co",
+                "meta": "2020",
+                "bullets": ["First", "Second", "Third"],
+            }
+        ]
+        block = gen_resume.build_html_block(data)
+        self.assertEqual(block.count("bullet-break"), 2)
+        first_bullet_pos = block.index('<div class="bullet">- First')
+        first_break_pos = block.index("bullet-break")
+        self.assertGreater(first_break_pos, first_bullet_pos)
+
     def test_bullets_are_block_siblings_not_a_list(self):
         # LinkedIn's rich-text composer collapses <li> into single-spaced
         # lines on paste but gives block-level siblings real paragraph
