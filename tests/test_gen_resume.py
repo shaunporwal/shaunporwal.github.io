@@ -16,9 +16,20 @@ SAMPLE_DATA = {
             "bullets": ["Did a [thing](https://example.com) well"],
         }
     ],
-    "projects": [{"title": "Widget", "sub": "A cool [widget](https://example.com/widget)"}],
+    "projects": [
+        {
+            "title": "Widget",
+            "links": "[widget.com](https://example.com/widget)",
+            "description": "A cool widget that does widget things.",
+        }
+    ],
     "education": [
-        {"title": "B.S., Widgetry — Acme University", "meta": "2019 · City, ST", "sub": "Cum laude"}
+        {
+            "degree": "B.S., Widgetry",
+            "school": "Acme University",
+            "meta": "2019 · City, ST",
+            "sub": "Cum laude",
+        }
     ],
     "skills": {"Programming": "Python, Go"},
 }
@@ -82,13 +93,31 @@ class TestBuildHtmlBlock(unittest.TestCase):
         self.assertNotIn("<li>", block)
         self.assertNotIn("<ul", block)
 
-    def test_education_without_sub_omits_entry_sub(self):
+    def test_education_without_sub_only_emits_school_entry_sub(self):
         data = dict(SAMPLE_DATA)
-        data["education"] = [{"title": "Cert — Somewhere", "meta": "2021"}]
+        data["projects"] = []
+        data["education"] = [{"degree": "Cert", "school": "Somewhere U", "meta": "2021"}]
         block = gen_resume.build_html_block(data)
-        self.assertIn("Cert — Somewhere", block)
-        # No entry-sub div should be emitted for this entry.
-        self.assertNotIn("<div class=\"entry-sub\">Cum laude</div>", block)
+        self.assertIn("Cert", block)
+        self.assertEqual(block.count('<div class="entry-sub">'), 1)
+        self.assertIn('<div class="entry-sub">Somewhere U</div>', block)
+
+    def test_education_degree_and_dates_share_entry_head_row(self):
+        # Regression: degree/school used to be one combined title string, so
+        # a long school name wrapping mid-string could push the dates onto
+        # their own separate line. School is now its own entry-sub line.
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertIn('<div class="entry-title">B.S., Widgetry</div>', block)
+        self.assertIn('<div class="entry-sub">Acme University</div>', block)
+
+    def test_project_title_and_links_share_entry_head_row(self):
+        # Regression: the link used to sit on its own line below the title;
+        # it should share the title's row (same pattern as experience/
+        # education), with the description as a separate line below.
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertIn('<div class="entry-title">Widget</div>', block)
+        self.assertIn('<a href="https://example.com/widget">widget.com</a>', block)
+        self.assertIn("A cool widget that does widget things.", block)
 
 
 class TestSync(unittest.TestCase):

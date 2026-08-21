@@ -16,6 +16,12 @@ render_html() escapes plain-text runs and emits real <a>/<code>/<strong>/
 (links as "text (url)", code/bold as bare text) for pasting into
 LinkedIn etc. — plain text can't carry bold, so **markers are just
 stripped there.
+
+No nesting: **bold {dcurves}** or **[link](url)** etc. won't work — the
+inner token is captured as literal text, not re-parsed. Keep tokens
+side by side instead of nested (e.g. "**bold** {dcurves}", not
+"**{dcurves}**"); {dcurves} already renders bold on its own via the
+`.dcurves-downloads` CSS class, so it never needs a ** wrapper anyway.
 """
 import re
 import html

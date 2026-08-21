@@ -65,22 +65,33 @@ def _experience_html(e: dict) -> str:
 
 
 def _project_html(p: dict) -> str:
+    # Title + links share a row (same entry-head pattern as experience/
+    # education), so the link never drifts onto its own separate line below
+    # the project name; the description carries the "what it does" impact.
     return (
         '<div class="entry projects">\n'
-        f'  <div class="entry-title">{render_html(p["title"])}</div>\n'
-        f'  <div class="entry-sub">{render_html(p["sub"])}</div>\n'
+        '  <div class="entry-head">\n'
+        f'    <div class="entry-title">{render_html(p["title"])}</div>\n'
+        f'    <div class="entry-meta">{render_html(p["links"])}</div>\n'
+        "  </div>\n"
+        f'  <div class="entry-sub">{render_html(p["description"])}</div>\n'
         "</div>"
     )
 
 
 def _education_html(ed: dict) -> str:
+    # Degree + dates/location share a row; school name is its own line below
+    # rather than joined inline with the degree, so a long school name can
+    # never push the dates onto their own separate line (the failure mode
+    # this replaced — see PR doc Tier 12 for before/after).
     sub = f'\n  <div class="entry-sub">{render_html(ed["sub"])}</div>' if ed.get("sub") else ""
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
-        f'    <div class="entry-title">{render_html(ed["title"])}</div>\n'
+        f'    <div class="entry-title">{render_html(ed["degree"])}</div>\n'
         f'    <div class="entry-meta">{render_html(ed["meta"])}</div>\n'
-        "  </div>" + sub + "\n"
+        "  </div>\n"
+        f'  <div class="entry-sub">{render_html(ed["school"])}</div>' + sub + "\n"
         "</div>"
     )
 
@@ -172,13 +183,15 @@ def render_plaintext(data: dict) -> str:
     lines.append("")
     for p in data["projects"]:
         lines.append(render_text(p["title"]))
-        lines.append(render_text(p["sub"]))
+        lines.append(render_text(p["links"]))
+        lines.append(render_text(p["description"]))
         lines.append("")
 
     lines.append("EDUCATION")
     lines.append("")
     for ed in data["education"]:
-        lines.append(f'{render_text(ed["title"])} ({render_text(ed["meta"])})')
+        lines.append(f'{render_text(ed["degree"])} ({render_text(ed["meta"])})')
+        lines.append(render_text(ed["school"]))
         if ed.get("sub"):
             lines.append(render_text(ed["sub"]))
         lines.append("")

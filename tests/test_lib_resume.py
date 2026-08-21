@@ -29,6 +29,13 @@ class TestRenderHtml(unittest.TestCase):
     def test_bold_content_is_escaped(self):
         self.assertEqual(render_html("**A & B**"), "<strong>A &amp; B</strong>")
 
+    def test_nested_tokens_are_not_supported(self):
+        # Documents a real limitation hit in data/resume.json: **{dcurves}**
+        # renders the token literally instead of substituting it, since bold
+        # content is captured as raw text, not re-parsed. Authors must keep
+        # tokens side by side, not nested — e.g. "**bold** {dcurves}".
+        self.assertEqual(render_html("**{dcurves}**"), "<strong>{dcurves}</strong>")
+
     def test_mixed_tokens(self):
         result = render_html("[a](https://a.com) & `b` {dcurves} **c**")
         self.assertIn('<a href="https://a.com">a</a>', result)

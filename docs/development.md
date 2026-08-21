@@ -16,7 +16,9 @@ Commit — the pre-commit hook automatically stamps in the nav, fills in SEO/soc
 
 `data/resume.json` is the single source of truth — never hand-edit the `<!-- RESUME:START -->` block in `site/resume.html` directly, it gets overwritten. Edit the JSON, then either commit (pre-commit regenerates `site/resume.html`) or run `python3 scripts/gen_resume.py` directly.
 
-Bullet/title/sub strings in the JSON support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**50+ data scientists**`), not decoratively. `docs/all-experiences.md` is the fuller, hand-maintained work-history reference to pull additional bullets from — it isn't wired into generation, so it never goes stale-vs-itself, but it also won't auto-update `resume.json`.
+Bullet/title/sub strings in the JSON support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**50+ data scientists**`), not decoratively. Tokens can't nest (`**{dcurves}**` renders the literal text, not the substituted count) — keep them side by side instead. `docs/all-experiences.md` is the fuller, hand-maintained work-history reference to pull additional bullets from — it isn't wired into generation, so it never goes stale-vs-itself, but it also won't auto-update `resume.json`.
+
+`projects` entries are `{title, links, description}` — title and links share a row (like experience/education), description is the one-liner impact statement below. `education` entries are `{degree, school, meta, sub?}` — degree and dates/location share a row, school (and the optional scholarship/honor note) sit on their own line below, so a long school name can never push the dates onto a separate line.
 
 Need a plain-text copy for LinkedIn or anywhere else that doesn't take HTML: `make resume-text` (prints to stdout, links rendered as `label (url)`, dcurves count fetched live).
 

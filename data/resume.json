@@ -74,32 +74,38 @@
   ],
   "projects": [
     {
-      "title": "dcurves — Decision Curve Analysis for Python",
-      "sub": "{dcurves} PyPI downloads · [pypi.org/project/dcurves](https://pypi.org/project/dcurves/) · [github.com/MSKCC-Epi-Bio/dcurves](https://github.com/MSKCC-Epi-Bio/dcurves)"
+      "title": "dcurves",
+      "links": "[pypi.org/project/dcurves](https://pypi.org/project/dcurves/) · [GitHub](https://github.com/MSKCC-Epi-Bio/dcurves)",
+      "description": "Python package for Decision Curve Analysis, evaluating the clinical value of prediction models and diagnostic tests; {dcurves} PyPI downloads and used in peer-reviewed research."
     },
     {
-      "title": "no-more-sql — LLM text-to-SQL",
-      "sub": "Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) · [github.com/juntotechnologies/no-more-sql](https://github.com/juntotechnologies/no-more-sql)"
+      "title": "no-more-sql",
+      "links": "[GitHub](https://github.com/juntotechnologies/no-more-sql)",
+      "description": "Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) for natural-language querying of SQL databases without writing SQL."
     },
     {
-      "title": "cheminventory.co — Chemical inventory & compliance platform",
-      "sub": "[cheminventory.co](https://cheminventory.co)"
+      "title": "cheminventory.co",
+      "links": "[cheminventory.co](https://cheminventory.co)",
+      "description": "Full-stack chemical inventory management and regulatory compliance platform built for Junto Technologies."
     }
   ],
   "education": [
     {
-      "title": "M.S., Biomedical Data Science — Icahn School of Medicine at Mount Sinai",
+      "degree": "M.S., Biomedical Data Science",
+      "school": "Icahn School of Medicine at Mount Sinai",
       "meta": "Feb 2021 · New York, NY"
     },
     {
-      "title": "B.S., Biomedical Engineering & Chinese — Rutgers University–New Brunswick",
+      "degree": "B.S., Biomedical Engineering & Chinese",
+      "school": "Rutgers University–New Brunswick",
       "meta": "May 2019 · New Brunswick, NJ",
       "sub": "Huayu Enrichment Scholarship, Taiwan MOE"
     },
     {
-      "title": "Certificate in Advanced Mandarin Chinese — National Taiwan University",
+      "degree": "Certificate in Advanced Mandarin Chinese",
+      "school": "National Taiwan University",
       "meta": "Aug 2015 · Taipei, Taiwan",
-      "sub": "MOE Full Scholarship recipient"
+      "sub": "MOE Scholarship recipient"
     }
   ],
   "skills": {
@@ -107,7 +113,7 @@
     "AI / ML": "LLM agent orchestration, multi-agent/swarm systems, local LLM deployment (vLLM, llama.cpp), self-hosted GPU/edge infra (Tailscale), LLM evals (promptfoo, Argilla), autonomous scheduling, RAG, fine-tuning, image segmentation, embedding classifiers",
     "Statistics": "GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis",
     "Domain": "Chemical regulatory compliance / ISO, bioinformatics (SV detection, RNA-seq)",
-    "Languages": "English & Hindi (native), Mandarin Chinese (fluent), Japanese (conversational), Spanish (basic)",
+    "Languages": "English (native); Mandarin Chinese, Hindi (fluent); Japanese, Spanish (conversational)",
     "Certifications": "Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)"
   }
 }

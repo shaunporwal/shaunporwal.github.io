@@ -82,8 +82,8 @@
   .skills-grid dt, .edu-grid dt { font-weight: 600; white-space: nowrap; }
   .skills-grid dd, .edu-grid dd { margin: 0; color: var(--ink); }
 
-  .projects .entry-title { font-weight: 600; }
-  .projects .entry-sub a { word-break: break-all; }
+  .projects .entry-title { font-weight: 600; color: var(--link); }
+  .projects .entry-meta { font-weight: 400; }
 
   .print-note {
     margin-bottom: 1.5rem;
@@ -226,39 +226,51 @@
 <h2 class="section">Selected Projects</h2>
 
 <div class="entry projects">
-  <div class="entry-title">dcurves — Decision Curve Analysis for Python</div>
-  <div class="entry-sub"><span class="dcurves-downloads">72k+</span> PyPI downloads · <a href="https://pypi.org/project/dcurves/">pypi.org/project/dcurves</a> · <a href="https://github.com/MSKCC-Epi-Bio/dcurves">github.com/MSKCC-Epi-Bio/dcurves</a></div>
+  <div class="entry-head">
+    <div class="entry-title">dcurves</div>
+    <div class="entry-meta"><a href="https://pypi.org/project/dcurves/">pypi.org/project/dcurves</a> · <a href="https://github.com/MSKCC-Epi-Bio/dcurves">GitHub</a></div>
+  </div>
+  <div class="entry-sub">Python package for Decision Curve Analysis, evaluating the clinical value of prediction models and diagnostic tests; <span class="dcurves-downloads">72k+</span> PyPI downloads and used in peer-reviewed research.</div>
 </div>
 <div class="entry projects">
-  <div class="entry-title">no-more-sql — LLM text-to-SQL</div>
-  <div class="entry-sub">Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) · <a href="https://github.com/juntotechnologies/no-more-sql">github.com/juntotechnologies/no-more-sql</a></div>
+  <div class="entry-head">
+    <div class="entry-title">no-more-sql</div>
+    <div class="entry-meta"><a href="https://github.com/juntotechnologies/no-more-sql">GitHub</a></div>
+  </div>
+  <div class="entry-sub">Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) for natural-language querying of SQL databases without writing SQL.</div>
 </div>
 <div class="entry projects">
-  <div class="entry-title">cheminventory.co — Chemical inventory &amp; compliance platform</div>
-  <div class="entry-sub"><a href="https://cheminventory.co">cheminventory.co</a></div>
+  <div class="entry-head">
+    <div class="entry-title">cheminventory.co</div>
+    <div class="entry-meta"><a href="https://cheminventory.co">cheminventory.co</a></div>
+  </div>
+  <div class="entry-sub">Full-stack chemical inventory management and regulatory compliance platform built for Junto Technologies.</div>
 </div>
 
 <h2 class="section">Education</h2>
 
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title">M.S., Biomedical Data Science — Icahn School of Medicine at Mount Sinai</div>
+    <div class="entry-title">M.S., Biomedical Data Science</div>
     <div class="entry-meta">Feb 2021 · New York, NY</div>
   </div>
+  <div class="entry-sub">Icahn School of Medicine at Mount Sinai</div>
 </div>
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title">B.S., Biomedical Engineering &amp; Chinese — Rutgers University–New Brunswick</div>
+    <div class="entry-title">B.S., Biomedical Engineering &amp; Chinese</div>
     <div class="entry-meta">May 2019 · New Brunswick, NJ</div>
   </div>
+  <div class="entry-sub">Rutgers University–New Brunswick</div>
   <div class="entry-sub">Huayu Enrichment Scholarship, Taiwan MOE</div>
 </div>
 <div class="entry">
   <div class="entry-head">
-    <div class="entry-title">Certificate in Advanced Mandarin Chinese — National Taiwan University</div>
+    <div class="entry-title">Certificate in Advanced Mandarin Chinese</div>
     <div class="entry-meta">Aug 2015 · Taipei, Taiwan</div>
   </div>
-  <div class="entry-sub">MOE Full Scholarship recipient</div>
+  <div class="entry-sub">National Taiwan University</div>
+  <div class="entry-sub">MOE Scholarship recipient</div>
 </div>
 
 <h2 class="section">Skills &amp; Certifications</h2>
@@ -268,7 +280,7 @@
   <dt>AI / ML</dt><dd>LLM agent orchestration, multi-agent/swarm systems, local LLM deployment (vLLM, llama.cpp), self-hosted GPU/edge infra (Tailscale), LLM evals (promptfoo, Argilla), autonomous scheduling, RAG, fine-tuning, image segmentation, embedding classifiers</dd>
   <dt>Statistics</dt><dd>GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis</dd>
   <dt>Domain</dt><dd>Chemical regulatory compliance / ISO, bioinformatics (SV detection, RNA-seq)</dd>
-  <dt>Languages</dt><dd>English &amp; Hindi (native), Mandarin Chinese (fluent), Japanese (conversational), Spanish (basic)</dd>
+  <dt>Languages</dt><dd>English (native); Mandarin Chinese, Hindi (fluent); Japanese, Spanish (conversational)</dd>
   <dt>Certifications</dt><dd>Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)</dd>
 </dl>
 <!-- RESUME:END -->
