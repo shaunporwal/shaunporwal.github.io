@@ -12,6 +12,12 @@
 
 * { box-sizing: border-box; }
 
+html { -webkit-text-size-adjust: 100%; }
+
+img, video { max-width: 100%; height: auto; }
+
+pre, code { overflow-x: auto; }
+
 body {
   margin: 0;
   background: var(--earthy-charcoal);

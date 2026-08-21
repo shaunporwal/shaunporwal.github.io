@@ -85,6 +85,12 @@
     font-size: 0.8rem;
   }
 
+  @media (max-width: 420px) {
+    .entry-meta { white-space: normal; }
+    .skills-grid, .edu-grid { grid-template-columns: 1fr; }
+    .skills-grid dt, .edu-grid dt { margin-top: 0.5rem; }
+  }
+
   @media print {
     body { padding: 0; font-size: 12.5px; max-width: none; }
     a { color: var(--ink); }
