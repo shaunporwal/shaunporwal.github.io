@@ -39,12 +39,12 @@ def _experience_html(e: dict) -> str:
     # text prefix rather than a CSS list marker, matching LinkedIn's own
     # dash convention on copy/paste. A blank-line gap between bullets can't
     # be done with CSS margin — margin is layout, not text, so it never
-    # survives copy/paste into another editor. Instead each pair of bullets
-    # gets a literal blank-line spacer div in the DOM (a real block-level
-    # element with a &nbsp;), visually collapsed to zero height on the page
-    # itself (see .bullet-break in the page's <style>) but still walked by
-    # the browser's selection-to-text serialization, so paste gets a real
-    # blank line between bullets while the resume page stays compact.
+    # survives copy/paste. A zero-height spacer div doesn't work either:
+    # browsers use a rendering-aware algorithm for copy (like innerText),
+    # which skips content with no visible height. So each pair of bullets
+    # gets a spacer div with a small but real, visibly rendered height (see
+    # .bullet-break in the page's <style>) — a little more breathing room
+    # on the page itself, traded for a real blank line surviving paste.
     parts = []
     for i, b in enumerate(e["bullets"]):
         if i > 0:
