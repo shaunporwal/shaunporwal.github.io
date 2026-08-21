@@ -46,7 +46,7 @@ site_libs/
 /.RData
 /.Rhistory
 /.freeze/
-/docs/
+/.quarto-output/
 /renv/
 /README_files/
 

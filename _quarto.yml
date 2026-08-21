@@ -1,6 +1,8 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: .quarto-output
+  render:
+    - "**/*.qmd"
   resources:
     - "media/heron.glb"
     - "media/nft_monkey.glb"
