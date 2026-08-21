@@ -1,0 +1,17 @@
+# Shaun Porwal
+
+> Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software. Currently Founder & Engineer at Junto Technologies (cheminventory.co).
+
+## Pages
+
+- [Home / Blog](https://shaunporwal.com/): posts on building, coding, and thinking clearly.
+- [About](https://shaunporwal.com/about.html): who Shaun is, contact links.
+- [Resume](https://shaunporwal.com/resume.html): full work history, skills, education.
+- [Stuff](https://shaunporwal.com/stuff.html): 3D models and other odds and ends.
+
+## Contact
+
+- Email: shaun.porwal@gmail.com
+- GitHub: https://github.com/shaunporwal
+- X: https://x.com/shaunporwal
+- LinkedIn: https://linkedin.com/in/shaunporwal

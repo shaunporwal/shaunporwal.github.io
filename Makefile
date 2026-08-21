@@ -1,0 +1,21 @@
+.PHONY: dev test sync resume-text
+
+dev:
+	./scripts/dev.sh
+
+test:
+	python3 -m unittest discover -s tests -p "test_*.py"
+	bash tests/test_update_dcurves_downloads.sh
+	bash tests/test_resume_page_count.sh
+
+sync:
+	python3 scripts/gen_resume.py
+	./scripts/update-dcurves-downloads.sh
+	python3 scripts/sync_nav.py
+	python3 scripts/sync_seo.py
+	python3 scripts/sync_social.py
+	python3 scripts/gen_blog_index.py
+	python3 scripts/gen_sitemap.py
+
+resume-text:
+	python3 scripts/gen_resume.py --text

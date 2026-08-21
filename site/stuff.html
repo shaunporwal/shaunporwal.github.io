@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stuff — Shaun Porwal</title>
+<!-- SEO:START -->
+<meta name="description" content="A small gallery of 3D models and other stuff from Shaun Porwal.">
+<link rel="canonical" href="https://shaunporwal.com/stuff.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stuff — Shaun Porwal">
+<meta property="og:description" content="A small gallery of 3D models and other stuff from Shaun Porwal.">
+<meta property="og:url" content="https://shaunporwal.com/stuff.html">
+<meta property="og:image" content="https://shaunporwal.com/media/heron.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stuff — Shaun Porwal">
+<meta name="twitter:description" content="A small gallery of 3D models and other stuff from Shaun Porwal.">
+<meta name="twitter:image" content="https://shaunporwal.com/media/heron.jpg">
+<!-- SEO:END -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="./media/favicon.png">
+<link rel="stylesheet" href="./styles/site.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+<!-- NAV:START -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-nav-title" href="index.html">Shaun Porwal</a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">☰</label>
+    <div class="site-nav-links">
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="stuff.html">Stuff</a>
+      <a class="nav-link" href="index.html">Blog</a>
+      <a class="nav-link" href="resume.html" target="_blank" rel="noopener">Resume</a>
+      <a class="nav-link" href="https://github.com/shaunporwal" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-link" href="https://x.com/shaunporwal" target="_blank" rel="noopener">X</a>
+      <a class="nav-link" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">📅 Book a Call</a>
+    </div>
+  </div>
+</nav>
+<!-- NAV:END -->
+
+<main class="page">
+  <h1 class="page-title">Stuff</h1>
+
+  <div class="model-gallery" aria-label="3D objects">
+    <div class="model-card">
+      <model-viewer
+        src="media/heron.glb"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1"
+        alt="3D heron model">
+      </model-viewer>
+      <p>Heron</p>
+    </div>
+
+    <div class="model-card">
+      <model-viewer
+        src="media/nft_monkey.glb"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1"
+        alt="3D monkey model">
+      </model-viewer>
+      <p>Monkey</p>
+    </div>
+
+    <div class="model-card">
+      <model-viewer
+        src="media/banana_upright2.glb"
+        camera-controls
+        auto-rotate
+        camera-target="-0.16m 0m 0.88m"
+        camera-orbit="45deg 75deg 8m"
+        shadow-intensity="1"
+        exposure="1"
+        alt="3D banana model laying flat">
+      </model-viewer>
+      <p>Banana Laying Flat</p>
+    </div>
+  </div>
+
+  <div class="image-feature">
+    <img src="media/260608-iphone-macro-eye.png" alt="iPhone macro photo of an eye">
+    <p>Shaun's right eye</p>
+  </div>
+</main>
+
+</body>
+</html>

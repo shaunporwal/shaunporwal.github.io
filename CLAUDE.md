@@ -52,8 +52,7 @@ When working on coding with me, follow this workflow.
 
 ## 9. This Repository
 
-- This is a Quarto website published through `.github/workflows/quarto-publish.yaml`.
-- Install Python dependencies with `poetry install` when notebook execution requires them.
-- Render verification: `quarto render`.
-- Local preview: `quarto preview`.
+- This is a plain static HTML/CSS site (no framework, no build step), published through `.github/workflows/publish.yaml`. See `docs/development.md` for the full setup (scripts, adding a post, project structure).
+- Nav, SEO meta, the blog listing, and the sitemap are all generated (`scripts/sync_nav.py` etc.) — edit `templates/nav.html` or a post's own content, never the generated `<!-- ...:START -->` blocks directly.
+- `make dev` to preview, `make test` after changing anything in `scripts/`. Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`).
 - Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.
