@@ -1,4 +1,4 @@
-.PHONY: dev test sync
+.PHONY: dev test sync resume-text
 
 dev:
 	./scripts/dev.sh
@@ -8,8 +8,12 @@ test:
 	bash tests/test_update_dcurves_downloads.sh
 
 sync:
+	python3 scripts/gen_resume.py
+	./scripts/update-dcurves-downloads.sh
 	python3 scripts/sync_nav.py
 	python3 scripts/sync_seo.py
 	python3 scripts/gen_blog_index.py
 	python3 scripts/gen_sitemap.py
-	./scripts/update-dcurves-downloads.sh
+
+resume-text:
+	python3 scripts/gen_resume.py --text
