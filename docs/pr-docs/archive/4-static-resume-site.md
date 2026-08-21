@@ -1,6 +1,6 @@
 # PR 4: Drop Quarto, Rebuild as Plain Static HTML + Resume Page
 
-Status: in-scope work complete
+Status: done
 
 Branch: `feature/static-resume-site`
 
@@ -156,4 +156,4 @@ Ordered from least consequential/complex to highest blast radius.
 
 ## Related Docs
 
-- [PR 3: Zero-Overhead 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) — unrelated scope, merged to `main` before this branch was cut.
+- [PR 3: Zero-Overhead 3D Print Shop & Multi-Channel Sales Funnel](../3-3d-print-shop.md) — unrelated scope, merged to `main` before this branch was cut.
