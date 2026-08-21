@@ -23,12 +23,19 @@ class TestRenderHtml(unittest.TestCase):
             '<span class="dcurves-downloads">72k+</span> downloads',
         )
 
+    def test_bold_renders_strong_tag(self):
+        self.assertEqual(render_html("Delivered **$1M+** in value"), "Delivered <strong>$1M+</strong> in value")
+
+    def test_bold_content_is_escaped(self):
+        self.assertEqual(render_html("**A & B**"), "<strong>A &amp; B</strong>")
+
     def test_mixed_tokens(self):
-        result = render_html("[a](https://a.com) & `b` {dcurves}")
+        result = render_html("[a](https://a.com) & `b` {dcurves} **c**")
         self.assertIn('<a href="https://a.com">a</a>', result)
         self.assertIn("&amp;", result)
         self.assertIn("<code>b</code>", result)
         self.assertIn('<span class="dcurves-downloads">', result)
+        self.assertIn("<strong>c</strong>", result)
 
 
 class TestRenderText(unittest.TestCase):
@@ -46,6 +53,9 @@ class TestRenderText(unittest.TestCase):
 
     def test_no_html_escaping(self):
         self.assertEqual(render_text("A & B"), "A & B")
+
+    def test_bold_markers_are_stripped(self):
+        self.assertEqual(render_text("Delivered **$1M+** in value"), "Delivered $1M+ in value")
 
 
 if __name__ == "__main__":

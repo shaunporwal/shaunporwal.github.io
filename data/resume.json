@@ -14,8 +14,8 @@
       "org": "Junto Technologies",
       "meta": "Mar 2026 – Present · Metuchen, NJ",
       "bullets": [
-        "Built a full-stack (design, client, server, database, authentication) chemical inventory management system ([cheminventory.co](https://cheminventory.co)); manages version-controlled regulatory compliance documents covering $1M+ in yearly order lifecycle provenance",
-        "Architected a self-hosted, autonomous multi-agent AI swarm (Tailscale device fleet, local LLMs via vLLM/llama.cpp, shared task queue, persistent memory, self-improving skills, cron-scheduled runs, promptfoo evals, custom monitoring dashboard, Apple Watch voice control) to run market research, competitive analysis, and go-to-market strategy — delivering a full ICP/GTM report and verified competitor benchmarks",
+        "Built a full-stack (design, client, server, database, authentication) chemical inventory management system ([cheminventory.co](https://cheminventory.co)); manages version-controlled regulatory compliance documents covering **$1M+** in yearly order lifecycle provenance",
+        "Architected a self-hosted, **autonomous multi-agent AI swarm** (Tailscale device fleet, local LLMs via vLLM/llama.cpp, shared task queue, persistent memory, self-improving skills, cron-scheduled runs, promptfoo evals, custom monitoring dashboard, Apple Watch voice control) to run market research, competitive analysis, and go-to-market strategy — delivering a full ICP/GTM report and verified competitor benchmarks",
         "Standardizing processes at a specialty chemicals company to achieve ISO certification",
         "Served as Mandarin/English translator at CPHI Shanghai 2026 for a specialty chemicals company"
       ]
@@ -40,7 +40,7 @@
         "Built an AI radiology pipeline (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists",
         "Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a [landmark study](https://pubmed.ncbi.nlm.nih.gov/40073938/) on post-chemotherapy RPLND policy in testicular cancer, published in Annals of Oncology",
         "Developed [dcurves](https://pypi.org/project/dcurves/), a Python package for Decision Curve Analysis ({dcurves} PyPI downloads); built and maintain the instructional site [decisioncurveanalysis.org](https://decisioncurveanalysis.org)",
-        "Engineered a Llama 3.1:70B + RAG text-to-SQL tool (`no-more-sql`) with Streamlit and FAISS, serving 50+ data scientists at MSKCC",
+        "Engineered a Llama 3.1:70B + RAG text-to-SQL tool (`no-more-sql`) with Streamlit and FAISS, serving **50+ data scientists** at MSKCC",
         "Completed a large patient-comorbidity analysis using take-home survey data, with `pointblank` data validation, to demonstrate accurate billing-level assignment",
         "Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)"
       ]
@@ -50,7 +50,7 @@
       "org": "Sema4",
       "meta": "Feb 2020 – Feb 2021 · Stamford, CT",
       "bullets": [
-        "Engineered automated Bash/Python/WDL/AWS pipelines to detect structural variants across 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN",
+        "Engineered automated Bash/Python/WDL/AWS pipelines to detect structural variants across **100+ 100GB+ BAM files** using Delly, SvABA, Manta, and Illumina DRAGEN",
         "Algorithmically discovered repeat variants among 100+ samples, comparing insulin- vs. non-insulin-producing pancreatic neuroendocrine tumors for diabetes therapy research",
         "Visualized results with Circos plots, stacked bar plots, heat maps, and scatter plots"
       ]
