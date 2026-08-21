@@ -52,7 +52,15 @@ class TestBuildHtmlBlock(unittest.TestCase):
         # browser copy/paste (e.g. into LinkedIn) silently drops them. The
         # bullet must be literal text content instead.
         block = gen_resume.build_html_block(SAMPLE_DATA)
-        self.assertIn("<li>• Did a", block)
+        self.assertIn('<div class="bullet">- Did a', block)
+
+    def test_bullets_are_block_siblings_not_a_list(self):
+        # LinkedIn's rich-text composer collapses <li> into single-spaced
+        # lines on paste but gives block-level siblings real paragraph
+        # spacing, so bullets must be separate <div>s, not <li>s in a <ul>.
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertNotIn("<li>", block)
+        self.assertNotIn("<ul", block)
 
     def test_education_without_sub_omits_entry_sub(self):
         data = dict(SAMPLE_DATA)

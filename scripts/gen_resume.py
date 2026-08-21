@@ -35,20 +35,23 @@ def load_data(repo_root: pathlib.Path) -> dict:
 
 
 def _experience_html(e: dict) -> str:
-    # The bullet character is literal text, not a CSS list-style marker, so
-    # copy/pasting the page (e.g. into LinkedIn) keeps the bullets instead of
-    # silently dropping them — see ul.bullets { list-style: none } in the
-    # page's <style>, paired with a manual hanging indent.
-    bullets = "\n".join(f"    <li>• {render_html(b)}</li>" for b in e["bullets"])
+    # Each bullet is its own <div> (not a <ul>/<li>), with a literal "- "
+    # text prefix rather than a CSS list marker. Rich-text editors like
+    # LinkedIn's post composer collapse <li> into single-spaced lines on
+    # paste but give block-level siblings (<div>/<p>) real paragraph
+    # spacing — so this both matches LinkedIn's own dash convention and
+    # gets the double-spaced look on paste, matching the hanging indent
+    # via .bullets div { ... } in the page's <style>.
+    bullets = "\n".join(f'    <div class="bullet">- {render_html(b)}</div>' for b in e["bullets"])
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
         f'    <div><span class="entry-title">{render_html(e["title"])}</span> — <span class="entry-org">{render_html(e["org"])}</span></div>\n'
         f'    <div class="entry-meta">{render_html(e["meta"])}</div>\n'
         "  </div>\n"
-        '  <ul class="bullets">\n'
+        '  <div class="bullets">\n'
         f"{bullets}\n"
-        "  </ul>\n"
+        "  </div>\n"
         "</div>"
     )
 
