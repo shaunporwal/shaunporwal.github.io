@@ -21,10 +21,22 @@ def render_item(post: dict) -> str:
     if post["categories"]:
         cat_html = " &middot; " + "".join(f'<span class="cat">{c}</span>' for c in post["categories"])
     date_str = post["date"].strftime("%B %-d, %Y") if post["date"] else ""
+    href = f'posts/{post["slug"]}/index.html'
+
+    thumb = ""
+    if post["image"]:
+        thumb = (
+            f'\n    <a class="post-card-thumb" href="{href}" tabindex="-1" aria-hidden="true">'
+            f'<img src="posts/{post["slug"]}/{post["image"]}" alt="" loading="lazy"></a>'
+        )
+
     return (
         '  <li class="post-card">\n'
-        f'    <a class="post-title" href="posts/{post["slug"]}/index.html">{post["title"]}</a>\n'
-        f'    <p class="post-date">{date_str}{cat_html}</p>\n'
+        '    <div class="post-card-text">\n'
+        f'      <a class="post-title" href="{href}">{post["title"]}</a>\n'
+        f'      <p class="post-date">{date_str}{cat_html}</p>\n'
+        "    </div>"
+        f"{thumb}\n"
         "  </li>"
     )
 

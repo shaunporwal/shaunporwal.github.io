@@ -33,12 +33,36 @@ class TestRenderItem(unittest.TestCase):
             "title": "Hello World",
             "date": __import__("datetime").date(2025, 3, 5),
             "categories": ["A", "B"],
+            "image": None,
         }
         item = gen_blog_index.render_item(post)
         self.assertIn('href="posts/hello-world/index.html"', item)
         self.assertIn("Hello World", item)
         self.assertIn("March 5, 2025", item)
         self.assertIn('<span class="cat">A</span><span class="cat">B</span>', item)
+
+    def test_includes_thumbnail_when_post_has_an_image(self):
+        post = {
+            "slug": "hello-world",
+            "title": "Hello World",
+            "date": None,
+            "categories": [],
+            "image": "cover.png",
+        }
+        item = gen_blog_index.render_item(post)
+        self.assertIn('<img src="posts/hello-world/cover.png"', item)
+        self.assertIn('class="post-card-thumb"', item)
+
+    def test_no_thumbnail_when_post_has_no_image(self):
+        post = {
+            "slug": "hello-world",
+            "title": "Hello World",
+            "date": None,
+            "categories": [],
+            "image": None,
+        }
+        item = gen_blog_index.render_item(post)
+        self.assertNotIn("post-card-thumb", item)
 
 
 class TestSync(unittest.TestCase):
