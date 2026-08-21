@@ -47,6 +47,13 @@ class TestBuildHtmlBlock(unittest.TestCase):
         self.assertIn("Cum laude", block)
         self.assertIn("<dt>Programming</dt><dd>Python, Go</dd>", block)
 
+    def test_bullets_carry_a_literal_marker_character(self):
+        # CSS list markers (::marker / list-style) aren't real text, so a
+        # browser copy/paste (e.g. into LinkedIn) silently drops them. The
+        # bullet must be literal text content instead.
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertIn("<li>• Did a", block)
+
     def test_education_without_sub_omits_entry_sub(self):
         data = dict(SAMPLE_DATA)
         data["education"] = [{"title": "Cert — Somewhere", "meta": "2021"}]

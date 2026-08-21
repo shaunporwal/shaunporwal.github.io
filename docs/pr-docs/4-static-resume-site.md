@@ -109,6 +109,7 @@ Ordered from least consequential/complex to highest blast radius.
 - [x] New `docs/all-experiences.md`: the fuller work-history record (previously only in the separate `jobapps` repo) copied into this repo per Shaun's request, so it lives alongside the resume it feeds. Explicitly *not* wired into generation — hand-maintained reference to pull additional bullets from, not a second source of truth.
 - [x] 21 new unit tests (`tests/test_lib_resume.py`, `tests/test_gen_resume.py`) — link/code/dcurves-token rendering in both HTML and text modes, marker injection/idempotency, education entries with/without a `sub` line. Full suite now 49 tests.
 - [x] Updated `docs/development.md` ("Updating the resume" section) and the new README "Conventions" section to point future edits at `data/resume.json`, never at the generated HTML block directly.
+- [x] Fixed a copy/paste bug: CSS list markers (`list-style`/`::marker`) aren't real text, so selecting and copying a bullet from the rendered page into LinkedIn silently dropped the "•". `gen_resume.py` now writes the bullet as a literal `• ` text character, paired with `list-style: none` + a manual hanging indent (`text-indent: -1.1em; padding-left: 1.1em`) in `resume.html`'s CSS so wrapped lines still align correctly. Regression test added (50 tests total).
 
 ## Product Decisions
 

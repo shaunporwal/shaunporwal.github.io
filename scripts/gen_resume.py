@@ -35,7 +35,11 @@ def load_data(repo_root: pathlib.Path) -> dict:
 
 
 def _experience_html(e: dict) -> str:
-    bullets = "\n".join(f"    <li>{render_html(b)}</li>" for b in e["bullets"])
+    # The bullet character is literal text, not a CSS list-style marker, so
+    # copy/pasting the page (e.g. into LinkedIn) keeps the bullets instead of
+    # silently dropping them — see ul.bullets { list-style: none } in the
+    # page's <style>, paired with a manual hanging indent.
+    bullets = "\n".join(f"    <li>• {render_html(b)}</li>" for b in e["bullets"])
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'

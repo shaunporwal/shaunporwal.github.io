@@ -68,8 +68,8 @@
   .entry-meta { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
   .entry-sub { color: var(--muted); font-size: 0.88rem; margin-top: 0.05rem; }
 
-  ul.bullets { margin: 0.35rem 0 0; padding-left: 1.1rem; }
-  ul.bullets li { margin-bottom: 0.2rem; }
+  ul.bullets { list-style: none; margin: 0.35rem 0 0; padding: 0; }
+  ul.bullets li { margin-bottom: 0.2rem; padding-left: 1.1em; text-indent: -1.1em; }
 
   .skills-grid, .edu-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; }
   .skills-grid dt, .edu-grid dt { font-weight: 600; white-space: nowrap; }
@@ -123,10 +123,10 @@
     <div class="entry-meta">Mar 2026 – Present · Metuchen, NJ</div>
   </div>
   <ul class="bullets">
-    <li>Built a full-stack (design, client, server, database, authentication) chemical inventory management system (<a href="https://cheminventory.co">cheminventory.co</a>); manages version-controlled regulatory compliance documents covering $1M+ in yearly order lifecycle provenance</li>
-    <li>Architected a self-hosted, autonomous multi-agent AI swarm (Tailscale device fleet, local LLMs via vLLM/llama.cpp, shared task queue, persistent memory, self-improving skills, cron-scheduled runs, promptfoo evals, custom monitoring dashboard, Apple Watch voice control) to run market research, competitive analysis, and go-to-market strategy — delivering a full ICP/GTM report and verified competitor benchmarks</li>
-    <li>Standardizing processes at a specialty chemicals company to achieve ISO certification</li>
-    <li>Served as Mandarin/English translator at CPHI Shanghai 2026 for a specialty chemicals company</li>
+    <li>• Built a full-stack (design, client, server, database, authentication) chemical inventory management system (<a href="https://cheminventory.co">cheminventory.co</a>); manages version-controlled regulatory compliance documents covering $1M+ in yearly order lifecycle provenance</li>
+    <li>• Architected a self-hosted, autonomous multi-agent AI swarm (Tailscale device fleet, local LLMs via vLLM/llama.cpp, shared task queue, persistent memory, self-improving skills, cron-scheduled runs, promptfoo evals, custom monitoring dashboard, Apple Watch voice control) to run market research, competitive analysis, and go-to-market strategy — delivering a full ICP/GTM report and verified competitor benchmarks</li>
+    <li>• Standardizing processes at a specialty chemicals company to achieve ISO certification</li>
+    <li>• Served as Mandarin/English translator at CPHI Shanghai 2026 for a specialty chemicals company</li>
   </ul>
 </div>
 
@@ -136,10 +136,10 @@
     <div class="entry-meta">May 2025 – Mar 2026 · Philadelphia, PA</div>
   </div>
   <ul class="bullets">
-    <li>Architected a full-stack agent orchestration platform (FastAPI/Next.js, WebSockets) for biomedical workflows, integrating OpenAI Agents SDK tooling and DICOM/NIfTI imaging for tumor analysis</li>
-    <li>Built a reusable research library (<code>smb-pipe</code>) for survival-prediction pipelines, automating CT embedding extraction and MEDS-to-model workflows for aortic aneurysm and heart failure risk modeling</li>
-    <li>Developed an LLM benchmarking framework for clinical trial matching, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data</li>
-    <li>Secured a strategic data-for-equity partnership with Memorial Sloan Kettering Cancer Center, facilitating access to high-fidelity multimodal datasets for model development</li>
+    <li>• Architected a full-stack agent orchestration platform (FastAPI/Next.js, WebSockets) for biomedical workflows, integrating OpenAI Agents SDK tooling and DICOM/NIfTI imaging for tumor analysis</li>
+    <li>• Built a reusable research library (<code>smb-pipe</code>) for survival-prediction pipelines, automating CT embedding extraction and MEDS-to-model workflows for aortic aneurysm and heart failure risk modeling</li>
+    <li>• Developed an LLM benchmarking framework for clinical trial matching, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data</li>
+    <li>• Secured a strategic data-for-equity partnership with Memorial Sloan Kettering Cancer Center, facilitating access to high-fidelity multimodal datasets for model development</li>
   </ul>
 </div>
 
@@ -149,13 +149,13 @@
     <div class="entry-meta">Mar 2021 – May 2025 · New York, NY</div>
   </div>
   <ul class="bullets">
-    <li>Engineered SQL-sourced data pipelines and statistical code for <a href="https://www.mskcc.org/amplio-system">Amplio</a>, enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to benchmark patient outcomes against peers</li>
-    <li>Built an AI radiology pipeline (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists</li>
-    <li>Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a <a href="https://pubmed.ncbi.nlm.nih.gov/40073938/">landmark study</a> on post-chemotherapy RPLND policy in testicular cancer, published in Annals of Oncology</li>
-    <li>Developed <a href="https://pypi.org/project/dcurves/">dcurves</a>, a Python package for Decision Curve Analysis (<span class="dcurves-downloads">72k+</span> PyPI downloads); built and maintain the instructional site <a href="https://decisioncurveanalysis.org">decisioncurveanalysis.org</a></li>
-    <li>Engineered a Llama 3.1:70B + RAG text-to-SQL tool (<code>no-more-sql</code>) with Streamlit and FAISS, serving 50+ data scientists at MSKCC</li>
-    <li>Completed a large patient-comorbidity analysis using take-home survey data, with <code>pointblank</code> data validation, to demonstrate accurate billing-level assignment</li>
-    <li>Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)</li>
+    <li>• Engineered SQL-sourced data pipelines and statistical code for <a href="https://www.mskcc.org/amplio-system">Amplio</a>, enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to benchmark patient outcomes against peers</li>
+    <li>• Built an AI radiology pipeline (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists</li>
+    <li>• Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a <a href="https://pubmed.ncbi.nlm.nih.gov/40073938/">landmark study</a> on post-chemotherapy RPLND policy in testicular cancer, published in Annals of Oncology</li>
+    <li>• Developed <a href="https://pypi.org/project/dcurves/">dcurves</a>, a Python package for Decision Curve Analysis (<span class="dcurves-downloads">72k+</span> PyPI downloads); built and maintain the instructional site <a href="https://decisioncurveanalysis.org">decisioncurveanalysis.org</a></li>
+    <li>• Engineered a Llama 3.1:70B + RAG text-to-SQL tool (<code>no-more-sql</code>) with Streamlit and FAISS, serving 50+ data scientists at MSKCC</li>
+    <li>• Completed a large patient-comorbidity analysis using take-home survey data, with <code>pointblank</code> data validation, to demonstrate accurate billing-level assignment</li>
+    <li>• Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)</li>
   </ul>
 </div>
 
@@ -165,9 +165,9 @@
     <div class="entry-meta">Feb 2020 – Feb 2021 · Stamford, CT</div>
   </div>
   <ul class="bullets">
-    <li>Engineered automated Bash/Python/WDL/AWS pipelines to detect structural variants across 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN</li>
-    <li>Algorithmically discovered repeat variants among 100+ samples, comparing insulin- vs. non-insulin-producing pancreatic neuroendocrine tumors for diabetes therapy research</li>
-    <li>Visualized results with Circos plots, stacked bar plots, heat maps, and scatter plots</li>
+    <li>• Engineered automated Bash/Python/WDL/AWS pipelines to detect structural variants across 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN</li>
+    <li>• Algorithmically discovered repeat variants among 100+ samples, comparing insulin- vs. non-insulin-producing pancreatic neuroendocrine tumors for diabetes therapy research</li>
+    <li>• Visualized results with Circos plots, stacked bar plots, heat maps, and scatter plots</li>
   </ul>
 </div>
 
@@ -177,8 +177,8 @@
     <div class="entry-meta">May 2018 – May 2019 · Metuchen, NJ</div>
   </div>
   <ul class="bullets">
-    <li>Performed inorganic standards analysis via wet-lab techniques (pipetting, gravimetry, titration, filtration, combustion) and ICP-MS instrumentation for reference-standard preparation</li>
-    <li>Programmed and calibrated a Hudson automated pipettor robot (SOLOsoft) for serial dilutions and standard synthesis</li>
+    <li>• Performed inorganic standards analysis via wet-lab techniques (pipetting, gravimetry, titration, filtration, combustion) and ICP-MS instrumentation for reference-standard preparation</li>
+    <li>• Programmed and calibrated a Hudson automated pipettor robot (SOLOsoft) for serial dilutions and standard synthesis</li>
   </ul>
 </div>
 
@@ -188,8 +188,8 @@
     <div class="entry-meta">Jun 2016 – Jul 2016 · Saitama, Japan</div>
   </div>
   <ul class="bullets">
-    <li>Trained 160 hours in instrumentation (GC, HPLC, NMR, IR) and wet-lab QC analysis</li>
-    <li>Assisted with Japanese/English translation for the team</li>
+    <li>• Trained 160 hours in instrumentation (GC, HPLC, NMR, IR) and wet-lab QC analysis</li>
+    <li>• Assisted with Japanese/English translation for the team</li>
   </ul>
 </div>
 
