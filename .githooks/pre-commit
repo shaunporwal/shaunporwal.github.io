@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 # Keeps generated/synced content current before every commit:
-# - dcurves download count in resume.html
-# - the shared nav (templates/nav.html) stamped into every page
+# - dcurves download count in site/resume.html
+# - the shared nav (templates/nav.html) stamped into every page under site/
+# - SEO/social meta tags on every page + auto-discovered post under site/posts/
+# - site/sitemap.xml
+# - the blog listing in site/index.html
+# Adding a new post is just: create site/posts/<slug>/index.html (+ optional
+# .draft file) and commit — everything above regenerates automatically.
 # Enable once per clone with: git config core.hooksPath .githooks
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 
 "$repo_root/scripts/update-dcurves-downloads.sh" || true
-python3 "$repo_root/scripts/sync-nav.py" || true
+python3 "$repo_root/scripts/sync_nav.py" || true
+python3 "$repo_root/scripts/sync_seo.py" || true
+python3 "$repo_root/scripts/gen_blog_index.py" || true
+python3 "$repo_root/scripts/gen_sitemap.py" || true
 
-git add -u "$repo_root/resume.html" "$repo_root"/*.html "$repo_root/posts"
+git add -A "$repo_root/site"

@@ -14,27 +14,8 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Assemble static site
-        run: |
-          mkdir -p _site
-          rsync -a \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='.githooks' \
-            --exclude='docs' \
-            --exclude='scripts' \
-            --exclude='_site' \
-            --exclude='README.md' \
-            --exclude='CLAUDE.md' \
-            --exclude='AGENTS.md' \
-            --exclude='LICENSE' \
-            --exclude='.gitignore' \
-            --exclude='.nojekyll' \
-            ./ _site/
-          touch _site/.nojekyll
-
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./site

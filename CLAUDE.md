@@ -53,7 +53,9 @@ When working on coding with me, follow this workflow.
 ## 9. This Repository
 
 - This is a plain static HTML/CSS site (no framework, no build step), published through `.github/workflows/publish.yaml`.
-- Verify changes by opening the relevant `.html` file(s) directly in a browser.
-- The nav is generated from `templates/nav.html` via `scripts/sync-nav.py` — edit the template, not individual pages' nav blocks.
-- Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`) to keep the nav and resume download count synced automatically.
+- All published site content lives under `site/` (pages, posts, media, styles, CNAME). Everything outside `site/` (`templates/`, `scripts/`, `docs/`) is repo tooling/docs, not published.
+- Verify changes with `./scripts/dev.sh` (hot-reload dev server) or by opening the relevant `.html` file(s) under `site/` directly in a browser.
+- The nav is generated from `templates/nav.html` via `scripts/sync_nav.py` — edit the template, not individual pages' nav blocks. SEO/social meta tags, the blog listing, and the sitemap are similarly generated (`scripts/sync_seo.py`, `scripts/gen_blog_index.py`, `scripts/gen_sitemap.py`) — don't hand-edit those blocks either.
+- Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`) — it runs all of the above (plus the resume download-count refresh) automatically on every commit.
+- Run `python3 -m unittest discover -s tests -p "test_*.py"` (and `bash tests/test_update_dcurves_downloads.sh`) after changing anything in `scripts/`.
 - Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.

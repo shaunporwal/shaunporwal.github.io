@@ -4,7 +4,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-resume_file="$repo_root/resume.html"
+resume_file="$repo_root/site/resume.html"
 
 raw=$(curl -fsS "https://static.pepy.tech/personalized-badge/dcurves?period=total&units=none&left_color=grey&right_color=blue&left_text=downloads")
 count=$(printf '%s' "$raw" | grep -oE '>[0-9,]+<' | tail -1 | tr -d '><,')

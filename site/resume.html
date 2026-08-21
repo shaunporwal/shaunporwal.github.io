@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Shaun Porwal — Resume</title>
+<!-- SEO:START -->
+<meta name="description" content="Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.">
+<link rel="canonical" href="https://shaunporwal.com/resume.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shaun Porwal — Resume">
+<meta property="og:description" content="Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.">
+<meta property="og:url" content="https://shaunporwal.com/resume.html">
+<meta property="og:image" content="https://shaunporwal.com/media/heron.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shaun Porwal — Resume">
+<meta name="twitter:description" content="Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.">
+<meta name="twitter:image" content="https://shaunporwal.com/media/heron.jpg">
+<!-- SEO:END -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base target="_blank" rel="noopener">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #555;
+    --line: #ccc;
+    --link: #1a5276;
+    --bg: #fff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    max-width: 780px;
+    padding: 2.5rem 1.5rem 4rem;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header.resume-header { text-align: center; margin-bottom: 1.75rem; }
+  header.resume-header h1 { margin: 0 0 0.25rem; font-size: 1.7rem; letter-spacing: 0.02em; }
+  header.resume-header .contact { color: var(--muted); font-size: 0.92rem; }
+  header.resume-header .contact span:not(:last-child)::after { content: "  |  "; color: var(--line); }
+
+  h2.section {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--line);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .entry { margin-bottom: 1rem; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .entry-title { font-weight: 600; }
+  .entry-org { font-weight: 400; color: var(--ink); }
+  .entry-meta { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
+  .entry-sub { color: var(--muted); font-size: 0.88rem; margin-top: 0.05rem; }
+
+  ul.bullets { margin: 0.35rem 0 0; padding-left: 1.1rem; }
+  ul.bullets li { margin-bottom: 0.2rem; }
+
+  .skills-grid, .edu-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; }
+  .skills-grid dt, .edu-grid dt { font-weight: 600; white-space: nowrap; }
+  .skills-grid dd, .edu-grid dd { margin: 0; color: var(--ink); }
+
+  .projects .entry-title { font-weight: 600; }
+  .projects .entry-sub a { word-break: break-all; }
+
+  footer.print-note {
+    margin-top: 2.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  @media print {
+    body { padding: 0; font-size: 12.5px; max-width: none; }
+    a { color: var(--ink); }
+    footer.print-note { display: none; }
+    h2.section { break-after: avoid; }
+    .entry { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="resume-header">
+  <h1>Shaun Porwal</h1>
+  <div class="contact">
+    <span>Metuchen, NJ</span>
+    <span>shaun.porwal@gmail.com</span>
+    <span>732-318-7592</span>
+    <span><a href="https://shaunporwal.com">shaunporwal.com</a></span>
+    <span><a href="https://github.com/shaunporwal">github.com/shaunporwal</a></span>
+    <span><a href="https://cheminventory.co">cheminventory.co</a></span>
+  </div>
+</header>
+
+<h2 class="section">Experience</h2>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Founder &amp; Engineer</span> — <span class="entry-org">Junto Technologies</span></div>
+    <div class="entry-meta">Mar 2026 – Present · Metuchen, NJ</div>
+  </div>
+  <ul class="bullets">
+    <li>Built a full-stack (design, client, server, database, authentication) chemical inventory management system (<a href="https://cheminventory.co">cheminventory.co</a>); manages version-controlled regulatory compliance documents covering $1M+ in yearly order lifecycle provenance</li>
+    <li>Standardizing processes at a specialty chemicals company to achieve ISO certification</li>
+    <li>Served as Mandarin/English translator at CPHI Shanghai 2026 for a specialty chemicals company</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Founding Engineer</span> — <span class="entry-org">Standard Model Biomedicine</span></div>
+    <div class="entry-meta">May 2025 – Mar 2026 · Philadelphia, PA</div>
+  </div>
+  <ul class="bullets">
+    <li>Architected a full-stack agent orchestration platform (FastAPI/Next.js, WebSockets) for biomedical workflows, integrating OpenAI Agents SDK tooling and DICOM/NIfTI imaging for tumor analysis</li>
+    <li>Built a reusable research library (<code>smb-pipe</code>) for survival-prediction pipelines, automating CT embedding extraction and MEDS-to-model workflows for aortic aneurysm and heart failure risk modeling</li>
+    <li>Developed an LLM benchmarking framework for clinical trial matching, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data</li>
+    <li>Secured a strategic data-for-equity partnership with Memorial Sloan Kettering Cancer Center, facilitating access to high-fidelity multimodal datasets for model development</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Machine Learning Engineer / Data Analyst</span> — <span class="entry-org">Memorial Sloan Kettering Cancer Center</span></div>
+    <div class="entry-meta">Mar 2021 – May 2025 · New York, NY</div>
+  </div>
+  <ul class="bullets">
+    <li>Engineered SQL-sourced data pipelines and statistical code for <a href="https://www.mskcc.org/amplio-system">Amplio</a>, enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to benchmark patient outcomes against peers</li>
+    <li>Built an AI radiology pipeline (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists</li>
+    <li>Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a <a href="https://pubmed.ncbi.nlm.nih.gov/40073938/">landmark study</a> on post-chemotherapy RPLND policy in testicular cancer, published in Annals of Oncology</li>
+    <li>Developed <a href="https://pypi.org/project/dcurves/">dcurves</a>, a Python package for Decision Curve Analysis (<span class="dcurves-downloads">72k+</span> PyPI downloads); built and maintain the instructional site <a href="https://decisioncurveanalysis.org">decisioncurveanalysis.org</a></li>
+    <li>Engineered a Llama 3.1:70B + RAG text-to-SQL tool (<code>no-more-sql</code>) with Streamlit and FAISS, serving 50+ data scientists at MSKCC</li>
+    <li>Completed a large patient-comorbidity analysis using take-home survey data, with <code>pointblank</code> data validation, to demonstrate accurate billing-level assignment</li>
+    <li>Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Bioinformatics Intern</span> — <span class="entry-org">Sema4</span></div>
+    <div class="entry-meta">Feb 2020 – Feb 2021 · Stamford, CT</div>
+  </div>
+  <ul class="bullets">
+    <li>Engineered automated Bash/Python/WDL/AWS pipelines to detect structural variants across 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN</li>
+    <li>Algorithmically discovered repeat variants among 100+ samples, comparing insulin- vs. non-insulin-producing pancreatic neuroendocrine tumors for diabetes therapy research</li>
+    <li>Visualized results with Circos plots, stacked bar plots, heat maps, and scatter plots</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Inorganic Manufacturing Associate</span> — <span class="entry-org">SPEX CertiPrep</span></div>
+    <div class="entry-meta">May 2018 – May 2019 · Metuchen, NJ</div>
+  </div>
+  <ul class="bullets">
+    <li>Performed inorganic standards analysis via wet-lab techniques (pipetting, gravimetry, titration, filtration, combustion) and ICP-MS instrumentation for reference-standard preparation</li>
+    <li>Programmed and calibrated a Hudson automated pipettor robot (SOLOsoft) for serial dilutions and standard synthesis</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-head">
+    <div><span class="entry-title">Quality Control Intern</span> — <span class="entry-org">Tokyo Chemical Industry Co., Ltd</span></div>
+    <div class="entry-meta">Jun 2016 – Jul 2016 · Saitama, Japan</div>
+  </div>
+  <ul class="bullets">
+    <li>Trained 160 hours in instrumentation (GC, HPLC, NMR, IR) and wet-lab QC analysis</li>
+    <li>Assisted with Japanese/English translation for the team</li>
+  </ul>
+</div>
+
+<h2 class="section">Selected Projects</h2>
+
+<div class="entry projects">
+  <div class="entry-title">dcurves — Decision Curve Analysis for Python</div>
+  <div class="entry-sub"><span class="dcurves-downloads">72k+</span> PyPI downloads · <a href="https://pypi.org/project/dcurves/">pypi.org/project/dcurves</a> · <a href="https://github.com/MSKCC-Epi-Bio/dcurves">github.com/MSKCC-Epi-Bio/dcurves</a></div>
+</div>
+<div class="entry projects">
+  <div class="entry-title">no-more-sql — LLM text-to-SQL</div>
+  <div class="entry-sub">Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) · <a href="https://github.com/juntotechnologies/no-more-sql">github.com/juntotechnologies/no-more-sql</a></div>
+</div>
+<div class="entry projects">
+  <div class="entry-title">cheminventory.co — Chemical inventory &amp; compliance platform</div>
+  <div class="entry-sub"><a href="https://cheminventory.co">cheminventory.co</a></div>
+</div>
+
+<h2 class="section">Education</h2>
+
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">M.S., Biomedical Data Science — Icahn School of Medicine at Mount Sinai</div>
+    <div class="entry-meta">Feb 2021 · New York, NY</div>
+  </div>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">B.S., Biomedical Engineering &amp; Chinese — Rutgers University–New Brunswick</div>
+    <div class="entry-meta">May 2019 · New Brunswick, NJ</div>
+  </div>
+  <div class="entry-sub">Huayu Enrichment Scholarship, Taiwan MOE</div>
+</div>
+<div class="entry">
+  <div class="entry-head">
+    <div class="entry-title">Certificate in Advanced Mandarin Chinese — National Taiwan University</div>
+    <div class="entry-meta">Aug 2015 · Taipei, Taiwan</div>
+  </div>
+  <div class="entry-sub">MOE Full Scholarship recipient</div>
+</div>
+
+<h2 class="section">Skills &amp; Certifications</h2>
+
+<dl class="skills-grid">
+  <dt>Programming</dt><dd>Python, R, TypeScript, SQL, Bash, HTML/CSS, Docker, Git</dd>
+  <dt>AI / ML</dt><dd>LLM agent orchestration, RAG, fine-tuning, image segmentation, embedding classifiers</dd>
+  <dt>Statistics</dt><dd>GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis</dd>
+  <dt>Domain</dt><dd>Chemical regulatory compliance / ISO, bioinformatics (SV detection, RNA-seq)</dd>
+  <dt>Languages</dt><dd>English &amp; Hindi (native), Mandarin Chinese (fluent), Japanese (conversational), Spanish (basic)</dd>
+  <dt>Certifications</dt><dd>Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)</dd>
+</dl>
+
+<footer class="print-note">To save as PDF: File → Print → Save as PDF.</footer>
+
+</body>
+</html>

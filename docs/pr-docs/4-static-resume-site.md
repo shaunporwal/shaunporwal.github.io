@@ -60,6 +60,35 @@ Ordered from least consequential/complex to highest blast radius.
 - [ ] GitHub Pages deploy succeeds with the new `publish.yaml` workflow and serves the live site correctly at shaunporwal.com — **pending: verify after this branch merges to `main` and the workflow runs.**
 - [x] No leftover references to Quarto/R/Python in build docs, CI, or CLAUDE.md (repo-wide grep clean except frozen historical post prose and PR #3's own historical description, both left as accurate-at-the-time records).
 
+### Tier 6 — Declutter repo root into site/ (post-implementation follow-up, requested after Tier 5 landed)
+
+- [x] Move all published content (`index.html`, `about.html`, `stuff.html`, `resume.html`, `posts/`, `media/`, `styles/`, `CNAME`, `.nojekyll`) into a new `site/` directory — repo root now holds only `site/`, `templates/`, `scripts/`, `docs/`, `.github/`, `.githooks/`, `README.md`, `CLAUDE.md`/`AGENTS.md`, `LICENSE`.
+- [x] Update `scripts/sync_nav.py` and `scripts/update-dcurves-downloads.sh` to operate on `site/` instead of the repo root.
+- [x] Simplify `.github/workflows/publish.yaml` to publish `site/` directly (no more rsync/exclude list needed, since `site/` only ever contains publishable content).
+- [x] Removed stale pre-migration Quarto build cruft found during the move: root-level `_site/` (old default Quarto output dir) and `_environment` (pointed at a now-deleted `renv`-managed Python venv).
+- [x] Update `README.md` and `CLAUDE.md` §9 to describe the `site/`-scoped layout.
+- [x] Re-verify: local static server from `site/`, full asset-reference scan, nav-sync round-trip — all clean.
+
+### Tier 7 — Classic + AI-crawler SEO quick wins (post-implementation follow-up)
+
+- [x] `site/robots.txt`: allows all crawlers, points to the sitemap.
+- [x] `site/sitemap.xml`: auto-generated (see Tier 8) from top-level pages + non-draft posts, with `<lastmod>` from each post's date.
+- [x] `site/llms.txt`: hand-curated summary for AI agents/crawlers per the emerging llms.txt convention (site purpose, page list, contact links).
+- [x] Per-page SEO/social meta (`<meta name="description">`, `<link rel="canonical">`, OpenGraph, Twitter Card) on every top-level page and every post — post descriptions/images auto-derived from each post's first paragraph and first local image.
+- [x] JSON-LD `Person` structured data on `about.html` (name, url, email, `sameAs` → GitHub/X/LinkedIn).
+- [x] Corrected `og:image`/`twitter:image` per post to use that post's own header image where one exists, falling back to a site default.
+
+### Tier 8 — Automate the above so nothing needs manual upkeep, and add tests (post-implementation follow-up)
+
+- [x] New `scripts/lib_posts.py`: single shared parser that reads a post's title/date/categories/excerpt/image/draft-status straight out of its own `index.html` (no front matter exists anymore) — backs `sync_seo.py`, `gen_sitemap.py`, and `gen_blog_index.py` so all three agree on what "a post" is, and a new post needs zero registration anywhere.
+- [x] Draft status is now a `.draft` sentinel file in a post's directory (replaces the old Quarto `draft: true` front-matter field, which no longer exists post-migration). Backfilled `.draft` for the 5 posts that were draft under the old front matter.
+- [x] New `scripts/sync_seo.py`, `scripts/gen_sitemap.py`, `scripts/gen_blog_index.py` — all wired into `.githooks/pre-commit` alongside the existing nav/download-count sync. Net effect: adding a new post is just "create `site/posts/<slug>/index.html`, commit" — nav, SEO tags, sitemap entry, and blog-listing entry all regenerate automatically.
+- [x] Refactored every script from top-level script code into small pure functions (`build_block`, `inject`, `sync`, etc.) with a thin `main()`, both for testability and so each piece (rendering vs. file I/O vs. discovery) is independently reusable — renamed `sync-nav.py`/`sync-seo.py`/`gen-*.py` (hyphenated, not importable) to `sync_nav.py`/`sync_seo.py`/`gen_*.py`.
+- [x] New `tests/` directory: 33 unit tests (`python3 -m unittest discover -s tests`) covering `lib_posts`, `sync_nav`, `sync_seo`, `gen_sitemap`, `gen_blog_index` — draft detection, idempotency (second run reports no changes), marker-injection edge cases (missing markers, already-synced), depth-aware relative nav paths, excerpt truncation, sorting. Plus a dependency-free shell test (`tests/test_update_dcurves_downloads.sh`) for the count-extraction and sed-rewrite logic in `update-dcurves-downloads.sh`, using fixture data instead of hitting the network.
+- [x] New `.github/workflows/test.yaml`: runs the full test suite on every push to `main` and every PR.
+- [x] Deleted the one-off migration scripts used to do the Quarto→static conversion and the first SEO-meta pass (both lived only in the session scratchpad, never committed) now that their output is committed and the ongoing-maintenance versions (`sync_seo.py`, etc.) supersede them.
+- [x] Added `scripts/dev.sh`: one-command local dev server with hot reload (`npx live-server`, downloaded ad hoc — no `package.json`/`node_modules` committed), falling back to plain `python3 -m http.server` if Node/npx isn't installed.
+
 ## Product Decisions
 
 - **Full site migration, not resume-only:** Shaun explicitly chose the larger scope over a resume-only static page, accepting the larger effort to fully drop Quarto/R/Python tooling from the personal site.
@@ -68,6 +97,7 @@ Ordered from least consequential/complex to highest blast radius.
 - **Resume PDF stays available for job portals:** the site's HTML resume is the source; Shaun exports to PDF himself (browser print-to-PDF) for job-portal submissions rather than maintaining a second generated-PDF pipeline.
 - **Nav stays DRY via a pre-commit sync script, not hand duplication:** `templates/nav.html` is the single source of truth, stamped into every page by `scripts/sync-nav.py` (run from `.githooks/pre-commit`). Rejected both hand-duplicating the nav block across 14 files (drifts out of sync) and a runtime include/fetch (breaks when opening pages via `file://`, which Shaun does directly for the resume). Served pages remain plain static HTML with zero runtime templating.
 - **CI swaps mechanism, not destination:** the new `publish.yaml` still deploys to the `gh-pages` branch (via `peaceiris/actions-gh-pages` instead of `quarto publish`), so no GitHub Pages repo-settings change is required — avoids an extra production-infrastructure mutation beyond what this PR already needs.
+- **Published content isolated to `site/`:** Shaun wants the repo root itself to be immediately legible — one glance should separate "the website" from "the tooling that maintains it." `site/` is the entire publish surface; `templates/`, `scripts/`, `docs/` are repo-only and never ship.
 
 ## Scope
 

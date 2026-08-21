@@ -4,3 +4,7 @@
 
 # Editor/session cruft
 _site/
+
+# Python
+__pycache__/
+*.pyc
