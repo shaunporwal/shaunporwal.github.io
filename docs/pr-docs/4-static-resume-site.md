@@ -58,6 +58,7 @@ Ordered from least consequential/complex to highest blast radius.
 - [x] Migrated `about`/`stuff`/`index` content and embedded media (`.glb` model viewers) still render (served locally via `python3 -m http.server`, all pages 200, all local asset refs resolve).
 - [x] All 10 posts render with original content/images intact; all post images/links resolve.
 - [ ] GitHub Pages deploy succeeds with the new `publish.yaml` workflow and serves the live site correctly at shaunporwal.com — **pending: verify after this branch merges to `main` and the workflow runs.**
+- [ ] Mobile rendering (resume, nav, post images) verified on an actual phone/browser devtools — **pending: fixed the concrete overflow bugs found via CSS review (dead-class post images, resume date/skills grid), but this session has no screenshot/browser tool to visually confirm on a real small viewport. Please spot-check on your phone.**
 - [x] No leftover references to Quarto/R/Python in build docs, CI, or CLAUDE.md (repo-wide grep clean except frozen historical post prose and PR #3's own historical description, both left as accurate-at-the-time records).
 
 ### Tier 6 — Declutter repo root into site/ (post-implementation follow-up, requested after Tier 5 landed)
@@ -89,6 +90,12 @@ Ordered from least consequential/complex to highest blast radius.
 - [x] Deleted the one-off migration scripts used to do the Quarto→static conversion and the first SEO-meta pass (both lived only in the session scratchpad, never committed) now that their output is committed and the ongoing-maintenance versions (`sync_seo.py`, etc.) supersede them.
 - [x] Added `scripts/dev.sh`: one-command local dev server with hot reload (`npx live-server`, downloaded ad hoc — no `package.json`/`node_modules` committed), falling back to plain `python3 -m http.server` if Node/npx isn't installed.
 - [x] Added a root `Makefile` (`make dev`, `make test`, `make sync`) so the common commands are short and memorable without adopting npm as a script runner. CI (`test.yaml`) now calls `make test` too, so there's one source of truth for "how tests run."
+
+### Tier 9 — Docs trim + mobile fixes (post-implementation follow-up)
+
+- [x] README was accumulating generated-content bookkeeping detail (per-script table, full "adding a post" walkthrough) better suited as reference material than something read on every visit — moved that detail to `docs/development.md`, README is now just Quick Start commands + a pointer. `CLAUDE.md` §9 trimmed the same way, pointing at `docs/development.md`.
+- [x] Fixed a real mobile bug: the two images in `posts/python-package-automation/index.html` used leftover Bootstrap classes (`img-fluid figure-img`) that don't exist in `site.css`, so they had no width constraint and would overflow a phone viewport. Added a global `img, video { max-width: 100%; height: auto; }` rule to `site.css` (plus `pre, code { overflow-x: auto; }`), and removed the dead classes (added real `alt` text while touching those tags).
+- [x] `resume.html`: `.entry-meta` (date ranges) and the skills/education grid now stack instead of staying `white-space: nowrap` under 420px, so long date/location strings can't force horizontal overflow on small phones.
 
 ## Product Decisions
 
