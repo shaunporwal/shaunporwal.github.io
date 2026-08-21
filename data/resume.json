@@ -33,7 +33,7 @@
     },
     {
       "title": "Machine Learning Engineer / Data Analyst",
-      "org": "Memorial Sloan Kettering Cancer Center",
+      "org": "MSKCC",
       "meta": "Mar 2021 – May 2025 · New York, NY",
       "bullets": [
         "Engineered SQL-sourced data pipelines and statistical code for [Amplio](https://www.mskcc.org/amplio-system), enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to **benchmark patient outcomes** against peers",

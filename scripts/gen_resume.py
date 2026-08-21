@@ -54,7 +54,7 @@ def _experience_html(e: dict) -> str:
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
-        f'    <div><span class="entry-title">{render_html(e["title"])}</span> — <span class="entry-org">{render_html(e["org"])}</span></div>\n'
+        f'    <div class="entry-head-title"><span class="entry-title">{render_html(e["title"])}</span> — <span class="entry-org">{render_html(e["org"])}</span></div>\n'
         f'    <div class="entry-meta">{render_html(e["meta"])}</div>\n'
         "  </div>\n"
         '  <div class="bullets">\n'

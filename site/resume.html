@@ -61,9 +61,13 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.25rem 1rem;
   }
+  /* Title/org shrinks and wraps its own text internally rather than
+     pushing the date/location meta onto its own line below. */
+  .entry-head > *:first-child { flex: 1 1 auto; min-width: 0; }
+  .entry-head .entry-meta { flex: 0 0 auto; }
   .entry-title { font-weight: 600; }
   .entry-org { font-weight: 400; color: var(--ink); }
   .entry-meta { color: var(--muted); font-size: 0.88rem; white-space: nowrap; }
@@ -88,6 +92,7 @@
   }
 
   @media (max-width: 420px) {
+    .entry-head { flex-wrap: wrap; }
     .entry-meta { white-space: normal; }
     .skills-grid, .edu-grid { grid-template-columns: 1fr; }
     .skills-grid dt, .edu-grid dt { margin-top: 0.5rem; }
@@ -121,7 +126,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Founder &amp; Engineer</span> — <span class="entry-org">Junto Technologies</span></div>
+    <div class="entry-head-title"><span class="entry-title">Founder &amp; Engineer</span> — <span class="entry-org">Junto Technologies</span></div>
     <div class="entry-meta">Mar 2026 – Present · Metuchen, NJ</div>
   </div>
   <div class="bullets">
@@ -137,7 +142,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Founding Engineer</span> — <span class="entry-org">Standard Model Biomedicine</span></div>
+    <div class="entry-head-title"><span class="entry-title">Founding Engineer</span> — <span class="entry-org">Standard Model Biomedicine</span></div>
     <div class="entry-meta">May 2025 – Mar 2026 · Philadelphia, PA</div>
   </div>
   <div class="bullets">
@@ -153,7 +158,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Machine Learning Engineer / Data Analyst</span> — <span class="entry-org">Memorial Sloan Kettering Cancer Center</span></div>
+    <div class="entry-head-title"><span class="entry-title">Machine Learning Engineer / Data Analyst</span> — <span class="entry-org">MSKCC</span></div>
     <div class="entry-meta">Mar 2021 – May 2025 · New York, NY</div>
   </div>
   <div class="bullets">
@@ -173,7 +178,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Bioinformatics Intern</span> — <span class="entry-org">Sema4</span></div>
+    <div class="entry-head-title"><span class="entry-title">Bioinformatics Intern</span> — <span class="entry-org">Sema4</span></div>
     <div class="entry-meta">Feb 2020 – Feb 2021 · Stamford, CT</div>
   </div>
   <div class="bullets">
@@ -187,7 +192,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Inorganic Manufacturing Associate</span> — <span class="entry-org">SPEX CertiPrep</span></div>
+    <div class="entry-head-title"><span class="entry-title">Inorganic Manufacturing Associate</span> — <span class="entry-org">SPEX CertiPrep</span></div>
     <div class="entry-meta">May 2018 – May 2019 · Metuchen, NJ</div>
   </div>
   <div class="bullets">
@@ -199,7 +204,7 @@
 
 <div class="entry">
   <div class="entry-head">
-    <div><span class="entry-title">Quality Control Intern</span> — <span class="entry-org">Tokyo Chemical Industry Co., Ltd</span></div>
+    <div class="entry-head-title"><span class="entry-title">Quality Control Intern</span> — <span class="entry-org">Tokyo Chemical Industry Co., Ltd</span></div>
     <div class="entry-meta">Jun 2016 – Jul 2016 · Saitama, Japan</div>
   </div>
   <div class="bullets">
