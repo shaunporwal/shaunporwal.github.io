@@ -72,7 +72,7 @@ Supervisor: Andrew Vickers
 - Led statistical analyses for a landmark study on post-chemotherapy RPLND policies in testicular cancer, applying GAM, logistic regression, Kaplan-Meier, CoxPH, and DCA to inform surgeon decisions (https://pubmed.ncbi.nlm.nih.gov/40073938/)
 - Developed dcurves Python package for Decision Curve Analysis (29k+ downloads on PyPI at time of writing — see live figure on `site/resume.html`); maintained instructional website decisioncurveanalysis.org
 - Developed llmtag Python package for clinical data labeling with local LLMs; redesigned CLI, optimized labeling algorithms
-- Engineered Llama3.1:70B + RAG text-to-SQL pipeline (no-more-sql) using Streamlit and FAISS; served 50+ Data Scientists at MSKCC
+- Engineered Llama3.1:70B + RAG text-to-SQL pipeline (no-more-sql) using Streamlit and FAISS for natural-language querying of MSKCC's SQL databases — built as a grant-funding prototype; grant was not awarded, and there's no usage data to back a "served N users" claim
 - Completed patient comorbidity analysis using survey data with pointblank validation
 - Authored R scripts for data cleaning and statistical analyses
 - Delivered presentations to 100+ research biostatisticians and developers

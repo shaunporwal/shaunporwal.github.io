@@ -27,7 +27,7 @@
       "bullets": [
         "Architected a full-stack **agent orchestration platform** (FastAPI/Next.js, WebSockets) for biomedical workflows, integrating OpenAI Agents SDK tooling and DICOM/NIfTI imaging for tumor analysis",
         "Built a reusable research library (`smb-pipe`) for **survival-prediction pipelines**, automating CT embedding extraction and MEDS-to-model workflows for aortic aneurysm and heart failure risk modeling",
-        "Developed an **LLM benchmarking framework** for clinical trial matching, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data",
+        "Developed an **LLM benchmarking framework** for **clinical trial matching**, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data",
         "Secured a strategic **data-for-equity partnership** with Memorial Sloan Kettering Cancer Center, facilitating access to high-fidelity multimodal datasets for foundation model development"
       ]
     },
@@ -40,7 +40,7 @@
         "Built an **AI radiology pipeline** (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists",
         "Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a [landmark study](https://pubmed.ncbi.nlm.nih.gov/40073938/) on **post-chemotherapy RPLND policy** in testicular cancer, published in Annals of Oncology",
         "Developed [dcurves](https://pypi.org/project/dcurves/), a Python package for **Decision Curve Analysis** ({dcurves} PyPI downloads); built and maintain the instructional site [decisioncurveanalysis.org](https://decisioncurveanalysis.org)",
-        "Engineered a Llama 3.1:70B + RAG **text-to-SQL tool** (`no-more-sql`) with Streamlit and FAISS, serving **50+ data scientists** at MSKCC",
+        "Engineered a Llama 3.1:70B + RAG **text-to-SQL tool** (`no-more-sql`) with Streamlit and FAISS for natural-language querying of MSKCC's SQL databases",
         "Completed a large **patient-comorbidity analysis** using take-home survey data, with `pointblank` data validation, to demonstrate accurate billing-level assignment",
         "Contributed statistics to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)"
       ]
