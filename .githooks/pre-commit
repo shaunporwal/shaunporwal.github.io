@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Keeps generated/synced content current before every commit:
+# - dcurves download count in resume.html
+# - the shared nav (templates/nav.html) stamped into every page
+# Enable once per clone with: git config core.hooksPath .githooks
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+
+"$repo_root/scripts/update-dcurves-downloads.sh" || true
+python3 "$repo_root/scripts/sync-nav.py" || true
+
+git add -u "$repo_root/resume.html" "$repo_root"/*.html "$repo_root/posts"

@@ -1,34 +1,29 @@
 # Shaun Porwal's Site Repository
 
-This repository contains the source files for my personal website shaunporwal.com.
-### Development Setup
-##### Prerequisites
-- Python 3.11 or higher
-- Poetry (for dependency management)
+This repository contains the source files for my personal website, shaunporwal.com — plain static HTML/CSS, no build step, no framework.
 
-##### Local Development
+## Local Development
 
-1. Clone the repository: git clone https://github.com/shaunporwal/shaunporwal.github.io.git
-2. Install dependencies with Poetry: poetry install
-3. Activate the Poetry virtual environment: poetry shell
+Just open any `.html` file directly in a browser, or serve the repo root with any static file server (e.g. `python3 -m http.server`).
 
-### Site Management
-##### Local Preview
-To preview the site locally:
-poetry run quarto preview
+## Deployment
 
-##### Deployment
-The site is automatically deployed to GitHub Pages when changes are pushed to the main branch. The GitHub Actions workflow will:
+Pushing to `main` triggers `.github/workflows/publish.yaml`, which copies the site files to the `gh-pages` branch. No build/render step — the committed HTML is what ships.
 
-1. Render the Quarto project
-2. Deploy to the gh-pages branch
-3. Make the changes live on the website
+## Project Structure
 
-No manual deployment steps are needed! 🎉
+- `index.html`, `about.html`, `stuff.html`, `resume.html`: top-level pages
+- `posts/`: blog posts, one `index.html` per post directory
+- `media/`: images, 3D models, PDFs
+- `styles/site.css`: shared stylesheet
+- `templates/nav.html`: single source of truth for the nav bar, stamped into every page (see `scripts/sync-nav.py`)
+- `scripts/`: small maintenance scripts run via the pre-commit hook (`.githooks/pre-commit`) — keeps the nav and the dcurves download count in `resume.html` current
+- `docs/pr-docs/`: planning docs for each feature/PR
 
-##### Project Structure
+## Git hooks
 
-- `posts/`: Blog posts and project write-ups
-- `about/`: About page content
-- `_quarto.yml`: Quarto configuration
-- `.github/workflows/`: Deployment automation
+Enable the repo's pre-commit hook once per clone:
+
+```
+git config core.hooksPath .githooks
+```

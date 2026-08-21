@@ -15,7 +15,7 @@
 
 ## Required Checks
 
-- [ ] `quarto render`
+- [ ] Changed pages open correctly directly in a browser.
 - [ ] GitHub CI is green.
 
 ## Conditional Checks
