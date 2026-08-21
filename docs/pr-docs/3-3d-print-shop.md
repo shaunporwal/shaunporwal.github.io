@@ -12,6 +12,8 @@ Add a standalone 3D print shop section to the existing personal site with Stripe
 
 The personal site lacks e-commerce capabilities. This PR introduces a dedicated landing page (`/shop` or hosted route) that leverages Stripe-hosted checkout and Stripe Payment Link Web Components (`<stripe-buy-button>`) to collect payments, calculate shipping, and capture customer addresses with zero custom backend API endpoints required.
 
+**Reoriented after PR 4:** the site is no longer Quarto-based. It's now plain static HTML/CSS under `site/`, with a shared nav template (`templates/nav.html`, stamped into every page by `scripts/sync_nav.py`), site-wide constants in `data/site.json`, and SEO/sitemap generation scripts — see `docs/development.md` for the current conventions. `/shop` should be a new `site/shop.html` following that pattern (nav/SEO markers copied from an existing page, wired into `templates/nav.html` and `data/site.json`/`scripts/gen_sitemap.py` like any other page), not a Quarto page.
+
 ## Implementation Checklist
 
 ### Tier 1 — Quick Wins & Account Configuration (Low risk, isolated)
@@ -23,9 +25,9 @@ The personal site lacks e-commerce capabilities. This PR introduces a dedicated 
 
 ### Tier 2 — Frontend Integration & Web Components (Static UI & routing)
 
-- [ ] Create `/shop` route and layout on personal site. Build a responsive product grid displaying product photos, descriptions, specs (dimensions, materials), and inventory status.
+- [ ] Create `site/shop.html` (static HTML, same nav/SEO marker pattern as `site/about.html`/`site/stuff.html`). Build a responsive product grid displaying product photos, descriptions, specs (dimensions, materials), and inventory status.
 - [ ] Embed Stripe Buy Buttons via `<stripe-buy-button>` Web Components or direct Stripe Payment Links per product card.
-- [ ] Add navigation bar call-to-action (CTA) linking main personal site to `/shop`.
+- [ ] Add a "Shop" link to `templates/nav.html` (propagates to every page via `scripts/sync_nav.py`); add `shop.html` to `scripts/gen_sitemap.py`'s `TOP_LEVEL_PAGES`.
 - [ ] Test client-side redirects to ensure buyers return to `/shop?status=success` post-purchase.
 
 ### Tier 3 — Multi-Channel Launch & Cross-Linking (External channels)
