@@ -88,6 +88,7 @@ Ordered from least consequential/complex to highest blast radius.
 - [x] New `.github/workflows/test.yaml`: runs the full test suite on every push to `main` and every PR.
 - [x] Deleted the one-off migration scripts used to do the Quarto→static conversion and the first SEO-meta pass (both lived only in the session scratchpad, never committed) now that their output is committed and the ongoing-maintenance versions (`sync_seo.py`, etc.) supersede them.
 - [x] Added `scripts/dev.sh`: one-command local dev server with hot reload (`npx live-server`, downloaded ad hoc — no `package.json`/`node_modules` committed), falling back to plain `python3 -m http.server` if Node/npx isn't installed.
+- [x] Added a root `Makefile` (`make dev`, `make test`, `make sync`) so the common commands are short and memorable without adopting npm as a script runner. CI (`test.yaml`) now calls `make test` too, so there's one source of truth for "how tests run."
 
 ## Product Decisions
 

@@ -12,8 +12,5 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Run Python unit tests
-        run: python3 -m unittest discover -s tests -p "test_*.py" -v
-
-      - name: Run shell script tests
-        run: bash tests/test_update_dcurves_downloads.sh
+      - name: Run tests
+        run: make test

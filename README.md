@@ -5,10 +5,10 @@ This repository contains the source files for my personal website, shaunporwal.c
 ## Local Development
 
 ```
-./scripts/dev.sh
+make dev
 ```
 
-Serves `site/` with hot reload on save (via `npx live-server` — downloaded ad hoc, nothing committed to the repo) and prints the URL. Falls back to a plain `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port with `PORT=3000 ./scripts/dev.sh`.
+Serves `site/` with hot reload on save (via `npx live-server` — downloaded ad hoc, nothing committed to the repo) and prints the URL. Falls back to a plain `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port with `PORT=3000 make dev`.
 
 You can also open any `.html` file under `site/` directly in a browser — everything works via `file://` except `stuff.html`'s 3D model viewer, which needs `http://`.
 
@@ -53,7 +53,7 @@ Each script is a thin `main()` wrapper around testable functions in the same fil
 - `gen_sitemap.py`: regenerates `site/sitemap.xml`.
 - `update-dcurves-downloads.sh`: refreshes the dcurves PyPI download count in `site/resume.html` from pepy.tech.
 
-All five run automatically from `.githooks/pre-commit` on every commit.
+All five run automatically from `.githooks/pre-commit` on every commit, or on demand via `make sync`.
 
 ## Git hooks
 
@@ -66,6 +66,7 @@ git config core.hooksPath .githooks
 ## Tests
 
 ```
-python3 -m unittest discover -s tests -p "test_*.py"
-bash tests/test_update_dcurves_downloads.sh
+make test
 ```
+
+(equivalent to `python3 -m unittest discover -s tests -p "test_*.py" && bash tests/test_update_dcurves_downloads.sh`)
