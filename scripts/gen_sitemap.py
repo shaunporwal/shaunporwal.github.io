@@ -9,19 +9,21 @@ import pathlib
 
 try:
     from lib_posts import all_posts
+    from lib_site import load_site
 except ImportError:
     from scripts.lib_posts import all_posts
+    from scripts.lib_site import load_site
 
-BASE_URL = "https://shaunporwal.com"
 TOP_LEVEL_PAGES = ["", "about.html", "stuff.html", "resume.html"]
 
 
 def collect_urls(site_dir: pathlib.Path) -> list[tuple[str, object]]:
-    urls = [(f"{BASE_URL}/{page}", None) for page in TOP_LEVEL_PAGES]
+    base_url = load_site(site_dir.parent)["base_url"]
+    urls = [(f"{base_url}/{page}", None) for page in TOP_LEVEL_PAGES]
     for post in all_posts(site_dir):
         if post["draft"]:
             continue
-        urls.append((f"{BASE_URL}/posts/{post['slug']}/", post["date"]))
+        urls.append((f"{base_url}/posts/{post['slug']}/", post["date"]))
     return urls
 
 

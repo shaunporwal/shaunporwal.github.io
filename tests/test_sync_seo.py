@@ -2,7 +2,7 @@ import pathlib
 import tempfile
 import unittest
 
-import context  # noqa: F401
+import context
 import sync_seo
 
 PAGE_TEMPLATE = """<!doctype html>
@@ -54,28 +54,32 @@ class TestSync(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.site_dir = pathlib.Path(self.tmp.name)
+        self.repo_root = pathlib.Path(self.tmp.name)
+        self.site_dir = self.repo_root / "site"
+        self.site_dir.mkdir()
+        context.write_fake_site_json(self.repo_root)
 
     def test_top_level_pages_get_seo_tags(self):
         (self.site_dir / "index.html").write_text(
-            PAGE_TEMPLATE.format(title="Shaun Porwal", h1="Home", excerpt="hi")
+            PAGE_TEMPLATE.format(title="Test Person", h1="Home", excerpt="hi")
         )
         changed = sync_seo.sync(self.site_dir)
         self.assertIn("index.html", changed)
         text = (self.site_dir / "index.html").read_text()
-        self.assertIn('property="og:url" content="https://shaunporwal.com/"', text)
+        self.assertIn('property="og:url" content="https://example.com/"', text)
+        self.assertIn("Test Person", text)
 
     def test_posts_get_auto_derived_seo_tags(self):
         post_dir = self.site_dir / "posts" / "hello-world"
         post_dir.mkdir(parents=True)
         (post_dir / "index.html").write_text(
-            PAGE_TEMPLATE.format(title="Hello — Shaun Porwal", h1="Hello World", excerpt="An intro paragraph.")
+            PAGE_TEMPLATE.format(title="Hello — Test Person", h1="Hello World", excerpt="An intro paragraph.")
         )
         changed = sync_seo.sync(self.site_dir)
         self.assertIn("posts/hello-world/index.html", changed)
         text = (post_dir / "index.html").read_text()
         self.assertIn("An intro paragraph.", text)
-        self.assertIn("https://shaunporwal.com/posts/hello-world/", text)
+        self.assertIn("https://example.com/posts/hello-world/", text)
 
     def test_missing_top_level_page_is_skipped_without_error(self):
         # No index.html/about.html/etc present at all.

@@ -2,7 +2,7 @@ import pathlib
 import tempfile
 import unittest
 
-import context  # noqa: F401
+import context
 import sync_nav
 
 NAV_TEMPLATE = '<nav><a href="{root}index.html">Home</a></nav>'
@@ -21,30 +21,30 @@ PAGE_WITHOUT_MARKERS = "<html><body><main>no nav here</main></body></html>"
 class TestRenderAndBuildBlock(unittest.TestCase):
     def test_render_nav_fills_in_root(self):
         self.assertEqual(
-            sync_nav.render_nav(NAV_TEMPLATE, "../../"),
+            sync_nav.render_nav(NAV_TEMPLATE, root="../../"),
             '<nav><a href="../../index.html">Home</a></nav>',
         )
 
     def test_build_block_wraps_in_markers(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, "")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="")
         self.assertTrue(block.startswith("<!-- NAV:START -->"))
         self.assertTrue(block.endswith("<!-- NAV:END -->"))
 
 
 class TestInject(unittest.TestCase):
     def test_replaces_existing_markers(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, "")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="")
         result = sync_nav.inject(PAGE_WITH_MARKERS, block)
         self.assertIsNotNone(result)
         self.assertIn('<a href="index.html">Home</a>', result)
         self.assertNotIn("OLD NAV", result)
 
     def test_no_markers_returns_none(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, "")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="")
         self.assertIsNone(sync_nav.inject(PAGE_WITHOUT_MARKERS, block))
 
     def test_identical_content_returns_none(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, "")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="")
         already_synced = PAGE_WITH_MARKERS.replace(
             "<!-- NAV:START -->\n<nav>OLD NAV</nav>\n<!-- NAV:END -->", block
         )
@@ -60,6 +60,7 @@ class TestSync(unittest.TestCase):
         (self.repo_root / "templates" / "nav.html").write_text(NAV_TEMPLATE)
         self.site_dir = self.repo_root / "site"
         self.site_dir.mkdir()
+        context.write_fake_site_json(self.repo_root)
 
     def test_updates_root_and_nested_pages_with_correct_depth(self):
         (self.site_dir / "about.html").write_text(PAGE_WITH_MARKERS)

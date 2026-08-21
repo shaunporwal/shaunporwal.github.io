@@ -2,24 +2,30 @@
 """Keeps every page's <nav class="site-nav"> block in sync with templates/nav.html.
 
 Single source of truth for the nav lives in templates/nav.html (with a {root}
-placeholder for the relative path prefix). This module stamps that template into
-every page between <!-- NAV:START --> / <!-- NAV:END --> markers, so the site
-stays plain static HTML at serve time (no runtime include/fetch) while the nav
-itself stays DRY at the source level. Run directly (`python3 scripts/sync_nav.py`),
-wired into the pre-commit hook.
+placeholder for the relative path prefix, plus {name}/{github}/{x}/{cal} filled
+in from data/site.json). This module stamps that template into every page
+between <!-- NAV:START --> / <!-- NAV:END --> markers, so the site stays plain
+static HTML at serve time (no runtime include/fetch) while the nav itself stays
+DRY at the source level. Run directly (`python3 scripts/sync_nav.py`), wired
+into the pre-commit hook.
 """
 import pathlib
 import re
 
+try:
+    from lib_site import load_site
+except ImportError:
+    from scripts.lib_site import load_site
+
 MARKER_RE = re.compile(r"<!-- NAV:START -->.*?<!-- NAV:END -->", re.DOTALL)
 
 
-def render_nav(nav_template: str, root: str) -> str:
-    return nav_template.format(root=root).strip()
+def render_nav(nav_template: str, **substitutions) -> str:
+    return nav_template.format(**substitutions).strip()
 
 
-def build_block(nav_template: str, root: str) -> str:
-    return f"<!-- NAV:START -->\n{render_nav(nav_template, root)}\n<!-- NAV:END -->"
+def build_block(nav_template: str, **substitutions) -> str:
+    return f"<!-- NAV:START -->\n{render_nav(nav_template, **substitutions)}\n<!-- NAV:END -->"
 
 
 def inject(text: str, block: str) -> str | None:
@@ -39,11 +45,12 @@ def find_targets(site_dir: pathlib.Path) -> list[pathlib.Path]:
 def sync(repo_root: pathlib.Path) -> list[pathlib.Path]:
     site_dir = repo_root / "site"
     nav_template = (repo_root / "templates" / "nav.html").read_text()
+    site = load_site(repo_root)
 
     changed = []
     for path in find_targets(site_dir):
         depth = len(path.relative_to(site_dir).parts) - 1
-        block = build_block(nav_template, "../" * depth)
+        block = build_block(nav_template, root="../" * depth, **site)
         text = path.read_text()
         new_text = inject(text, block)
         if new_text is not None:

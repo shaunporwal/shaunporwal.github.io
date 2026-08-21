@@ -3,7 +3,7 @@ import pathlib
 import tempfile
 import unittest
 
-import context  # noqa: F401
+import context
 import gen_sitemap
 
 POST_HTML = """<main class="page">
@@ -28,7 +28,10 @@ class TestCollectUrls(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.site_dir = pathlib.Path(self.tmp.name)
+        self.repo_root = pathlib.Path(self.tmp.name)
+        self.site_dir = self.repo_root / "site"
+        self.site_dir.mkdir()
+        context.write_fake_site_json(self.repo_root)
 
     def make_post(self, slug, draft=False):
         post_dir = self.site_dir / "posts" / slug
@@ -40,23 +43,26 @@ class TestCollectUrls(unittest.TestCase):
     def test_includes_top_level_pages(self):
         urls = gen_sitemap.collect_urls(self.site_dir)
         locs = [u for u, _ in urls]
-        self.assertIn("https://shaunporwal.com/", locs)
-        self.assertIn("https://shaunporwal.com/about.html", locs)
+        self.assertIn("https://example.com/", locs)
+        self.assertIn("https://example.com/about.html", locs)
 
     def test_excludes_draft_posts(self):
         self.make_post("published")
         self.make_post("draft-one", draft=True)
         urls = gen_sitemap.collect_urls(self.site_dir)
         locs = [u for u, _ in urls]
-        self.assertIn("https://shaunporwal.com/posts/published/", locs)
-        self.assertNotIn("https://shaunporwal.com/posts/draft-one/", locs)
+        self.assertIn("https://example.com/posts/published/", locs)
+        self.assertNotIn("https://example.com/posts/draft-one/", locs)
 
 
 class TestSync(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
-        self.site_dir = pathlib.Path(self.tmp.name)
+        self.repo_root = pathlib.Path(self.tmp.name)
+        self.site_dir = self.repo_root / "site"
+        self.site_dir.mkdir()
+        context.write_fake_site_json(self.repo_root)
 
     def test_writes_file_on_first_run(self):
         self.assertTrue(gen_sitemap.sync(self.site_dir))

@@ -19,6 +19,7 @@ python3 "$repo_root/scripts/gen_resume.py" || true
 "$repo_root/scripts/update-dcurves-downloads.sh" || true
 python3 "$repo_root/scripts/sync_nav.py" || true
 python3 "$repo_root/scripts/sync_seo.py" || true
+python3 "$repo_root/scripts/sync_social.py" || true
 python3 "$repo_root/scripts/gen_blog_index.py" || true
 python3 "$repo_root/scripts/gen_sitemap.py" || true
 

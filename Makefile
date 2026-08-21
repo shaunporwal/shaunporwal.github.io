@@ -13,6 +13,7 @@ sync:
 	./scripts/update-dcurves-downloads.sh
 	python3 scripts/sync_nav.py
 	python3 scripts/sync_seo.py
+	python3 scripts/sync_social.py
 	python3 scripts/gen_blog_index.py
 	python3 scripts/gen_sitemap.py
 
