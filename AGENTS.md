@@ -57,5 +57,6 @@ When working on coding with me, follow this workflow.
 - Nav, SEO meta, the blog listing, and the sitemap are all generated (`scripts/sync_nav.py` etc.) — edit `templates/nav.html` or a post's own content, never the generated `<!-- ...:START -->` blocks directly.
 - `make dev` to preview, `make test` after changing anything in `scripts/`. Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`).
 - Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.
+- The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
 - `docs/all-experiences.md` is the full personal record behind the resume. Update it in the same PR whenever a change alters a fact that it states.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.

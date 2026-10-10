@@ -53,6 +53,6 @@ Each is a thin `main()` around testable functions; `lib_posts.py`, `lib_resume.p
 | `gen_sitemap.py` | `site/sitemap.xml`, from `data/site.json`'s `base_url` |
 | `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (must run *after* `gen_resume.py`, since that writes a static placeholder) |
 
-`tests/test_resume_page_count.sh` (run via `make test`) renders `site/resume.html` to PDF with `npx playwright` and fails if it exceeds 2 printed pages — a safety net against `data/resume.json` quietly growing past what the print CSS was tuned for. If it fails: trim a bullet, or tighten `@media print` in `site/resume.html`.
+`tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
 
 All of the above run in order from `.githooks/pre-commit` on every commit, or on demand via `make sync`.

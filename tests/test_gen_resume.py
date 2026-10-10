@@ -58,6 +58,19 @@ class TestBuildHtmlBlock(unittest.TestCase):
         self.assertIn("Cum laude", block)
         self.assertIn("<dt>Programming</dt><dd>Python, Go</dd>", block)
 
+    def test_each_short_section_is_wrapped_so_print_can_keep_it_whole(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        for heading in ("Selected Projects", "Education", "Skills &amp; Certifications"):
+            self.assertIn(f'<section class="resume-section">\n<h2 class="section">{heading}</h2>', block)
+
+    def test_experience_section_is_marked_long_so_it_may_span_pages(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertIn('<section class="resume-section resume-section-long">\n<h2 class="section">Experience</h2>', block)
+
+    def test_every_section_is_closed(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertEqual(block.count("<section"), block.count("</section>"))
+
     def test_bullets_carry_a_literal_marker_character(self):
         # CSS list markers (::marker / list-style) aren't real text, so a
         # browser copy/paste (e.g. into LinkedIn) silently drops them. The

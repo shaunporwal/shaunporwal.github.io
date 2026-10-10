@@ -96,43 +96,47 @@ def _education_html(ed: dict) -> str:
     )
 
 
-def build_html_block(data: dict) -> str:
+PRINT_NOTE = (
+    '<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy '
+    '(no date/title/page-number strip), open "More settings" in the print dialog and uncheck '
+    '"Headers and footers".</div>'
+)
+
+
+def _header_html(data: dict) -> str:
     contact = "\n".join(f"    <span>{render_html(c)}</span>" for c in data["contact"])
-    experience = "\n\n".join(_experience_html(e) for e in data["experience"])
-    projects = "\n".join(_project_html(p) for p in data["projects"])
-    education = "\n".join(_education_html(ed) for ed in data["education"])
-    skills = "\n".join(
-        f"  <dt>{render_html(label)}</dt><dd>{render_html(value)}</dd>"
-        for label, value in data["skills"].items()
+    return (
+        '<header class="resume-header">\n'
+        f'  <h1>{render_html(data["name"])}</h1>\n'
+        '  <div class="contact">\n'
+        f"{contact}\n"
+        "  </div>\n"
+        "</header>"
     )
 
-    body = f"""<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy (no date/title/page-number strip), open "More settings" in the print dialog and uncheck "Headers and footers".</div>
 
-<header class="resume-header">
-  <h1>{render_html(data["name"])}</h1>
-  <div class="contact">
-{contact}
-  </div>
-</header>
+def _skills_html(skills: dict) -> str:
+    rows = "\n".join(
+        f"  <dt>{render_html(label)}</dt><dd>{render_html(value)}</dd>" for label, value in skills.items()
+    )
+    return f'<dl class="skills-grid">\n{rows}\n</dl>'
 
-<h2 class="section">Experience</h2>
 
-{experience}
+def _section_html(heading: str, content: str, long: bool = False) -> str:
+    """Wraps a heading and its content so the print stylesheet can keep a short
+    section on one page. Only a long section (Experience) may span pages."""
+    css_class = "resume-section resume-section-long" if long else "resume-section"
+    return f'<section class="{css_class}">\n<h2 class="section">{heading}</h2>\n\n{content}\n</section>'
 
-<h2 class="section">Selected Projects</h2>
 
-{projects}
-
-<h2 class="section">Education</h2>
-
-{education}
-
-<h2 class="section">Skills &amp; Certifications</h2>
-
-<dl class="skills-grid">
-{skills}
-</dl>"""
-
+def build_html_block(data: dict) -> str:
+    sections = [
+        _section_html("Experience", "\n\n".join(_experience_html(e) for e in data["experience"]), long=True),
+        _section_html("Selected Projects", "\n".join(_project_html(p) for p in data["projects"])),
+        _section_html("Education", "\n".join(_education_html(ed) for ed in data["education"])),
+        _section_html("Skills &amp; Certifications", _skills_html(data["skills"])),
+    ]
+    body = "\n\n".join([PRINT_NOTE, _header_html(data), *sections])
     return f"<!-- RESUME:START -->\n{body}\n<!-- RESUME:END -->"
 
 
