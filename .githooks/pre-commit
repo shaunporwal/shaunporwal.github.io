@@ -1,26 +1,25 @@
 #!/usr/bin/env bash
-# Keeps generated/synced content current before every commit:
-# - site/resume.html, regenerated from data/resume.json (single source of
-#   truth — do not hand-edit the RESUME:START/END block)
-# - dcurves download count in site/resume.html (must run AFTER gen_resume.py,
-#   since gen_resume.py writes a static placeholder for that count)
-# - the shared nav (templates/nav.html) stamped into every page under site/
-# - SEO/social meta tags on every page + auto-discovered post under site/posts/
-# - site/sitemap.xml
-# - the blog listing in site/index.html
-# Adding a new post is just: create site/posts/<slug>/index.html (+ optional
-# .draft file) and commit — everything above regenerates automatically.
+# Runs before every commit:
+# 1. `make lint`. A lint failure stops the commit.
+# 2. `make sync`, which regenerates every generated file. The Makefile is the
+#    only list of generators and their order. A generator failure (for
+#    example, no network for the dcurves count) prints a warning but does not
+#    stop the commit, and the other generators still run (make -k).
+# 3. Stages the regenerated files.
 # Enable once per clone with: git config core.hooksPath .githooks
 set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 
-python3 "$repo_root/scripts/gen_resume.py" || true
-"$repo_root/scripts/update-dcurves-downloads.sh" || true
-python3 "$repo_root/scripts/sync_nav.py" || true
-python3 "$repo_root/scripts/sync_seo.py" || true
-python3 "$repo_root/scripts/sync_social.py" || true
-python3 "$repo_root/scripts/gen_blog_index.py" || true
-python3 "$repo_root/scripts/gen_sitemap.py" || true
+# Lint first. A lint failure stops the commit.
+if ! command -v ruff >/dev/null; then
+  echo "pre-commit: ruff is missing. Install it with: uv tool install ruff" >&2
+  exit 1
+fi
+make -C "$repo_root" --no-print-directory lint
 
-git add -A "$repo_root/site"
+if ! make -C "$repo_root" --no-print-directory -k sync; then
+  echo "pre-commit: a generator failed (see above). Committing with the files as they are." >&2
+fi
+
+git add -A "$repo_root/site" "$repo_root/docs/all-experiences.md" "$repo_root/scripts/AGENTS.md"

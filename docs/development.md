@@ -4,7 +4,7 @@
 
 `make dev` serves `site/` with hot reload (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). Falls back to `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port: `PORT=3000 make dev`.
 
-You can also open any `.html` file under `site/` directly in a browser — everything works via `file://` except `stuff.html`'s 3D model viewer, which needs `http://`.
+You can also open any `.html` file under `site/` directly in a browser. Everything works through `file://`.
 
 ## Adding a new blog post
 
@@ -14,45 +14,68 @@ Commit — the pre-commit hook automatically stamps in the nav, fills in SEO/soc
 
 ## Updating the resume
 
-`data/resume.json` is the single source of truth — never hand-edit the `<!-- RESUME:START -->` block in `site/resume.html` directly, it gets overwritten. Edit the JSON, then either commit (pre-commit regenerates `site/resume.html`) or run `python3 scripts/gen_resume.py` directly.
+`data/experiences.json` is the single source of truth for every experience fact. It generates two outputs:
 
-Bullet/title/sub strings in the JSON support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**50+ data scientists**`), not decoratively. Tokens can't nest (`**{dcurves}**` renders the literal text, not the substituted count) — keep them side by side instead. `docs/all-experiences.md` is the fuller, hand-maintained work-history reference to pull additional bullets from — it isn't wired into generation, so it never goes stale-vs-itself, but it also won't auto-update `resume.json`.
+- `site/resume.html` (the `<!-- RESUME:START -->` block), through `scripts/gen_resume.py`.
+- `docs/all-experiences.md` (the `<!-- RECORD:START -->` block), through `scripts/gen_record.py`.
 
-`projects` entries are `{title, links, description}` — title and links share a row (like experience/education), description is the one-liner impact statement below. `education` entries are `{degree, school, meta, sub?}` — degree and dates/location share a row, school (and the optional scholarship/honor note) sit on their own line below, so a long school name can never push the dates onto a separate line.
+Never edit a generated block by hand. Edit the JSON, then commit or run `make sync`. `data/experiences.schema.json` declares the format. `scripts/lib_record.py` validates the record against it at load time, so a bad edit fails at once.
+
+The `resume` key on an item is the switch that puts it on the resume:
+
+- `"resume": true` shows the item on the resume as it is.
+- On a bullet, a `resume` string replaces the bullet text on the resume only.
+- On an entry, education item, project, or skill, a `resume` object replaces named fields on the resume only, for example `{"org": "MSKCC"}`.
+- On a group of bullets, a `resume` string is one resume bullet that sums up the group.
+- A bullet with only a `resume` string shows on the resume and not in the record.
+
+An item with no `resume` key shows only in the record. Dates are `YYYY-MM` (or `"present"`). Each output formats them in its own style. The resume Languages row comes from the `languages` list.
+
+Strings that reach the resume support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**structural variants**`), not decoratively. Tokens can't nest (`**{dcurves}**` renders the literal text, not the substituted count) — keep them side by side instead.
+
+On the resume, a project's title and links share a row (like experience/education), and its description is the one-line impact statement below. An education item's degree and dates/location share a row; the school (and the optional `honors` note) sit on their own line below, so a long school name can never push the dates onto a separate line.
 
 Need a plain-text copy for LinkedIn or anywhere else that doesn't take HTML: `make resume-text` (prints to stdout, links rendered as `label (url)`, dcurves count fetched live).
+
+## Lint
+
+`ruff.toml` sets the lint rules for `scripts/` and `tests/`, including limits on complexity, statements, branches, and nested blocks. `tests/test_code_shape.py` adds two checks that ruff does not have: no nested functions and no lambdas.
+
+- Run `make lint` to run both. `make test` runs lint first.
+- The pre-commit hook runs `make lint`. A lint failure stops the commit.
+- Install ruff once with `uv tool install ruff`. `ruff.toml` names the exact version, and CI installs that version.
+
+Fix a lint failure by restructuring the code. Do not raise a limit to make a check pass.
 
 ## Site-wide constants (name, URLs, socials)
 
 `data/site.json` is the single source of truth for the name, canonical base URL, and social/contact links (GitHub, X, LinkedIn, email, cal.com, default OG image). Anything that needs one of these — `sync_seo.py`, `gen_sitemap.py`, `sync_nav.py` (via `templates/nav.html`'s `{name}`/`{github}`/`{x}`/`{cal}` placeholders), `sync_social.py` (the JSON-LD + social links on `about.html`) — reads it from there via `scripts/lib_site.py`, instead of each hardcoding its own copy. Change a handle or URL once, in `data/site.json`, and it propagates everywhere on the next `make sync`/commit.
 
-(`data/resume.json`'s contact list is intentionally separate, not merged into this — it's a deliberately curated subset/format for the resume specifically, e.g. no X/LinkedIn shown there but `cheminventory.co` included. `llms.txt` is also intentionally hand-curated/static rather than generated, per an earlier decision — see its own file for why.)
+`data/pages.json` lists every top-level page, in nav menu order, with its title, SEO description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). A `menu` entry puts a link to the page in the nav. `sync_seo.py` writes each page's `<title>` and SEO tags from it, `gen_sitemap.py` lists it, and `sync_nav.py` builds the nav links from it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
+
+The resume `contact` list in `data/experiences.json` chooses which contact lines the resume shows. A line that `data/site.json` already holds names its key (`"site": "email"`) instead of a copy of the value. Only lines with no other home, such as the location, hold a literal `value`. The resume name also comes from `data/site.json`.
+
+`scripts/gen_crawler_files.py` generates `site/CNAME` (the host of `base_url`), `site/robots.txt`, and `site/llms.txt` from `data/site.json`, `data/pages.json`, the current role in `data/experiences.json`, and the published posts. Do not edit these files by hand. `base_url` must be the domain that GitHub Pages serves without a redirect (`www.shaunporwal.com`), because every canonical URL starts with it.
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (`index.html`, `about.html`, `stuff.html`, `resume.html`), `posts/`, `media/`, `styles/site.css`, `robots.txt`/`sitemap.xml`/`llms.txt`, `CNAME`.
-- `data/resume.json` — resume content (source of truth; see above).
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, and the generated `robots.txt`, `sitemap.xml`, `llms.txt`, and `CNAME`.
+- `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
+- `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).
+- `data/pages.json` — the top-level pages and their SEO, sitemap, and nav settings (source of truth; see above).
 - `templates/nav.html` — single source of truth for the nav bar.
 - `scripts/` — maintenance scripts (below), run via the pre-commit hook or `make sync`.
 - `tests/` — unit tests for `scripts/` (`make test`).
 - `docs/pr-docs/` — planning docs for each feature/PR.
-- `docs/all-experiences.md` — full work-history reference (not generated, not wired into `resume.json`).
+- `docs/all-experiences.md` — the full experience record, generated from `data/experiences.json`.
 
 ## Scripts (`scripts/`)
 
-Each is a thin `main()` around testable functions; `lib_posts.py`, `lib_resume.py`, and `lib_site.py` hold shared parsing/rendering/config logic used by the generators below.
+Each is a thin `main()` around testable functions. The `lib_*.py` modules hold the shared parsing, rendering, and config logic. Every generator writes its output between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers through `lib_blocks.py`, so no generator has its own marker code.
 
-| Script | Regenerates |
-|---|---|
-| `gen_resume.py` | `site/resume.html`'s `<!-- RESUME:START -->` block, from `data/resume.json`; `--text` prints a plain-text version instead |
-| `sync_nav.py` | every page's `<!-- NAV:START -->` block, from `templates/nav.html` + `data/site.json` |
-| `sync_seo.py` | every page's `<!-- SEO:START -->` block (description/canonical/OpenGraph/Twitter), from `data/site.json` |
-| `sync_social.py` | `about.html`'s JSON-LD `Person` block and visible social-links row, from `data/site.json` |
-| `gen_blog_index.py` | the post listing in `site/index.html` |
-| `gen_sitemap.py` | `site/sitemap.xml`, from `data/site.json`'s `base_url` |
-| `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (must run *after* `gen_resume.py`, since that writes a static placeholder) |
+`scripts/AGENTS.md` lists every script with a one-line summary. That list is generated from each script's docstring, so this guide does not repeat it.
 
-`tests/test_resume_page_count.sh` (run via `make test`) renders `site/resume.html` to PDF with `npx playwright` and fails if it exceeds 2 printed pages — a safety net against `data/resume.json` quietly growing past what the print CSS was tuned for. If it fails: trim a bullet, or tighten `@media print` in `site/resume.html`.
+`tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
 
-All of the above run in order from `.githooks/pre-commit` on every commit, or on demand via `make sync`.
+`make sync` runs all of the above. The `Makefile` is the only list of generators and their order. The pre-commit hook runs `make -k sync`, so a failed generator (for example, no network for the dcurves count) gives a warning, and the others still run.

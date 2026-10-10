@@ -1,0 +1,50 @@
+[
+  {
+    "file": "about.html",
+    "title": "About — {name}",
+    "description": "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory software.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true,
+    "menu": {
+      "label": "About",
+      "new_tab": false
+    }
+  },
+  {
+    "file": "stuff.html",
+    "title": "Stuff — {name}",
+    "description": "Odds and ends from {name}, including an iPhone macro photo of an eye.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true,
+    "menu": {
+      "label": "Stuff",
+      "new_tab": false
+    }
+  },
+  {
+    "file": "index.html",
+    "title": "{name}",
+    "description": "{name}'s blog: writing in public about building, coding, and thinking clearly.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true,
+    "menu": {
+      "label": "Blog",
+      "new_tab": false
+    }
+  },
+  {
+    "file": "resume.html",
+    "title": "{name} — Resume",
+    "description": "{name}'s resume: software engineering, machine learning, and biomedical data science experience.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": false,
+    "menu": {
+      "label": "Resume",
+      "new_tab": true
+    }
+  }
+]

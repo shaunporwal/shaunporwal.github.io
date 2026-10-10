@@ -1,13 +1,21 @@
 # Shaun Porwal
 
-> Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software. Currently Founder & Engineer at Junto Technologies (cheminventory.co).
+> Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software. Currently Founder & Engineer at Junto Technologies.
 
 ## Pages
 
-- [Home / Blog](https://shaunporwal.com/): posts on building, coding, and thinking clearly.
-- [About](https://shaunporwal.com/about.html): who Shaun is, contact links.
-- [Resume](https://shaunporwal.com/resume.html): full work history, skills, education.
-- [Stuff](https://shaunporwal.com/stuff.html): 3D models and other odds and ends.
+- [About — Shaun Porwal](https://www.shaunporwal.com/about.html): About Shaun Porwal — engineer working across AI/ML, biomedical data science, and chemical inventory software.
+- [Stuff — Shaun Porwal](https://www.shaunporwal.com/stuff.html): Odds and ends from Shaun Porwal, including an iPhone macro photo of an eye.
+- [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal's blog: writing in public about building, coding, and thinking clearly.
+- [Shaun Porwal — Resume](https://www.shaunporwal.com/resume.html): Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.
+
+## Posts
+
+- [Thoughts After Coding for 113 Days Straight](https://www.shaunporwal.com/posts/hundred-day-coding-streak/): How did this all begin? If you look at my GitHub, you’ll see a sea of black in 2024 followed by a relatively abrupt yet sustained wall of green. What’s...
+- [Why I Will Never Put Outside Punctuation Inside Quotes](https://www.shaunporwal.com/posts/no-punctuation-in-quotes/): Have you ever heard of the rule that certain punctuation around quotes should be inside the quotes? For example:
+- [How I completely automated my Python Package Development Workflow](https://www.shaunporwal.com/posts/python-package-automation/): Whenever you start doing something, whatever it is, you will be extremely far from efficient at it. I think it’s probably a law of the universe. There...
+- [The Best Resume Builder I Have Ever Used](https://www.shaunporwal.com/posts/best-resume-builder/): As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first...
+- [It's all in the framework!](https://www.shaunporwal.com/posts/webdev-is-tricky/): Getting to the point of having a decent site for myself was a very long and arduous journey. Unlucky for me, I never took any HTML/CSS/JavaScript...
 
 ## Contact
 

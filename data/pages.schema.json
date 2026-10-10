@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Top-level pages",
+  "description": "Every top-level page under site/, in nav menu order. Posts are found automatically and do not go here. {name} is filled in from data/site.json.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "file",
+      "title",
+      "description",
+      "og_type",
+      "sitemap",
+      "nav"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "file": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+\\.html$"
+      },
+      "title": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "og_type": {
+        "enum": [
+          "website",
+          "article"
+        ]
+      },
+      "sitemap": {
+        "description": "Lists the page in site/sitemap.xml.",
+        "type": "boolean"
+      },
+      "nav": {
+        "description": "Stamps the shared nav into the page.",
+        "type": "boolean"
+      },
+      "menu": {
+        "description": "Shows a link to the page in the site nav.",
+        "type": "object",
+        "required": [
+          "label",
+          "new_tab"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "new_tab": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
-"""Regenerates the JSON-LD Person block and the visible social-links row on
-site/about.html from data/site.json — those github/x/linkedin/email URLs
-used to be hand-duplicated in two places on that one page. Stamped between
+"""Regenerates the JSON-LD Person block and the visible social-links row on site/about.html from data/site.json.
+
+Those github/x/linkedin/email URLs used to be hand-duplicated in two places
+on that one page. Stamped between
 <!-- SOCIAL_JSONLD:START/END --> and <!-- SOCIAL_LINKS:START/END --> markers.
 Run directly (`python3 scripts/sync_social.py`), wired into the pre-commit
 hook.
 """
-import re
 import pathlib
 
-try:
-    from lib_site import load_site
-except ImportError:
-    from scripts.lib_site import load_site
-
-JSONLD_MARKER_RE = re.compile(r"<!-- SOCIAL_JSONLD:START -->.*?<!-- SOCIAL_JSONLD:END -->", re.DOTALL)
-LINKS_MARKER_RE = re.compile(r"<!-- SOCIAL_LINKS:START -->.*?<!-- SOCIAL_LINKS:END -->", re.DOTALL)
+from lib_blocks import replace_block, wrap, write_if_changed
+from lib_site import REPO_ROOT, load_site
 
 
 def build_jsonld_block(site: dict) -> str:
@@ -33,13 +28,7 @@ def build_jsonld_block(site: dict) -> str:
         "  ]\n"
         "}"
     )
-    return (
-        "<!-- SOCIAL_JSONLD:START -->\n"
-        '<script type="application/ld+json">\n'
-        f"{body}\n"
-        "</script>\n"
-        "<!-- SOCIAL_JSONLD:END -->"
-    )
+    return wrap("SOCIAL_JSONLD", f'<script type="application/ld+json">\n{body}\n</script>')
 
 
 def build_links_block(site: dict) -> str:
@@ -47,17 +36,22 @@ def build_links_block(site: dict) -> str:
         "<!-- SOCIAL_LINKS:START -->\n"
         f'      <a class="nav-link" href="{site["x"]}" target="_blank" rel="noopener">X</a>\n'
         f'      <a class="nav-link" href="{site["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>\n'
-        f'      <a class="nav-link" href="{site["github"]}" target="_blank" rel="noopener">Github</a>\n'
+        f'      <a class="nav-link" href="{site["github"]}" target="_blank" rel="noopener">GitHub</a>\n'
         f'      <a class="nav-link" href="mailto:{site["email"]}" target="_blank" rel="noopener">Email</a>\n'
         "      <!-- SOCIAL_LINKS:END -->"
     )
 
 
-def inject(text: str, marker_re: re.Pattern, block: str) -> str | None:
-    if not marker_re.search(text):
-        return None
-    new_text = marker_re.sub(block, text)
-    return new_text if new_text != text else None
+BLOCKS = (("SOCIAL_JSONLD", build_jsonld_block), ("SOCIAL_LINKS", build_links_block))
+
+
+def apply_blocks(text: str, site: dict) -> str:
+    """Stamps every social block into text."""
+    for name, build in BLOCKS:
+        new_text = replace_block(text, name, build(site))
+        if new_text is not None:
+            text = new_text
+    return text
 
 
 def sync(repo_root: pathlib.Path) -> bool:
@@ -65,28 +59,12 @@ def sync(repo_root: pathlib.Path) -> bool:
     about_path = repo_root / "site" / "about.html"
     if not about_path.exists():
         return False
-    site = load_site(repo_root)
     text = about_path.read_text()
-    changed = False
-
-    new_text = inject(text, JSONLD_MARKER_RE, build_jsonld_block(site))
-    if new_text is not None:
-        text = new_text
-        changed = True
-
-    new_text = inject(text, LINKS_MARKER_RE, build_links_block(site))
-    if new_text is not None:
-        text = new_text
-        changed = True
-
-    if changed:
-        about_path.write_text(text)
-    return changed
+    return write_if_changed(about_path, apply_blocks(text, load_site(repo_root)))
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    if sync(repo_root):
+    if sync(REPO_ROOT):
         print("updated site/about.html social blocks")
     else:
         print("social blocks already in sync")

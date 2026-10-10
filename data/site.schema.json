@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Site constants",
+  "description": "The name, canonical base URL, summary, and contact links for the whole site.",
+  "type": "object",
+  "required": ["name", "base_url", "email", "github", "x", "linkedin", "cal", "og_image_path", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {"type": "string"},
+    "base_url": {"description": "The canonical origin, with no trailing slash. site/CNAME is generated from its host.", "type": "string", "pattern": "^https://[a-z0-9.-]+$"},
+    "email": {"type": "string"},
+    "github": {"type": "string", "pattern": "^https://"},
+    "x": {"type": "string", "pattern": "^https://"},
+    "linkedin": {"type": "string", "pattern": "^https://"},
+    "cal": {"type": "string", "pattern": "^https://"},
+    "og_image_path": {"description": "The default social preview image, as a path from the site root.", "type": "string", "pattern": "^/"},
+    "summary": {"description": "One sentence about the site, used at the top of site/llms.txt.", "type": "string"}
+  }
+}

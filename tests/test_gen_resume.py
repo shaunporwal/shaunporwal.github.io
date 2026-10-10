@@ -1,5 +1,3 @@
-import pathlib
-import tempfile
 import unittest
 
 import context  # noqa: F401
@@ -57,6 +55,20 @@ class TestBuildHtmlBlock(unittest.TestCase):
         self.assertIn("Widget", block)
         self.assertIn("Cum laude", block)
         self.assertIn("<dt>Programming</dt><dd>Python, Go</dd>", block)
+
+    def test_each_short_section_is_wrapped_so_print_can_keep_it_whole(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        for heading in ("Selected Projects", "Education", "Skills &amp; Certifications"):
+            self.assertIn(f'<section class="resume-section">\n<h2 class="section">{heading}</h2>', block)
+
+    def test_experience_section_is_marked_long_so_it_may_span_pages(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        expected = '<section class="resume-section resume-section-long">\n<h2 class="section">Experience</h2>'
+        self.assertIn(expected, block)
+
+    def test_every_section_is_closed(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA)
+        self.assertEqual(block.count("<section"), block.count("</section>"))
 
     def test_bullets_carry_a_literal_marker_character(self):
         # CSS list markers (::marker / list-style) aren't real text, so a
@@ -122,13 +134,8 @@ class TestBuildHtmlBlock(unittest.TestCase):
 
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.repo_root = pathlib.Path(self.tmp.name)
-        (self.repo_root / "data").mkdir()
-        (self.repo_root / "site").mkdir()
-        import json
-        (self.repo_root / "data" / "resume.json").write_text(json.dumps(SAMPLE_DATA))
+        self.repo_root = context.temp_repo(self)
+        context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
 
     def test_replaces_marker_block(self):
         (self.repo_root / "site" / "resume.html").write_text(RESUME_TEMPLATE)
@@ -136,6 +143,8 @@ class TestSync(unittest.TestCase):
         self.assertTrue(changed)
         text = (self.repo_root / "site" / "resume.html").read_text()
         self.assertIn("Test Person", text)
+        self.assertIn("Short <strong>detail</strong>", text)
+        self.assertNotIn("Hidden Co", text)
         self.assertNotIn("OLD CONTENT", text)
 
     def test_no_markers_returns_false(self):

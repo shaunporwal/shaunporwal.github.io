@@ -1,11 +1,9 @@
-import pathlib
-import tempfile
 import unittest
 
 import context
 import sync_nav
 
-NAV_TEMPLATE = '<nav><a href="{root}index.html">Home</a></nav>'
+NAV_TEMPLATE = '<nav><a href="{root}index.html">Home</a>\n{page_links}\n</nav>'
 
 PAGE_WITH_MARKERS = """<html><body>
 <!-- NAV:START -->
@@ -15,52 +13,35 @@ PAGE_WITH_MARKERS = """<html><body>
 </body></html>
 """
 
-PAGE_WITHOUT_MARKERS = "<html><body><main>no nav here</main></body></html>"
+class TestPageLinks(unittest.TestCase):
+    def test_lists_menu_pages_in_page_order(self):
+        links = sync_nav.page_links(context.FAKE_PAGES, "../../")
+        self.assertEqual(
+            links,
+            '      <a class="nav-link" href="../../about.html">About</a>\n'
+            '      <a class="nav-link" href="../../resume.html" target="_blank" rel="noopener">Resume</a>',
+        )
 
 
 class TestRenderAndBuildBlock(unittest.TestCase):
     def test_render_nav_fills_in_root(self):
         self.assertEqual(
-            sync_nav.render_nav(NAV_TEMPLATE, root="../../"),
-            '<nav><a href="../../index.html">Home</a></nav>',
+            sync_nav.render_nav(NAV_TEMPLATE, root="../../", page_links="x"),
+            '<nav><a href="../../index.html">Home</a>\nx\n</nav>',
         )
 
     def test_build_block_wraps_in_markers(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, root="")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="", page_links="")
         self.assertTrue(block.startswith("<!-- NAV:START -->"))
         self.assertTrue(block.endswith("<!-- NAV:END -->"))
 
 
-class TestInject(unittest.TestCase):
-    def test_replaces_existing_markers(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, root="")
-        result = sync_nav.inject(PAGE_WITH_MARKERS, block)
-        self.assertIsNotNone(result)
-        self.assertIn('<a href="index.html">Home</a>', result)
-        self.assertNotIn("OLD NAV", result)
-
-    def test_no_markers_returns_none(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, root="")
-        self.assertIsNone(sync_nav.inject(PAGE_WITHOUT_MARKERS, block))
-
-    def test_identical_content_returns_none(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, root="")
-        already_synced = PAGE_WITH_MARKERS.replace(
-            "<!-- NAV:START -->\n<nav>OLD NAV</nav>\n<!-- NAV:END -->", block
-        )
-        self.assertIsNone(sync_nav.inject(already_synced, block))
-
-
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.repo_root = pathlib.Path(self.tmp.name)
+        self.repo_root = context.temp_repo(self)
         (self.repo_root / "templates").mkdir()
         (self.repo_root / "templates" / "nav.html").write_text(NAV_TEMPLATE)
         self.site_dir = self.repo_root / "site"
-        self.site_dir.mkdir()
-        context.write_fake_site_json(self.repo_root)
 
     def test_updates_root_and_nested_pages_with_correct_depth(self):
         (self.site_dir / "about.html").write_text(PAGE_WITH_MARKERS)
@@ -75,8 +56,13 @@ class TestSync(unittest.TestCase):
         self.assertIn('href="index.html"', about_text)
         post_text = (post_dir / "index.html").read_text()
         self.assertIn('href="../../index.html"', post_text)
+        self.assertIn('<a class="nav-link" href="../../about.html">About</a>', post_text)
 
-    def test_resume_html_is_skipped(self):
+    def test_page_without_markers_is_left_alone(self):
+        (self.site_dir / "about.html").write_text("<html><body><main>no nav here</main></body></html>")
+        self.assertEqual(sync_nav.sync(self.repo_root), [])
+
+    def test_page_with_nav_off_is_skipped(self):
         (self.site_dir / "resume.html").write_text(PAGE_WITH_MARKERS)
         changed = sync_nav.sync(self.repo_root)
         self.assertEqual(changed, [])

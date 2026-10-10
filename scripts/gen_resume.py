@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Single source of truth for resume content: data/resume.json.
+"""Renders the resume from data/experiences.json, the single experience record.
+
+Only the items whose `resume` switch is set reach the resume (see
+lib_record.py). The record itself is rendered by gen_record.py.
 
 - `python3 scripts/gen_resume.py` regenerates the <!-- RESUME:START -->
-  block in site/resume.html from data/resume.json. Wired into
-  .githooks/pre-commit (via `make sync`) so resume.html can't drift from
-  the JSON.
+  block in site/resume.html. Wired into .githooks/pre-commit (via
+  `make sync`) so resume.html can't drift from the record.
 - `python3 scripts/gen_resume.py --text` prints a plain-text version
   (links as "text (url)") to stdout, meant for copy-pasting into
   LinkedIn or anywhere else that doesn't take HTML — one source, two
@@ -17,21 +19,19 @@ same `dcurves-downloads` CSS class, so ordering matters but content
 doesn't need to be re-fetched here.
 """
 import argparse
-import json
 import pathlib
 import re
 import urllib.request
 
-try:
-    from lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
-except ImportError:
-    from scripts.lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
-
-MARKER_RE = re.compile(r"<!-- RESUME:START -->.*?<!-- RESUME:END -->", re.DOTALL)
+from lib_blocks import sync_block, wrap
+from lib_record import load_record, resume_view
+from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
+from lib_site import REPO_ROOT, load_site
 
 
 def load_data(repo_root: pathlib.Path) -> dict:
-    return json.loads((repo_root / "data" / "resume.json").read_text())
+    """The resume view of the record: {name, contact, experience, projects, education, skills}."""
+    return resume_view(load_record(repo_root), load_site(repo_root))
 
 
 def _experience_html(e: dict) -> str:
@@ -54,7 +54,9 @@ def _experience_html(e: dict) -> str:
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
-        f'    <div class="entry-head-title"><span class="entry-title">{render_html(e["title"])}</span> — <span class="entry-org">{render_html(e["org"])}</span></div>\n'
+        '    <div class="entry-head-title">'
+        f'<span class="entry-title">{render_html(e["title"])}</span> — '
+        f'<span class="entry-org">{render_html(e["org"])}</span></div>\n'
         f'    <div class="entry-meta">{render_html(e["meta"])}</div>\n'
         "  </div>\n"
         '  <div class="bullets">\n'
@@ -96,57 +98,52 @@ def _education_html(ed: dict) -> str:
     )
 
 
-def build_html_block(data: dict) -> str:
+PRINT_NOTE = (
+    '<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy '
+    '(no date/title/page-number strip), open "More settings" in the print dialog and uncheck '
+    '"Headers and footers".</div>'
+)
+
+
+def _header_html(data: dict) -> str:
     contact = "\n".join(f"    <span>{render_html(c)}</span>" for c in data["contact"])
-    experience = "\n\n".join(_experience_html(e) for e in data["experience"])
-    projects = "\n".join(_project_html(p) for p in data["projects"])
-    education = "\n".join(_education_html(ed) for ed in data["education"])
-    skills = "\n".join(
-        f"  <dt>{render_html(label)}</dt><dd>{render_html(value)}</dd>"
-        for label, value in data["skills"].items()
+    return (
+        '<header class="resume-header">\n'
+        f'  <h1>{render_html(data["name"])}</h1>\n'
+        '  <div class="contact">\n'
+        f"{contact}\n"
+        "  </div>\n"
+        "</header>"
     )
 
-    body = f"""<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy (no date/title/page-number strip), open "More settings" in the print dialog and uncheck "Headers and footers".</div>
 
-<header class="resume-header">
-  <h1>{render_html(data["name"])}</h1>
-  <div class="contact">
-{contact}
-  </div>
-</header>
+def _skills_html(skills: dict) -> str:
+    rows = "\n".join(
+        f"  <dt>{render_html(label)}</dt><dd>{render_html(value)}</dd>" for label, value in skills.items()
+    )
+    return f'<dl class="skills-grid">\n{rows}\n</dl>'
 
-<h2 class="section">Experience</h2>
 
-{experience}
+def _section_html(heading: str, content: str, long: bool = False) -> str:
+    """Wraps a heading and its content so the print stylesheet can keep a short
+    section on one page. Only a long section (Experience) may span pages."""
+    css_class = "resume-section resume-section-long" if long else "resume-section"
+    return f'<section class="{css_class}">\n<h2 class="section">{heading}</h2>\n\n{content}\n</section>'
 
-<h2 class="section">Selected Projects</h2>
 
-{projects}
-
-<h2 class="section">Education</h2>
-
-{education}
-
-<h2 class="section">Skills &amp; Certifications</h2>
-
-<dl class="skills-grid">
-{skills}
-</dl>"""
-
-    return f"<!-- RESUME:START -->\n{body}\n<!-- RESUME:END -->"
+def build_html_block(data: dict) -> str:
+    sections = [
+        _section_html("Experience", "\n\n".join(_experience_html(e) for e in data["experience"]), long=True),
+        _section_html("Selected Projects", "\n".join(_project_html(p) for p in data["projects"])),
+        _section_html("Education", "\n".join(_education_html(ed) for ed in data["education"])),
+        _section_html("Skills &amp; Certifications", _skills_html(data["skills"])),
+    ]
+    body = "\n\n".join([PRINT_NOTE, _header_html(data), *sections])
+    return wrap("RESUME", body)
 
 
 def sync(repo_root: pathlib.Path) -> bool:
-    resume_path = repo_root / "site" / "resume.html"
-    text = resume_path.read_text()
-    if not MARKER_RE.search(text):
-        return False
-    block = build_html_block(load_data(repo_root))
-    new_text = MARKER_RE.sub(block, text)
-    if new_text != text:
-        resume_path.write_text(new_text)
-        return True
-    return False
+    return sync_block(repo_root / "site" / "resume.html", "RESUME", build_html_block(load_data(repo_root)))
 
 
 def fetch_live_dcurves_label() -> str | None:
@@ -167,61 +164,51 @@ def fetch_live_dcurves_label() -> str | None:
         return None
 
 
+def _experience_text(e: dict) -> list[str]:
+    head = [f'{render_text(e["title"])} — {render_text(e["org"])}', render_text(e["meta"])]
+    return head + [f"- {render_text(b)}" for b in e["bullets"]] + [""]
+
+
+def _project_text(p: dict) -> list[str]:
+    return [render_text(p["title"]), render_text(p["links"]), render_text(p["description"]), ""]
+
+
+def _education_text(ed: dict) -> list[str]:
+    sub = [render_text(ed["sub"])] if ed.get("sub") else []
+    return [f'{render_text(ed["degree"])} ({render_text(ed["meta"])})', render_text(ed["school"]), *sub, ""]
+
+
+PLAINTEXT_SECTIONS = (
+    ("EXPERIENCE", "experience", _experience_text),
+    ("SELECTED PROJECTS", "projects", _project_text),
+    ("EDUCATION", "education", _education_text),
+)
+
+
 def render_plaintext(data: dict) -> str:
     lines = [data["name"], " | ".join(render_text(c) for c in data["contact"]), ""]
-
-    lines.append("EXPERIENCE")
-    lines.append("")
-    for e in data["experience"]:
-        lines.append(f'{render_text(e["title"])} — {render_text(e["org"])}')
-        lines.append(render_text(e["meta"]))
-        for b in e["bullets"]:
-            lines.append(f"- {render_text(b)}")
-        lines.append("")
-
-    lines.append("SELECTED PROJECTS")
-    lines.append("")
-    for p in data["projects"]:
-        lines.append(render_text(p["title"]))
-        lines.append(render_text(p["links"]))
-        lines.append(render_text(p["description"]))
-        lines.append("")
-
-    lines.append("EDUCATION")
-    lines.append("")
-    for ed in data["education"]:
-        lines.append(f'{render_text(ed["degree"])} ({render_text(ed["meta"])})')
-        lines.append(render_text(ed["school"]))
-        if ed.get("sub"):
-            lines.append(render_text(ed["sub"]))
-        lines.append("")
-
-    lines.append("SKILLS & CERTIFICATIONS")
-    lines.append("")
-    for label, value in data["skills"].items():
-        lines.append(f"{label}: {render_text(value)}")
-
+    for heading, key, render in PLAINTEXT_SECTIONS:
+        lines += [heading, ""] + [line for item in data[key] for line in render(item)]
+    lines += ["SKILLS & CERTIFICATIONS", ""]
+    lines += [f"{label}: {render_text(value)}" for label, value in data["skills"].items()]
     return "\n".join(lines)
+
+
+def plaintext_with_live_count(data: dict) -> str:
+    text = render_plaintext(data)
+    live_label = fetch_live_dcurves_label()
+    return text.replace(DCURVES_PLACEHOLDER_TEXT, live_label) if live_label else text
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--text", action="store_true", help="print a plain-text version instead of writing resume.html")
     args = parser.parse_args()
-
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    data = load_data(repo_root)
-
     if args.text:
-        text = render_plaintext(data)
-        live_label = fetch_live_dcurves_label()
-        if live_label:
-            text = text.replace(DCURVES_PLACEHOLDER_TEXT, live_label)
-        print(text)
+        print(plaintext_with_live_count(load_data(REPO_ROOT)))
         return
-
-    if sync(repo_root):
-        print("updated site/resume.html from data/resume.json")
+    if sync(REPO_ROOT):
+        print("updated site/resume.html from data/experiences.json")
     else:
         print("resume already in sync")
 

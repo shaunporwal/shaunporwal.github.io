@@ -1,10 +1,11 @@
 {
   "name": "Shaun Porwal",
-  "base_url": "https://shaunporwal.com",
+  "base_url": "https://www.shaunporwal.com",
   "email": "shaun.porwal@gmail.com",
   "github": "https://github.com/shaunporwal",
   "x": "https://x.com/shaunporwal",
   "linkedin": "https://linkedin.com/in/shaunporwal",
   "cal": "https://cal.com/shaun-porwal/30min?overlayCalendar=true",
-  "og_image_path": "/media/heron.jpg"
+  "og_image_path": "/media/og-image.jpg",
+  "summary": "Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software."
 }

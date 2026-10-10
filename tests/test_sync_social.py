@@ -1,5 +1,3 @@
-import pathlib
-import tempfile
 import unittest
 
 import context
@@ -44,12 +42,8 @@ class TestBuildBlocks(unittest.TestCase):
 
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.repo_root = pathlib.Path(self.tmp.name)
+        self.repo_root = context.temp_repo(self)
         self.site_dir = self.repo_root / "site"
-        self.site_dir.mkdir()
-        context.write_fake_site_json(self.repo_root)
 
     def test_replaces_both_marker_blocks(self):
         (self.site_dir / "about.html").write_text(ABOUT_TEMPLATE)
