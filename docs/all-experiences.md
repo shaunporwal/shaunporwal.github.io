@@ -116,19 +116,19 @@ June 2017 to July 2017 | North Brunswick, NJ
 - Supplement development: granulation, formulations, fluid bed drying, friability testing
 - Market research and regulatory document indexing (MSDS, CoA, Vegan, Halal, Kosher certifications)
 
-### Princeton University — Research Assistant
+### Independent Study with Prof. Fresco (Princeton University, emeritus) — Unpaid
 May 2017 to September 2017 | Princeton, NJ
 
-- Developed algorithms in MATLAB and Java to locate self-depurinating sequences in DNA
-- Analyzed self-depurination mechanism effects on site-directed mutagenesis
+- Independent study, not a lab position; Prof. Fresco was professor emeritus. No paper resulted.
+- Learned about self-depurination (SDP) and wrote MATLAB and Java code to locate self-depurinating sequences in DNA
+- Read about self-depurination effects on site-directed mutagenesis
+- Explored the NR2B gene and its neurological significance
 
 ### National Taiwan University, Lab of Prof. Jiun-Hong Chen — Research Intern
 August 2017 | Taipei, Taiwan
 
 - Regeneration research in the freshwater annelid Aeolosoma viride (when cut in half, both halves regenerate)
-- Studied NR2B gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization
-- Investigated gene NR2B neurological significance
-- Novel research on mutagenic DNA SDP sites
+- Studied gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization
 - Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, whole-mount In Situ Hybridization
 
 ### Tokyo Chemical Industry Co., Ltd — Quality Control Intern

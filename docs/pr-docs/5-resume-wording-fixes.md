@@ -61,7 +61,7 @@ write the focused failing test before implementing changed behavior.
 - [x] Shaun confirms the entry details. Final details merge the AI draft with `docs/all-experiences.md`.
 - [x] Add one Experience entry between "Inorganic Manufacturing Associate — SPEX CertiPrep" and "Quality Control Intern — Tokyo Chemical Industry". The list stays in reverse-chronological order.
 - [x] Entry format: title "Research Intern", org "Lab of Prof. Jiun-Hong Chen, National Taiwan University", meta "Aug 2017 · Taipei, Taiwan", one bullet.
-- [x] Bullet text: "Studied **NR2B** gene expression in the regenerating freshwater annelid *Aeolosoma viride* using **whole-mount in situ hybridization**".
+- [x] Bullet text: "Studied gene expression during regeneration in the freshwater annelid *Aeolosoma viride* using **whole-mount in situ hybridization**".
 - [x] Update the NTU entry in `docs/all-experiences.md` to match.
 - [x] Run `make sync` and `make test`. The page count may grow. The print layout check must pass.
 
@@ -84,7 +84,9 @@ Manual checks Shaun performs in the rendered/previewed site.
 
 ## Confirmed Details
 
-Shaun confirmed these details for the NTU entry. The date is August 2017. The PI is Prof. Jiun-Hong Chen. The work studied NR2B with whole-mount in situ hybridization. The research was mainly about regeneration, because *Aeolosoma viride* regenerates both halves after a cut.
+Shaun confirmed these details for the NTU entry. The date is August 2017. The PI is Prof. Jiun-Hong Chen. The work studied gene expression during regeneration with whole-mount in situ hybridization. *Aeolosoma viride* regenerates both halves after a cut.
+
+The NTU work did not study NR2B. An earlier record put NR2B and self-depurination (SDP) under NTU by mistake. Both came from unpaid independent study with Prof. Fresco. That study did not produce a paper. It stays in `docs/all-experiences.md` only, and it does not go on the resume.
 
 ## Scope
 
