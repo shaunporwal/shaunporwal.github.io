@@ -120,7 +120,8 @@ June 2017 to July 2017 | North Brunswick, NJ
 May 2017 to September 2017 | Princeton, NJ
 
 - Independent study, not a lab position; Prof. Fresco was professor emeritus. No paper resulted.
-- Learned about self-depurination (SDP) and wrote MATLAB and Java code to locate self-depurinating sequences in DNA
+- Learned about self-depurination (SDP)
+- Wrote MATLAB and Java code to count the frequency of SDP mutation sites in genomes
 - Read about self-depurination effects on site-directed mutagenesis
 - Explored the NR2B gene and its neurological significance
 
