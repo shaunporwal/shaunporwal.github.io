@@ -1,0 +1,20 @@
+# data/
+
+This directory holds the JSON sources of truth for the site. Generators in `scripts/` read these files and write every place that shows their facts.
+
+## Files
+
+- `experiences.json`: every experience fact (jobs, education, projects, skills, languages, publications). It generates the resume (`site/resume.html`) and the full record (`docs/all-experiences.md`).
+- `site.json`: the name, the canonical base URL, the summary, and the contact links.
+- `pages.json`: each top-level page in `site/`, with its SEO text and its `sitemap` and `nav` switches.
+- `*.schema.json`: the declared format of each JSON file with the same name. The loaders validate each file against its schema when they read it.
+
+## Rules
+
+- Edit a fact here, then run `make sync`. Never edit the generated copy of a fact.
+- A schema change must keep the real data valid. `make test` checks the real files.
+- The `resume` key in `experiences.json` puts an item on the resume. `true` shows the item as it is. A string or an object changes the wording on the resume only. See `docs/development.md` for every form.
+- Dates in `experiences.json` are `YYYY-MM` or `"present"`.
+- `base_url` in `site.json` must be the domain that GitHub Pages serves with no redirect. Every canonical URL starts with it, and `site/CNAME` is generated from its host.
+- Do not move an unconfirmed fact onto the resume. Confirm new facts with Shaun.
+- To add a top-level page, create its HTML file in `site/` and add one entry to `pages.json`.

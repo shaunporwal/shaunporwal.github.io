@@ -72,18 +72,9 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 ## Scripts (`scripts/`)
 
-Each is a thin `main()` around testable functions; `lib_blocks.py`, `lib_html.py`, `lib_posts.py`, `lib_record.py`, `lib_resume.py`, `lib_schema.py`, and `lib_site.py` hold shared parsing/rendering/config logic used by the generators below. Every generator writes its output between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers through `lib_blocks.py`, so no generator has its own marker code.
+Each is a thin `main()` around testable functions. The `lib_*.py` modules hold the shared parsing, rendering, and config logic. Every generator writes its output between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers through `lib_blocks.py`, so no generator has its own marker code.
 
-| Script | Regenerates |
-|---|---|
-| `gen_resume.py` | `site/resume.html`'s `<!-- RESUME:START -->` block, from the items in `data/experiences.json` that are on the resume; `--text` prints a plain-text version instead |
-| `gen_record.py` | `docs/all-experiences.md`'s `<!-- RECORD:START -->` block, from every item in `data/experiences.json` |
-| `sync_nav.py` | every page's `<!-- NAV:START -->` block, from `templates/nav.html` + `data/site.json`; skips pages whose `nav` is off in `data/pages.json` |
-| `sync_seo.py` | every page's `<!-- SEO:START -->` block (description/canonical/OpenGraph/Twitter), from `data/pages.json` + `data/site.json` |
-| `sync_social.py` | `about.html`'s JSON-LD `Person` block and visible social-links row, from `data/site.json` |
-| `gen_blog_index.py` | the post listing in `site/index.html` |
-| `gen_sitemap.py` | `site/sitemap.xml`, from `data/pages.json` and the published posts |
-| `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (runs *after* `gen_resume.py`, since that writes a static placeholder; the `Makefile` declares this) |
+`scripts/AGENTS.md` lists every script with a one-line summary. That list is generated from each script's docstring, so this guide does not repeat it.
 
 `tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
 

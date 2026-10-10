@@ -1,7 +1,7 @@
 # One target per generator, so `make -k sync` (the pre-commit hook) still runs
 # the rest when one fails. sync-dcurves overwrites a placeholder that
 # sync-resume writes, so it depends on it.
-SYNC_TARGETS := sync-resume sync-record sync-dcurves sync-nav sync-seo sync-social sync-blog-index sync-sitemap sync-crawler-files
+SYNC_TARGETS := sync-resume sync-record sync-dcurves sync-nav sync-seo sync-social sync-blog-index sync-sitemap sync-crawler-files sync-script-index
 
 .PHONY: dev lint test sync $(SYNC_TARGETS) resume-text
 
@@ -44,6 +44,9 @@ sync-sitemap:
 
 sync-crawler-files:
 	python3 scripts/gen_crawler_files.py
+
+sync-script-index:
+	python3 scripts/gen_script_index.py
 
 resume-text:
 	python3 scripts/gen_resume.py --text

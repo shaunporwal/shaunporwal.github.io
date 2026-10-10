@@ -22,4 +22,4 @@ if ! make -C "$repo_root" --no-print-directory -k sync; then
   echo "pre-commit: a generator failed (see above). Committing with the files as they are." >&2
 fi
 
-git add -A "$repo_root/site" "$repo_root/docs/all-experiences.md"
+git add -A "$repo_root/site" "$repo_root/docs/all-experiences.md" "$repo_root/scripts/AGENTS.md"

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Regenerates the JSON-LD Person block and the visible social-links row on
-site/about.html from data/site.json — those github/x/linkedin/email URLs
-used to be hand-duplicated in two places on that one page. Stamped between
+"""Regenerates the JSON-LD Person block and the visible social-links row on site/about.html from data/site.json.
+
+Those github/x/linkedin/email URLs used to be hand-duplicated in two places
+on that one page. Stamped between
 <!-- SOCIAL_JSONLD:START/END --> and <!-- SOCIAL_LINKS:START/END --> markers.
 Run directly (`python3 scripts/sync_social.py`), wired into the pre-commit
 hook.

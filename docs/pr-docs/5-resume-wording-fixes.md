@@ -127,10 +127,10 @@ Checklist:
 
 ### Tier 8 — Agent instructions
 
-- [ ] Rewrite the root `AGENTS.md` so that an agent with no other context can learn the repo from it.
-- [ ] Add an `AGENTS.md` to each top-level directory: `data/`, `docs/`, `scripts/`, `site/`, `templates/`, and `tests/`.
-- [ ] Write failing tests. Then add `scripts/gen_script_index.py`. It generates the script list in `scripts/AGENTS.md` from each script's docstring. Remove the hand-written table in `docs/development.md`.
-- [ ] Add a test that every top-level directory has an `AGENTS.md`, and that the root `AGENTS.md` links to each one.
+- [x] Rewrite the root `AGENTS.md` so that an agent with no other context can learn the repo from it.
+- [x] Add an `AGENTS.md` to each top-level directory: `data/`, `docs/`, `scripts/`, `site/`, `templates/`, and `tests/`.
+- [x] Write failing tests. Then add `scripts/gen_script_index.py`. It generates the script list in `scripts/AGENTS.md` from each script's docstring. Remove the hand-written table in `docs/development.md`.
+- [x] Add a test that every top-level directory has an `AGENTS.md`, and that the root `AGENTS.md` links to each one.
 
 ## Smoke Tests
 

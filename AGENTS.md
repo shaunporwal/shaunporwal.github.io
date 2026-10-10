@@ -1,3 +1,5 @@
+If you have no context about this repo, read section 9 ("This Repository") first.
+
 When working on coding with me, follow this workflow.
 
 ## 1. Discuss First
@@ -54,10 +56,50 @@ When working on coding with me, follow this workflow.
 
 ## 9. This Repository
 
-- This is a plain static HTML/CSS site (no framework, no build step), published through `.github/workflows/publish.yaml`. See `docs/development.md` for the full setup (scripts, adding a post, project structure).
-- Nav, SEO meta, the blog listing, and the sitemap are all generated (`scripts/sync_nav.py` etc.) — edit `templates/nav.html` or a post's own content, never the generated `<!-- ...:START -->` blocks directly.
-- `make dev` to preview, `make test` after changing anything in `scripts/`. Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`).
-- Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.
+Read this section first if you have no other context. Then read the `AGENTS.md` in the directory where you work.
+
+### What This Repo Is
+
+This repo is Shaun Porwal's personal website, `https://www.shaunporwal.com`. It is plain static HTML and CSS. It has no framework and no build step. GitHub Pages serves the `site/` directory. A push to `main` publishes it through `.github/workflows/publish.yaml`. Only Shaun merges to `main`.
+
+### Map
+
+| Directory | Contents | Instructions |
+|---|---|---|
+| `data/` | JSON sources of truth and their schemas | [data/AGENTS.md](data/AGENTS.md) |
+| `docs/` | Development guide, PR docs, the generated experience record | [docs/AGENTS.md](docs/AGENTS.md) |
+| `scripts/` | Python generators and shared libraries | [scripts/AGENTS.md](scripts/AGENTS.md) |
+| `site/` | The published website | [site/AGENTS.md](site/AGENTS.md) |
+| `templates/` | HTML fragments stamped into pages | [templates/AGENTS.md](templates/AGENTS.md) |
+| `tests/` | Unit tests, lint checks, and the print layout check | [tests/AGENTS.md](tests/AGENTS.md) |
+
+Two hidden directories also matter. `.githooks/pre-commit` runs lint and regenerates files before each commit. `.github/workflows/` holds CI (`test.yaml`) and publishing (`publish.yaml`).
+
+### How Content Flows
+
+- Each fact has one source: a JSON file in `data/`, a template in `templates/`, or a post's own HTML.
+- Generators in `scripts/` copy facts into the files that show them. A generated part of a file sits between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers. Some files are fully generated, such as `site/sitemap.xml`.
+- Never edit a generated block or a generated file. Edit its source, then run `make sync`.
+- To find the source of a generated block, search `scripts/` for its marker name.
+
+### Commands
+
+- `make dev`: serve `site/` at `http://localhost:8000` with live reload.
+- `make sync`: run every generator. The `Makefile` is the only list of generators and their order.
+- `make lint`: run ruff and the code-shape check.
+- `make test`: run lint, then every test.
+- `make resume-text`: print the resume as plain text.
+- Enable the pre-commit hook once per clone: `git config core.hooksPath .githooks`. Install ruff once: `uv tool install ruff`.
+
+### Rules
+
+- Treat publishing to `main` or GitHub Pages as a production deployment. It needs named confirmation.
+- Keep each fact in one source. When a fact must show in a second place, generate it.
+- Write all documentation, including every `AGENTS.md`, in ASD-STE100 Simplified Technical English.
+- Fix a lint failure by restructuring the code. Do not raise a limit in `ruff.toml`.
+- `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. The `resume` key on an item puts it on the resume.
 - The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
-- `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. Never edit either output by hand. The `resume` key on an item puts it on the resume.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.
+- When you add a top-level directory, add an `AGENTS.md` to it and a row to the map above. `tests/test_agents_docs.py` fails until you do.
+
+For full details, read `docs/development.md`.
