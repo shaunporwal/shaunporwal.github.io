@@ -1,6 +1,6 @@
 # PR 5: Resume Wording Fixes, NTU Research Entry, and One Experience Record
 
-Status: underway
+Status: done
 
 Branch: `fix/resume-wording`
 
