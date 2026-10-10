@@ -110,7 +110,8 @@ a:hover, a:focus { color: var(--link-hover); }
   .site-nav a.nav-link { width: 100%; justify-content: center; }
 }
 
-.site-nav a.nav-link {
+/* Button-style links: the nav and the About page links share this look. */
+a.nav-link {
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 0.75rem;
@@ -123,8 +124,8 @@ a:hover, a:focus { color: var(--link-hover); }
   transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
 }
 
-.site-nav a.nav-link:hover,
-.site-nav a.nav-link:focus {
+a.nav-link:hover,
+a.nav-link:focus {
   border-color: var(--apricot);
   background: var(--apricot);
   color: var(--on-accent);

@@ -143,6 +143,9 @@ Checklist:
 - [x] Write failing tests. Then make `sync_seo.py` generate each page's `<title>` from the same title as its SEO tags.
 - [x] Write failing tests. Then generate the nav's page links from `data/pages.json`. Add a `menu` entry to each page that shows in the nav.
 - [x] Replace the heron with Shaun's headshot: a 360-pixel square crop (`media/avatar.jpg`) on the About page, and the 1200-pixel headshot as the default social image (`media/og-image.jpg`).
+- [x] Remove the unused files from `site/media/`: `heron.jpg`, `heron_no_background.png`, `porwal-resume.pdf`, `2015_ntu_mandarin_cert_and_grade.pdf`, `gravchamber_pics/`, and `gravitychamber.gif`.
+- [x] Add `tests/test_media_refs.py`. It fails if a file in `site/media/` is not used.
+- [x] Show the About page links as buttons, with the same style as the nav.
 - [x] Run `make sync`, `make lint`, and `make test`.
 
 ## Smoke Tests

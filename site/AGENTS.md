@@ -29,4 +29,5 @@ Never edit generated content. Edit its source in `data/`, `templates/`, or the p
 - Keep pages plain HTML and CSS. Do not add a framework or a build step.
 - Do not add analytics, tracking, or third-party scripts without Shaun's named approval.
 - Large files in `media/` are published and downloaded by visitors. Keep new images small. The default social image is `media/og-image.jpg`.
+- Every file in `media/` must be used. `tests/test_media_refs.py` fails on an unused file, because an unused file is still published.
 - 3D models and Blender files do not belong here. They live in the `3d-printing-lab` repo (`projects/website-models/`).

@@ -36,7 +36,7 @@ def build_links_block(site: dict) -> str:
         "<!-- SOCIAL_LINKS:START -->\n"
         f'      <a class="nav-link" href="{site["x"]}" target="_blank" rel="noopener">X</a>\n'
         f'      <a class="nav-link" href="{site["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>\n'
-        f'      <a class="nav-link" href="{site["github"]}" target="_blank" rel="noopener">Github</a>\n'
+        f'      <a class="nav-link" href="{site["github"]}" target="_blank" rel="noopener">GitHub</a>\n'
         f'      <a class="nav-link" href="mailto:{site["email"]}" target="_blank" rel="noopener">Email</a>\n'
         "      <!-- SOCIAL_LINKS:END -->"
     )
