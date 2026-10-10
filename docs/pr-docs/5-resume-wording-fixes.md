@@ -1,6 +1,6 @@
-# PR planned: Resume Wording Fixes and NTU Research Entry
+# PR 5: Resume Wording Fixes and NTU Research Entry
 
-Status: planned
+Status: underway
 
 Branch: `fix/resume-wording`
 
