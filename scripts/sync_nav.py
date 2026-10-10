@@ -10,14 +10,9 @@ DRY at the source level. Run directly (`python3 scripts/sync_nav.py`), wired
 into the pre-commit hook.
 """
 import pathlib
-import re
 
-try:
-    from lib_site import load_site
-except ImportError:
-    from scripts.lib_site import load_site
-
-MARKER_RE = re.compile(r"<!-- NAV:START -->.*?<!-- NAV:END -->", re.DOTALL)
+from lib_blocks import sync_block, wrap
+from lib_site import REPO_ROOT, load_pages, load_site
 
 
 def render_nav(nav_template: str, **substitutions) -> str:
@@ -25,21 +20,16 @@ def render_nav(nav_template: str, **substitutions) -> str:
 
 
 def build_block(nav_template: str, **substitutions) -> str:
-    return f"<!-- NAV:START -->\n{render_nav(nav_template, **substitutions)}\n<!-- NAV:END -->"
+    return wrap("NAV", render_nav(nav_template, **substitutions))
 
 
-def inject(text: str, block: str) -> str | None:
-    """Returns the updated text, or None if there's nothing to replace or no change."""
-    if not MARKER_RE.search(text):
-        return None
-    new_text = MARKER_RE.sub(block, text)
-    return new_text if new_text != text else None
-
-
-def find_targets(site_dir: pathlib.Path) -> list[pathlib.Path]:
+def find_targets(repo_root: pathlib.Path) -> list[pathlib.Path]:
+    """Every page and post, except pages whose `nav` is off in data/pages.json
+    (resume.html is a standalone print document with no site nav)."""
+    site_dir = repo_root / "site"
+    no_nav = {page["file"] for page in load_pages(repo_root) if not page["nav"]}
     targets = list(site_dir.glob("*.html")) + list(site_dir.glob("posts/*/index.html"))
-    # resume.html is a standalone print document with no site nav.
-    return [p for p in targets if p.name != "resume.html"]
+    return [p for p in targets if p.relative_to(site_dir).as_posix() not in no_nav]
 
 
 def sync(repo_root: pathlib.Path) -> list[pathlib.Path]:
@@ -48,20 +38,16 @@ def sync(repo_root: pathlib.Path) -> list[pathlib.Path]:
     site = load_site(repo_root)
 
     changed = []
-    for path in find_targets(site_dir):
-        depth = len(path.relative_to(site_dir).parts) - 1
-        block = build_block(nav_template, root="../" * depth, **site)
-        text = path.read_text()
-        new_text = inject(text, block)
-        if new_text is not None:
-            path.write_text(new_text)
-            changed.append(path.relative_to(site_dir))
+    for path in find_targets(repo_root):
+        relative = path.relative_to(site_dir)
+        block = build_block(nav_template, root="../" * (len(relative.parts) - 1), **site)
+        if sync_block(path, "NAV", block):
+            changed.append(relative)
     return changed
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    changed = sync(repo_root)
+    changed = sync(REPO_ROOT)
     for p in changed:
         print(f"updated nav: {p}")
     if not changed:

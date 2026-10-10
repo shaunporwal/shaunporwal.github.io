@@ -23,14 +23,10 @@ import pathlib
 import re
 import urllib.request
 
-try:
-    from lib_record import load_record, resume_view
-    from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
-except ImportError:
-    from scripts.lib_record import load_record, resume_view
-    from scripts.lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
-
-MARKER_RE = re.compile(r"<!-- RESUME:START -->.*?<!-- RESUME:END -->", re.DOTALL)
+from lib_blocks import sync_block, wrap
+from lib_record import load_record, resume_view
+from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
+from lib_site import REPO_ROOT
 
 
 def load_data(repo_root: pathlib.Path) -> dict:
@@ -143,20 +139,11 @@ def build_html_block(data: dict) -> str:
         _section_html("Skills &amp; Certifications", _skills_html(data["skills"])),
     ]
     body = "\n\n".join([PRINT_NOTE, _header_html(data), *sections])
-    return f"<!-- RESUME:START -->\n{body}\n<!-- RESUME:END -->"
+    return wrap("RESUME", body)
 
 
 def sync(repo_root: pathlib.Path) -> bool:
-    resume_path = repo_root / "site" / "resume.html"
-    text = resume_path.read_text()
-    if not MARKER_RE.search(text):
-        return False
-    block = build_html_block(load_data(repo_root))
-    new_text = MARKER_RE.sub(block, text)
-    if new_text != text:
-        resume_path.write_text(new_text)
-        return True
-    return False
+    return sync_block(repo_root / "site" / "resume.html", "RESUME", build_html_block(load_data(repo_root)))
 
 
 def fetch_live_dcurves_label() -> str | None:
@@ -207,23 +194,20 @@ def render_plaintext(data: dict) -> str:
     return "\n".join(lines)
 
 
+def plaintext_with_live_count(data: dict) -> str:
+    text = render_plaintext(data)
+    live_label = fetch_live_dcurves_label()
+    return text.replace(DCURVES_PLACEHOLDER_TEXT, live_label) if live_label else text
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--text", action="store_true", help="print a plain-text version instead of writing resume.html")
     args = parser.parse_args()
-
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    data = load_data(repo_root)
-
     if args.text:
-        text = render_plaintext(data)
-        live_label = fetch_live_dcurves_label()
-        if live_label:
-            text = text.replace(DCURVES_PLACEHOLDER_TEXT, live_label)
-        print(text)
+        print(plaintext_with_live_count(load_data(REPO_ROOT)))
         return
-
-    if sync(repo_root):
+    if sync(REPO_ROOT):
         print("updated site/resume.html from data/experiences.json")
     else:
         print("resume already in sync")

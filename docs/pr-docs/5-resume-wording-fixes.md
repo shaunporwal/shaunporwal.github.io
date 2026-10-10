@@ -91,6 +91,20 @@ Shaun wants one source of truth for all experience facts. A flag on each item se
 - [x] Check that `make sync` leaves `site/` unchanged after the restructure.
 - [x] `AGENTS.md`: keep follow-up work in the current PR unless Shaun asks for a new one.
 
+### Tier 6 — Shared abstractions
+
+Every change in this tier keeps the output the same. After each step, `make sync` must leave `site/` and `docs/all-experiences.md` unchanged.
+
+- [x] Remove the unused `except ImportError` import fallback from every script.
+- [x] Remove the second copy of `TAG_RE`. Keep `strip_tags` in one module.
+- [x] Add `REPO_ROOT` to `scripts/lib_site.py`. Every `main()` uses it. Every `sync()` takes `repo_root`.
+- [x] Add one temporary-repo helper to `tests/context.py`. The tests use it instead of their own setup.
+- [x] Make the pre-commit hook run `make -k sync`. The Makefile is the only list of generators and their order. Split `sync` into one target per generator, so one failure does not stop the others.
+- [x] Write failing tests in `tests/test_lib_blocks.py`. Then add `scripts/lib_blocks.py` with `wrap`, `replace_block`, and `write_if_changed`. A block that contains a backslash must not crash.
+- [x] Move every generator to `lib_blocks.py`.
+- [x] Add `data/pages.json` with each top-level page and its SEO, sitemap, and nav settings. `sync_seo.py`, `gen_sitemap.py`, and `sync_nav.py` read it.
+- [x] Run `make lint` and `make test`.
+
 ## Smoke Tests
 
 Manual checks Shaun performs in the rendered/previewed site.
@@ -142,6 +156,7 @@ The no-more-sql project said "serving 50+ Data Scientists". That claim is remove
 - A print layout check that replaces the 2-page cap test.
 - One experience record, `data/experiences.json`, that generates the resume and `docs/all-experiences.md`.
 - A ruff lint configuration and a code-shape check, run by `make test`, the pre-commit hook, and CI.
+- Shared abstractions for marker blocks, the page list, and test setup, with no change to the output.
 
 ## Non-Goals
 

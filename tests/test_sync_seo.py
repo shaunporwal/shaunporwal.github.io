@@ -1,5 +1,3 @@
-import pathlib
-import tempfile
 import unittest
 
 import context
@@ -43,27 +41,26 @@ class TestBuildBlockAndInject(unittest.TestCase):
         self.assertIn("new-title", second)
         self.assertNotIn("old-title", second)
 
-    def test_inject_returns_none_when_unchanged(self):
+    def test_inject_twice_gives_the_same_text(self):
         text = PAGE_TEMPLATE.format(title="Home", h1="Home", excerpt="hi")
         block = sync_seo.build_block("u", "t", "d", "website", "i")
         once = sync_seo.inject(text, block)
-        self.assertIsNone(sync_seo.inject(once, block))
+        self.assertEqual(sync_seo.inject(once, block), once)
+
+    def test_inject_into_a_page_with_no_title_returns_none(self):
+        self.assertIsNone(sync_seo.inject("<html></html>", sync_seo.build_block("u", "t", "d", "website", "i")))
 
 
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.repo_root = pathlib.Path(self.tmp.name)
+        self.repo_root = context.temp_repo(self)
         self.site_dir = self.repo_root / "site"
-        self.site_dir.mkdir()
-        context.write_fake_site_json(self.repo_root)
 
     def test_top_level_pages_get_seo_tags(self):
         (self.site_dir / "index.html").write_text(
             PAGE_TEMPLATE.format(title="Test Person", h1="Home", excerpt="hi")
         )
-        changed = sync_seo.sync(self.site_dir)
+        changed = sync_seo.sync(self.repo_root)
         self.assertIn("index.html", changed)
         text = (self.site_dir / "index.html").read_text()
         self.assertIn('property="og:url" content="https://example.com/"', text)
@@ -75,7 +72,7 @@ class TestSync(unittest.TestCase):
         (post_dir / "index.html").write_text(
             PAGE_TEMPLATE.format(title="Hello — Test Person", h1="Hello World", excerpt="An intro paragraph.")
         )
-        changed = sync_seo.sync(self.site_dir)
+        changed = sync_seo.sync(self.repo_root)
         self.assertIn("posts/hello-world/index.html", changed)
         text = (post_dir / "index.html").read_text()
         self.assertIn("An intro paragraph.", text)
@@ -83,7 +80,7 @@ class TestSync(unittest.TestCase):
 
     def test_missing_top_level_page_is_skipped_without_error(self):
         # No index.html/about.html/etc present at all.
-        changed = sync_seo.sync(self.site_dir)
+        changed = sync_seo.sync(self.repo_root)
         self.assertEqual(changed, [])
 
 

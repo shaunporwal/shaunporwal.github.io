@@ -7,15 +7,9 @@ Run directly (`python3 scripts/sync_social.py`), wired into the pre-commit
 hook.
 """
 import pathlib
-import re
 
-try:
-    from lib_site import load_site
-except ImportError:
-    from scripts.lib_site import load_site
-
-JSONLD_MARKER_RE = re.compile(r"<!-- SOCIAL_JSONLD:START -->.*?<!-- SOCIAL_JSONLD:END -->", re.DOTALL)
-LINKS_MARKER_RE = re.compile(r"<!-- SOCIAL_LINKS:START -->.*?<!-- SOCIAL_LINKS:END -->", re.DOTALL)
+from lib_blocks import replace_block, wrap, write_if_changed
+from lib_site import REPO_ROOT, load_site
 
 
 def build_jsonld_block(site: dict) -> str:
@@ -33,13 +27,7 @@ def build_jsonld_block(site: dict) -> str:
         "  ]\n"
         "}"
     )
-    return (
-        "<!-- SOCIAL_JSONLD:START -->\n"
-        '<script type="application/ld+json">\n'
-        f"{body}\n"
-        "</script>\n"
-        "<!-- SOCIAL_JSONLD:END -->"
-    )
+    return wrap("SOCIAL_JSONLD", f'<script type="application/ld+json">\n{body}\n</script>')
 
 
 def build_links_block(site: dict) -> str:
@@ -53,20 +41,13 @@ def build_links_block(site: dict) -> str:
     )
 
 
-def inject(text: str, marker_re: re.Pattern, block: str) -> str | None:
-    if not marker_re.search(text):
-        return None
-    new_text = marker_re.sub(block, text)
-    return new_text if new_text != text else None
-
-
-BLOCKS = ((JSONLD_MARKER_RE, build_jsonld_block), (LINKS_MARKER_RE, build_links_block))
+BLOCKS = (("SOCIAL_JSONLD", build_jsonld_block), ("SOCIAL_LINKS", build_links_block))
 
 
 def apply_blocks(text: str, site: dict) -> str:
     """Stamps every social block into text."""
-    for marker_re, build in BLOCKS:
-        new_text = inject(text, marker_re, build(site))
+    for name, build in BLOCKS:
+        new_text = replace_block(text, name, build(site))
         if new_text is not None:
             text = new_text
     return text
@@ -78,16 +59,11 @@ def sync(repo_root: pathlib.Path) -> bool:
     if not about_path.exists():
         return False
     text = about_path.read_text()
-    new_text = apply_blocks(text, load_site(repo_root))
-    if new_text == text:
-        return False
-    about_path.write_text(new_text)
-    return True
+    return write_if_changed(about_path, apply_blocks(text, load_site(repo_root)))
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    if sync(repo_root):
+    if sync(REPO_ROOT):
         print("updated site/about.html social blocks")
     else:
         print("social blocks already in sync")

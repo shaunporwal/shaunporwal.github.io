@@ -1,5 +1,3 @@
-import pathlib
-import tempfile
 import unittest
 
 import context  # noqa: F401
@@ -136,10 +134,7 @@ class TestBuildHtmlBlock(unittest.TestCase):
 
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.repo_root = pathlib.Path(self.tmp.name)
-        (self.repo_root / "site").mkdir()
+        self.repo_root = context.temp_repo(self)
         context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
 
     def test_replaces_marker_block(self):

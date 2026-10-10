@@ -7,14 +7,11 @@ on the resume. Resume-only wording (a `resume` string or object) never shows
 here. Wired into .githooks/pre-commit and `make sync`.
 """
 import pathlib
-import re
 
-try:
-    from lib_record import format_month, format_period, load_record
-except ImportError:
-    from scripts.lib_record import format_month, format_period, load_record
+from lib_blocks import sync_block, wrap
+from lib_record import format_month, format_period, load_record
+from lib_site import REPO_ROOT
 
-MARKER_RE = re.compile(r"<!-- RECORD:START -->.*?<!-- RECORD:END -->", re.DOTALL)
 RECORD_PATH = pathlib.Path("docs") / "all-experiences.md"
 
 
@@ -90,26 +87,15 @@ def build_block(record: dict) -> str:
         _section("Publications", _publications(record["publications"])),
     ]
     body = "\n\n".join([contact, *sections])
-    return f"<!-- RECORD:START -->\n{body}\n<!-- RECORD:END -->"
+    return wrap("RECORD", body)
 
 
 def sync(repo_root: pathlib.Path) -> bool:
-    path = repo_root / RECORD_PATH
-    text = path.read_text()
-    match = MARKER_RE.search(text)
-    if not match:
-        return False
-    # A splice, not MARKER_RE.sub: sub would read backslashes in the record as escapes.
-    new_text = text[: match.start()] + build_block(load_record(repo_root)) + text[match.end():]
-    if new_text == text:
-        return False
-    path.write_text(new_text)
-    return True
+    return sync_block(repo_root / RECORD_PATH, "RECORD", build_block(load_record(repo_root)))
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    if sync(repo_root):
+    if sync(REPO_ROOT):
         print(f"updated {RECORD_PATH} from data/experiences.json")
     else:
         print("record already in sync")

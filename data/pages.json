@@ -1,0 +1,34 @@
+[
+  {
+    "file": "index.html",
+    "title": "{name}",
+    "description": "{name}'s blog: writing in public about building, coding, and thinking clearly.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true
+  },
+  {
+    "file": "about.html",
+    "title": "About — {name}",
+    "description": "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory software.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true
+  },
+  {
+    "file": "stuff.html",
+    "title": "Stuff — {name}",
+    "description": "A small gallery of 3D models and other stuff from {name}.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true
+  },
+  {
+    "file": "resume.html",
+    "title": "{name} — Resume",
+    "description": "{name}'s resume: software engineering, machine learning, and biomedical data science experience.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": false
+  }
+]

@@ -1,5 +1,4 @@
 import pathlib
-import tempfile
 import unittest
 
 import context  # noqa: F401
@@ -64,7 +63,7 @@ class TestBuildBlock(unittest.TestCase):
 
 class TestSync(unittest.TestCase):
     def make_repo(self, text: str) -> pathlib.Path:
-        root = pathlib.Path(self.enterContext(tempfile.TemporaryDirectory()))
+        root = context.temp_repo(self)
         context.write_record_fixture(root, SAMPLE_RECORD)
         (root / "docs").mkdir()
         (root / "docs" / "all-experiences.md").write_text(text)

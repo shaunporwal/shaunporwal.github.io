@@ -11,7 +11,8 @@ import datetime
 import pathlib
 import re
 
-TAG_RE = re.compile(r"<[^>]+>")
+from lib_html import strip_tags
+
 TITLE_RE = re.compile(r'<h1 class="page-title">(.*?)</h1>', re.DOTALL)
 META_RE = re.compile(r'<p class="page-meta">(.*?)</p>', re.DOTALL)
 CAT_RE = re.compile(r'<span class="cat">(.*?)</span>')
@@ -28,9 +29,6 @@ MONTHS = {
     )
 }
 
-
-def strip_tags(s):
-    return TAG_RE.sub("", s).strip()
 
 
 IMAGE_SUFFIXES = (".png", ".jpg", ".jpeg", ".webp")

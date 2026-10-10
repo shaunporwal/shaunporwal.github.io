@@ -51,14 +51,17 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 `data/site.json` is the single source of truth for the name, canonical base URL, and social/contact links (GitHub, X, LinkedIn, email, cal.com, default OG image). Anything that needs one of these — `sync_seo.py`, `gen_sitemap.py`, `sync_nav.py` (via `templates/nav.html`'s `{name}`/`{github}`/`{x}`/`{cal}` placeholders), `sync_social.py` (the JSON-LD + social links on `about.html`) — reads it from there via `scripts/lib_site.py`, instead of each hardcoding its own copy. Change a handle or URL once, in `data/site.json`, and it propagates everywhere on the next `make sync`/commit.
 
+`data/pages.json` lists every top-level page with its SEO title and description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). `sync_seo.py`, `gen_sitemap.py`, and `sync_nav.py` all read it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
+
 (The `contact` list in `data/experiences.json` is intentionally separate, not merged into this — it's a deliberately curated subset/format for the resume specifically, e.g. no X/LinkedIn shown there but `cheminventory.co` included. `llms.txt` is also intentionally hand-curated/static rather than generated, per an earlier decision — see its own file for why.)
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (`index.html`, `about.html`, `stuff.html`, `resume.html`), `posts/`, `media/`, `styles/site.css`, `robots.txt`/`sitemap.xml`/`llms.txt`, `CNAME`.
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, `robots.txt`/`sitemap.xml`/`llms.txt`, `CNAME`.
 - `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
 - `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).
+- `data/pages.json` — the top-level pages and their SEO, sitemap, and nav settings (source of truth; see above).
 - `templates/nav.html` — single source of truth for the nav bar.
 - `scripts/` — maintenance scripts (below), run via the pre-commit hook or `make sync`.
 - `tests/` — unit tests for `scripts/` (`make test`).
@@ -67,19 +70,19 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 ## Scripts (`scripts/`)
 
-Each is a thin `main()` around testable functions; `lib_posts.py`, `lib_record.py`, `lib_resume.py`, `lib_schema.py`, and `lib_site.py` hold shared parsing/rendering/config logic used by the generators below.
+Each is a thin `main()` around testable functions; `lib_blocks.py`, `lib_html.py`, `lib_posts.py`, `lib_record.py`, `lib_resume.py`, `lib_schema.py`, and `lib_site.py` hold shared parsing/rendering/config logic used by the generators below. Every generator writes its output between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers through `lib_blocks.py`, so no generator has its own marker code.
 
 | Script | Regenerates |
 |---|---|
 | `gen_resume.py` | `site/resume.html`'s `<!-- RESUME:START -->` block, from the items in `data/experiences.json` that are on the resume; `--text` prints a plain-text version instead |
 | `gen_record.py` | `docs/all-experiences.md`'s `<!-- RECORD:START -->` block, from every item in `data/experiences.json` |
-| `sync_nav.py` | every page's `<!-- NAV:START -->` block, from `templates/nav.html` + `data/site.json` |
-| `sync_seo.py` | every page's `<!-- SEO:START -->` block (description/canonical/OpenGraph/Twitter), from `data/site.json` |
+| `sync_nav.py` | every page's `<!-- NAV:START -->` block, from `templates/nav.html` + `data/site.json`; skips pages whose `nav` is off in `data/pages.json` |
+| `sync_seo.py` | every page's `<!-- SEO:START -->` block (description/canonical/OpenGraph/Twitter), from `data/pages.json` + `data/site.json` |
 | `sync_social.py` | `about.html`'s JSON-LD `Person` block and visible social-links row, from `data/site.json` |
 | `gen_blog_index.py` | the post listing in `site/index.html` |
-| `gen_sitemap.py` | `site/sitemap.xml`, from `data/site.json`'s `base_url` |
-| `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (must run *after* `gen_resume.py`, since that writes a static placeholder) |
+| `gen_sitemap.py` | `site/sitemap.xml`, from `data/pages.json` and the published posts |
+| `update-dcurves-downloads.sh` | the dcurves PyPI download count in `site/resume.html`, from pepy.tech (runs *after* `gen_resume.py`, since that writes a static placeholder; the `Makefile` declares this) |
 
 `tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
 
-All of the above run in order from `.githooks/pre-commit` on every commit, or on demand via `make sync`.
+`make sync` runs all of the above. The `Makefile` is the only list of generators and their order. The pre-commit hook runs `make -k sync`, so a failed generator (for example, no network for the dcurves count) gives a warning, and the others still run.

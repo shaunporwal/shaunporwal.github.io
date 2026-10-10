@@ -16,6 +16,8 @@ import html
 import re
 from dataclasses import dataclass
 
+from lib_html import strip_tags
+
 PAGE_BREAK = "\f"
 
 SECTION_RE = re.compile(
@@ -24,7 +26,6 @@ SECTION_RE = re.compile(
     re.DOTALL,
 )
 ENTRY_TITLE_RE = re.compile(r'class="entry-title">(?P<title>.*?)</(?:span|div)>', re.DOTALL)
-TAG_RE = re.compile(r"<[^>]+>")
 LONE_HEADING_RE = re.compile(rf"[^\S{PAGE_BREAK}]*{PAGE_BREAK}")
 
 
@@ -40,7 +41,7 @@ class Block:
 
 
 def _plain(markup: str) -> str:
-    return html.unescape(TAG_RE.sub("", markup)).strip()
+    return html.unescape(strip_tags(markup)).strip()
 
 
 def blocks_from_html(page_html: str) -> list[Block]:

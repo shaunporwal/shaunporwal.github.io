@@ -16,10 +16,7 @@ import json
 import operator
 import pathlib
 
-try:
-    from lib_schema import validate
-except ImportError:
-    from scripts.lib_schema import validate
+from lib_schema import validate
 
 PERIOD_STYLES = {
     "resume": {"months": calendar.month_abbr, "range": " – ", "present": "Present"},

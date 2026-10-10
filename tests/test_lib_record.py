@@ -1,6 +1,5 @@
 import copy
 import pathlib
-import tempfile
 import unittest
 
 import context  # noqa: F401
@@ -79,7 +78,7 @@ class TestResumeView(unittest.TestCase):
 
 class TestLoadRecord(unittest.TestCase):
     def write_repo(self, record: dict) -> pathlib.Path:
-        root = pathlib.Path(self.enterContext(tempfile.TemporaryDirectory()))
+        root = context.temp_repo(self)
         context.write_record_fixture(root, record)
         return root
 

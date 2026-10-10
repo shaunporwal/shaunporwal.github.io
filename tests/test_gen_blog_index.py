@@ -1,8 +1,7 @@
-import pathlib
-import tempfile
+import datetime
 import unittest
 
-import context  # noqa: F401
+import context
 import gen_blog_index
 
 POST_HTML = """<main class="page">
@@ -31,7 +30,7 @@ class TestRenderItem(unittest.TestCase):
         post = {
             "slug": "hello-world",
             "title": "Hello World",
-            "date": __import__("datetime").date(2025, 3, 5),
+            "date": datetime.date(2025, 3, 5),
             "categories": ["A", "B"],
             "image": None,
         }
@@ -67,9 +66,8 @@ class TestRenderItem(unittest.TestCase):
 
 class TestSync(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.site_dir = pathlib.Path(self.tmp.name)
+        self.repo_root = context.temp_repo(self)
+        self.site_dir = self.repo_root / "site"
 
     def make_post(self, slug, date, draft=False):
         post_dir = self.site_dir / "posts" / slug
@@ -85,7 +83,7 @@ class TestSync(unittest.TestCase):
         self.make_post("post-a", "January 1, 2025")
         self.make_post("draft-post", "January 2, 2025", draft=True)
 
-        changed = gen_blog_index.sync(self.site_dir)
+        changed = gen_blog_index.sync(self.repo_root)
 
         self.assertTrue(changed)
         text = (self.site_dir / "index.html").read_text()
@@ -95,13 +93,13 @@ class TestSync(unittest.TestCase):
 
     def test_no_markers_returns_false(self):
         (self.site_dir / "index.html").write_text(INDEX_WITHOUT_MARKERS)
-        self.assertFalse(gen_blog_index.sync(self.site_dir))
+        self.assertFalse(gen_blog_index.sync(self.repo_root))
 
     def test_idempotent_second_run(self):
         (self.site_dir / "index.html").write_text(INDEX_TEMPLATE)
         self.make_post("post-a", "January 1, 2025")
-        gen_blog_index.sync(self.site_dir)
-        self.assertFalse(gen_blog_index.sync(self.site_dir))
+        gen_blog_index.sync(self.repo_root)
+        self.assertFalse(gen_blog_index.sync(self.repo_root))
 
 
 if __name__ == "__main__":

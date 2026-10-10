@@ -1,9 +1,7 @@
 import datetime
-import pathlib
-import tempfile
 import unittest
 
-import context  # noqa: F401  (sets up sys.path for scripts/)
+import context
 from lib_posts import all_posts, parse_post
 
 POST_HTML = """<!doctype html>
@@ -29,9 +27,7 @@ POST_HTML_NO_META = """<!doctype html>
 
 class TestParsePost(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.tmp.cleanup)
-        self.site_dir = pathlib.Path(self.tmp.name)
+        self.site_dir = context.temp_repo(self) / "site"
         self.posts_dir = self.site_dir / "posts"
         self.posts_dir.mkdir()
 
@@ -97,7 +93,7 @@ class TestParsePost(unittest.TestCase):
         self.assertEqual([p["slug"] for p in posts], ["newer", "older"])
 
     def test_all_posts_on_missing_posts_dir(self):
-        empty_site = pathlib.Path(self.enterContext(tempfile.TemporaryDirectory()))
+        empty_site = context.temp_repo(self) / "site"
         self.assertEqual(all_posts(empty_site), [])
 
 

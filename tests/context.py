@@ -1,8 +1,10 @@
 """Puts scripts/ on sys.path so tests can `import lib_posts`, `import sync_nav`, etc.
-without scripts/ needing to be a package."""
+without scripts/ needing to be a package. Also holds the shared test fixtures."""
 import json
 import pathlib
 import sys
+import tempfile
+import unittest
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCRIPTS_DIR = REPO_ROOT / "scripts"
@@ -23,12 +25,33 @@ FAKE_SITE = {
 }
 
 
-def write_fake_site_json(repo_root: pathlib.Path) -> None:
-    """Writes a data/site.json fixture under repo_root, for tests of scripts
-    that load site-wide config via lib_site.load_site()."""
+FAKE_PAGES = [
+    {"file": "index.html", "title": "{name}", "description": "Home of {name}.", "og_type": "website",
+     "sitemap": True, "nav": True},
+    {"file": "about.html", "title": "About — {name}", "description": "About {name}.", "og_type": "website",
+     "sitemap": True, "nav": True},
+    {"file": "resume.html", "title": "{name} — Resume", "description": "Resume of {name}.", "og_type": "website",
+     "sitemap": True, "nav": False},
+]
+
+
+def write_fake_site_data(repo_root: pathlib.Path) -> None:
+    """Writes data/site.json, data/pages.json, and the real pages schema under
+    repo_root, for tests of scripts that load them via lib_site."""
     data_dir = repo_root / "data"
     data_dir.mkdir(parents=True, exist_ok=True)
     (data_dir / "site.json").write_text(json.dumps(FAKE_SITE))
+    (data_dir / "pages.json").write_text(json.dumps(FAKE_PAGES))
+    schema = (REPO_ROOT / "data" / "pages.schema.json").read_text()
+    (data_dir / "pages.schema.json").write_text(schema)
+
+
+def temp_repo(test: unittest.TestCase) -> pathlib.Path:
+    """A temporary repo with site/ and the fake site data. The test cleans it up."""
+    repo_root = pathlib.Path(test.enterContext(tempfile.TemporaryDirectory()))
+    (repo_root / "site").mkdir()
+    write_fake_site_data(repo_root)
+    return repo_root
 
 
 SAMPLE_RECORD = {

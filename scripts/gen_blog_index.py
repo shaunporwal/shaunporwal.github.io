@@ -6,14 +6,10 @@ between <!-- POSTLIST:START --> / <!-- POSTLIST:END --> markers. Run directly
 (`python3 scripts/gen_blog_index.py`), wired into the pre-commit hook.
 """
 import pathlib
-import re
 
-try:
-    from lib_posts import all_posts
-except ImportError:
-    from scripts.lib_posts import all_posts
-
-MARKER_RE = re.compile(r"<!-- POSTLIST:START -->.*?<!-- POSTLIST:END -->", re.DOTALL)
+from lib_blocks import sync_block, wrap
+from lib_posts import all_posts
+from lib_site import REPO_ROOT
 
 
 def render_item(post: dict) -> str:
@@ -42,36 +38,22 @@ def render_item(post: dict) -> str:
 
 
 def build_block(posts: list[dict]) -> str:
-    items_html = "\n".join(render_item(p) for p in posts)
-    return f"<!-- POSTLIST:START -->\n{items_html}\n<!-- POSTLIST:END -->"
+    return wrap("POSTLIST", "\n".join(render_item(p) for p in posts))
 
 
 def published_posts(site_dir: pathlib.Path) -> list[dict]:
     return [p for p in all_posts(site_dir) if not p["draft"]]
 
 
-def sync(site_dir: pathlib.Path) -> bool:
+def sync(repo_root: pathlib.Path) -> bool:
     """Writes the regenerated listing into site/index.html if it changed."""
-    index_path = site_dir / "index.html"
-    text = index_path.read_text()
-    if not MARKER_RE.search(text):
-        return False
-    block = build_block(published_posts(site_dir))
-    new_text = MARKER_RE.sub(block, text)
-    if new_text != text:
-        index_path.write_text(new_text)
-        return True
-    return False
+    site_dir = repo_root / "site"
+    return sync_block(site_dir / "index.html", "POSTLIST", build_block(published_posts(site_dir)))
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    site_dir = repo_root / "site"
-    if not MARKER_RE.search((site_dir / "index.html").read_text()):
-        print("gen-blog-index: no POSTLIST markers found in site/index.html, skipping")
-        return
-    if sync(site_dir):
-        print(f"updated site/index.html post listing ({len(published_posts(site_dir))} posts)")
+    if sync(REPO_ROOT):
+        print(f"updated site/index.html post listing ({len(published_posts(REPO_ROOT / 'site'))} posts)")
     else:
         print("blog index already in sync")
 

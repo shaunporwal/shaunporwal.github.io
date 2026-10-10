@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stamps SEO/social meta tags (description, canonical, OpenGraph, Twitter card)
 into every page under site/, between <!-- SEO:START --> / <!-- SEO:END -->
-markers. Top-level pages use a small hand-written registry (PAGES below);
+markers. Top-level pages come from data/pages.json;
 every post under site/posts/*/ is discovered automatically (via lib_posts) and
 needs no registration — add a new posts/<slug>/index.html and this fills in
 its SEO tags on the next commit. Site-wide constants (name, base URL, default
@@ -9,42 +9,12 @@ image) come from data/site.json via lib_site, not hardcoded here. Run
 directly (`python3 scripts/sync_seo.py`), wired into the pre-commit hook.
 """
 import pathlib
-import re
 
-try:
-    from lib_posts import all_posts
-    from lib_site import load_site
-except ImportError:
-    from scripts.lib_posts import all_posts
-    from scripts.lib_site import load_site
+from lib_blocks import replace_block, wrap, write_if_changed
+from lib_posts import all_posts
+from lib_site import REPO_ROOT, load_pages, load_site, page_url
 
-MARKER_RE = re.compile(r"<!-- SEO:START -->.*?<!-- SEO:END -->\n?", re.DOTALL)
-
-# Top-level pages don't have a generic way to derive a description, so they're
-# registered by hand here. New top-level pages need one line added; posts need
-# nothing (auto-discovered). {name} is filled in from data/site.json.
-PAGES = {
-    "index.html": (
-        "{name}",
-        "{name}'s blog: writing in public about building, coding, and thinking clearly.",
-        "website",
-    ),
-    "about.html": (
-        "About — {name}",
-        "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory software.",
-        "website",
-    ),
-    "stuff.html": (
-        "Stuff — {name}",
-        "A small gallery of 3D models and other stuff from {name}.",
-        "website",
-    ),
-    "resume.html": (
-        "{name} — Resume",
-        "{name}'s resume: software engineering, machine learning, and biomedical data science experience.",
-        "website",
-    ),
-}
+TITLE_END = "</title>\n"
 
 
 def esc(s: str) -> str:
@@ -52,8 +22,7 @@ def esc(s: str) -> str:
 
 
 def build_block(url: str, title: str, description: str, og_type: str, image: str) -> str:
-    return (
-        "<!-- SEO:START -->\n"
+    body = (
         f'<meta name="description" content="{esc(description)}">\n'
         f'<link rel="canonical" href="{url}">\n'
         f'<meta property="og:type" content="{og_type}">\n'
@@ -64,24 +33,20 @@ def build_block(url: str, title: str, description: str, og_type: str, image: str
         '<meta name="twitter:card" content="summary_large_image">\n'
         f'<meta name="twitter:title" content="{esc(title)}">\n'
         f'<meta name="twitter:description" content="{esc(description)}">\n'
-        f'<meta name="twitter:image" content="{image}">\n'
-        "<!-- SEO:END -->\n"
+        f'<meta name="twitter:image" content="{image}">'
     )
+    return wrap("SEO", body)
 
 
 def inject(text: str, block: str) -> str | None:
-    """Returns the updated text, or None if nothing changed."""
-    if MARKER_RE.search(text):
-        new_text = MARKER_RE.sub(block, text)
-    elif "</title>\n" in text:
-        new_text = text.replace("</title>\n", "</title>\n" + block, 1)
-    else:
+    """text with the SEO block in place: replaced if present, else added after
+    </title>. None if the page has neither."""
+    replaced = replace_block(text, "SEO", block)
+    if replaced is not None:
+        return replaced
+    if TITLE_END not in text:
         return None
-    return new_text if new_text != text else None
-
-
-def page_url(base_url: str, name: str) -> str:
-    return f"{base_url}/" if name == "index.html" else f"{base_url}/{name}"
+    return text.replace(TITLE_END, TITLE_END + block + "\n", 1)
 
 
 def post_url(base_url: str, slug: str) -> str:
@@ -94,13 +59,12 @@ def post_image(base_url: str, default_image: str, post: dict) -> str:
     return default_image
 
 
-def page_block(site: dict, name: str, templates: tuple) -> str:
-    title_tmpl, description_tmpl, og_type = templates
+def page_block(site: dict, page: dict) -> str:
     return build_block(
-        page_url(site["base_url"], name),
-        title_tmpl.format(name=site["name"]),
-        description_tmpl.format(name=site["name"]),
-        og_type,
+        page_url(site["base_url"], page["file"]),
+        page["title"].format(name=site["name"]),
+        page["description"].format(name=site["name"]),
+        page["og_type"],
         site["default_og_image"],
     )
 
@@ -115,12 +79,13 @@ def post_block(site: dict, post: dict) -> str:
     )
 
 
-def targets(site_dir: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, str]]:
-    """(name relative to site_dir, path, SEO block) for every page and post."""
+def targets(repo_root: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, str]]:
+    """(name relative to site/, path, SEO block) for every page and post."""
+    site_dir = repo_root / "site"
     pages = [
-        (name, site_dir / name, page_block(site, name, templates))
-        for name, templates in PAGES.items()
-        if (site_dir / name).exists()
+        (page["file"], site_dir / page["file"], page_block(site, page))
+        for page in load_pages(repo_root)
+        if (site_dir / page["file"]).exists()
     ]
     posts = [
         (f"posts/{post['slug']}/index.html", site_dir / "posts" / post["slug"] / "index.html", post_block(site, post))
@@ -131,24 +96,20 @@ def targets(site_dir: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path,
 
 def write_block(path: pathlib.Path, block: str) -> bool:
     new_text = inject(path.read_text(), block)
-    if new_text is None:
-        return False
-    path.write_text(new_text)
-    return True
+    return new_text is not None and write_if_changed(path, new_text)
 
 
-def sync(site_dir: pathlib.Path) -> list[str]:
-    site = load_site(site_dir.parent)
+def sync(repo_root: pathlib.Path) -> list[str]:
+    site = load_site(repo_root)
     changed = []
-    for name, path, block in targets(site_dir, site):
+    for name, path, block in targets(repo_root, site):
         if write_block(path, block):
             changed.append(name)
     return changed
 
 
 def main():
-    repo_root = pathlib.Path(__file__).resolve().parent.parent
-    changed = sync(repo_root / "site")
+    changed = sync(REPO_ROOT)
     for c in changed:
         print(f"updated seo: {c}")
     if not changed:
