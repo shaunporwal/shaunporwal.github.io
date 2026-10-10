@@ -1,13 +1,38 @@
 {
-  "name": "Shaun Porwal",
   "contact": [
-    {"label": "Location", "value": "Metuchen, NJ", "resume": true},
-    {"label": "Email", "value": "shaun.porwal@gmail.com", "resume": true},
-    {"label": "Website", "value": "[shaunporwal.com](https://shaunporwal.com)", "resume": true},
-    {"label": "GitHub", "value": "[github.com/shaunporwal](https://github.com/shaunporwal)", "resume": true},
-    {"label": "Company", "value": "[cheminventory.co](https://cheminventory.co)", "resume": true},
-    {"label": "LinkedIn", "value": "[linkedin.com/in/shaunporwal](https://linkedin.com/in/shaunporwal)"},
-    {"label": "Citizenship", "value": "U.S. Citizen"}
+    {
+      "label": "Location",
+      "value": "Metuchen, NJ",
+      "resume": true
+    },
+    {
+      "label": "Email",
+      "resume": true,
+      "site": "email"
+    },
+    {
+      "label": "Website",
+      "resume": true,
+      "site": "base_url"
+    },
+    {
+      "label": "GitHub",
+      "resume": true,
+      "site": "github"
+    },
+    {
+      "label": "Company",
+      "value": "[cheminventory.co](https://cheminventory.co)",
+      "resume": true
+    },
+    {
+      "label": "LinkedIn",
+      "site": "linkedin"
+    },
+    {
+      "label": "Citizenship",
+      "value": "U.S. Citizen"
+    }
   ],
   "experience": [
     {
@@ -46,62 +71,110 @@
       "start": "2025-05",
       "end": "2026-03",
       "location": "Philadelphia, PA",
-      "notes": ["https://standardmodel.bio"],
+      "notes": [
+        "https://standardmodel.bio"
+      ],
       "groups": [
         {
           "heading": "**1. AI Agents as Application Layer for Biomedical AI Workflows**",
           "resume": "Architected a full-stack **agent orchestration platform** (FastAPI/Next.js, WebSockets) for biomedical workflows, integrating OpenAI Agents SDK tooling and DICOM/NIfTI imaging for tumor analysis",
           "bullets": [
-            {"text": "Built full-stack agent orchestration platform (smb-agent) with FastAPI + WebSocket backend and Next.js frontend for interactive chat, dataset/model management, training monitoring, inference, and image viewing"},
-            {"text": "Implemented agent tooling with LangGraph and OpenAI Agents Python SDK; integrated RunPod job triggering and W&B tracking for fine-tuning and inference workflows"},
-            {"text": "Added medical imaging support for DICOM/NIfTI slice rendering with segmentation/overlay views to streamline tumor-focused analysis demos and stakeholder showcases"},
-            {"text": "Created demo videos showcasing agentic capabilities for marketing"},
-            {"text": "Iterated architecture from initial Next.js app to packaged Python system with modular route managers, MCP/data-loader integrations, and production-style deployment tooling"}
+            {
+              "text": "Built full-stack agent orchestration platform (smb-agent) with FastAPI + WebSocket backend and Next.js frontend for interactive chat, dataset/model management, training monitoring, inference, and image viewing"
+            },
+            {
+              "text": "Implemented agent tooling with LangGraph and OpenAI Agents Python SDK; integrated RunPod job triggering and W&B tracking for fine-tuning and inference workflows"
+            },
+            {
+              "text": "Added medical imaging support for DICOM/NIfTI slice rendering with segmentation/overlay views to streamline tumor-focused analysis demos and stakeholder showcases"
+            },
+            {
+              "text": "Created demo videos showcasing agentic capabilities for marketing"
+            },
+            {
+              "text": "Iterated architecture from initial Next.js app to packaged Python system with modular route managers, MCP/data-loader integrations, and production-style deployment tooling"
+            }
           ]
         },
         {
           "heading": "Key challenges solved:",
           "bullets": [
-            {"text": "Reliable LLM-agent orchestration over WebSockets for long biomedical workflows without losing state, duplicating tool calls, or failing under partial timeouts"},
-            {"text": "Safe coordination of tool execution across heterogeneous services (RunPod, W&B, Hugging Face, data loaders) with deterministic behavior and recovery from mid-run failures"},
-            {"text": "Low-latency DICOM/NIfTI slice rendering with segmentation/overlay support across inconsistent metadata and varying medical dataset structures"}
+            {
+              "text": "Reliable LLM-agent orchestration over WebSockets for long biomedical workflows without losing state, duplicating tool calls, or failing under partial timeouts"
+            },
+            {
+              "text": "Safe coordination of tool execution across heterogeneous services (RunPod, W&B, Hugging Face, data loaders) with deterministic behavior and recovery from mid-run failures"
+            },
+            {
+              "text": "Low-latency DICOM/NIfTI slice rendering with segmentation/overlay support across inconsistent metadata and varying medical dataset structures"
+            }
           ]
         },
         {
           "heading": "**2. Python Library for CT-Image-to-Survival-Prediction (smb-pipe)**",
           "resume": "Built a reusable research library (`smb-pipe`) for **survival-prediction pipelines**, automating CT embedding extraction and MEDS-to-model workflows for aortic aneurysm and heart failure risk modeling",
           "bullets": [
-            {"text": "Built smb-pipe, a reusable research library and CLI suite for MEDS-to-model pipelines including data window/object generation, multimodal preprocessing, CT embedding extraction, survival model training, and inference"},
-            {"text": "Implemented survival-specific modeling components: Cox partial likelihood loss, C-index evaluation, survival heads and MLP heads"},
-            {"text": "Added support for pre-trained Hugging Face model weights and reproducible notebook + script workflows (e.g., aortic aneurysm risk prediction)"},
-            {"text": "Packaged with docs, tests, and GPU/container workflows for researcher-facing experimentation with minimal setup"}
+            {
+              "text": "Built smb-pipe, a reusable research library and CLI suite for MEDS-to-model pipelines including data window/object generation, multimodal preprocessing, CT embedding extraction, survival model training, and inference"
+            },
+            {
+              "text": "Implemented survival-specific modeling components: Cox partial likelihood loss, C-index evaluation, survival heads and MLP heads"
+            },
+            {
+              "text": "Added support for pre-trained Hugging Face model weights and reproducible notebook + script workflows (e.g., aortic aneurysm risk prediction)"
+            },
+            {
+              "text": "Packaged with docs, tests, and GPU/container workflows for researcher-facing experimentation with minimal setup"
+            }
           ]
         },
         {
           "heading": "Key challenges solved:",
           "bullets": [
-            {"text": "Determining right abstraction level: which workflow controls remain configurable vs. hard-coded defaults for reliable use without unnecessary pipeline complexity"},
-            {"text": "Transforming MEDS-style clinical events and CT image paths into a unified object schema preserving temporal alignment and label correctness for survival modeling"},
-            {"text": "Packaging with model weights and documentation for secure academic environments with strict dependency management"}
+            {
+              "text": "Determining right abstraction level: which workflow controls remain configurable vs. hard-coded defaults for reliable use without unnecessary pipeline complexity"
+            },
+            {
+              "text": "Transforming MEDS-style clinical events and CT image paths into a unified object schema preserving temporal alignment and label correctness for survival modeling"
+            },
+            {
+              "text": "Packaging with model weights and documentation for secure academic environments with strict dependency management"
+            }
           ]
         },
         {
           "heading": "**3. LLM Benchmarking for Clinical Trial Matching**",
           "resume": "Developed an **LLM benchmarking framework** for **clinical trial matching**, implementing vLLM evaluation runners and custom embedding classifiers (MLP / logistic regression heads) on EHRSHOT data",
           "bullets": [
-            {"text": "Built benchmarking framework for evaluating trial-matching performance across direct LLM inference and embedding-based classifiers"},
-            {"text": "Implemented vLLM/OpenAI-compatible evaluation runners, configurable prompt/filter modes, concurrent sample evaluation with timeout/skip handling, and standardized experiment outputs"},
-            {"text": "Added embedding pipelines with logistic regression/MLP/transformer heads, k-fold and stratified-split evaluation, automatic threshold tuning (F-beta/Youden's J), and detailed reporting (accuracy/F1/AUC, per-class metrics, confusion matrices, latency profiling)"},
-            {"text": "Generated clinical trial matching evaluation benchmarks using EHRSHOT"}
+            {
+              "text": "Built benchmarking framework for evaluating trial-matching performance across direct LLM inference and embedding-based classifiers"
+            },
+            {
+              "text": "Implemented vLLM/OpenAI-compatible evaluation runners, configurable prompt/filter modes, concurrent sample evaluation with timeout/skip handling, and standardized experiment outputs"
+            },
+            {
+              "text": "Added embedding pipelines with logistic regression/MLP/transformer heads, k-fold and stratified-split evaluation, automatic threshold tuning (F-beta/Youden's J), and detailed reporting (accuracy/F1/AUC, per-class metrics, confusion matrices, latency profiling)"
+            },
+            {
+              "text": "Generated clinical trial matching evaluation benchmarks using EHRSHOT"
+            }
           ]
         },
         {
           "heading": "Key challenges solved:",
           "bullets": [
-            {"text": "Which model families and scales achieve the best accuracy-generalization-efficiency tradeoff on clinical text for inclusion/exclusion criterion matching"},
-            {"text": "How document filtering strategy, number of notes, and pooling approach affect matching performance and robustness"},
-            {"text": "Whether criterion-level decisions should be aggregated vs. optimizing trial-level predictions directly from embeddings"},
-            {"text": "Transfer reliability of classifier heads from synthetic to real-world data"}
+            {
+              "text": "Which model families and scales achieve the best accuracy-generalization-efficiency tradeoff on clinical text for inclusion/exclusion criterion matching"
+            },
+            {
+              "text": "How document filtering strategy, number of notes, and pooling approach affect matching performance and robustness"
+            },
+            {
+              "text": "Whether criterion-level decisions should be aggregated vs. optimizing trial-level predictions directly from embeddings"
+            },
+            {
+              "text": "Transfer reliability of classifier heads from synthetic to real-world data"
+            }
           ]
         },
         {
@@ -111,8 +184,12 @@
               "text": "Facilitated a data-for-equity deal with MSKCC to obtain multi-modal data",
               "resume": "Secured a strategic **data-for-equity partnership** with Memorial Sloan Kettering Cancer Center, facilitating access to high-fidelity multimodal datasets for foundation model development"
             },
-            {"text": "Contributed to JEPA-based architecture pushing SoTA in biomedical foundation models for next-event prediction"},
-            {"text": "Automated application of RECIST criteria to evaluate tumor progression from 2 timepoints"}
+            {
+              "text": "Contributed to JEPA-based architecture pushing SoTA in biomedical foundation models for next-event prediction"
+            },
+            {
+              "text": "Automated application of RECIST criteria to evaluate tumor progression from 2 timepoints"
+            }
           ]
         }
       ],
@@ -124,7 +201,9 @@
       "start": "2021-03",
       "end": "2025-05",
       "location": "New York, NY",
-      "notes": ["Supervisor: Andrew Vickers"],
+      "notes": [
+        "Supervisor: Andrew Vickers"
+      ],
       "groups": [
         {
           "bullets": [
@@ -144,7 +223,9 @@
               "text": "Developed dcurves Python package for Decision Curve Analysis (29k+ downloads on PyPI at time of writing — see live figure on `site/resume.html`); maintained instructional website decisioncurveanalysis.org",
               "resume": "Developed [dcurves](https://pypi.org/project/dcurves/), a Python package for **Decision Curve Analysis** ({dcurves} PyPI downloads); built and maintain the instructional site [decisioncurveanalysis.org](https://decisioncurveanalysis.org)"
             },
-            {"text": "Developed llmtag Python package for clinical data labeling with local LLMs; redesigned CLI, optimized labeling algorithms"},
+            {
+              "text": "Developed llmtag Python package for clinical data labeling with local LLMs; redesigned CLI, optimized labeling algorithms"
+            },
             {
               "text": "Engineered Llama3.1:70B + RAG text-to-SQL pipeline (no-more-sql) using Streamlit and FAISS for natural-language querying of MSKCC's SQL databases — built from scratch (0 to 1) as a prototype for an internal grant application; shared with colleagues, but usage was not tracked; the grant was not awarded",
               "resume": "Engineered a Llama 3.1:70B + RAG **text-to-SQL tool** (`no-more-sql`) with Streamlit and FAISS for natural-language querying of MSKCC's SQL databases"
@@ -153,9 +234,15 @@
               "text": "Completed patient comorbidity analysis using survey data with pointblank validation",
               "resume": "Completed a large **patient-comorbidity analysis** using take-home survey data, with `pointblank` data validation, to demonstrate accurate billing-level assignment"
             },
-            {"text": "Authored R scripts for data cleaning and statistical analyses"},
-            {"text": "Delivered presentations to 100+ research biostatisticians and developers"},
-            {"text": "Contributed to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)"}
+            {
+              "text": "Authored R scripts for data cleaning and statistical analyses"
+            },
+            {
+              "text": "Delivered presentations to 100+ research biostatisticians and developers"
+            },
+            {
+              "text": "Contributed to publications on prostate cancer and robot-assisted surgery outcomes (Eur Urol Focus 2023, J Robot Surg 2023)"
+            }
           ]
         }
       ],
@@ -163,7 +250,9 @@
         "Tools: Python, R, SQL, Docker, Git, Bash, AWS, RShiny, ggplot2, Jupyter Lab",
         "Statistical Methods: GAM, CoxPH, Kaplan-Meier, logistic regression, DCA"
       ],
-      "resume": {"org": "MSKCC"}
+      "resume": {
+        "org": "MSKCC"
+      }
     },
     {
       "title": "Bioinformatics Intern",
@@ -178,7 +267,9 @@
               "text": "Engineered automated pipelines with Bash, Python, WDL, and AWS to detect structural variants in 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN",
               "resume": "Engineered automated Bash/Python/WDL/AWS pipelines to detect **structural variants** across 100+ 100GB+ BAM files using Delly, SvABA, Manta, and Illumina DRAGEN"
             },
-            {"text": "Utilized AWS EC2 for genome alignment; processed terabytes of data in S3"},
+            {
+              "text": "Utilized AWS EC2 for genome alignment; processed terabytes of data in S3"
+            },
             {
               "text": "Identified repeat variants in 100+ samples contrasting insulin vs non-insulin pancreatic neuroendocrine tumors (PNETs) for diabetes therapy research",
               "resume": "Algorithmically discovered **repeat variants** among 100+ samples, comparing insulin- vs. non-insulin-producing pancreatic neuroendocrine tumors for diabetes therapy research"
@@ -205,14 +296,24 @@
       "groups": [
         {
           "bullets": [
-            {"text": "Designed RNA-seq pipeline to analyze gene expression at multiple timepoints"},
-            {"text": "Developed MATLAB GUI and K-Means clustering algorithm for time-series gene expression analysis"},
-            {"text": "Applied OOP principles and Big O calculations for GUI optimization"},
-            {"text": "Presented project to 150+ peers"}
+            {
+              "text": "Designed RNA-seq pipeline to analyze gene expression at multiple timepoints"
+            },
+            {
+              "text": "Developed MATLAB GUI and K-Means clustering algorithm for time-series gene expression analysis"
+            },
+            {
+              "text": "Applied OOP principles and Big O calculations for GUI optimization"
+            },
+            {
+              "text": "Presented project to 150+ peers"
+            }
           ]
         }
       ],
-      "footer": ["Tools: MATLAB, R, Linux, Bash"]
+      "footer": [
+        "Tools: MATLAB, R, Linux, Bash"
+      ]
     },
     {
       "title": "Inorganic Manufacturing Associate",
@@ -223,7 +324,9 @@
       "groups": [
         {
           "bullets": [
-            {"text": "Quality assurance, manufacturing, and packaging of inorganic chemical standards"},
+            {
+              "text": "Quality assurance, manufacturing, and packaging of inorganic chemical standards"
+            },
             {
               "text": "Wet-lab techniques: pipetting, gravimetry, pH adjustment, filtration, combustion in muffle furnace",
               "resume": "Performed inorganic standards analysis via wet-lab techniques (pipetting, gravimetry, titration, filtration, combustion) and ICP-MS instrumentation for reference-standard preparation"
@@ -232,11 +335,15 @@
               "text": "Programmed Hudson automated pipettor robot using SOLOsoft",
               "resume": "Programmed and calibrated a Hudson automated pipettor robot (SOLOsoft) for serial dilutions and standard synthesis"
             },
-            {"text": "Automated manual Excel tasks for weight calculations and data organization"}
+            {
+              "text": "Automated manual Excel tasks for weight calculations and data organization"
+            }
           ]
         }
       ],
-      "resume": {"org": "SPEX CertiPrep"}
+      "resume": {
+        "org": "SPEX CertiPrep"
+      }
     },
     {
       "title": "R&D Intern",
@@ -247,8 +354,12 @@
       "groups": [
         {
           "bullets": [
-            {"text": "Supplement development: granulation, formulations, fluid bed drying, friability testing"},
-            {"text": "Market research and regulatory document indexing (MSDS, CoA, Vegan, Halal, Kosher certifications)"}
+            {
+              "text": "Supplement development: granulation, formulations, fluid bed drying, friability testing"
+            },
+            {
+              "text": "Market research and regulatory document indexing (MSDS, CoA, Vegan, Halal, Kosher certifications)"
+            }
           ]
         }
       ]
@@ -262,11 +373,21 @@
       "groups": [
         {
           "bullets": [
-            {"text": "Independent study, not a lab position; Prof. Fresco was professor emeritus. No paper resulted."},
-            {"text": "Learned about self-depurination (SDP)"},
-            {"text": "Wrote MATLAB and Java code to count the frequency of SDP mutation sites in genomes"},
-            {"text": "Read about self-depurination effects on site-directed mutagenesis"},
-            {"text": "Explored the NR2B gene and its neurological significance"}
+            {
+              "text": "Independent study, not a lab position; Prof. Fresco was professor emeritus. No paper resulted."
+            },
+            {
+              "text": "Learned about self-depurination (SDP)"
+            },
+            {
+              "text": "Wrote MATLAB and Java code to count the frequency of SDP mutation sites in genomes"
+            },
+            {
+              "text": "Read about self-depurination effects on site-directed mutagenesis"
+            },
+            {
+              "text": "Explored the NR2B gene and its neurological significance"
+            }
           ]
         }
       ]
@@ -281,11 +402,21 @@
         {
           "resume": "Conducted regeneration research **entirely in Mandarin Chinese**; studied gene expression in the freshwater annelid *Aeolosoma viride* using **whole-mount in situ hybridization** and presented hybridization results and survival rates",
           "bullets": [
-            {"text": "Regeneration research in the freshwater annelid Aeolosoma viride (when cut in half, both halves regenerate)"},
-            {"text": "Studied gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization"},
-            {"text": "Presented findings on hybridization results and annelid survival rates"},
-            {"text": "Conducted all study and lab work in Mandarin Chinese"},
-            {"text": "Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, whole-mount In Situ Hybridization"}
+            {
+              "text": "Regeneration research in the freshwater annelid Aeolosoma viride (when cut in half, both halves regenerate)"
+            },
+            {
+              "text": "Studied gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization"
+            },
+            {
+              "text": "Presented findings on hybridization results and annelid survival rates"
+            },
+            {
+              "text": "Conducted all study and lab work in Mandarin Chinese"
+            },
+            {
+              "text": "Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, whole-mount In Situ Hybridization"
+            }
           ]
         }
       ],
@@ -304,8 +435,13 @@
               "text": "160 hours training in instrumentation: GC, HPLC, NMR, IR, and wet-lab analysis",
               "resume": "Trained 160 hours in instrumentation (GC, HPLC, NMR, IR) and wet-lab QC analysis"
             },
-            {"text": "Completed 5+ QA forms/specs daily"},
-            {"text": "Assisted with Japanese/English translation for the team", "resume": true}
+            {
+              "text": "Completed 5+ QA forms/specs daily"
+            },
+            {
+              "text": "Assisted with Japanese/English translation for the team",
+              "resume": true
+            }
           ]
         }
       ],
@@ -318,14 +454,19 @@
       "school": "Icahn School of Medicine at Mount Sinai",
       "end": "2021-02",
       "location": "New York, NY",
-      "resume": {"degree": "M.S., Biomedical Data Science"}
+      "resume": {
+        "degree": "M.S., Biomedical Data Science"
+      }
     },
     {
       "degree": "Bachelor's in Biomedical Engineering; Major in Chinese",
       "school": "Rutgers University — School of Engineering, New Brunswick",
       "end": "2019-05",
       "location": "New Brunswick, NJ",
-      "resume": {"degree": "B.S., Biomedical Engineering & Chinese", "school": "Rutgers University–New Brunswick"}
+      "resume": {
+        "degree": "B.S., Biomedical Engineering & Chinese",
+        "school": "Rutgers University–New Brunswick"
+      }
     },
     {
       "degree": "Certificate in Advanced Mandarin Chinese",
@@ -340,11 +481,20 @@
     {
       "title": "dcurves Python Library",
       "period": "August 2021 – Present",
-      "links": ["https://decisioncurveanalysis.org", "https://github.com/MSKCC-Epi-Bio/dcurves"],
+      "links": [
+        "https://decisioncurveanalysis.org",
+        "https://github.com/MSKCC-Epi-Bio/dcurves"
+      ],
       "bullets": [
-        {"text": "Evaluates binary and survival models (live download count on `site/resume.html`)"},
-        {"text": "Built and maintain instructional website and technical forum"},
-        {"text": "20+ methods, 50+ unit tests, international academic/clinical adoption"}
+        {
+          "text": "Evaluates binary and survival models (live download count on `site/resume.html`)"
+        },
+        {
+          "text": "Built and maintain instructional website and technical forum"
+        },
+        {
+          "text": "20+ methods, 50+ unit tests, international academic/clinical adoption"
+        }
       ],
       "resume": {
         "title": "dcurves",
@@ -354,18 +504,28 @@
     },
     {
       "title": "llmtag Python Package",
-      "links": ["https://github.com/ygivenx/llmtag"],
+      "links": [
+        "https://github.com/ygivenx/llmtag"
+      ],
       "bullets": [
-        {"text": "Clinical data labeling with local LLMs"},
-        {"text": "Redesigned CLI and optimized labeling algorithms"}
+        {
+          "text": "Clinical data labeling with local LLMs"
+        },
+        {
+          "text": "Redesigned CLI and optimized labeling algorithms"
+        }
       ]
     },
     {
       "title": "no-more-sql — LLM Text-to-SQL Project",
       "period": "March 2024",
-      "links": ["https://github.com/juntotechnologies/no-more-sql"],
+      "links": [
+        "https://github.com/juntotechnologies/no-more-sql"
+      ],
       "bullets": [
-        {"text": "Llama3.1:70B + RAG pipeline with Streamlit and FAISS"}
+        {
+          "text": "Llama3.1:70B + RAG pipeline with Streamlit and FAISS"
+        }
       ],
       "resume": {
         "title": "no-more-sql",
@@ -375,34 +535,54 @@
     },
     {
       "title": "cheminventory.co",
-      "links": ["[cheminventory.co](https://cheminventory.co)"],
+      "links": [
+        "[cheminventory.co](https://cheminventory.co)"
+      ],
       "description": "Full-stack chemical inventory management and regulatory compliance platform built for Junto Technologies.",
       "resume": true
     },
     {
       "title": "Statistical Contributions to Landmark Paper",
       "period": "March 2025",
-      "links": ["https://pubmed.ncbi.nlm.nih.gov/40073938/"],
+      "links": [
+        "https://pubmed.ncbi.nlm.nih.gov/40073938/"
+      ],
       "bullets": [
-        {"text": "All statistical analyses for landmark RPLND study in testicular cancer"},
-        {"text": "Responsible for all numbers, tables, and figures in the publication"}
+        {
+          "text": "All statistical analyses for landmark RPLND study in testicular cancer"
+        },
+        {
+          "text": "Responsible for all numbers, tables, and figures in the publication"
+        }
       ]
     },
     {
       "title": "2024 NYC Marathon",
       "period": "Mar 2023 – Dec 2024",
-      "links": ["https://results.nyrr.org/event/M2024/result/15967"],
+      "links": [
+        "https://results.nyrr.org/event/M2024/result/15967"
+      ],
       "bullets": [
-        {"text": "Ran ~1k miles in 2023, completed NYC 9+1 program for guaranteed entry"},
-        {"text": "Ran ~1.4k miles in 2024, finished NYC Marathon in 3hr 48m"}
+        {
+          "text": "Ran ~1k miles in 2023, completed NYC 9+1 program for guaranteed entry"
+        },
+        {
+          "text": "Ran ~1.4k miles in 2024, finished NYC Marathon in 3hr 48m"
+        }
       ]
     },
     {
       "title": "2015 Chinese Bridge Competition",
-      "links": ["https://www.youtube.com/watch?v=sHFZu_TLaN4"],
+      "links": [
+        "https://www.youtube.com/watch?v=sHFZu_TLaN4"
+      ],
       "bullets": [
-        {"text": "Competed with ~1.5 years of Mandarin study"},
-        {"text": "Applied for beginner division, elevated to advanced, placed 3rd"}
+        {
+          "text": "Competed with ~1.5 years of Mandarin study"
+        },
+        {
+          "text": "Applied for beginner division, elevated to advanced, placed 3rd"
+        }
       ]
     }
   ],
@@ -410,27 +590,48 @@
     {
       "label": "Programming (Proficient, 5+ years)",
       "text": "Python, R, Git, Bash/Zsh, SQL, HTML, CSS, Docker",
-      "resume": {"label": "Programming", "text": "Python, R, TypeScript, SQL, Bash, HTML/CSS, Docker, Git"}
+      "resume": {
+        "label": "Programming",
+        "text": "Python, R, TypeScript, SQL, Bash, HTML/CSS, Docker, Git"
+      }
     },
-    {"label": "Programming (Intermediate)", "text": "AWS, MATLAB, Regex, ggplot2, WDL, Poetry, tox, Jupyter Lab"},
+    {
+      "label": "Programming (Intermediate)",
+      "text": "AWS, MATLAB, Regex, ggplot2, WDL, Poetry, tox, Jupyter Lab"
+    },
     {
       "label": "AI / ML",
       "text": "LLM fine-tuning, RAG pipelines, multi-agent/swarm orchestration, self-hosted local LLM deployment (vLLM, llama.cpp), LLM evals (promptfoo), SAM image segmentation, JEPA-based architectures, text encoder + MLP models, FAISS, Streamlit",
-      "resume": {"text": "LLM agent orchestration, multi-agent/swarm systems, local LLM deployment (vLLM, llama.cpp), self-hosted GPU/edge infra (Tailscale), LLM evals (promptfoo, Argilla), autonomous scheduling, RAG, fine-tuning, image segmentation, embedding classifiers"}
+      "resume": {
+        "text": "LLM agent orchestration, multi-agent/swarm systems, local LLM deployment (vLLM, llama.cpp), self-hosted GPU/edge infra (Tailscale), LLM evals (promptfoo, Argilla), autonomous scheduling, RAG, fine-tuning, image segmentation, embedding classifiers"
+      }
     },
     {
       "label": "Statistical Methods",
       "text": "GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis (DCA), survival analysis, multi-variate analysis",
-      "resume": {"label": "Statistics", "text": "GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis"}
+      "resume": {
+        "label": "Statistics",
+        "text": "GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis"
+      }
     },
-    {"label": "Bioinformatics", "text": "RNA-seq pipelines, structural variant detection (Delly, SvABA, Manta, DRAGEN), Circos plots, genomic R libraries"},
-    {"label": "Visualization & Dashboards", "text": "RShiny, ggplot2, Circos, heat maps, scatter plots, stacked bar plots, custom fleet-monitoring dashboards (Glances)"},
+    {
+      "label": "Bioinformatics",
+      "text": "RNA-seq pipelines, structural variant detection (Delly, SvABA, Manta, DRAGEN), Circos plots, genomic R libraries"
+    },
+    {
+      "label": "Visualization & Dashboards",
+      "text": "RShiny, ggplot2, Circos, heat maps, scatter plots, stacked bar plots, custom fleet-monitoring dashboards (Glances)"
+    },
     {
       "label": "Domain",
       "text": "Chemical inventory and regulatory documentation (ISO certification in progress), bioinformatics (SV detection, RNA-seq)",
       "resume": true
     },
-    {"label": "Languages", "derive": "languages", "resume": true},
+    {
+      "label": "Languages",
+      "derive": "languages",
+      "resume": true
+    },
     {
       "label": "Certifications",
       "text": "Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)",
@@ -438,14 +639,32 @@
     }
   ],
   "languages": [
-    {"name": "English", "level": "native"},
-    {"name": "Mandarin Chinese", "level": "fluent", "note": "passed into advanced division at Chinese Bridge"},
-    {"name": "Hindi", "level": "fluent"},
-    {"name": "Japanese", "level": "conversational"},
-    {"name": "Spanish", "level": "conversational"}
+    {
+      "name": "English",
+      "level": "native"
+    },
+    {
+      "name": "Mandarin Chinese",
+      "level": "fluent",
+      "note": "passed into advanced division at Chinese Bridge"
+    },
+    {
+      "name": "Hindi",
+      "level": "fluent"
+    },
+    {
+      "name": "Japanese",
+      "level": "conversational"
+    },
+    {
+      "name": "Spanish",
+      "level": "conversational"
+    }
   ],
   "publications": {
-    "notes": ["Google Scholar: https://scholar.google.com/citations?hl=en&user=eR7hro0AAAAJ"],
+    "notes": [
+      "Google Scholar: https://scholar.google.com/citations?hl=en&user=eR7hro0AAAAJ"
+    ],
     "items": [
       "Pellegrino F, et al. \"Prostate-specific Antigen Density Cutoff of 0.15 ng/ml/cc...\" Eur Urol Focus. 2023 Mar;9(2):291-297.",
       "Pellegrino F, et al. \"The effect of the da Vinci® Vessel Sealer on robot-assisted laparoscopic prostatectomy complications.\" J Robot Surg. 2023 Apr 12.",

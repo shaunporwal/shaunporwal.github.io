@@ -8,8 +8,10 @@ its SEO tags on the next commit. Site-wide constants (name, base URL, default
 image) come from data/site.json via lib_site, not hardcoded here. Run
 directly (`python3 scripts/sync_seo.py`), wired into the pre-commit hook.
 """
+import html
 import json
 import pathlib
+import re
 from dataclasses import dataclass
 
 from lib_blocks import replace_block, wrap, write_if_changed
@@ -17,6 +19,7 @@ from lib_posts import all_posts
 from lib_site import REPO_ROOT, load_pages, load_site, page_url
 
 TITLE_END = "</title>\n"
+TITLE_RE = re.compile(r"<title>.*?</title>", re.DOTALL)
 NOINDEX = '<meta name="robots" content="noindex">'
 
 
@@ -73,14 +76,22 @@ def post_image(base_url: str, default_image: str, post: dict) -> str:
     return default_image
 
 
-def page_block(site: dict, page: dict) -> str:
-    return build_block(SeoMeta(
+def set_title(text: str, title: str) -> str:
+    """text with its <title> set to title, so the tag and the SEO tags share one source."""
+    match = TITLE_RE.search(text)
+    if not match:
+        return text
+    return text[: match.start()] + f"<title>{html.escape(title, quote=False)}</title>" + text[match.end():]
+
+
+def page_meta(site: dict, page: dict) -> SeoMeta:
+    return SeoMeta(
         page_url(site["base_url"], page["file"]),
         page["title"].format(name=site["name"]),
         page["description"].format(name=site["name"]),
         page["og_type"],
         site["default_og_image"],
-    ))
+    )
 
 
 def json_ld(data: dict) -> str:
@@ -104,39 +115,39 @@ def blog_posting(site: dict, post: dict, url: str, image: str) -> str:
     return json_ld(data)
 
 
-def post_block(site: dict, post: dict) -> str:
+def post_meta(site: dict, post: dict) -> SeoMeta:
     """A draft stays reachable by URL, but noindex keeps it out of search results."""
     url = post_url(site["base_url"], post["slug"])
     image = post_image(site["base_url"], site["default_og_image"], post)
     extra = NOINDEX if post["draft"] else blog_posting(site, post, url, image)
-    return build_block(SeoMeta(url, f"{post['title']} — {site['name']}", post["excerpt"], "article", image, (extra,)))
+    return SeoMeta(url, f"{post['title']} — {site['name']}", post["excerpt"], "article", image, (extra,))
 
 
-def targets(repo_root: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, str]]:
-    """(name relative to site/, path, SEO block) for every page and post."""
+def targets(repo_root: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, SeoMeta]]:
+    """(name relative to site/, path, SEO data) for every page and post."""
     site_dir = repo_root / "site"
     pages = [
-        (page["file"], site_dir / page["file"], page_block(site, page))
+        (page["file"], site_dir / page["file"], page_meta(site, page))
         for page in load_pages(repo_root)
         if (site_dir / page["file"]).exists()
     ]
     posts = [
-        (f"posts/{post['slug']}/index.html", site_dir / "posts" / post["slug"] / "index.html", post_block(site, post))
+        (f"posts/{post['slug']}/index.html", site_dir / "posts" / post["slug"] / "index.html", post_meta(site, post))
         for post in all_posts(site_dir)
     ]
     return pages + posts
 
 
-def write_block(path: pathlib.Path, block: str) -> bool:
-    new_text = inject(path.read_text(), block)
+def write_seo(path: pathlib.Path, meta: SeoMeta) -> bool:
+    new_text = inject(set_title(path.read_text(), meta.title), build_block(meta))
     return new_text is not None and write_if_changed(path, new_text)
 
 
 def sync(repo_root: pathlib.Path) -> list[str]:
     site = load_site(repo_root)
     changed = []
-    for name, path, block in targets(repo_root, site):
-        if write_block(path, block):
+    for name, path, meta in targets(repo_root, site):
+        if write_seo(path, meta):
             changed.append(name)
     return changed
 

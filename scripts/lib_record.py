@@ -7,6 +7,10 @@ The `resume` key on an item is the switch that puts it on the resume:
   wording on the resume only. The record keeps its own wording.
 - A group's `resume` string is one resume bullet that sums up the group.
 
+A contact item holds a literal `value`, or names a `site` key in
+data/site.json so that the value has one home. The name also comes from
+data/site.json.
+
 resume_view() returns the same shape that gen_resume.py renders:
 {name, contact, experience, projects, education, skills}.
 """
@@ -15,6 +19,7 @@ import itertools
 import json
 import operator
 import pathlib
+import re
 
 from lib_schema import validate
 
@@ -23,6 +28,7 @@ PERIOD_STYLES = {
     "record": {"months": calendar.month_name, "range": " to ", "present": "Present"},
 }
 
+SCHEME_RE = re.compile(r"^https?://(www\.)?")
 META_SEPARATOR = " · "
 LINK_SEPARATOR = " · "
 
@@ -33,6 +39,20 @@ def load_record(repo_root: pathlib.Path) -> dict:
     record = json.loads((data_dir / "experiences.json").read_text())
     validate(record, json.loads((data_dir / "experiences.schema.json").read_text()))
     return record
+
+
+def site_link(url: str) -> str:
+    """[example.com](https://www.example.com): the link text drops the scheme and www."""
+    return f"[{SCHEME_RE.sub('', url)}]({url})"
+
+
+SITE_CONTACT_FORMATS = {"email": str, "base_url": site_link, "github": site_link, "linkedin": site_link, "x": site_link}
+
+
+def contact_value(item: dict, site: dict) -> str:
+    if "value" in item:
+        return item["value"]
+    return SITE_CONTACT_FORMATS[item["site"]](site[item["site"]])
 
 
 def format_month(month: str, style: str) -> str:
@@ -125,10 +145,10 @@ def _resume_skills(record: dict) -> dict:
     return skills
 
 
-def resume_view(record: dict) -> dict:
+def resume_view(record: dict, site: dict) -> dict:
     return {
-        "name": record["name"],
-        "contact": [c["value"] for c in filter(on_resume, record["contact"])],
+        "name": site["name"],
+        "contact": [contact_value(c, site) for c in filter(on_resume, record["contact"])],
         "experience": [_resume_experience(e) for e in filter(on_resume, record["experience"])],
         "projects": [_resume_project(p) for p in filter(on_resume, record["projects"])],
         "education": [_resume_education(e) for e in filter(on_resume, record["education"])],

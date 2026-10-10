@@ -26,12 +26,12 @@ import urllib.request
 from lib_blocks import sync_block, wrap
 from lib_record import load_record, resume_view
 from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
-from lib_site import REPO_ROOT
+from lib_site import REPO_ROOT, load_site
 
 
 def load_data(repo_root: pathlib.Path) -> dict:
     """The resume view of the record: {name, contact, experience, projects, education, skills}."""
-    return resume_view(load_record(repo_root))
+    return resume_view(load_record(repo_root), load_site(repo_root))
 
 
 def _experience_html(e: dict) -> str:

@@ -19,15 +19,27 @@ def render_nav(nav_template: str, **substitutions) -> str:
     return nav_template.format(**substitutions).strip()
 
 
+NEW_TAB = ' target="_blank" rel="noopener"'
+
+
+def page_link(page: dict, root: str) -> str:
+    target = NEW_TAB if page["menu"]["new_tab"] else ""
+    return f'      <a class="nav-link" href="{root}{page["file"]}"{target}>{page["menu"]["label"]}</a>'
+
+
+def page_links(pages: list[dict], root: str) -> str:
+    """One nav link for each page with a `menu` entry, in data/pages.json order."""
+    return "\n".join(page_link(page, root) for page in pages if "menu" in page)
+
+
 def build_block(nav_template: str, **substitutions) -> str:
     return wrap("NAV", render_nav(nav_template, **substitutions))
 
 
-def find_targets(repo_root: pathlib.Path) -> list[pathlib.Path]:
+def find_targets(site_dir: pathlib.Path, pages: list[dict]) -> list[pathlib.Path]:
     """Every page and post, except pages whose `nav` is off in data/pages.json
     (resume.html is a standalone print document with no site nav)."""
-    site_dir = repo_root / "site"
-    no_nav = {page["file"] for page in load_pages(repo_root) if not page["nav"]}
+    no_nav = {page["file"] for page in pages if not page["nav"]}
     targets = list(site_dir.glob("*.html")) + list(site_dir.glob("posts/*/index.html"))
     return [p for p in targets if p.relative_to(site_dir).as_posix() not in no_nav]
 
@@ -36,11 +48,12 @@ def sync(repo_root: pathlib.Path) -> list[pathlib.Path]:
     site_dir = repo_root / "site"
     nav_template = (repo_root / "templates" / "nav.html").read_text()
     site = load_site(repo_root)
-
+    pages = load_pages(repo_root)
     changed = []
-    for path in find_targets(repo_root):
+    for path in find_targets(site_dir, pages):
         relative = path.relative_to(site_dir)
-        block = build_block(nav_template, root="../" * (len(relative.parts) - 1), **site)
+        root = "../" * (len(relative.parts) - 1)
+        block = build_block(nav_template, root=root, page_links=page_links(pages, root), **site)
         if sync_block(path, "NAV", block):
             changed.append(relative)
     return changed

@@ -7,6 +7,7 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `context.py`: puts `scripts/` on the import path and holds the shared fixtures. Every test file imports it first.
 - `test_<module>.py`: the tests for `scripts/<module>.py`.
 - `test_code_shape.py`: fails on a nested function or a lambda in `scripts/` or `tests/`.
+- `test_css_tokens.py`: fails on a color literal outside the `:root` block of `site/styles/site.css`.
 - `test_agents_docs.py`: fails if a top-level directory has no `AGENTS.md`, or if the root `AGENTS.md` does not link to it.
 - `test_resume_print_layout.py`: prints the real resume to PDF with Playwright Chromium, reads it with `pdftotext`, and checks the page breaks.
 - `test_update_dcurves_downloads.sh`: checks the dcurves download count updater.

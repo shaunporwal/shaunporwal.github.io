@@ -3,7 +3,7 @@ import unittest
 import context
 import sync_nav
 
-NAV_TEMPLATE = '<nav><a href="{root}index.html">Home</a></nav>'
+NAV_TEMPLATE = '<nav><a href="{root}index.html">Home</a>\n{page_links}\n</nav>'
 
 PAGE_WITH_MARKERS = """<html><body>
 <!-- NAV:START -->
@@ -13,15 +13,25 @@ PAGE_WITH_MARKERS = """<html><body>
 </body></html>
 """
 
+class TestPageLinks(unittest.TestCase):
+    def test_lists_menu_pages_in_page_order(self):
+        links = sync_nav.page_links(context.FAKE_PAGES, "../../")
+        self.assertEqual(
+            links,
+            '      <a class="nav-link" href="../../about.html">About</a>\n'
+            '      <a class="nav-link" href="../../resume.html" target="_blank" rel="noopener">Resume</a>',
+        )
+
+
 class TestRenderAndBuildBlock(unittest.TestCase):
     def test_render_nav_fills_in_root(self):
         self.assertEqual(
-            sync_nav.render_nav(NAV_TEMPLATE, root="../../"),
-            '<nav><a href="../../index.html">Home</a></nav>',
+            sync_nav.render_nav(NAV_TEMPLATE, root="../../", page_links="x"),
+            '<nav><a href="../../index.html">Home</a>\nx\n</nav>',
         )
 
     def test_build_block_wraps_in_markers(self):
-        block = sync_nav.build_block(NAV_TEMPLATE, root="")
+        block = sync_nav.build_block(NAV_TEMPLATE, root="", page_links="")
         self.assertTrue(block.startswith("<!-- NAV:START -->"))
         self.assertTrue(block.endswith("<!-- NAV:END -->"))
 
@@ -46,6 +56,7 @@ class TestSync(unittest.TestCase):
         self.assertIn('href="index.html"', about_text)
         post_text = (post_dir / "index.html").read_text()
         self.assertIn('href="../../index.html"', post_text)
+        self.assertIn('<a class="nav-link" href="../../about.html">About</a>', post_text)
 
     def test_page_without_markers_is_left_alone(self):
         (self.site_dir / "about.html").write_text("<html><body><main>no nav here</main></body></html>")

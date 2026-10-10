@@ -4,9 +4,9 @@
 
 ## Pages
 
-- [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal's blog: writing in public about building, coding, and thinking clearly.
 - [About — Shaun Porwal](https://www.shaunporwal.com/about.html): About Shaun Porwal — engineer working across AI/ML, biomedical data science, and chemical inventory software.
-- [Stuff — Shaun Porwal](https://www.shaunporwal.com/stuff.html): A small gallery of 3D models and other stuff from Shaun Porwal.
+- [Stuff — Shaun Porwal](https://www.shaunporwal.com/stuff.html): Odds and ends from Shaun Porwal, including an iPhone macro photo of an eye.
+- [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal's blog: writing in public about building, coding, and thinking clearly.
 - [Shaun Porwal — Resume](https://www.shaunporwal.com/resume.html): Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.
 
 ## Posts

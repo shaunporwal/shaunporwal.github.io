@@ -9,8 +9,8 @@ here. Wired into .githooks/pre-commit and `make sync`.
 import pathlib
 
 from lib_blocks import sync_block, wrap
-from lib_record import format_month, format_period, load_record
-from lib_site import REPO_ROOT
+from lib_record import contact_value, format_month, format_period, load_record
+from lib_site import REPO_ROOT, load_site
 
 RECORD_PATH = pathlib.Path("docs") / "all-experiences.md"
 
@@ -76,8 +76,8 @@ def _section(heading: str, body: str) -> str:
     return f"## {heading}\n\n{body}"
 
 
-def build_block(record: dict) -> str:
-    contact = " | ".join(f"{c['label']}: {c['value']}" for c in record["contact"])
+def build_block(record: dict, site: dict) -> str:
+    contact = " | ".join(f"{c['label']}: {contact_value(c, site)}" for c in record["contact"])
     sections = [
         _section("Professional Experience", "\n\n".join(map(_experience, record["experience"]))),
         _section("Education", "\n\n".join(map(_education, record["education"]))),
@@ -91,7 +91,7 @@ def build_block(record: dict) -> str:
 
 
 def sync(repo_root: pathlib.Path) -> bool:
-    return sync_block(repo_root / RECORD_PATH, "RECORD", build_block(load_record(repo_root)))
+    return sync_block(repo_root / RECORD_PATH, "RECORD", build_block(load_record(repo_root), load_site(repo_root)))
 
 
 def main():

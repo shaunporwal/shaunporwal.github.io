@@ -9,7 +9,7 @@ To put an item on the resume, set its `resume` key in `data/experiences.json`. A
 This record started in a separate `jobapps` repo (`resume/all_experiences.txt`).
 
 <!-- RECORD:START -->
-Location: Metuchen, NJ | Email: shaun.porwal@gmail.com | Website: [shaunporwal.com](https://shaunporwal.com) | GitHub: [github.com/shaunporwal](https://github.com/shaunporwal) | Company: [cheminventory.co](https://cheminventory.co) | LinkedIn: [linkedin.com/in/shaunporwal](https://linkedin.com/in/shaunporwal) | Citizenship: U.S. Citizen
+Location: Metuchen, NJ | Email: shaun.porwal@gmail.com | Website: [shaunporwal.com](https://www.shaunporwal.com) | GitHub: [github.com/shaunporwal](https://github.com/shaunporwal) | Company: [cheminventory.co](https://cheminventory.co) | LinkedIn: [linkedin.com/in/shaunporwal](https://linkedin.com/in/shaunporwal) | Citizenship: U.S. Citizen
 
 ## Professional Experience
 

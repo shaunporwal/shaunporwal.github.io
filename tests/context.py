@@ -30,9 +30,9 @@ FAKE_PAGES = [
     {"file": "index.html", "title": "{name}", "description": "Home of {name}.", "og_type": "website",
      "sitemap": True, "nav": True},
     {"file": "about.html", "title": "About — {name}", "description": "About {name}.", "og_type": "website",
-     "sitemap": True, "nav": True},
+     "sitemap": True, "nav": True, "menu": {"label": "About", "new_tab": False}},
     {"file": "resume.html", "title": "{name} — Resume", "description": "Resume of {name}.", "og_type": "website",
-     "sitemap": True, "nav": False},
+     "sitemap": True, "nav": False, "menu": {"label": "Resume", "new_tab": True}},
 ]
 
 
@@ -56,10 +56,10 @@ def temp_repo(test: unittest.TestCase) -> pathlib.Path:
 
 
 SAMPLE_RECORD = {
-    "name": "Test Person",
     "contact": [
         {"label": "Location", "value": "City, ST", "resume": True},
-        {"label": "Phone", "value": "555"},
+        {"label": "Email", "site": "email", "resume": True},
+        {"label": "GitHub", "site": "github"},
     ],
     "experience": [
         {

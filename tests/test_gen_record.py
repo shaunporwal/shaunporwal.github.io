@@ -18,14 +18,17 @@ OLD CONTENT
 
 class TestBuildBlock(unittest.TestCase):
     def setUp(self):
-        self.block = gen_record.build_block(SAMPLE_RECORD)
+        self.block = gen_record.build_block(SAMPLE_RECORD, context.FAKE_SITE)
 
     def test_is_wrapped_in_markers(self):
         self.assertTrue(self.block.startswith("<!-- RECORD:START -->\n"))
         self.assertTrue(self.block.endswith("\n<!-- RECORD:END -->"))
 
     def test_contact_lists_every_item(self):
-        self.assertIn("Location: City, ST | Phone: 555", self.block)
+        self.assertIn(
+            "Location: City, ST | Email: test@example.com | GitHub: [github.com/testperson](https://github.com/testperson)",
+            self.block,
+        )
 
     def test_shows_every_entry_with_record_wording(self):
         self.assertIn("### Acme Company — Engineer\nJanuary 2020 to Present | City, ST", self.block)

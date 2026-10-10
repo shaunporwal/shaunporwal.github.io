@@ -4,7 +4,7 @@
 
 `make dev` serves `site/` with hot reload (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). Falls back to `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port: `PORT=3000 make dev`.
 
-You can also open any `.html` file under `site/` directly in a browser — everything works via `file://` except `stuff.html`'s 3D model viewer, which needs `http://`.
+You can also open any `.html` file under `site/` directly in a browser. Everything works through `file://`.
 
 ## Adding a new blog post
 
@@ -51,9 +51,9 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 `data/site.json` is the single source of truth for the name, canonical base URL, and social/contact links (GitHub, X, LinkedIn, email, cal.com, default OG image). Anything that needs one of these — `sync_seo.py`, `gen_sitemap.py`, `sync_nav.py` (via `templates/nav.html`'s `{name}`/`{github}`/`{x}`/`{cal}` placeholders), `sync_social.py` (the JSON-LD + social links on `about.html`) — reads it from there via `scripts/lib_site.py`, instead of each hardcoding its own copy. Change a handle or URL once, in `data/site.json`, and it propagates everywhere on the next `make sync`/commit.
 
-`data/pages.json` lists every top-level page with its SEO title and description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). `sync_seo.py`, `gen_sitemap.py`, and `sync_nav.py` all read it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
+`data/pages.json` lists every top-level page, in nav menu order, with its title, SEO description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). A `menu` entry puts a link to the page in the nav. `sync_seo.py` writes each page's `<title>` and SEO tags from it, `gen_sitemap.py` lists it, and `sync_nav.py` builds the nav links from it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
 
-(The `contact` list in `data/experiences.json` is intentionally separate, not merged into this — it's a deliberately curated subset/format for the resume specifically, e.g. no X/LinkedIn shown there but `cheminventory.co` included.)
+The resume `contact` list in `data/experiences.json` chooses which contact lines the resume shows. A line that `data/site.json` already holds names its key (`"site": "email"`) instead of a copy of the value. Only lines with no other home, such as the location, hold a literal `value`. The resume name also comes from `data/site.json`.
 
 `scripts/gen_crawler_files.py` generates `site/CNAME` (the host of `base_url`), `site/robots.txt`, and `site/llms.txt` from `data/site.json`, `data/pages.json`, the current role in `data/experiences.json`, and the published posts. Do not edit these files by hand. `base_url` must be the domain that GitHub Pages serves without a redirect (`www.shaunporwal.com`), because every canonical URL starts with it.
 

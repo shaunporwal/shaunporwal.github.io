@@ -132,11 +132,24 @@ Checklist:
 - [x] Write failing tests. Then add `scripts/gen_script_index.py`. It generates the script list in `scripts/AGENTS.md` from each script's docstring. Remove the hand-written table in `docs/development.md`.
 - [x] Add a test that every top-level directory has an `AGENTS.md`, and that the root `AGENTS.md` links to each one.
 
+### Tier 9 — Palette, 3D files, and the last driftable literals
+
+- [x] Replace the site palette with the dark gradient palette: black, white, lime, yellow, and blue. Put every color in a `:root` token in `site/styles/site.css`. The resume keeps its print palette.
+- [x] Add a test that fails on a color literal outside `:root` in `site/styles/site.css`.
+- [x] Move every `.glb`, `.blend`, and `.blend1` file from `site/media/` to `projects/website-models/` in the `3d-printing-lab` repo, through a branch and a PR there (3d-printing-lab PR 8).
+- [x] Remove the 3D model gallery and the `model-viewer` script from `stuff.html`. Update its description in `data/pages.json`.
+- [x] Write failing tests. Then let a resume contact item name a `data/site.json` key instead of a literal value. Remove the copied email, website, GitHub, and LinkedIn values from `data/experiences.json`.
+- [x] Remove `name` from `data/experiences.json`. The resume and the record use the name in `data/site.json`.
+- [x] Write failing tests. Then make `sync_seo.py` generate each page's `<title>` from the same title as its SEO tags.
+- [x] Write failing tests. Then generate the nav's page links from `data/pages.json`. Add a `menu` entry to each page that shows in the nav.
+- [x] Run `make sync`, `make lint`, and `make test`.
+
 ## Smoke Tests
 
 Manual checks Shaun performs in the rendered/previewed site.
 
 - [ ] Run `make dev`. Open `/resume.html`. Each changed line shows the new wording.
+- [ ] Open `/`, `/about.html`, `/stuff.html`, and one post. Each uses the dark gradient palette, and text is easy to read.
 - [ ] Open the page at phone width. No horizontal scroll appears. The new entry wraps cleanly.
 - [ ] Print to PDF. No entry, short section, or heading breaks across pages.
 - [ ] Copy the page text into a plain-text field. The species name appears with no asterisks.

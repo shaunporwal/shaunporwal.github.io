@@ -113,6 +113,17 @@ class TestSync(unittest.TestCase):
         self.assertEqual(data["datePublished"], "2025-03-05")
         self.assertEqual(data["author"], {"@type": "Person", "name": "Test Person", "url": "https://example.com/"})
 
+    def test_page_title_tag_comes_from_page_data(self):
+        (self.site_dir / "about.html").write_text(PAGE_TEMPLATE.format(title="Old title", h1="About", excerpt="hi"))
+        sync_seo.sync(self.repo_root)
+        self.assertIn("<title>About — Test Person</title>", (self.site_dir / "about.html").read_text())
+
+    def test_post_title_tag_comes_from_its_heading(self):
+        path = self.make_post("hello", "Hello & World")
+        path.write_text(path.read_text().replace("<title>Hello & World</title>", "<title>Stale</title>"))
+        sync_seo.sync(self.repo_root)
+        self.assertIn("<title>Hello &amp; World — Test Person</title>", path.read_text())
+
     def test_top_level_pages_have_no_noindex(self):
         (self.site_dir / "about.html").write_text(PAGE_TEMPLATE.format(title="About", h1="About", excerpt="hi"))
         sync_seo.sync(self.repo_root)
