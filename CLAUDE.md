@@ -16,7 +16,7 @@ When working on coding with me, follow this workflow.
 
 - Create a branch from current `main`, carry the approved changes into it, push to origin, and open a filled-in PR.
 - Branch naming convention: `<type>/<pithy-theme-with-dashes>`.
-- Use the PR Doc Open skill when opening the PR.
+- Use the PR Doc Open skill when opening the PR. Do this as soon as I approve the plan and the PR doc is written. Do not ask first. Do not wait for a separate "ready".
 - Never merge to `main`. Shaun is the only person allowed to merge PRs to `main`.
 
 ## 4. Build with TDD
@@ -48,6 +48,7 @@ When working on coding with me, follow this workflow.
 ## 8. Verification and Diagnostics Stay With the Agent
 
 - Run checks directly and report results; do not ask Shaun to generate diagnostic output.
+- Install a local tool that a check needs, such as a test browser, without asking. Ask first only when the install changes the repository or needs administrator rights.
 - Check CI when decision-relevant and wait for it before reporting a PR ready.
 
 ## 9. This Repository
@@ -56,3 +57,5 @@ When working on coding with me, follow this workflow.
 - Nav, SEO meta, the blog listing, and the sitemap are all generated (`scripts/sync_nav.py` etc.) — edit `templates/nav.html` or a post's own content, never the generated `<!-- ...:START -->` blocks directly.
 - `make dev` to preview, `make test` after changing anything in `scripts/`. Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`).
 - Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.
+- `docs/all-experiences.md` is the full personal record behind the resume. Update it in the same PR whenever a change alters a fact that it states.
+- The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.

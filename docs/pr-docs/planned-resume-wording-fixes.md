@@ -34,6 +34,8 @@ write the focused failing test before implementing changed behavior.
 - [ ] Junto bullet 2: replace the whole bullet with "Built a self-hosted **multi-agent AI system** (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for **market research** and **competitive analysis**; delivered a full ICP/GTM report and verified competitor benchmarks".
 - [ ] Education: delete the `sub` line from the Rutgers entry. Set the NTU `sub` line to "Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)". This replaces "MOE Scholarship recipient".
 - [x] `docs/all-experiences.md`: move the Huayu line from the Rutgers block to the NTU block. Replace "MOE Full Scholarship recipient".
+- [x] `CLAUDE.md`: record four rules. Open the PR at once. Install check tools without asking. Keep `docs/all-experiences.md` in sync. Treat hook-made changes as normal.
+- [ ] `tests/test_resume_page_count.sh`: when the PDF render fails, print the error and the hint `npx playwright install chromium`. Today the test exits with no message.
 - [ ] Run `make sync`. Check that the diff of `site/resume.html` shows only these four changes. The pre-commit hook also refreshes the dcurves download count. Ignore that change.
 
 ### Tier 2 — Italic token in the resume markup
@@ -84,6 +86,8 @@ If Shaun does not confirm the details, Tier 3 does not ship. Tiers 1 and 2 still
 - One new inline markup token (`*italic*`) with tests.
 - One new Experience entry, after confirmation.
 - One matching fix in `docs/all-experiences.md` for the scholarship facts.
+- Four workflow rules in `CLAUDE.md`, from Shaun's corrections.
+- A clear error message in the page-count test.
 
 ## Non-Goals
 
