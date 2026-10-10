@@ -97,7 +97,7 @@ Manual checks Shaun performs in the rendered/previewed site.
 
 - Edit `data/experiences.json`, never a generated block. That file is the single source of truth for the resume and for `docs/all-experiences.md`.
 - The `resume` key on an item is the switch that puts it on the resume.
-- Where the two old files disagreed, the resume value wins. The PR description lists each case.
+- Where the two old files disagreed, the resume value wins. "Resolved Conflicts" lists each case.
 - Keep the Huayu scholarship line on the NTU entry only. Shaun confirms the Rutgers line and the NTU line name the same scholarship.
 - Add an italic token to the parser instead of hand-writing HTML. All resume markup stays in one place.
 - The resume has no page limit. Page breaks must be clean. Shaun set this rule.
@@ -108,6 +108,19 @@ Manual checks Shaun performs in the rendered/previewed site.
 Shaun confirmed these details for the NTU entry. The date is August 2017. The PI is Prof. Jiun-Hong Chen. The work studied gene expression during regeneration with whole-mount in situ hybridization. *Aeolosoma viride* regenerates both halves after a cut.
 
 The NTU work did not study NR2B. An earlier record put NR2B and self-depurination (SDP) under NTU by mistake. Both came from unpaid independent study with Prof. Fresco. That study did not produce a paper. It stays in `docs/all-experiences.md` only, and it does not go on the resume.
+
+## Resolved Conflicts
+
+The old resume file and the old record disagreed on these facts. The record now uses the resume value. Shaun must check each one.
+
+- Location: "Metuchen, NJ" (the record said "New York, NY").
+- Mount Sinai degree date: February 2021 (the record said March 2021).
+- NTU certificate name: "Certificate in Advanced Mandarin Chinese" (the record said "Certificate in Advanced Chinese").
+- Hindi: fluent (the record said native).
+- Japanese: conversational (the record said basic/conversational).
+- Spanish: conversational (the record said basic).
+
+The record keeps one internal conflict as it is. The no-more-sql project says "serving 50+ Data Scientists". The MSKCC entry says no usage data supports a user count.
 
 ## Scope
 
