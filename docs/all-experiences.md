@@ -144,12 +144,11 @@ Completed: March 2021 | New York, NY
 **Rutgers University — School of Engineering, New Brunswick**
 Bachelor's in Biomedical Engineering; Major in Chinese
 Completed: May 2019 | New Brunswick, NJ
-Huayu Enrichment Scholarship — Taiwan Ministry of Education (MOE)
 
 **National Taiwan University**
 Certificate in Advanced Chinese
 Completed: August 2015 | Taipei, Taiwan
-MOE Full Scholarship recipient
+Huayu Enrichment Scholarship — Taiwan Ministry of Education (MOE)
 
 ## Projects & Notable Achievements
 

@@ -18,6 +18,10 @@ The Rutgers entry and the National Taiwan University (NTU) entry both show a Tai
 
 The NTU research work is not on the resume. The resume markup has no italic token, so the species name needs a small parser change.
 
+The resume prints to 2 pages today. The page-count test allows a maximum of 2 pages. A new entry can push the resume to 3 pages. The test needs Playwright Chromium. Run `npx playwright install chromium` once per machine. This adds nothing to the repo.
+
+The personal record `docs/all-experiences.md` held the same stale scholarship facts. It listed the Huayu line under Rutgers. It also said "MOE Full Scholarship" for NTU. An earlier resume fix already removed "Full" because the scholarship was not a full one.
+
 ## Implementation Checklist
 
 Ordered from least consequential/complex to highest blast radius. Follow TDD:
@@ -29,7 +33,8 @@ write the focused failing test before implementing changed behavior.
 - [ ] Skills, Domain: replace "Chemical regulatory compliance / ISO" with "Chemical inventory and regulatory documentation (ISO certification in progress)".
 - [ ] Junto bullet 2: replace the whole bullet with "Built a self-hosted **multi-agent AI system** (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for **market research** and **competitive analysis**; delivered a full ICP/GTM report and verified competitor benchmarks".
 - [ ] Education: delete the `sub` line from the Rutgers entry. Set the NTU `sub` line to "Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)". This replaces "MOE Scholarship recipient".
-- [ ] Run `make sync`. Check that the diff of `site/resume.html` shows only these four changes.
+- [x] `docs/all-experiences.md`: move the Huayu line from the Rutgers block to the NTU block. Replace "MOE Full Scholarship recipient".
+- [ ] Run `make sync`. Check that the diff of `site/resume.html` shows only these four changes. The pre-commit hook also refreshes the dcurves download count. Ignore that change.
 
 ### Tier 2 — Italic token in the resume markup
 
@@ -51,7 +56,7 @@ Manual checks Shaun performs in the rendered/previewed site.
 
 - [ ] Run `make dev`. Open `/resume.html`. Each changed line shows the new wording.
 - [ ] Open the page at phone width. No horizontal scroll appears. The new entry wraps cleanly.
-- [ ] Print to PDF. The page count matches the page count before this PR.
+- [ ] Print to PDF. The resume still prints to 2 pages, the same as before this PR.
 - [ ] Copy the page text into a plain-text field. The species name appears with no asterisks.
 
 ## Product Decisions
@@ -78,12 +83,13 @@ If Shaun does not confirm the details, Tier 3 does not ship. Tiers 1 and 2 still
 - Four wording changes in `data/resume.json`.
 - One new inline markup token (`*italic*`) with tests.
 - One new Experience entry, after confirmation.
+- One matching fix in `docs/all-experiences.md` for the scholarship facts.
 
 ## Non-Goals
 
 - No change to layout, styles, links, dates, or any other resume text.
 - No new claims beyond the confirmed NTU entry.
-- No change to `docs/all-experiences.md` in this PR. It still lists the Huayu scholarship under Rutgers. Shaun decides whether to sync it.
+- No other change to `docs/all-experiences.md`. The Junto, skills, and NTU research wording stay as they are in that record.
 - No new check that the Experience list stays in date order.
 
 ## Related Docs
