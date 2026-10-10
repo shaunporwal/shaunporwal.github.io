@@ -1,27 +1,24 @@
 /* Shared minimal stylesheet for the static site (no framework). */
 
 :root {
-  /* Palette: dark gradient with bright accents. Every color on the site comes from here. */
-  --black: #000000;
-  --white: #ffffff;
-  --lime: #c3f04b;
-  --yellow: #f5cf4a;
-  --blue: #3a7ce8;
-  --ember: #5c1208;
-  --midnight: #0d1b5e;
+  /* Palette (colours.cafe): navy, cream, apricot, coral. Every color on the site comes from here. */
+  --navy: #3a3f58;
+  --cream: #ece6cd;
+  --apricot: #f9ac67;
+  --coral: #ee6a59;
 
   /* Roles */
-  --bg: var(--black);
-  --text: var(--white);
-  --muted: rgba(255, 255, 255, 0.68);
-  --line: rgba(255, 255, 255, 0.16);
-  --line-strong: rgba(255, 255, 255, 0.3);
-  --surface: rgba(255, 255, 255, 0.05);
-  --nav-bg: rgba(0, 0, 0, 0.55);
-  --link: var(--lime);
-  --link-hover: var(--yellow);
-  --tag: var(--blue);
-  --on-accent: var(--black);
+  --bg: var(--navy);
+  --text: var(--cream);
+  --muted: rgba(236, 230, 205, 0.72);
+  --line: rgba(236, 230, 205, 0.18);
+  --line-strong: rgba(236, 230, 205, 0.32);
+  --surface: rgba(236, 230, 205, 0.06);
+  --nav-bg: rgba(0, 0, 0, 0.18);
+  --link: var(--apricot);
+  --link-hover: var(--coral);
+  --tag: var(--coral);
+  --on-accent: var(--navy);
 }
 
 * { box-sizing: border-box; }
@@ -35,13 +32,7 @@ pre, code { overflow-x: auto; }
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(55% 45% at 12% 18%, var(--ember), transparent 70%),
-    radial-gradient(50% 40% at 88% 12%, var(--midnight), transparent 70%),
-    radial-gradient(60% 50% at 75% 90%, var(--ember), transparent 70%),
-    radial-gradient(45% 40% at 20% 85%, var(--midnight), transparent 70%),
-    var(--bg);
-  background-attachment: fixed;
+  background: var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   line-height: 1.6;
@@ -134,8 +125,8 @@ a:hover, a:focus { color: var(--link-hover); }
 
 .site-nav a.nav-link:hover,
 .site-nav a.nav-link:focus {
-  border-color: var(--lime);
-  background: var(--lime);
+  border-color: var(--apricot);
+  background: var(--apricot);
   color: var(--on-accent);
 }
 

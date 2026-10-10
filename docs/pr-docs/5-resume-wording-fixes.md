@@ -134,7 +134,7 @@ Checklist:
 
 ### Tier 9 — Palette, 3D files, and the last driftable literals
 
-- [x] Replace the site palette with the dark gradient palette: black, white, lime, yellow, and blue. Put every color in a `:root` token in `site/styles/site.css`. The resume keeps its print palette.
+- [x] Replace the site palette with the colours.cafe palette: navy (`#3a3f58`) background, cream (`#ece6cd`) text, apricot (`#f9ac67`) links, and coral (`#ee6a59`) accents, with no gradient. Shaun rejected the first try, a dark gradient palette, because it looked like a disco. Put every color in a `:root` token in `site/styles/site.css`. The resume keeps its print palette.
 - [x] Add a test that fails on a color literal outside `:root` in `site/styles/site.css`.
 - [x] Move every `.glb`, `.blend`, and `.blend1` file from `site/media/` to `projects/website-models/` in the `3d-printing-lab` repo, through a branch and a PR there (3d-printing-lab PR 8).
 - [x] Remove the 3D model gallery and the `model-viewer` script from `stuff.html`. Update its description in `data/pages.json`.
@@ -150,7 +150,7 @@ Checklist:
 Manual checks Shaun performs in the rendered/previewed site.
 
 - [ ] Run `make dev`. Open `/resume.html`. Each changed line shows the new wording.
-- [ ] Open `/`, `/about.html`, `/stuff.html`, and one post. Each uses the dark gradient palette, and text is easy to read.
+- [ ] Open `/`, `/about.html`, `/stuff.html`, and one post. Each uses the navy, cream, apricot, and coral palette, and text is easy to read.
 - [ ] Open the page at phone width. No horizontal scroll appears. The new entry wraps cleanly.
 - [ ] Print to PDF. No entry, short section, or heading breaks across pages.
 - [ ] Copy the page text into a plain-text field. The species name appears with no asterisks.
