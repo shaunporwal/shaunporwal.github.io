@@ -122,12 +122,14 @@ May 2017 to September 2017 | Princeton, NJ
 - Developed algorithms in MATLAB and Java to locate self-depurinating sequences in DNA
 - Analyzed self-depurination mechanism effects on site-directed mutagenesis
 
-### National Taiwan University, Chen Laboratory — Research Intern
+### National Taiwan University, Lab of Prof. Jiun-Hong Chen — Research Intern
 August 2017 | Taipei, Taiwan
 
-- Novel research on mutagenic DNA SDP sites
+- Regeneration research in the freshwater annelid Aeolosoma viride (when cut in half, both halves regenerate)
+- Studied NR2B gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization
 - Investigated gene NR2B neurological significance
-- Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, In Situ Hybridization
+- Novel research on mutagenic DNA SDP sites
+- Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, whole-mount In Situ Hybridization
 
 ### Tokyo Chemical Industry Co., Ltd — Quality Control Intern
 June 2016 to July 2016 | Saitama, Japan

@@ -56,13 +56,14 @@ write the focused failing test before implementing changed behavior.
 - [x] Add `tests/test_resume_print_layout.py`. It renders the real PDF with Chromium, reads it with `pdftotext`, and runs the checks. It fails in CI when a tool is missing.
 - [x] Install `poppler-utils` in `.github/workflows/test.yaml`. Update `docs/development.md`. Remove the old test from the `Makefile`.
 
-### Tier 3 — NTU research entry (blocked until Shaun confirms the details)
+### Tier 3 — NTU research entry
 
-- [ ] Shaun confirms the entry details listed under Open Items.
-- [ ] Add one Experience entry between "Inorganic Manufacturing Associate — SPEX CertiPrep" and "Quality Control Intern — Tokyo Chemical Industry". The list stays in reverse-chronological order.
-- [ ] Entry format: title "Research Intern", org "Lab of Prof. Jiun-Hong Chen, National Taiwan University", meta "Summer 2017 · Taipei, Taiwan", one bullet.
-- [ ] Bullet text: "Performed whole-mount in situ hybridization to map gene expression during regeneration in the freshwater annelid *Aeolosoma viride*".
-- [ ] Run `make sync` and `make test`. The page count may grow. The print layout check must pass.
+- [x] Shaun confirms the entry details. Final details merge the AI draft with `docs/all-experiences.md`.
+- [x] Add one Experience entry between "Inorganic Manufacturing Associate — SPEX CertiPrep" and "Quality Control Intern — Tokyo Chemical Industry". The list stays in reverse-chronological order.
+- [x] Entry format: title "Research Intern", org "Lab of Prof. Jiun-Hong Chen, National Taiwan University", meta "Aug 2017 · Taipei, Taiwan", one bullet.
+- [x] Bullet text: "Studied **NR2B** gene expression in the regenerating freshwater annelid *Aeolosoma viride* using **whole-mount in situ hybridization**".
+- [x] Update the NTU entry in `docs/all-experiences.md` to match.
+- [x] Run `make sync` and `make test`. The page count may grow. The print layout check must pass.
 
 ## Smoke Tests
 
@@ -81,23 +82,15 @@ Manual checks Shaun performs in the rendered/previewed site.
 - The resume has no page limit. Page breaks must be clean. Shaun set this rule.
 - A short section moves whole to the next page. Only Experience may span pages, and only between entries.
 
-## Open Items
+## Confirmed Details
 
-Shaun must confirm these details before Tier 3 starts. Shaun gave the PI surname "Chen". A second AI tool supplied the other details. No one has verified them.
-
-- Full PI name: "Jiun-Hong Chen".
-- Dates: "Summer 2017".
-- Method: whole-mount in situ hybridization.
-- Subject: gene expression during regeneration in *Aeolosoma viride*.
-- Title: "Research Intern".
-
-If Shaun does not confirm the details, Tier 3 does not ship. Tiers 1 and 2 still ship.
+Shaun confirmed these details for the NTU entry. The date is August 2017. The PI is Prof. Jiun-Hong Chen. The work studied NR2B with whole-mount in situ hybridization. The research was mainly about regeneration, because *Aeolosoma viride* regenerates both halves after a cut.
 
 ## Scope
 
 - Four wording changes in `data/resume.json`.
 - One new inline markup token (`*italic*`) with tests.
-- One new Experience entry, after confirmation.
+- One new Experience entry for the NTU research.
 - One matching fix in `docs/all-experiences.md` for the scholarship facts.
 - `AGENTS.md` as the only instruction file, with `CLAUDE.md` removed.
 - Four workflow rules in `AGENTS.md`, from Shaun's corrections.
