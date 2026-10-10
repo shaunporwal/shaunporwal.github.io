@@ -29,6 +29,15 @@ class TestRenderHtml(unittest.TestCase):
     def test_bold_content_is_escaped(self):
         self.assertEqual(render_html("**A & B**"), "<strong>A &amp; B</strong>")
 
+    def test_italic_renders_em_tag(self):
+        self.assertEqual(render_html("in *Aeolosoma viride* today"), "in <em>Aeolosoma viride</em> today")
+
+    def test_italic_content_is_escaped(self):
+        self.assertEqual(render_html("*A & B*"), "<em>A &amp; B</em>")
+
+    def test_bold_and_italic_sit_side_by_side(self):
+        self.assertEqual(render_html("**b** and *i*"), "<strong>b</strong> and <em>i</em>")
+
     def test_nested_tokens_are_not_supported(self):
         # Documents a real limitation hit in data/resume.json: **{dcurves}**
         # renders the token literally instead of substituting it, since bold
@@ -63,6 +72,9 @@ class TestRenderText(unittest.TestCase):
 
     def test_bold_markers_are_stripped(self):
         self.assertEqual(render_text("Delivered **$1M+** in value"), "Delivered $1M+ in value")
+
+    def test_italic_markers_are_stripped(self):
+        self.assertEqual(render_text("in *Aeolosoma viride* today"), "in Aeolosoma viride today")
 
 
 if __name__ == "__main__":

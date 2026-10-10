@@ -29,20 +29,21 @@ write the focused failing test before implementing changed behavior.
 
 ### Tier 1 — Wording changes in `data/resume.json`
 
-- [ ] Junto bullet 1: replace "with full regulatory compliance and version-controlled document provenance" with "with regulatory document management and version-controlled provenance".
-- [ ] Skills, Domain: replace "Chemical regulatory compliance / ISO" with "Chemical inventory and regulatory documentation (ISO certification in progress)".
-- [ ] Junto bullet 2: replace the whole bullet with "Built a self-hosted **multi-agent AI system** (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for **market research** and **competitive analysis**; delivered a full ICP/GTM report and verified competitor benchmarks".
-- [ ] Education: delete the `sub` line from the Rutgers entry. Set the NTU `sub` line to "Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)". This replaces "MOE Scholarship recipient".
+- [x] Junto bullet 1: replace "with full regulatory compliance and version-controlled document provenance" with "with regulatory document management and version-controlled provenance".
+- [x] Skills, Domain: replace "Chemical regulatory compliance / ISO" with "Chemical inventory and regulatory documentation (ISO certification in progress)".
+- [x] Junto bullet 2: replace the whole bullet with "Built a self-hosted **multi-agent AI system** (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for **market research** and **competitive analysis**; delivered a full ICP/GTM report and verified competitor benchmarks".
+- [x] Education: delete the `sub` line from the Rutgers entry. Set the NTU `sub` line to "Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)". This replaces "MOE Scholarship recipient".
 - [x] `docs/all-experiences.md`: move the Huayu line from the Rutgers block to the NTU block. Replace "MOE Full Scholarship recipient".
+- [x] Make `AGENTS.md` the real instruction file. It was a symlink to `CLAUDE.md`. Delete `CLAUDE.md`.
 - [x] `AGENTS.md`: record four rules. Open the PR at once. Install check tools without asking. Keep `docs/all-experiences.md` in sync. Treat hook-made changes as normal.
-- [ ] `tests/test_resume_page_count.sh`: when the PDF render fails, print the error and the hint `npx playwright install chromium`. Today the test exits with no message.
-- [ ] Run `make sync`. Check that the diff of `site/resume.html` shows only these four changes. The pre-commit hook also refreshes the dcurves download count. Ignore that change.
+- [x] `tests/test_resume_page_count.sh`: when the PDF render fails, print the error and the hint `npx playwright install chromium`. Today the test exits with no message.
+- [x] Run `make sync`. Check that the diff of `site/resume.html` shows only these four changes. The pre-commit hook also refreshes the dcurves download count. Ignore that change.
 
 ### Tier 2 — Italic token in the resume markup
 
-- [ ] Write failing tests in `tests/test_lib_resume.py`: `*text*` renders `<em>` in HTML, renders bare text in plain text, escapes its content, and does not break `**bold**`.
-- [ ] Add the `*text*` token to `scripts/lib_resume.py`. Update the module docstring. Match `**bold**` before `*italic*`.
-- [ ] Run `make test`. All existing tests must pass.
+- [x] Write failing tests in `tests/test_lib_resume.py`: `*text*` renders `<em>` in HTML, renders bare text in plain text, escapes its content, and does not break `**bold**`.
+- [x] Add the `*text*` token to `scripts/lib_resume.py`. Update the module docstring. Match `**bold**` before `*italic*`. Replace the `if`/`elif` chains on token type with tables of named handlers.
+- [x] Run `make test`. All existing tests must pass.
 
 ### Tier 3 — NTU research entry (blocked until Shaun confirms the details)
 
@@ -86,6 +87,7 @@ If Shaun does not confirm the details, Tier 3 does not ship. Tiers 1 and 2 still
 - One new inline markup token (`*italic*`) with tests.
 - One new Experience entry, after confirmation.
 - One matching fix in `docs/all-experiences.md` for the scholarship facts.
+- `AGENTS.md` as the only instruction file, with `CLAUDE.md` removed.
 - Four workflow rules in `AGENTS.md`, from Shaun's corrections.
 - A clear error message in the page-count test.
 

@@ -13,8 +13,8 @@
       "org": "Junto Technologies",
       "meta": "Mar 2026 – Present · Metuchen, NJ",
       "bullets": [
-        "Built a full-stack (design, client, server, database, authentication) **chemical inventory management system** ([cheminventory.co](https://cheminventory.co)) that tracks **$1M+** in yearly chemical order volume with full regulatory compliance and version-controlled document provenance",
-        "Architected a self-hosted, **autonomous multi-agent AI swarm** (Tailscale device fleet, local LLMs via vLLM/llama.cpp, shared task queue, persistent memory, self-improving skills, cron-scheduled runs, promptfoo evals, custom monitoring dashboard, Apple Watch voice control) to run **market research**, **competitive analysis**, and **go-to-market strategy** — delivering a full ICP/GTM report and verified competitor benchmarks",
+        "Built a full-stack (design, client, server, database, authentication) **chemical inventory management system** ([cheminventory.co](https://cheminventory.co)) that tracks **$1M+** in yearly chemical order volume with regulatory document management and version-controlled provenance",
+        "Built a self-hosted **multi-agent AI system** (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for **market research** and **competitive analysis**; delivered a full ICP/GTM report and verified competitor benchmarks",
         "Standardizing processes at a specialty chemicals company to achieve **ISO certification**",
         "Served as Mandarin/English translator at **CPHI Shanghai 2026** for a specialty chemicals company"
       ]
@@ -98,21 +98,20 @@
     {
       "degree": "B.S., Biomedical Engineering & Chinese",
       "school": "Rutgers University–New Brunswick",
-      "meta": "May 2019 · New Brunswick, NJ",
-      "sub": "Huayu Enrichment Scholarship, Taiwan MOE"
+      "meta": "May 2019 · New Brunswick, NJ"
     },
     {
       "degree": "Certificate in Advanced Mandarin Chinese",
       "school": "National Taiwan University",
       "meta": "Aug 2015 · Taipei, Taiwan",
-      "sub": "MOE Scholarship recipient"
+      "sub": "Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)"
     }
   ],
   "skills": {
     "Programming": "Python, R, TypeScript, SQL, Bash, HTML/CSS, Docker, Git",
     "AI / ML": "LLM agent orchestration, multi-agent/swarm systems, local LLM deployment (vLLM, llama.cpp), self-hosted GPU/edge infra (Tailscale), LLM evals (promptfoo, Argilla), autonomous scheduling, RAG, fine-tuning, image segmentation, embedding classifiers",
     "Statistics": "GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis, survival analysis",
-    "Domain": "Chemical regulatory compliance / ISO, bioinformatics (SV detection, RNA-seq)",
+    "Domain": "Chemical inventory and regulatory documentation (ISO certification in progress), bioinformatics (SV detection, RNA-seq)",
     "Languages": "English (native); Mandarin Chinese, Hindi (fluent); Japanese, Spanish (conversational)",
     "Certifications": "Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)"
   }

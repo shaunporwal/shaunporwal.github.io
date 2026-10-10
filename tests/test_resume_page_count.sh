@@ -17,7 +17,12 @@ if ! command -v npx >/dev/null 2>&1; then
   exit 0
 fi
 
-npx --yes playwright pdf "file://$resume_file" "$tmp_pdf" >/dev/null 2>&1
+render_log="$tmp_dir/render.log"
+if ! npx --yes playwright pdf "file://$resume_file" "$tmp_pdf" >"$render_log" 2>&1; then
+  echo "test_resume_page_count: PDF render failed. If Chromium is missing, run: npx playwright install chromium" >&2
+  tail -n 5 "$render_log" >&2
+  exit 1
+fi
 
 # Page objects (/Type /Page, not /Type /Pages) are one per printed page in a
 # Chromium-generated PDF; \b distinguishes the two (a plain substring match
