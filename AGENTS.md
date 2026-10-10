@@ -58,5 +58,5 @@ When working on coding with me, follow this workflow.
 - `make dev` to preview, `make test` after changing anything in `scripts/`. Enable `.githooks/pre-commit` once per clone (`git config core.hooksPath .githooks`).
 - Treat publishing to `main`/GitHub Pages as a production deployment requiring named confirmation.
 - The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
-- `docs/all-experiences.md` is the full personal record behind the resume. Update it in the same PR whenever a change alters a fact that it states.
+- `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. Never edit either output by hand. The `resume` key on an item puts it on the resume.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.

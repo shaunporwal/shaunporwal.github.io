@@ -138,10 +138,8 @@ class TestSync(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         self.repo_root = pathlib.Path(self.tmp.name)
-        (self.repo_root / "data").mkdir()
         (self.repo_root / "site").mkdir()
-        import json
-        (self.repo_root / "data" / "resume.json").write_text(json.dumps(SAMPLE_DATA))
+        context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
 
     def test_replaces_marker_block(self):
         (self.repo_root / "site" / "resume.html").write_text(RESUME_TEMPLATE)
@@ -149,6 +147,8 @@ class TestSync(unittest.TestCase):
         self.assertTrue(changed)
         text = (self.repo_root / "site" / "resume.html").read_text()
         self.assertIn("Test Person", text)
+        self.assertIn("Short <strong>detail</strong>", text)
+        self.assertNotIn("Hidden Co", text)
         self.assertNotIn("OLD CONTENT", text)
 
     def test_no_markers_returns_false(self):

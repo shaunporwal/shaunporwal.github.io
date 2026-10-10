@@ -39,7 +39,7 @@ class TestRenderHtml(unittest.TestCase):
         self.assertEqual(render_html("**b** and *i*"), "<strong>b</strong> and <em>i</em>")
 
     def test_nested_tokens_are_not_supported(self):
-        # Documents a real limitation hit in data/resume.json: **{dcurves}**
+        # Documents a real limitation hit in the resume data: **{dcurves}**
         # renders the token literally instead of substituting it, since bold
         # content is captured as raw text, not re-parsed. Authors must keep
         # tokens side by side, not nested — e.g. "**bold** {dcurves}".

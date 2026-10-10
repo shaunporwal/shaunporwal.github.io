@@ -1,6 +1,6 @@
-"""Shared mini-markup parser for data/resume.json content.
+"""Shared mini-markup parser for resume strings in data/experiences.json.
 
-Bullet/sub/title strings in resume.json may contain:
+Bullet/sub/title strings that reach the resume may contain:
   [text](url)   -> a link
   `text`        -> inline code
   **text**      -> bold (use sparingly — real impact metrics/standout tech

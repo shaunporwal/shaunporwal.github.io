@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Single source of truth for resume content: data/resume.json.
+"""Renders the resume from data/experiences.json, the single experience record.
+
+Only the items whose `resume` switch is set reach the resume (see
+lib_record.py). The record itself is rendered by gen_record.py.
 
 - `python3 scripts/gen_resume.py` regenerates the <!-- RESUME:START -->
-  block in site/resume.html from data/resume.json. Wired into
-  .githooks/pre-commit (via `make sync`) so resume.html can't drift from
-  the JSON.
+  block in site/resume.html. Wired into .githooks/pre-commit (via
+  `make sync`) so resume.html can't drift from the record.
 - `python3 scripts/gen_resume.py --text` prints a plain-text version
   (links as "text (url)") to stdout, meant for copy-pasting into
   LinkedIn or anywhere else that doesn't take HTML — one source, two
@@ -17,21 +19,23 @@ same `dcurves-downloads` CSS class, so ordering matters but content
 doesn't need to be re-fetched here.
 """
 import argparse
-import json
 import pathlib
 import re
 import urllib.request
 
 try:
+    from lib_record import load_record, resume_view
     from lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
 except ImportError:
+    from scripts.lib_record import load_record, resume_view
     from scripts.lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
 
 MARKER_RE = re.compile(r"<!-- RESUME:START -->.*?<!-- RESUME:END -->", re.DOTALL)
 
 
 def load_data(repo_root: pathlib.Path) -> dict:
-    return json.loads((repo_root / "data" / "resume.json").read_text())
+    """The resume view of the record: {name, contact, experience, projects, education, skills}."""
+    return resume_view(load_record(repo_root))
 
 
 def _experience_html(e: dict) -> str:
@@ -225,7 +229,7 @@ def main():
         return
 
     if sync(repo_root):
-        print("updated site/resume.html from data/resume.json")
+        print("updated site/resume.html from data/experiences.json")
     else:
         print("resume already in sync")
 

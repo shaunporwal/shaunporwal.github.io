@@ -9,6 +9,7 @@ test:
 
 sync:
 	python3 scripts/gen_resume.py
+	python3 scripts/gen_record.py
 	./scripts/update-dcurves-downloads.sh
 	python3 scripts/sync_nav.py
 	python3 scripts/sync_seo.py

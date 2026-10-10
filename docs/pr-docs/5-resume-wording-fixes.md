@@ -1,4 +1,4 @@
-# PR 5: Resume Wording Fixes and NTU Research Entry
+# PR 5: Resume Wording Fixes, NTU Research Entry, and One Experience Record
 
 Status: underway
 
@@ -10,7 +10,7 @@ Make the resume text match the real status of each claim. Fix two overclaims, sh
 
 ## Context
 
-The resume page `site/resume.html` is generated from `data/resume.json`. The change must go in the JSON file, then `make sync` regenerates the HTML.
+At the start of this PR, `site/resume.html` was generated from `data/resume.json`. Tiers 1 to 3 edit that file. Tier 4 replaces it with `data/experiences.json`.
 
 Two lines currently overclaim. Junto bullet 1 says "full regulatory compliance". The Domain skill says "Chemical regulatory compliance / ISO", but ISO certification is still in progress.
 
@@ -65,6 +65,23 @@ write the focused failing test before implementing changed behavior.
 - [x] Update the NTU entry in `docs/all-experiences.md` to match.
 - [x] Run `make sync` and `make test`. The page count may grow. The print layout check must pass.
 
+### Tier 4 — One experience record
+
+Shaun wants one source of truth for all experience facts. A flag on each item selects what goes on the resume.
+
+- [x] Add `data/experiences.schema.json`. It declares the record format as JSON Schema.
+- [x] Write failing tests in `tests/test_lib_schema.py`. Then add `scripts/lib_schema.py`, a small validator for the JSON Schema subset that the record uses. The repo has no third-party packages.
+- [x] Write failing tests in `tests/test_lib_record.py`. Then add `scripts/lib_record.py`. It loads and validates the record, formats dates, and builds the resume view.
+- [x] The `resume` key is the switch. `true` puts an item on the resume as it is. A string or an object replaces the text or fields on the resume only.
+- [x] Add `data/experiences.json`. Move every fact from `data/resume.json` and `docs/all-experiences.md` into it. Delete `data/resume.json`.
+- [x] Point `scripts/gen_resume.py` at the resume view. The resume output must not change, except the NTU bullet.
+- [x] Write failing tests in `tests/test_gen_record.py`. Then add `scripts/gen_record.py`. It generates the record block in `docs/all-experiences.md`.
+- [x] Remove the phone number. The resume does not show it.
+- [x] NTU entry: add the presentation and the Mandarin facts. Use one resume bullet for the entry.
+- [x] Run `gen_record.py` from `make sync` and the pre-commit hook. Stage `docs/all-experiences.md` in the hook.
+- [x] Update `AGENTS.md` and `docs/development.md`.
+- [x] Run `make sync` and `make test`. The print layout check must pass.
+
 ## Smoke Tests
 
 Manual checks Shaun performs in the rendered/previewed site.
@@ -73,10 +90,14 @@ Manual checks Shaun performs in the rendered/previewed site.
 - [ ] Open the page at phone width. No horizontal scroll appears. The new entry wraps cleanly.
 - [ ] Print to PDF. No entry, short section, or heading breaks across pages.
 - [ ] Copy the page text into a plain-text field. The species name appears with no asterisks.
+- [ ] Open `docs/all-experiences.md`. It shows every entry, including entries that are not on the resume.
+- [ ] Change one bullet in `data/experiences.json` and commit. The resume and the record both show the change.
 
 ## Product Decisions
 
-- Edit `data/resume.json`, never the generated block in `site/resume.html`. The JSON file is the single source of truth.
+- Edit `data/experiences.json`, never a generated block. That file is the single source of truth for the resume and for `docs/all-experiences.md`.
+- The `resume` key on an item is the switch that puts it on the resume.
+- Where the two old files disagreed, the resume value wins. The PR description lists each case.
 - Keep the Huayu scholarship line on the NTU entry only. Shaun confirms the Rutgers line and the NTU line name the same scholarship.
 - Add an italic token to the parser instead of hand-writing HTML. All resume markup stays in one place.
 - The resume has no page limit. Page breaks must be clean. Shaun set this rule.
@@ -97,12 +118,13 @@ The NTU work did not study NR2B. An earlier record put NR2B and self-depurinatio
 - `AGENTS.md` as the only instruction file, with `CLAUDE.md` removed.
 - Four workflow rules in `AGENTS.md`, from Shaun's corrections.
 - A print layout check that replaces the 2-page cap test.
+- One experience record, `data/experiences.json`, that generates the resume and `docs/all-experiences.md`.
 
 ## Non-Goals
 
 - No change to layout, styles, links, dates, or any other resume text.
 - No new claims beyond the confirmed NTU entry.
-- No other change to `docs/all-experiences.md`. The Junto, skills, and NTU research wording stay as they are in that record.
+- No rewording of record bullets during the move. The record keeps its own wording.
 - No new check that the Experience list stays in date order.
 
 ## Related Docs

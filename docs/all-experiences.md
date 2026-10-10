@@ -1,13 +1,15 @@
 # Shaun Porwal — Complete Experience Record
 
-Personal reference only — **not** wired into any generation script (unlike `data/resume.json`, which is the actual source for `site/resume.html`). This is the fuller, unedited work history to pull from when tailoring `data/resume.json` for a specific application, or when `data/resume.json` needs a bullet it doesn't currently have. Update by hand as things change; nothing here regenerates automatically.
+This file shows the full experience record. It is personal reference only.
 
-Originally maintained in a separate `jobapps` repo (`resume/all_experiences.txt`); copied here so it lives alongside the resume it feeds, instead of a second repo to keep in sync.
+Do not edit the generated block below. `scripts/gen_record.py` writes it from `data/experiences.json`. That JSON file is the single source of truth for every experience fact. The resume (`site/resume.html`) comes from the same file.
 
-Email: shaun.porwal@gmail.com | Phone: (732) 318-7592
-Location: New York, NY | Website: shaunporwal.com
-GitHub: github.com/shaunporwal | LinkedIn: linkedin.com/in/shaunporwal
-Citizenship: U.S. Citizen
+To put an item on the resume, set its `resume` key in `data/experiences.json`. A `resume` string or object changes the wording on the resume only. This file always shows the full wording. See `docs/development.md` for the format.
+
+This record started in a separate `jobapps` repo (`resume/all_experiences.txt`).
+
+<!-- RECORD:START -->
+Location: Metuchen, NJ | Email: shaun.porwal@gmail.com | Website: [shaunporwal.com](https://shaunporwal.com) | GitHub: [github.com/shaunporwal](https://github.com/shaunporwal) | Company: [cheminventory.co](https://cheminventory.co) | LinkedIn: [linkedin.com/in/shaunporwal](https://linkedin.com/in/shaunporwal) | Citizenship: U.S. Citizen
 
 ## Professional Experience
 
@@ -116,7 +118,7 @@ June 2017 to July 2017 | North Brunswick, NJ
 - Supplement development: granulation, formulations, fluid bed drying, friability testing
 - Market research and regulatory document indexing (MSDS, CoA, Vegan, Halal, Kosher certifications)
 
-### Independent Study with Prof. Fresco (Princeton University, emeritus) — Unpaid
+### Prof. Fresco, Princeton University (emeritus) — Independent Study (unpaid)
 May 2017 to September 2017 | Princeton, NJ
 
 - Independent study, not a lab position; Prof. Fresco was professor emeritus. No paper resulted.
@@ -125,11 +127,13 @@ May 2017 to September 2017 | Princeton, NJ
 - Read about self-depurination effects on site-directed mutagenesis
 - Explored the NR2B gene and its neurological significance
 
-### National Taiwan University, Lab of Prof. Jiun-Hong Chen — Research Intern
+### Lab of Prof. Jiun-Hong Chen, National Taiwan University — Research Intern
 August 2017 | Taipei, Taiwan
 
 - Regeneration research in the freshwater annelid Aeolosoma viride (when cut in half, both halves regenerate)
 - Studied gene expression in regenerating Aeolosoma viride using whole-mount in situ hybridization
+- Presented findings on hybridization results and annelid survival rates
+- Conducted all study and lab work in Mandarin Chinese
 - Laboratory techniques: RNA extraction, RT-PCR, TA Cloning, whole-mount In Situ Hybridization
 
 ### Tokyo Chemical Industry Co., Ltd — Quality Control Intern
@@ -137,21 +141,22 @@ June 2016 to July 2016 | Saitama, Japan
 
 - 160 hours training in instrumentation: GC, HPLC, NMR, IR, and wet-lab analysis
 - Completed 5+ QA forms/specs daily
+- Assisted with Japanese/English translation for the team
 
 ## Education
 
 **Icahn School of Medicine at Mount Sinai**
 Master's in Biomedical Data Science
-Completed: March 2021 | New York, NY
+Completed: February 2021 | New York, NY
 
 **Rutgers University — School of Engineering, New Brunswick**
 Bachelor's in Biomedical Engineering; Major in Chinese
 Completed: May 2019 | New Brunswick, NJ
 
 **National Taiwan University**
-Certificate in Advanced Chinese
+Certificate in Advanced Mandarin Chinese
 Completed: August 2015 | Taipei, Taiwan
-Huayu Enrichment Scholarship — Taiwan Ministry of Education (MOE)
+Huayu Enrichment Scholarship, Taiwan Ministry of Education (MOE)
 
 ## Projects & Notable Achievements
 
@@ -170,6 +175,10 @@ https://github.com/ygivenx/llmtag
 https://github.com/juntotechnologies/no-more-sql
 - Llama3.1:70B + RAG pipeline with Streamlit and FAISS
 - Secure text-to-SQL conversion for MSKCC, serving 50+ Data Scientists
+
+**cheminventory.co**
+[cheminventory.co](https://cheminventory.co)
+Full-stack chemical inventory management and regulatory compliance platform built for Junto Technologies.
 
 **Statistical Contributions to Landmark Paper** (March 2025)
 https://pubmed.ncbi.nlm.nih.gov/40073938/
@@ -194,14 +203,16 @@ https://www.youtube.com/watch?v=sHFZu_TLaN4
 **Statistical Methods:** GAM, CoxPH, Kaplan-Meier, logistic regression, Decision Curve Analysis (DCA), survival analysis, multi-variate analysis
 **Bioinformatics:** RNA-seq pipelines, structural variant detection (Delly, SvABA, Manta, DRAGEN), Circos plots, genomic R libraries
 **Visualization & Dashboards:** RShiny, ggplot2, Circos, heat maps, scatter plots, stacked bar plots, custom fleet-monitoring dashboards (Glances)
+**Domain:** Chemical inventory and regulatory documentation (ISO certification in progress), bioinformatics (SV detection, RNA-seq)
+**Certifications:** Epic – Clinical, Epic – Reporting, Advanced Mandarin Chinese (NTU)
 
 ## Languages
 
 - English — Native
-- Hindi — Native
 - Mandarin Chinese — Fluent (passed into advanced division at Chinese Bridge)
-- Japanese — Basic/Conversational
-- Spanish — Basic
+- Hindi — Fluent
+- Japanese — Conversational
+- Spanish — Conversational
 
 ## Publications
 
@@ -210,3 +221,4 @@ Google Scholar: https://scholar.google.com/citations?hl=en&user=eR7hro0AAAAJ
 - Pellegrino F, et al. "Prostate-specific Antigen Density Cutoff of 0.15 ng/ml/cc..." Eur Urol Focus. 2023 Mar;9(2):291-297.
 - Pellegrino F, et al. "The effect of the da Vinci® Vessel Sealer on robot-assisted laparoscopic prostatectomy complications." J Robot Surg. 2023 Apr 12.
 - Testicular cancer post-chemotherapy RPLND landmark study (2025) — https://pubmed.ncbi.nlm.nih.gov/40073938/
+<!-- RECORD:END -->

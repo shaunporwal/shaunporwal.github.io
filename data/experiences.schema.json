@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Experience record",
+  "description": "The single record of every experience fact. The resume key on an item is the switch that puts it on the resume.",
+  "type": "object",
+  "required": ["name", "contact", "experience", "education", "projects", "skills", "languages", "publications"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {"type": "string"},
+    "contact": {"type": "array", "items": {"$ref": "#/$defs/contact"}},
+    "experience": {"type": "array", "items": {"$ref": "#/$defs/experience"}},
+    "education": {"type": "array", "items": {"$ref": "#/$defs/education"}},
+    "projects": {"type": "array", "items": {"$ref": "#/$defs/project"}},
+    "skills": {"type": "array", "items": {"$ref": "#/$defs/skill"}},
+    "languages": {"type": "array", "items": {"$ref": "#/$defs/language"}},
+    "publications": {
+      "type": "object",
+      "required": ["notes", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "notes": {"$ref": "#/$defs/lines"},
+        "items": {"$ref": "#/$defs/lines"}
+      }
+    }
+  },
+  "$defs": {
+    "lines": {"type": "array", "items": {"type": "string"}},
+    "month": {"type": "string", "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])$"},
+    "on": {"description": "Puts the item on the resume as it is.", "enum": [true]},
+    "contact": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {"type": "string"},
+        "value": {"type": "string"},
+        "resume": {"$ref": "#/$defs/on"}
+      }
+    },
+    "bullet": {
+      "description": "text shows in the record. resume: true shows text on the resume; a resume string replaces it there. A bullet with only a resume string is a resume summary.",
+      "type": "object",
+      "anyOf": [{"required": ["text"]}, {"required": ["resume"], "properties": {"resume": {"type": "string"}}}],
+      "additionalProperties": false,
+      "properties": {
+        "text": {"type": "string"},
+        "resume": {"anyOf": [{"$ref": "#/$defs/on"}, {"type": "string"}]}
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": ["bullets"],
+      "additionalProperties": false,
+      "properties": {
+        "heading": {"type": "string"},
+        "resume": {"description": "One resume bullet that sums up the whole group.", "type": "string"},
+        "bullets": {"type": "array", "items": {"$ref": "#/$defs/bullet"}}
+      }
+    },
+    "experience": {
+      "type": "object",
+      "required": ["title", "org", "start", "end", "location", "groups"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {"type": "string"},
+        "org": {"type": "string"},
+        "start": {"$ref": "#/$defs/month"},
+        "end": {"anyOf": [{"$ref": "#/$defs/month"}, {"enum": ["present"]}]},
+        "location": {"type": "string"},
+        "notes": {"$ref": "#/$defs/lines"},
+        "groups": {"type": "array", "items": {"$ref": "#/$defs/group"}},
+        "footer": {"$ref": "#/$defs/lines"},
+        "resume": {
+          "anyOf": [
+            {"$ref": "#/$defs/on"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {"title": {"type": "string"}, "org": {"type": "string"}}
+            }
+          ]
+        }
+      }
+    },
+    "education": {
+      "type": "object",
+      "required": ["degree", "school", "end", "location"],
+      "additionalProperties": false,
+      "properties": {
+        "degree": {"type": "string"},
+        "school": {"type": "string"},
+        "end": {"$ref": "#/$defs/month"},
+        "location": {"type": "string"},
+        "honors": {"type": "string"},
+        "resume": {
+          "anyOf": [
+            {"$ref": "#/$defs/on"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {"degree": {"type": "string"}, "school": {"type": "string"}}
+            }
+          ]
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": ["title", "links"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {"type": "string"},
+        "period": {"type": "string"},
+        "links": {"$ref": "#/$defs/lines"},
+        "description": {"type": "string"},
+        "bullets": {"type": "array", "items": {"$ref": "#/$defs/bullet"}},
+        "resume": {
+          "anyOf": [
+            {"$ref": "#/$defs/on"},
+            {
+              "type": "object",
+              "required": ["description"],
+              "additionalProperties": false,
+              "properties": {
+                "title": {"type": "string"},
+                "links": {"type": "string"},
+                "description": {"type": "string"}
+              }
+            }
+          ]
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "required": ["label"],
+      "anyOf": [{"required": ["text"]}, {"required": ["derive"]}],
+      "additionalProperties": false,
+      "properties": {
+        "label": {"type": "string"},
+        "text": {"type": "string"},
+        "derive": {"description": "Builds the text from another part of the record.", "enum": ["languages"]},
+        "resume": {
+          "anyOf": [
+            {"$ref": "#/$defs/on"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {"label": {"type": "string"}, "text": {"type": "string"}}
+            }
+          ]
+        }
+      }
+    },
+    "language": {
+      "type": "object",
+      "required": ["name", "level"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "level": {"enum": ["native", "fluent", "conversational"]},
+        "note": {"type": "string"}
+      }
+    }
+  }
+}
