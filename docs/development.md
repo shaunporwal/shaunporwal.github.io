@@ -53,11 +53,13 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 `data/pages.json` lists every top-level page with its SEO title and description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). `sync_seo.py`, `gen_sitemap.py`, and `sync_nav.py` all read it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
 
-(The `contact` list in `data/experiences.json` is intentionally separate, not merged into this — it's a deliberately curated subset/format for the resume specifically, e.g. no X/LinkedIn shown there but `cheminventory.co` included. `llms.txt` is also intentionally hand-curated/static rather than generated, per an earlier decision — see its own file for why.)
+(The `contact` list in `data/experiences.json` is intentionally separate, not merged into this — it's a deliberately curated subset/format for the resume specifically, e.g. no X/LinkedIn shown there but `cheminventory.co` included.)
+
+`scripts/gen_crawler_files.py` generates `site/CNAME` (the host of `base_url`), `site/robots.txt`, and `site/llms.txt` from `data/site.json`, `data/pages.json`, the current role in `data/experiences.json`, and the published posts. Do not edit these files by hand. `base_url` must be the domain that GitHub Pages serves without a redirect (`www.shaunporwal.com`), because every canonical URL starts with it.
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, `robots.txt`/`sitemap.xml`/`llms.txt`, `CNAME`.
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, and the generated `robots.txt`, `sitemap.xml`, `llms.txt`, and `CNAME`.
 - `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
 - `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).

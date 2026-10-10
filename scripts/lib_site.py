@@ -13,7 +13,11 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
 def load_site(repo_root: pathlib.Path) -> dict:
-    site = json.loads((repo_root / "data" / "site.json").read_text())
+    """Reads data/site.json, validates it against data/site.schema.json, and
+    adds the full default social image URL."""
+    data_dir = repo_root / "data"
+    site = json.loads((data_dir / "site.json").read_text())
+    validate(site, json.loads((data_dir / "site.schema.json").read_text()))
     site["default_og_image"] = site["base_url"] + site["og_image_path"]
     return site
 

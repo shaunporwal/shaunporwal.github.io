@@ -22,6 +22,7 @@ FAKE_SITE = {
     "linkedin": "https://linkedin.com/in/testperson",
     "cal": "https://cal.com/testperson",
     "og_image_path": "/media/avatar.jpg",
+    "summary": "A test summary.",
 }
 
 
@@ -42,8 +43,8 @@ def write_fake_site_data(repo_root: pathlib.Path) -> None:
     data_dir.mkdir(parents=True, exist_ok=True)
     (data_dir / "site.json").write_text(json.dumps(FAKE_SITE))
     (data_dir / "pages.json").write_text(json.dumps(FAKE_PAGES))
-    schema = (REPO_ROOT / "data" / "pages.schema.json").read_text()
-    (data_dir / "pages.schema.json").write_text(schema)
+    for schema in ("site.schema.json", "pages.schema.json"):
+        (data_dir / schema).write_text((REPO_ROOT / "data" / schema).read_text())
 
 
 def temp_repo(test: unittest.TestCase) -> pathlib.Path:

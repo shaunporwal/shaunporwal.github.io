@@ -105,6 +105,33 @@ Every change in this tier keeps the output the same. After each step, `make sync
 - [x] Add `data/pages.json` with each top-level page and its SEO, sitemap, and nav settings. `sync_seo.py`, `gen_sitemap.py`, and `sync_nav.py` read it.
 - [x] Run `make lint` and `make test`.
 
+### Tier 7 — SEO and AI SEO
+
+The audit found these problems on the live site:
+
+- `shaunporwal.com` redirects (301) to `www.shaunporwal.com`. Every canonical URL, `og:url`, sitemap entry, and the `robots.txt` sitemap line points at the redirect.
+- Draft posts are reachable and have no `noindex` tag. Search engines can index them.
+- Posts have no structured data, so search engines cannot read the date or the author.
+- The default social image is 4.6 MB.
+- `site/CNAME`, `site/robots.txt`, and `site/llms.txt` restate facts by hand: the host, the sitemap URL, the page list, the contact links, and the current role.
+- `resume.html` has no favicon.
+
+Checklist:
+
+- [x] Set `base_url` in `data/site.json` to `https://www.shaunporwal.com`. Add `data/site.schema.json` and validate `site.json` at load time.
+- [x] Write failing tests. Then make `sync_seo.py` add `noindex` to drafts and `BlogPosting` structured data to published posts.
+- [x] Write failing tests. Then add `scripts/gen_crawler_files.py`. It generates `site/CNAME`, `site/robots.txt`, and `site/llms.txt` from the data files and the posts.
+- [x] Add a 1200-pixel social image, `site/media/og-image.jpg`, and use it as the default.
+- [x] Add the favicon to `resume.html`.
+- [x] Run `make sync`, `make lint`, and `make test`.
+
+### Tier 8 — Agent instructions
+
+- [ ] Rewrite the root `AGENTS.md` so that an agent with no other context can learn the repo from it.
+- [ ] Add an `AGENTS.md` to each top-level directory: `data/`, `docs/`, `scripts/`, `site/`, `templates/`, and `tests/`.
+- [ ] Write failing tests. Then add `scripts/gen_script_index.py`. It generates the script list in `scripts/AGENTS.md` from each script's docstring. Remove the hand-written table in `docs/development.md`.
+- [ ] Add a test that every top-level directory has an `AGENTS.md`, and that the root `AGENTS.md` links to each one.
+
 ## Smoke Tests
 
 Manual checks Shaun performs in the rendered/previewed site.
@@ -115,6 +142,8 @@ Manual checks Shaun performs in the rendered/previewed site.
 - [ ] Copy the page text into a plain-text field. The species name appears with no asterisks.
 - [ ] Open `docs/all-experiences.md`. It shows every entry, including entries that are not on the resume.
 - [ ] Change one bullet in `data/experiences.json` and commit. The resume and the record both show the change.
+- [ ] After merge and publish, open `https://www.shaunporwal.com/robots.txt` and `/llms.txt`. Both name `www.shaunporwal.com`.
+- [ ] After publish, paste a post URL into a link-preview tool. The preview shows the title and image.
 
 ## Product Decisions
 
@@ -157,6 +186,7 @@ The no-more-sql project said "serving 50+ Data Scientists". That claim is remove
 - One experience record, `data/experiences.json`, that generates the resume and `docs/all-experiences.md`.
 - A ruff lint configuration and a code-shape check, run by `make test`, the pre-commit hook, and CI.
 - Shared abstractions for marker blocks, the page list, and test setup, with no change to the output.
+- SEO fixes, generated crawler files, and agent instructions in each directory.
 
 ## Non-Goals
 

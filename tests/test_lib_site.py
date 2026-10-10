@@ -20,6 +20,15 @@ class TestLoadSite(unittest.TestCase):
         site = load_site(self.repo_root)
         self.assertEqual(site["default_og_image"], "https://example.com/media/avatar.jpg")
 
+    def test_rejects_a_base_url_with_a_trailing_slash(self):
+        site = {**context.FAKE_SITE, "base_url": "https://example.com/"}
+        (self.repo_root / "data" / "site.json").write_text(json.dumps(site))
+        with self.assertRaises(SchemaError):
+            load_site(self.repo_root)
+
+    def test_the_real_site_data_is_valid(self):
+        self.assertTrue(load_site(REPO_ROOT))
+
 
 class TestLoadPages(unittest.TestCase):
     def test_loads_the_page_list(self):

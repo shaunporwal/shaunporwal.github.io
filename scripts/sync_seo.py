@@ -8,34 +8,48 @@ its SEO tags on the next commit. Site-wide constants (name, base URL, default
 image) come from data/site.json via lib_site, not hardcoded here. Run
 directly (`python3 scripts/sync_seo.py`), wired into the pre-commit hook.
 """
+import json
 import pathlib
+from dataclasses import dataclass
 
 from lib_blocks import replace_block, wrap, write_if_changed
 from lib_posts import all_posts
 from lib_site import REPO_ROOT, load_pages, load_site, page_url
 
 TITLE_END = "</title>\n"
+NOINDEX = '<meta name="robots" content="noindex">'
 
 
 def esc(s: str) -> str:
     return s.replace('"', "&quot;")
 
 
-def build_block(url: str, title: str, description: str, og_type: str, image: str) -> str:
-    body = (
-        f'<meta name="description" content="{esc(description)}">\n'
-        f'<link rel="canonical" href="{url}">\n'
-        f'<meta property="og:type" content="{og_type}">\n'
-        f'<meta property="og:title" content="{esc(title)}">\n'
-        f'<meta property="og:description" content="{esc(description)}">\n'
-        f'<meta property="og:url" content="{url}">\n'
-        f'<meta property="og:image" content="{image}">\n'
-        '<meta name="twitter:card" content="summary_large_image">\n'
-        f'<meta name="twitter:title" content="{esc(title)}">\n'
-        f'<meta name="twitter:description" content="{esc(description)}">\n'
-        f'<meta name="twitter:image" content="{image}">'
-    )
-    return wrap("SEO", body)
+@dataclass(frozen=True)
+class SeoMeta:
+    url: str
+    title: str
+    description: str
+    og_type: str
+    image: str
+    extra: tuple[str, ...] = ()  # more <head> lines, for example noindex or structured data
+
+
+def build_block(meta: SeoMeta) -> str:
+    lines = [
+        f'<meta name="description" content="{esc(meta.description)}">',
+        f'<link rel="canonical" href="{meta.url}">',
+        f'<meta property="og:type" content="{meta.og_type}">',
+        f'<meta property="og:title" content="{esc(meta.title)}">',
+        f'<meta property="og:description" content="{esc(meta.description)}">',
+        f'<meta property="og:url" content="{meta.url}">',
+        f'<meta property="og:image" content="{meta.image}">',
+        '<meta name="twitter:card" content="summary_large_image">',
+        f'<meta name="twitter:title" content="{esc(meta.title)}">',
+        f'<meta name="twitter:description" content="{esc(meta.description)}">',
+        f'<meta name="twitter:image" content="{meta.image}">',
+        *meta.extra,
+    ]
+    return wrap("SEO", "\n".join(lines))
 
 
 def inject(text: str, block: str) -> str | None:
@@ -60,23 +74,42 @@ def post_image(base_url: str, default_image: str, post: dict) -> str:
 
 
 def page_block(site: dict, page: dict) -> str:
-    return build_block(
+    return build_block(SeoMeta(
         page_url(site["base_url"], page["file"]),
         page["title"].format(name=site["name"]),
         page["description"].format(name=site["name"]),
         page["og_type"],
         site["default_og_image"],
-    )
+    ))
+
+
+def json_ld(data: dict) -> str:
+    """A structured-data script tag. "</" is escaped so the data cannot close the tag."""
+    body = json.dumps(data, indent=2, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">\n{body}\n</script>'
+
+
+def blog_posting(site: dict, post: dict, url: str, image: str) -> str:
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post["title"],
+        "description": post["excerpt"],
+        "url": url,
+        "image": image,
+        "author": {"@type": "Person", "name": site["name"], "url": page_url(site["base_url"], "index.html")},
+    }
+    if post["date"]:
+        data["datePublished"] = post["date"].isoformat()
+    return json_ld(data)
 
 
 def post_block(site: dict, post: dict) -> str:
-    return build_block(
-        post_url(site["base_url"], post["slug"]),
-        f"{post['title']} — {site['name']}",
-        post["excerpt"],
-        "article",
-        post_image(site["base_url"], site["default_og_image"], post),
-    )
+    """A draft stays reachable by URL, but noindex keeps it out of search results."""
+    url = post_url(site["base_url"], post["slug"])
+    image = post_image(site["base_url"], site["default_og_image"], post)
+    extra = NOINDEX if post["draft"] else blog_posting(site, post, url, image)
+    return build_block(SeoMeta(url, f"{post['title']} — {site['name']}", post["excerpt"], "article", image, (extra,)))
 
 
 def targets(repo_root: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, str]]:
