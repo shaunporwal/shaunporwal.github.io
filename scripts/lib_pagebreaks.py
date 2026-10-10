@@ -64,7 +64,7 @@ def find_starts(text: str, blocks: list[Block]) -> list[int]:
 
 def _spans(text: str, starts: list[int]) -> list[str]:
     ends = starts[1:] + [len(text)]
-    return [text[start:end] for start, end in zip(starts, ends)]
+    return [text[start:end] for start, end in zip(starts, ends, strict=True)]
 
 
 def _entry_problems(block: Block, span: str) -> list[str]:
@@ -73,18 +73,20 @@ def _entry_problems(block: Block, span: str) -> list[str]:
 
 def _heading_problems(block: Block, span: str) -> list[str]:
     after_heading = span[len(block.text):]
-    return [f'Heading "{block.text}" sits alone at the bottom of a page.'] if LONE_HEADING_RE.match(after_heading) else []
+    if not LONE_HEADING_RE.match(after_heading):
+        return []
+    return [f'Heading "{block.text}" sits alone at the bottom of a page.']
 
 
 BLOCK_CHECKS = {"entry": _entry_problems, "heading": _heading_problems}
 
 
 def _section_problems(text: str, blocks: list[Block], starts: list[int]) -> list[str]:
-    heading_starts = [(b, s) for b, s in zip(blocks, starts) if b.kind == "heading"]
+    heading_starts = [(b, s) for b, s in zip(blocks, starts, strict=True) if b.kind == "heading"]
     ends = [s for _, s in heading_starts[1:]] + [len(text)]
     return [
         f'Section "{block.text}" splits across pages.'
-        for (block, start), end in zip(heading_starts, ends)
+        for (block, start), end in zip(heading_starts, ends, strict=True)
         if not block.long and PAGE_BREAK in text[start:end].rstrip()
     ]
 
@@ -93,7 +95,7 @@ def find_problems(text: str, blocks: list[Block]) -> list[str]:
     starts = find_starts(text, blocks)
     block_problems = [
         problem
-        for block, span in zip(blocks, _spans(text, starts))
+        for block, span in zip(blocks, _spans(text, starts), strict=True)
         for problem in BLOCK_CHECKS[block.kind](block, span)
     ]
     return block_problems + _section_problems(text, blocks, starts)

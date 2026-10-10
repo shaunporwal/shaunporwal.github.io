@@ -8,8 +8,8 @@ its SEO tags on the next commit. Site-wide constants (name, base URL, default
 image) come from data/site.json via lib_site, not hardcoded here. Run
 directly (`python3 scripts/sync_seo.py`), wired into the pre-commit hook.
 """
-import re
 import pathlib
+import re
 
 try:
     from lib_posts import all_posts
@@ -94,38 +94,55 @@ def post_image(base_url: str, default_image: str, post: dict) -> str:
     return default_image
 
 
+def page_block(site: dict, name: str, templates: tuple) -> str:
+    title_tmpl, description_tmpl, og_type = templates
+    return build_block(
+        page_url(site["base_url"], name),
+        title_tmpl.format(name=site["name"]),
+        description_tmpl.format(name=site["name"]),
+        og_type,
+        site["default_og_image"],
+    )
+
+
+def post_block(site: dict, post: dict) -> str:
+    return build_block(
+        post_url(site["base_url"], post["slug"]),
+        f"{post['title']} — {site['name']}",
+        post["excerpt"],
+        "article",
+        post_image(site["base_url"], site["default_og_image"], post),
+    )
+
+
+def targets(site_dir: pathlib.Path, site: dict) -> list[tuple[str, pathlib.Path, str]]:
+    """(name relative to site_dir, path, SEO block) for every page and post."""
+    pages = [
+        (name, site_dir / name, page_block(site, name, templates))
+        for name, templates in PAGES.items()
+        if (site_dir / name).exists()
+    ]
+    posts = [
+        (f"posts/{post['slug']}/index.html", site_dir / "posts" / post["slug"] / "index.html", post_block(site, post))
+        for post in all_posts(site_dir)
+    ]
+    return pages + posts
+
+
+def write_block(path: pathlib.Path, block: str) -> bool:
+    new_text = inject(path.read_text(), block)
+    if new_text is None:
+        return False
+    path.write_text(new_text)
+    return True
+
+
 def sync(site_dir: pathlib.Path) -> list[str]:
     site = load_site(site_dir.parent)
-    base_url = site["base_url"]
-    default_image = site["default_og_image"]
     changed = []
-
-    for name, (title_tmpl, description_tmpl, og_type) in PAGES.items():
-        p = site_dir / name
-        if not p.exists():
-            continue
-        title = title_tmpl.format(name=site["name"])
-        description = description_tmpl.format(name=site["name"])
-        block = build_block(page_url(base_url, name), title, description, og_type, default_image)
-        new_text = inject(p.read_text(), block)
-        if new_text is not None:
-            p.write_text(new_text)
+    for name, path, block in targets(site_dir, site):
+        if write_block(path, block):
             changed.append(name)
-
-    for post in all_posts(site_dir):
-        p = site_dir / "posts" / post["slug"] / "index.html"
-        block = build_block(
-            post_url(base_url, post["slug"]),
-            f"{post['title']} — {site['name']}",
-            post["excerpt"],
-            "article",
-            post_image(base_url, default_image, post),
-        )
-        new_text = inject(p.read_text(), block)
-        if new_text is not None:
-            p.write_text(new_text)
-            changed.append(f"posts/{post['slug']}/index.html")
-
     return changed
 
 

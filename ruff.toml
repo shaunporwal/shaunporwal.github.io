@@ -1,0 +1,39 @@
+# Lint rules for scripts/ and tests/. `make lint` runs them, and so do the
+# pre-commit hook and CI. tests/test_code_shape.py adds the checks ruff does
+# not have: no nested functions and no lambdas.
+# CI installs the exact version named here.
+required-version = "==0.17.0"
+target-version = "py312"
+line-length = 120
+preview = true
+
+
+[lint]
+explicit-preview-rules = true
+select = [
+  "E", "F", "W",   # pycodestyle and pyflakes
+  "B",             # bugbear
+  "I",             # import order
+  "C90",           # cyclomatic complexity
+  "PLR0911",       # too many returns
+  "PLR0912",       # too many branches
+  "PLR0913",       # too many arguments
+  "PLR0915",       # too many statements
+  "PLR1702",       # too deeply nested blocks
+  "E731",          # lambda assigned to a name
+  "S608",          # SQL built from strings
+]
+
+[lint.mccabe]
+max-complexity = 5
+
+[lint.pylint]
+max-statements = 15
+max-branches = 6
+max-returns = 4
+max-args = 5
+max-nested-blocks = 2
+
+[lint.per-file-ignores]
+# An HTML fixture copies one long line of generated resume markup exactly.
+"tests/test_lib_pagebreaks.py" = ["E501"]

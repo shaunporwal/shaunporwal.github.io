@@ -65,7 +65,8 @@ class TestBuildHtmlBlock(unittest.TestCase):
 
     def test_experience_section_is_marked_long_so_it_may_span_pages(self):
         block = gen_resume.build_html_block(SAMPLE_DATA)
-        self.assertIn('<section class="resume-section resume-section-long">\n<h2 class="section">Experience</h2>', block)
+        expected = '<section class="resume-section resume-section-long">\n<h2 class="section">Experience</h2>'
+        self.assertIn(expected, block)
 
     def test_every_section_is_closed(self):
         block = gen_resume.build_html_block(SAMPLE_DATA)

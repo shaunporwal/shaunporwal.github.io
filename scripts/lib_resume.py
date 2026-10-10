@@ -25,8 +25,8 @@ side by side instead of nested (e.g. "**bold** {dcurves}", not
 "**{dcurves}**"); {dcurves} already renders bold on its own via the
 `.dcurves-downloads` CSS class, so it never needs a ** wrapper anyway.
 """
-import re
 import html
+import re
 
 TOKEN_RE = re.compile(
     r"(?P<dcurves>\{dcurves\})"

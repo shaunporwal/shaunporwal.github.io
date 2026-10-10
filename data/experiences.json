@@ -146,7 +146,7 @@
             },
             {"text": "Developed llmtag Python package for clinical data labeling with local LLMs; redesigned CLI, optimized labeling algorithms"},
             {
-              "text": "Engineered Llama3.1:70B + RAG text-to-SQL pipeline (no-more-sql) using Streamlit and FAISS for natural-language querying of MSKCC's SQL databases — built as a grant-funding prototype; grant was not awarded, and there's no usage data to back a \"served N users\" claim",
+              "text": "Engineered Llama3.1:70B + RAG text-to-SQL pipeline (no-more-sql) using Streamlit and FAISS for natural-language querying of MSKCC's SQL databases — built from scratch (0 to 1) as a prototype for an internal grant application; shared with colleagues, but usage was not tracked; the grant was not awarded",
               "resume": "Engineered a Llama 3.1:70B + RAG **text-to-SQL tool** (`no-more-sql`) with Streamlit and FAISS for natural-language querying of MSKCC's SQL databases"
             },
             {
@@ -365,8 +365,7 @@
       "period": "March 2024",
       "links": ["https://github.com/juntotechnologies/no-more-sql"],
       "bullets": [
-        {"text": "Llama3.1:70B + RAG pipeline with Streamlit and FAISS"},
-        {"text": "Secure text-to-SQL conversion for MSKCC, serving 50+ Data Scientists"}
+        {"text": "Llama3.1:70B + RAG pipeline with Streamlit and FAISS"}
       ],
       "resume": {
         "title": "no-more-sql",

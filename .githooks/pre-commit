@@ -16,6 +16,13 @@ set -euo pipefail
 
 repo_root="$(git rev-parse --show-toplevel)"
 
+# Lint first. A lint failure stops the commit.
+if ! command -v ruff >/dev/null; then
+  echo "pre-commit: ruff is missing. Install it with: uv tool install ruff" >&2
+  exit 1
+fi
+make -C "$repo_root" --no-print-directory lint
+
 python3 "$repo_root/scripts/gen_resume.py" || true
 python3 "$repo_root/scripts/gen_record.py" || true
 "$repo_root/scripts/update-dcurves-downloads.sh" || true

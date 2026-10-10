@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 import context  # noqa: F401  (sets up sys.path for scripts/)
-from lib_posts import parse_post, all_posts
+from lib_posts import all_posts, parse_post
 
 POST_HTML = """<!doctype html>
 <html><head><title>Test Post</title></head><body>
@@ -97,8 +97,7 @@ class TestParsePost(unittest.TestCase):
         self.assertEqual([p["slug"] for p in posts], ["newer", "older"])
 
     def test_all_posts_on_missing_posts_dir(self):
-        empty_site = pathlib.Path(tempfile.mkdtemp())
-        self.addCleanup(lambda: __import__("shutil").rmtree(empty_site))
+        empty_site = pathlib.Path(self.enterContext(tempfile.TemporaryDirectory()))
         self.assertEqual(all_posts(empty_site), [])
 
 

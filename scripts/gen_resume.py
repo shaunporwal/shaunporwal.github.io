@@ -25,10 +25,10 @@ import urllib.request
 
 try:
     from lib_record import load_record, resume_view
-    from lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
+    from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
 except ImportError:
     from scripts.lib_record import load_record, resume_view
-    from scripts.lib_resume import render_html, render_text, DCURVES_PLACEHOLDER_TEXT
+    from scripts.lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
 
 MARKER_RE = re.compile(r"<!-- RESUME:START -->.*?<!-- RESUME:END -->", re.DOTALL)
 
@@ -58,7 +58,9 @@ def _experience_html(e: dict) -> str:
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
-        f'    <div class="entry-head-title"><span class="entry-title">{render_html(e["title"])}</span> — <span class="entry-org">{render_html(e["org"])}</span></div>\n'
+        '    <div class="entry-head-title">'
+        f'<span class="entry-title">{render_html(e["title"])}</span> — '
+        f'<span class="entry-org">{render_html(e["org"])}</span></div>\n'
         f'    <div class="entry-meta">{render_html(e["meta"])}</div>\n'
         "  </div>\n"
         '  <div class="bullets">\n'
@@ -175,40 +177,33 @@ def fetch_live_dcurves_label() -> str | None:
         return None
 
 
+def _experience_text(e: dict) -> list[str]:
+    head = [f'{render_text(e["title"])} — {render_text(e["org"])}', render_text(e["meta"])]
+    return head + [f"- {render_text(b)}" for b in e["bullets"]] + [""]
+
+
+def _project_text(p: dict) -> list[str]:
+    return [render_text(p["title"]), render_text(p["links"]), render_text(p["description"]), ""]
+
+
+def _education_text(ed: dict) -> list[str]:
+    sub = [render_text(ed["sub"])] if ed.get("sub") else []
+    return [f'{render_text(ed["degree"])} ({render_text(ed["meta"])})', render_text(ed["school"]), *sub, ""]
+
+
+PLAINTEXT_SECTIONS = (
+    ("EXPERIENCE", "experience", _experience_text),
+    ("SELECTED PROJECTS", "projects", _project_text),
+    ("EDUCATION", "education", _education_text),
+)
+
+
 def render_plaintext(data: dict) -> str:
     lines = [data["name"], " | ".join(render_text(c) for c in data["contact"]), ""]
-
-    lines.append("EXPERIENCE")
-    lines.append("")
-    for e in data["experience"]:
-        lines.append(f'{render_text(e["title"])} — {render_text(e["org"])}')
-        lines.append(render_text(e["meta"]))
-        for b in e["bullets"]:
-            lines.append(f"- {render_text(b)}")
-        lines.append("")
-
-    lines.append("SELECTED PROJECTS")
-    lines.append("")
-    for p in data["projects"]:
-        lines.append(render_text(p["title"]))
-        lines.append(render_text(p["links"]))
-        lines.append(render_text(p["description"]))
-        lines.append("")
-
-    lines.append("EDUCATION")
-    lines.append("")
-    for ed in data["education"]:
-        lines.append(f'{render_text(ed["degree"])} ({render_text(ed["meta"])})')
-        lines.append(render_text(ed["school"]))
-        if ed.get("sub"):
-            lines.append(render_text(ed["sub"]))
-        lines.append("")
-
-    lines.append("SKILLS & CERTIFICATIONS")
-    lines.append("")
-    for label, value in data["skills"].items():
-        lines.append(f"{label}: {render_text(value)}")
-
+    for heading, key, render in PLAINTEXT_SECTIONS:
+        lines += [heading, ""] + [line for item in data[key] for line in render(item)]
+    lines += ["SKILLS & CERTIFICATIONS", ""]
+    lines += [f"{label}: {render_text(value)}" for label, value in data["skills"].items()]
     return "\n".join(lines)
 
 

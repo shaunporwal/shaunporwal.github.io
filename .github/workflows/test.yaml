@@ -23,5 +23,8 @@ jobs:
       - name: Install pdftotext (for the resume print-layout check)
         run: sudo apt-get install -y poppler-utils
 
+      - name: Install ruff (version from ruff.toml)
+        run: pipx install "ruff$(sed -n 's/^required-version = "\(.*\)"/\1/p' ruff.toml)"
+
       - name: Run tests
         run: make test

@@ -82,6 +82,15 @@ Shaun wants one source of truth for all experience facts. A flag on each item se
 - [x] Update `AGENTS.md` and `docs/development.md`.
 - [x] Run `make sync` and `make test`. The print layout check must pass.
 
+### Tier 5 — Lint
+
+- [x] Add `ruff.toml` with limits on complexity, statements, branches, arguments, returns, and nested blocks. Add the inline SQL check. Pin the ruff version.
+- [x] Add `tests/test_code_shape.py`. It fails on a nested function or a lambda in `scripts/` or `tests/`.
+- [x] Restructure every function over a limit: `parse_post`, `all_posts`, `render_plaintext`, `sync_seo.sync`, and `sync_social.sync`. Do not raise a limit.
+- [x] Add `make lint`. `make test`, the pre-commit hook, and CI run it.
+- [x] Check that `make sync` leaves `site/` unchanged after the restructure.
+- [x] `AGENTS.md`: keep follow-up work in the current PR unless Shaun asks for a new one.
+
 ## Smoke Tests
 
 Manual checks Shaun performs in the rendered/previewed site.
@@ -111,16 +120,16 @@ The NTU work did not study NR2B. An earlier record put NR2B and self-depurinatio
 
 ## Resolved Conflicts
 
-The old resume file and the old record disagreed on these facts. The record now uses the resume value. Shaun must check each one.
+The old resume file and the old record disagreed on these facts. The record now uses the resume value. Shaun confirmed each one.
 
 - Location: "Metuchen, NJ" (the record said "New York, NY").
 - Mount Sinai degree date: February 2021 (the record said March 2021).
 - NTU certificate name: "Certificate in Advanced Mandarin Chinese" (the record said "Certificate in Advanced Chinese").
-- Hindi: fluent (the record said native).
+- Hindi: fluent (the record said native). Shaun was not raised in India, so "native" does not apply.
 - Japanese: conversational (the record said basic/conversational).
 - Spanish: conversational (the record said basic).
 
-The record keeps one internal conflict as it is. The no-more-sql project says "serving 50+ Data Scientists". The MSKCC entry says no usage data supports a user count.
+The no-more-sql project said "serving 50+ Data Scientists". That claim is removed. Shaun shared the tool, but usage was not tracked. Shaun built it from scratch as a prototype for an internal grant application. The grant was not awarded.
 
 ## Scope
 
@@ -132,6 +141,7 @@ The record keeps one internal conflict as it is. The no-more-sql project says "s
 - Four workflow rules in `AGENTS.md`, from Shaun's corrections.
 - A print layout check that replaces the 2-page cap test.
 - One experience record, `data/experiences.json`, that generates the resume and `docs/all-experiences.md`.
+- A ruff lint configuration and a code-shape check, run by `make test`, the pre-commit hook, and CI.
 
 ## Non-Goals
 

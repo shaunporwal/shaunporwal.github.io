@@ -11,6 +11,7 @@ When working on coding with me, follow this workflow.
 - Order the checklist from least consequential/complex first to most consequential/complex last.
 - Include focused manual smoke tests in the PR doc.
 - If a PR doc starts covering distinct scopes, ask before splitting it.
+- Keep follow-up work in the current PR unless Shaun asks for a new one.
 
 ## 3. Branch When Ready
 

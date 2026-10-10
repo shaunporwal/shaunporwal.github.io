@@ -46,7 +46,14 @@ class TestResumeView(unittest.TestCase):
     def test_education_override_and_honors(self):
         self.assertEqual(
             self.view["education"],
-            [{"degree": "B.S., Widgetry", "school": "Acme University", "meta": "May 2019 · City, ST", "sub": "Cum laude"}],
+            [
+                {
+                    "degree": "B.S., Widgetry",
+                    "school": "Acme University",
+                    "meta": "May 2019 · City, ST",
+                    "sub": "Cum laude",
+                }
+            ],
         )
 
     def test_project_links_join_into_one_row(self):

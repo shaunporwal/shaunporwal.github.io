@@ -31,11 +31,21 @@ The `resume` key on an item is the switch that puts it on the resume:
 
 An item with no `resume` key shows only in the record. Dates are `YYYY-MM` (or `"present"`). Each output formats them in its own style. The resume Languages row comes from the `languages` list.
 
-Strings that reach the resume support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**50+ data scientists**`), not decoratively. Tokens can't nest (`**{dcurves}**` renders the literal text, not the substituted count) — keep them side by side instead.
+Strings that reach the resume support a tiny markup: `[label](url)` for links, `` `code` `` for inline code, `**text**` for bold, and `{dcurves}` for the live dcurves download count. Use bold sparingly — real impact metrics and standout tech only (e.g. `**$1M+**`, `**structural variants**`), not decoratively. Tokens can't nest (`**{dcurves}**` renders the literal text, not the substituted count) — keep them side by side instead.
 
 On the resume, a project's title and links share a row (like experience/education), and its description is the one-line impact statement below. An education item's degree and dates/location share a row; the school (and the optional `honors` note) sit on their own line below, so a long school name can never push the dates onto a separate line.
 
 Need a plain-text copy for LinkedIn or anywhere else that doesn't take HTML: `make resume-text` (prints to stdout, links rendered as `label (url)`, dcurves count fetched live).
+
+## Lint
+
+`ruff.toml` sets the lint rules for `scripts/` and `tests/`, including limits on complexity, statements, branches, and nested blocks. `tests/test_code_shape.py` adds two checks that ruff does not have: no nested functions and no lambdas.
+
+- Run `make lint` to run both. `make test` runs lint first.
+- The pre-commit hook runs `make lint`. A lint failure stops the commit.
+- Install ruff once with `uv tool install ruff`. `ruff.toml` names the exact version, and CI installs that version.
+
+Fix a lint failure by restructuring the code. Do not raise a limit to make a check pass.
 
 ## Site-wide constants (name, URLs, socials)
 

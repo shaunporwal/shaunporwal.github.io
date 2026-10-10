@@ -7,9 +7,9 @@ sitemap, but still reachable by direct URL) iff a `.draft` file sits in its
 directory. This one parser backs sync-seo.py, gen-sitemap.py, and
 gen-blog-index.py so all three agree on what a "post" is.
 """
-import re
-import pathlib
 import datetime
+import pathlib
+import re
 
 TAG_RE = re.compile(r"<[^>]+>")
 TITLE_RE = re.compile(r'<h1 class="page-title">(.*?)</h1>', re.DOTALL)
@@ -33,64 +33,73 @@ def strip_tags(s):
     return TAG_RE.sub("", s).strip()
 
 
+IMAGE_SUFFIXES = (".png", ".jpg", ".jpeg", ".webp")
+EXCERPT_LIMIT = 155
+
+
+def _title(text: str, fallback: str) -> str:
+    match = TITLE_RE.search(text)
+    return strip_tags(match.group(1)) if match else fallback
+
+
+def _date(meta_raw: str):
+    date_text = strip_tags(re.split(r"&middot;", meta_raw)[0])
+    match = re.match(r"(\w+)\s+(\d+),\s+(\d+)", date_text)
+    month = MONTHS.get(match.group(1)) if match else None
+    if not month:
+        return None
+    return datetime.date(int(match.group(3)), month, int(match.group(2)))
+
+
+def _meta(text: str) -> tuple:
+    """(date, categories) from the post's page-meta line."""
+    match = META_RE.search(text)
+    if not match:
+        return None, []
+    meta_raw = match.group(1)
+    return _date(meta_raw), [strip_tags(c) for c in CAT_RE.findall(meta_raw)]
+
+
+def _excerpt(text: str, fallback: str) -> str:
+    main_start = text.find('<main class="page">')
+    body = text[main_start:] if main_start != -1 else text
+    match = FIRST_P_RE.search(body)
+    excerpt = re.sub(r"\s+", " ", strip_tags(match.group(1)) if match else fallback)
+    if len(excerpt) > EXCERPT_LIMIT:
+        excerpt = excerpt[: EXCERPT_LIMIT - 3].rsplit(" ", 1)[0] + "..."
+    return excerpt
+
+
+def _first_image(post_dir: pathlib.Path):
+    images = [f.name for f in sorted(post_dir.iterdir()) if f.suffix.lower() in IMAGE_SUFFIXES]
+    return images[0] if images else None
+
+
 def parse_post(post_dir: pathlib.Path):
     index = post_dir / "index.html"
     if not index.exists():
         return None
     text = index.read_text()
-
-    title_match = TITLE_RE.search(text)
-    title = strip_tags(title_match.group(1)) if title_match else post_dir.name
-
-    date_obj = None
-    categories = []
-    meta_match = META_RE.search(text)
-    if meta_match:
-        meta_raw = meta_match.group(1)
-        categories = [strip_tags(c) for c in CAT_RE.findall(meta_raw)]
-        date_text = strip_tags(re.split(r"&middot;", meta_raw)[0])
-        m = re.match(r"(\w+)\s+(\d+),\s+(\d+)", date_text)
-        if m:
-            month_name, day, year = m.groups()
-            month = MONTHS.get(month_name)
-            if month:
-                date_obj = datetime.date(int(year), month, int(day))
-
-    main_start = text.find('<main class="page">')
-    body = text[main_start:] if main_start != -1 else text
-    excerpt_match = FIRST_P_RE.search(body)
-    excerpt = strip_tags(excerpt_match.group(1)) if excerpt_match else title
-    excerpt = re.sub(r"\s+", " ", excerpt)
-    if len(excerpt) > 155:
-        excerpt = excerpt[:152].rsplit(" ", 1)[0] + "..."
-
-    image = None
-    for f in sorted(post_dir.iterdir()):
-        if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp") and f.name != "index.html":
-            image = f.name
-            break
-
+    title = _title(text, post_dir.name)
+    date_obj, categories = _meta(text)
     return {
         "slug": post_dir.name,
         "title": title,
         "date": date_obj,
         "categories": categories,
-        "excerpt": excerpt,
-        "image": image,
+        "excerpt": _excerpt(text, title),
+        "image": _first_image(post_dir),
         "draft": (post_dir / ".draft").exists(),
     }
 
 
+def _newest_first(post: dict) -> datetime.date:
+    return post["date"] or datetime.date.min
+
+
 def all_posts(site_dir: pathlib.Path):
-    posts = []
     posts_dir = site_dir / "posts"
     if not posts_dir.exists():
-        return posts
-    for post_dir in sorted(posts_dir.iterdir()):
-        if not post_dir.is_dir():
-            continue
-        parsed = parse_post(post_dir)
-        if parsed:
-            posts.append(parsed)
-    posts.sort(key=lambda p: p["date"] or datetime.date.min, reverse=True)
-    return posts
+        return []
+    parsed = [parse_post(d) for d in sorted(posts_dir.iterdir()) if d.is_dir()]
+    return sorted(filter(None, parsed), key=_newest_first, reverse=True)

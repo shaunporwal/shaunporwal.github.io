@@ -5,8 +5,8 @@ post needs no edits here — just create posts/<slug>/index.html. Stamped
 between <!-- POSTLIST:START --> / <!-- POSTLIST:END --> markers. Run directly
 (`python3 scripts/gen_blog_index.py`), wired into the pre-commit hook.
 """
-import re
 import pathlib
+import re
 
 try:
     from lib_posts import all_posts

@@ -1,9 +1,13 @@
-.PHONY: dev test sync resume-text
+.PHONY: dev lint test sync resume-text
 
 dev:
 	./scripts/dev.sh
 
-test:
+lint:
+	ruff check .
+	python3 -m unittest discover -s tests -p "test_code_shape.py"
+
+test: lint
 	python3 -m unittest discover -s tests -p "test_*.py"
 	bash tests/test_update_dcurves_downloads.sh
 

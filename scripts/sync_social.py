@@ -6,8 +6,8 @@ used to be hand-duplicated in two places on that one page. Stamped between
 Run directly (`python3 scripts/sync_social.py`), wired into the pre-commit
 hook.
 """
-import re
 import pathlib
+import re
 
 try:
     from lib_site import load_site
@@ -60,28 +60,29 @@ def inject(text: str, marker_re: re.Pattern, block: str) -> str | None:
     return new_text if new_text != text else None
 
 
+BLOCKS = ((JSONLD_MARKER_RE, build_jsonld_block), (LINKS_MARKER_RE, build_links_block))
+
+
+def apply_blocks(text: str, site: dict) -> str:
+    """Stamps every social block into text."""
+    for marker_re, build in BLOCKS:
+        new_text = inject(text, marker_re, build(site))
+        if new_text is not None:
+            text = new_text
+    return text
+
+
 def sync(repo_root: pathlib.Path) -> bool:
     """Updates site/about.html if either block changed. Returns whether it changed."""
     about_path = repo_root / "site" / "about.html"
     if not about_path.exists():
         return False
-    site = load_site(repo_root)
     text = about_path.read_text()
-    changed = False
-
-    new_text = inject(text, JSONLD_MARKER_RE, build_jsonld_block(site))
-    if new_text is not None:
-        text = new_text
-        changed = True
-
-    new_text = inject(text, LINKS_MARKER_RE, build_links_block(site))
-    if new_text is not None:
-        text = new_text
-        changed = True
-
-    if changed:
-        about_path.write_text(text)
-    return changed
+    new_text = apply_blocks(text, load_site(repo_root))
+    if new_text == text:
+        return False
+    about_path.write_text(new_text)
+    return True
 
 
 def main():
