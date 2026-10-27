@@ -1,113 +1,186 @@
-/* The resume page. It reads the site tokens in site.css. The print block swaps in a plain print palette. */
+/* The resume page and the PDF printed from it. One stylesheet and one set of markup serve both.
+   The page reads the site tokens in site.css. The print block at the end sets a fixed light palette and a Letter layout. */
+
+/* The two typefaces ship with the site, so the PDF that CI prints looks like the one printed here.
+   They are static fonts, so Chrome embeds real subsets in the PDF. Both are under the SIL Open Font
+   License: see site/fonts/OFL-*.txt. */
+@font-face {
+  font-family: "Resume Sans";
+  src: url("../fonts/inter-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Resume Sans";
+  src: url("../fonts/inter-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Resume Serif";
+  src: url("../fonts/source-serif-4-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --resume-sans: "Resume Sans", var(--font-sans);
+  --resume-serif: "Resume Serif", var(--font-serif);
+  --resume-accent: var(--primary);
   --resume-title: var(--foreground);
   --resume-meta: var(--muted-foreground);
+  --resume-rule: var(--border);
+  --resume-code: var(--secondary);
+  --resume-rail: 10.5rem;
 }
 
 .resume {
-  width: min(100% - 3rem, 48rem);
+  width: min(100% - 2.5rem, 52rem);
   margin-inline: auto;
-  padding-block: 2.5rem 4rem;
+  padding-block: 2.5rem 5rem;
+  font-family: var(--resume-sans);
   font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 .resume strong,
-.resume .dcurves-downloads { color: var(--foreground); font-weight: 700; }
+.resume .dcurves-downloads { color: var(--foreground); font-weight: 600; }
 
-.resume-header { text-align: center; margin-bottom: 1.75rem; }
-.resume-header .title { margin-top: 0; }
-.resume-header .contact { margin-top: 0.5rem; color: var(--muted-foreground); font-size: 0.9rem; }
-.resume-header .contact span:not(:last-child)::after { content: "  |  "; color: var(--border); }
-.resume-actions { margin: 1.25rem auto 0; }
+.resume-header { margin-bottom: 2.75rem; }
+.resume-header .title {
+  margin: 0;
+  font-family: var(--resume-serif);
+  font-size: clamp(2.5rem, 1.7rem + 3.6vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+
+.resume-header .contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1rem;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+
+.resume-header .contact a { color: inherit; text-decoration-color: var(--resume-rule); text-underline-offset: 0.25em; }
+.resume-header .contact a:hover { color: var(--resume-accent); }
+.resume-actions { margin: 1.5rem 0 0; }
 
 .resume-heading {
-  margin: 1.75rem 0 0.75rem;
-  padding-bottom: 0.2rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--muted-foreground);
-  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 1.5rem;
+  color: var(--resume-accent);
+  font-family: var(--resume-sans);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.entry { margin-bottom: 1rem; }
-.entry-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: nowrap;
-  gap: 0.25rem 1rem;
-}
+.resume-heading::after { content: ""; flex: 1 1 auto; border-top: 1px solid var(--resume-rule); }
 
-/* The title and organisation shrink and wrap, so the dates never drop onto a line of their own. */
-.entry-head > *:first-child { flex: 1 1 auto; min-width: 0; }
-.entry-head .entry-meta { flex: 0 0 auto; }
-.entry-title { color: var(--resume-title); font-weight: 700; }
+.entry { margin-bottom: 1.75rem; }
+.entry-head { display: flex; flex-direction: column; gap: 0.1rem; }
+.entry-title { color: var(--resume-title); font-weight: 600; }
 .entry-org { color: var(--resume-title); font-weight: 400; }
-.entry-meta { color: var(--resume-meta); font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
-.entry-sub { margin-top: 0.05rem; color: var(--muted-foreground); font-size: 0.88rem; }
+.entry .sep { color: var(--resume-meta); }
+.entry-meta { color: var(--resume-meta); font-size: 0.875rem; }
+.entry-period { font-weight: 600; font-feature-settings: "tnum" 1; }
+.entry-sub { color: var(--muted-foreground); font-size: 0.9rem; }
 
 /* Each bullet is a block with a dash in its text. A pasted copy keeps the dash and the gap. */
-.bullets { margin: 0.35rem 0 0; padding-left: 1.3rem; }
-.bullets .bullet { margin-bottom: 0.2rem; padding-left: 1.1em; text-indent: -1.1em; }
-.bullets .bullet-break { height: 0.5em; }
+.bullets { margin: 0.6rem 0 0; }
+.bullets .bullet { padding-left: 1.1em; text-indent: -1.1em; }
+.bullets .bullet-break { height: 0.55em; }
 
-.skills-grid,
-.edu-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; }
-.skills-grid dt,
-.edu-grid dt { font-weight: 600; white-space: nowrap; }
-.skills-grid dd,
-.edu-grid dd { margin: 0; }
+.skills-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.15rem 1.5rem; margin: 0; }
+.skills-grid dt { margin-top: 0.75rem; font-weight: 600; }
+.skills-grid dd { margin: 0; color: var(--muted-foreground); }
 
 .projects .entry-title { font-weight: 600; }
-.projects .entry-meta { font-weight: 400; }
+.projects .entry-meta { overflow-wrap: anywhere; }
 
-.resume code { font-size: 0.9em; }
+.resume code { margin-inline: -0.06em; padding: 0.04em 0.2em; border-radius: 0.2em; background: var(--resume-code); font-family: inherit; font-size: 0.94em; font-weight: 600; }
 
-@media (max-width: 560px) {
-  .resume-header .contact span { display: block; }
-  .resume-header .contact span:not(:last-child)::after { content: none; }
+/* From 768 px the dates, the places and the skill names sit in a left rail, and the words in a column beside it. */
+@media (min-width: 768px) {
+  .resume-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 2rem; align-items: end; }
+  .resume-header .title { grid-column: 1; grid-row: 1; }
+  .resume-header .contact { grid-column: 1 / -1; grid-row: 2; }
+  .resume-actions { grid-column: 2; grid-row: 1; margin: 0 0 0.35rem; }
+
+  .entry { display: grid; grid-template-columns: var(--resume-rail) minmax(0, 1fr); column-gap: 2rem; }
+  .entry-head { display: contents; }
+  .entry-head > :first-child { grid-column: 2; grid-row: 1; }
+  .entry-meta { grid-column: 1; grid-row: 1 / span 3; padding-top: 0.15rem; }
+  .entry > :not(.entry-head) { grid-column: 2; }
+  .entry-meta .sep { display: none; }
+  .entry-period,
+  .entry-place { display: block; }
+
+  .skills-grid { grid-template-columns: var(--resume-rail) minmax(0, 1fr); column-gap: 2rem; row-gap: 0.7rem; }
+  .skills-grid dt { margin-top: 0; }
+
+  /* A project reads like a skill: its name in the rail, its words and its links in the column. */
+  .projects .entry-head > :first-child { grid-column: 1; grid-row: 1; }
+  .projects .entry-meta { grid-column: 2; grid-row: 2; padding-top: 0; }
+  .projects .entry-sub { grid-column: 2; grid-row: 1; }
 }
 
-@media (max-width: 420px) {
-  .entry-head { flex-wrap: wrap; }
-  .entry-meta { white-space: normal; }
-  .skills-grid,
-  .edu-grid { grid-template-columns: 1fr; }
-  .skills-grid dt,
-  .edu-grid dt { margin-top: 0.5rem; }
-}
-
-/* Print: a plain page with no site chrome, in the palette the printed resume has always used. */
-@page { margin: 0.5in; }
+/* Print: the PDF. A fixed light palette, no site chrome, and a Letter layout set in points. */
+@page { size: letter; margin: 0.5in 0.6in; }
 
 @media print {
   :root {
     color-scheme: light;
     --background: #fff;
-    --foreground: #1a1a1a;
-    --muted-foreground: #555;
-    --border: #ccc;
-    --resume-title: #1a5276;
-    --resume-meta: #4a7590;
+    --foreground: #16181d;
+    --muted-foreground: #565c68;
+    --border: #d4d6da;
+    --secondary: #eef0f2;
+    --primary: #b53b08;
+    --resume-rail: 1.05in;
   }
 
-  body { display: block; min-height: 0; font-size: 12px; line-height: 1.35; }
+  body { display: block; min-height: 0; font-size: 9.6pt; line-height: 1.42; }
   .skip-link,
   .site-header,
   .site-footer,
   .resume-actions { display: none; }
-  .resume { width: auto; padding: 0; font-size: 12px; line-height: 1.35; }
-  .resume a { color: var(--foreground); text-decoration: none; }
-  .resume-header { margin-bottom: 1rem; }
-  .resume-header .title { font-family: var(--font-sans); font-size: 1.7rem; letter-spacing: 0.02em; }
-  .resume-heading { break-after: avoid; margin: 1rem 0 0.4rem; }
+
+  .resume { width: auto; padding: 0; font-size: 9.6pt; line-height: 1.42; }
+  .resume a { color: inherit; text-decoration: none; }
+
+  .resume-header { display: block; margin-bottom: 0.26in; }
+  .resume-header .title { font-size: 31pt; line-height: 1.05; }
+  .resume-header .contact { gap: 0 0.2in; margin-top: 0.09in; font-size: 9pt; }
+
+  .resume-heading { break-after: avoid; gap: 0.12in; margin: 0.25in 0 0.12in; font-size: 8pt; letter-spacing: 0.06em; }
   .resume-section { break-inside: avoid; }
   .resume-section-long { break-inside: auto; }
-  .entry { break-inside: avoid; margin-bottom: 0.6rem; }
-  .bullets { margin-top: 0.2rem; }
-  .bullets .bullet { margin-bottom: 0.1rem; }
-  .bullets .bullet-break { height: 0.3em; }
+
+  .entry { display: block; break-inside: avoid; margin-bottom: 0.14in; }
+  .entry-head { display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; gap: 0 0.2in; }
+  .entry-head > :first-child { min-width: 0; }
+  .entry-meta { flex: 0 0 auto; padding: 0; font-size: 8.8pt; text-align: right; white-space: nowrap; }
+  .entry .sep { display: inline; }
+  .entry-period,
+  .entry-place { display: inline; }
+  .entry-sub { font-size: 9pt; }
+
+  .bullets { margin-top: 0.05in; }
+  .bullets .bullet-break { height: 0.18em; overflow: hidden; }
+
+  .skills-grid { grid-template-columns: var(--resume-rail) minmax(0, 1fr); gap: 0.04in 0.15in; }
+  .skills-grid dt { margin: 0; }
 }

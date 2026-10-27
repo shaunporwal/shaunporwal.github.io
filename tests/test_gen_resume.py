@@ -10,6 +10,8 @@ SAMPLE_DATA = {
         {
             "title": "Engineer",
             "org": "Acme Co",
+            "period": "Jan 2020 – Present",
+            "place": "City, ST",
             "meta": "Jan 2020 – Present · City, ST",
             "bullets": ["Did a [thing](https://example.com) well"],
         }
@@ -25,6 +27,8 @@ SAMPLE_DATA = {
         {
             "degree": "B.S., Widgetry",
             "school": "Acme University",
+            "period": "2019",
+            "place": "City, ST",
             "meta": "2019 · City, ST",
             "sub": "Cum laude",
         }
@@ -57,6 +61,27 @@ class TestBuildHtmlBlock(unittest.TestCase):
         self.assertIn("Widget", block)
         self.assertIn("Cum laude", block)
         self.assertIn("<dt>Programming</dt><dd>Python, Go</dd>", block)
+
+    def test_the_title_and_the_organisation_have_a_class_each_and_a_literal_dash_between(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA, PDF)
+        expected = (
+            '<div class="entry-head-title"><span class="entry-title">Engineer</span>'
+            '<span class="sep"> — </span><span class="entry-org">Acme Co</span></div>'
+        )
+        self.assertIn(expected, block)
+
+    def test_the_date_and_the_place_have_a_class_each_and_a_literal_dot_between(self):
+        # A copy of the page keeps "date · place". The stylesheet hides the dot where the two sit on separate lines.
+        block = gen_resume.build_html_block(SAMPLE_DATA, PDF)
+        expected = (
+            '<div class="entry-meta"><span class="entry-period">Jan 2020 – Present</span>'
+            '<span class="sep"> · </span><span class="entry-place">City, ST</span></div>'
+        )
+        self.assertIn(expected, block)
+
+    def test_education_has_a_date_and_a_place_too(self):
+        block = gen_resume.build_html_block(SAMPLE_DATA, PDF)
+        self.assertIn('<span class="entry-period">2019</span>', block)
 
     def test_each_short_section_is_wrapped_so_print_can_keep_it_whole(self):
         block = gen_resume.build_html_block(SAMPLE_DATA, PDF)
@@ -98,7 +123,9 @@ class TestBuildHtmlBlock(unittest.TestCase):
             {
                 "title": "Engineer",
                 "org": "Acme Co",
-                "meta": "2020",
+                "period": "2020",
+                "place": "City, ST",
+                "meta": "2020 · City, ST",
                 "bullets": ["First", "Second", "Third"],
             }
         ]
@@ -119,7 +146,9 @@ class TestBuildHtmlBlock(unittest.TestCase):
     def test_education_without_sub_only_emits_school_entry_sub(self):
         data = dict(SAMPLE_DATA)
         data["projects"] = []
-        data["education"] = [{"degree": "Cert", "school": "Somewhere U", "meta": "2021"}]
+        data["education"] = [
+            {"degree": "Cert", "school": "Somewhere U", "period": "2021", "place": "Town", "meta": "2021 · Town"}
+        ]
         block = gen_resume.build_html_block(data, PDF)
         self.assertIn("Cert", block)
         self.assertEqual(block.count('<div class="entry-sub">'), 1)

@@ -93,13 +93,18 @@ def group_bullets(group: dict) -> list[str]:
     return summary + [bullet_text(b) for b in group["bullets"] if on_resume(b)]
 
 
+def when_and_where(period: str, place: str) -> dict:
+    """The date and the place of an entry, and `meta`: the two joined in the one line a plain-text copy uses."""
+    return {"period": period, "place": place, "meta": period + META_SEPARATOR + place}
+
+
 def _resume_experience(entry: dict) -> dict:
     fields = resume_fields(entry)
     period = format_period(entry["start"], entry["end"], "resume")
     return {
         "title": fields["title"],
         "org": fields["org"],
-        "meta": period + META_SEPARATOR + entry["location"],
+        **when_and_where(period, entry["location"]),
         "bullets": [text for group in entry["groups"] for text in group_bullets(group)],
     }
 
@@ -109,7 +114,7 @@ def _resume_education(entry: dict) -> dict:
     view = {
         "degree": fields["degree"],
         "school": fields["school"],
-        "meta": format_month(entry["end"], "resume") + META_SEPARATOR + entry["location"],
+        **when_and_where(format_month(entry["end"], "resume"), entry["location"]),
     }
     if "honors" in entry:
         view["sub"] = entry["honors"]

@@ -46,7 +46,8 @@
       "label": "Resume",
       "new_tab": false
     },
-    "pdf": "resume.pdf"
+    "pdf": "resume.pdf",
+    "pdf_max_pages": 2
   },
   {
     "file": "404.html",

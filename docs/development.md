@@ -39,13 +39,23 @@ Need a plain-text copy for LinkedIn or anywhere else that doesn't take HTML: `ma
 
 ## Resume page and PDF
 
-`site/resume.html` is a normal site page. It has the site header, the footer and the theme. `site/styles/resume.css` holds its styles. On a screen the page reads the theme tokens, so it follows the light and the dark theme. When printed, the page hides the header, the footer and the Download PDF button, and it uses a plain light print palette.
+`site/resume.html` is a normal site page. It has the site header, the footer and the theme. `site/styles/resume.css` holds its styles. On a screen the page reads the theme tokens, so it follows the light and the dark theme. When printed, the page hides the header, the footer and the Download PDF button, and it uses a fixed light print palette. The PDF is the resume: one page of markup serves the screen and the PDF, so nothing is written twice.
+
+The design is one stylesheet with three layouts. A phone reads one column, with the date under each title. From 768 px the dates and places sit in a left rail, and the words in a column beside it. The PDF puts the date at the right of each title row. That layout fits two Letter pages. A dates rail in the PDF needed three pages, so the rail is for the screen only.
+
+- Type: Inter for the text and Source Serif 4 for the name. They are static woff2 files in `site/fonts/` under the SIL Open Font License.
+  - CI prints the PDF on a machine that has none of this machine's fonts, so the site ships them.
+  - Static files make Chrome embed real font subsets in the PDF. A variable font becomes a Type 3 font.
+  - To add a weight, add a file, a `@font-face` rule and a preload link in `resume.html`.
+- Parsers: keep real text in the order of the markup. Keep the standard headings (Experience, Education and the rest). Keep letter spacing on the headings below 0.1 em. At 0.1 em or more, `pdftotext` returns the heading letter by letter.
+- Copy and paste: the bullets keep their dash text and the spacer between them, so a copy of the page pastes cleanly into LinkedIn. `make resume-text` prints the same record as plain text.
 
 The Download PDF button links to the PDF that the resume entry names in `data/pages.json` (the `pdf` key). Git does not hold the PDF. `scripts/render_pdf.py` prints it from the page with headless Chrome, so it always matches the page and `data/experiences.json`.
 
 - Publish: `.github/workflows/publish.yaml` runs the script before it publishes `site/`. The runner has Google Chrome. The step sets `CHROME_ARGS=--no-sandbox`, because the runner is a throwaway machine.
 - Local: `make pdf` writes `site/resume.pdf`. The script looks for Chrome in the `CHROME` variable, then on the PATH, then in `/Applications`, then in the Chromium that Playwright downloaded. It stops with a message when it finds none. `make dev` does not print the PDF, so the button gives a 404 until you run `make pdf`.
 - Check: `tests/test_resume_pdf.py` fails when the button, `.gitignore`, `make pdf`, the workflow and the discovery files do not follow the one name in `data/pages.json`.
+- No drift: `tests/test_resume_pdf_matches_record.py` prints the page and reads the PDF. It fails when the PDF lacks an item of the resume view, holds an item that the record keeps off the resume, reads out of order, is not Letter size, has more pages than `pdf_max_pages` in `data/pages.json`, or embeds a typeface that `site/fonts/` does not ship. The record is the only source of the content. A change to it changes the page and the PDF together.
 
 ## Lint
 
@@ -128,7 +138,7 @@ Each is a thin `main()` around testable functions. The `lib_*.py` modules hold t
 
 `scripts/AGENTS.md` lists every script with a one-line summary. That list is generated from each script's docstring, so this guide does not repeat it.
 
-`tests/test_resume_print_layout.py` (run via `make test`) prints `site/resume.html` to PDF with Chrome, through the same code as the publish step. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/styles/resume.css`. The test needs Chrome and `pdftotext`. Install `pdftotext` with `brew install poppler`. `scripts/render_pdf.py` finds Chrome (see Resume page and PDF).
+`tests/test_resume_print_layout.py` (run via `make test`) prints `site/resume.html` to PDF with Chrome, through the same code as the publish step. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The PDF has a page limit: `pdf_max_pages` in `data/pages.json`. If the test fails, change the `@media print` rules in `site/styles/resume.css`. The test needs Chrome and poppler. Install poppler with `brew install poppler`. `scripts/render_pdf.py` finds Chrome (see Resume page and PDF).
 
 `make sync` runs all of the above. The `Makefile` is the only list of generators and their order. The pre-commit hook runs `make -k sync`, so a failed generator (for example, no network for the dcurves count) gives a warning, and the others still run.
 

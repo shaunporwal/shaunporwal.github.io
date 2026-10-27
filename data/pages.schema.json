@@ -65,6 +65,10 @@
         "type": "string",
         "pattern": "^[a-z0-9-]+\\.pdf$"
       },
+      "pdf_max_pages": {
+        "description": "The most pages the printed PDF may have, as a whole number. tests/test_resume_pdf_matches_record.py fails when the PDF is longer.",
+        "type": "number"
+      },
       "absolute": {
         "description": "Writes root-relative links (/styles/site.css) in the nav and footer, for a page served at any depth, such as 404.html.",
         "type": "boolean"

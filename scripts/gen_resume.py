@@ -35,7 +35,7 @@ def load_data(repo_root: pathlib.Path) -> dict:
     return resume_view(load_record(repo_root), load_site(repo_root))
 
 
-def _experience_html(e: dict) -> str:
+def _bullets_html(bullets: list[str]) -> str:
     # Each bullet is its own <div> (not a <ul>/<li>) with a literal "- "
     # text prefix rather than a CSS list marker, matching LinkedIn's own
     # dash convention on copy/paste. A blank-line gap between bullets can't
@@ -47,21 +47,42 @@ def _experience_html(e: dict) -> str:
     # .bullet-break in the page's <style>) — a little more breathing room
     # on the page itself, traded for a real blank line surviving paste.
     parts = []
-    for i, b in enumerate(e["bullets"]):
+    for i, b in enumerate(bullets):
         if i > 0:
             parts.append('    <div class="bullet-break">&nbsp;</div>')
         parts.append(f'    <div class="bullet">- {render_html(b)}</div>')
-    bullets = "\n".join(parts)
+    return "\n".join(parts)
+
+
+def _when_where_html(item: dict) -> str:
+    # The dot is a literal separator, so a copy of the page keeps "date · place". The
+    # stylesheet hides it where the date and the place sit on separate lines.
+    return (
+        '<div class="entry-meta">'
+        f'<span class="entry-period">{render_html(item["period"])}</span>'
+        '<span class="sep"> · </span>'
+        f'<span class="entry-place">{render_html(item["place"])}</span></div>'
+    )
+
+
+def _title_org_html(e: dict) -> str:
+    return (
+        '<div class="entry-head-title">'
+        f'<span class="entry-title">{render_html(e["title"])}</span>'
+        '<span class="sep"> — </span>'
+        f'<span class="entry-org">{render_html(e["org"])}</span></div>'
+    )
+
+
+def _experience_html(e: dict) -> str:
     return (
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
-        '    <div class="entry-head-title">'
-        f'<span class="entry-title">{render_html(e["title"])}</span> — '
-        f'<span class="entry-org">{render_html(e["org"])}</span></div>\n'
-        f'    <div class="entry-meta">{render_html(e["meta"])}</div>\n'
+        f"    {_title_org_html(e)}\n"
+        f"    {_when_where_html(e)}\n"
         "  </div>\n"
         '  <div class="bullets">\n'
-        f"{bullets}\n"
+        f"{_bullets_html(e['bullets'])}\n"
         "  </div>\n"
         "</div>"
     )
@@ -92,7 +113,7 @@ def _education_html(ed: dict) -> str:
         '<div class="entry">\n'
         '  <div class="entry-head">\n'
         f'    <div class="entry-title">{render_html(ed["degree"])}</div>\n'
-        f'    <div class="entry-meta">{render_html(ed["meta"])}</div>\n'
+        f"    {_when_where_html(ed)}\n"
         "  </div>\n"
         f'  <div class="entry-sub">{render_html(ed["school"])}</div>' + sub + "\n"
         "</div>"

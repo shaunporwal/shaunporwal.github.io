@@ -60,5 +60,10 @@ def pdf_of(pages: list[dict], file: str) -> str:
     return next(page["pdf"] for page in pdf_pages(pages) if page["file"] == file)
 
 
+def pdf_max_pages(pages: list[dict], file: str) -> int:
+    """The most pages the PDF that the page `file` prints to may have."""
+    return next(page["pdf_max_pages"] for page in pdf_pages(pages) if page["file"] == file)
+
+
 def page_url(base_url: str, file: str) -> str:
     return f"{base_url}/" if file == "index.html" else f"{base_url}/{file}"

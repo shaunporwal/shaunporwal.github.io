@@ -1,7 +1,7 @@
 import unittest
 
 import context  # noqa: F401
-from lib_resume import render_html, render_text
+from lib_resume import render_html, render_text, render_visible
 
 
 class TestRenderHtml(unittest.TestCase):
@@ -75,6 +75,20 @@ class TestRenderText(unittest.TestCase):
 
     def test_italic_markers_are_stripped(self):
         self.assertEqual(render_text("in *Aeolosoma viride* today"), "in Aeolosoma viride today")
+
+
+class TestRenderVisible(unittest.TestCase):
+    def test_a_link_shows_its_label_and_no_address(self):
+        self.assertEqual(render_visible("See [my site](https://example.com) for more"), "See my site for more")
+
+    def test_marks_are_stripped_and_the_words_stay(self):
+        self.assertEqual(render_visible("**bold**, *italic* and `code`"), "bold, italic and code")
+
+    def test_the_dcurves_token_is_the_count(self):
+        self.assertEqual(render_visible("{dcurves} downloads"), "72k+ downloads")
+
+    def test_text_is_not_escaped(self):
+        self.assertEqual(render_visible("A & B < C"), "A & B < C")
 
 
 if __name__ == "__main__":
