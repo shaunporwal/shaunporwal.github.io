@@ -97,6 +97,7 @@ Two hidden directories also matter. `.githooks/pre-commit` runs lint and regener
 - Keep each fact in one source. When a fact must show in a second place, generate it.
 - Write all documentation, including every `AGENTS.md`, in ASD-STE100 Simplified Technical English.
 - Fix a lint failure by restructuring the code. Do not raise a limit in `ruff.toml`.
+- Run ruff only as the installed, pinned tool (`make lint`). Do not run `uv run --with ruff` or `npx --yes <package>`: they download unpinned code and ignore the pinned version in `ruff.toml`.
 - `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. The `resume` key on an item puts it on the resume.
 - The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.
