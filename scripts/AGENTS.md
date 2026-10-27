@@ -7,6 +7,7 @@ This directory holds the generators that keep the site in sync with its sources,
 This list comes from the first sentence of each script's docstring. `gen_script_index.py` generates it. To change a line, change the script's docstring.
 
 <!-- SCRIPTS:START -->
+- `commit-downloads.sh`: Refreshes the dcurves download count in resume.html, then commits and pushes the change to main as the bot.
 - `dev.sh`: Local dev server for site/.
 - `gen_agent_files.py`: Generates site/agents.txt and site/.well-known/agents.json, the rules for AI agents, from data/site.json.
 - `gen_blog_index.py`: Regenerates the post listing in site/index.html from posts under site/posts/ (auto-discovered via lib_posts, newest first, drafts excluded).
