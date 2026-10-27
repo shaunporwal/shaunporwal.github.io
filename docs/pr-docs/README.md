@@ -6,13 +6,13 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
-| [PR 8: Monthly Download Refresh](./8-refresh-downloads.md) | A monthly workflow refreshes the dcurves download count and pushes it to main |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive
 
 | Doc | Description |
 |-----|-------------|
+| [PR 8: Monthly Download Refresh](./archive/8-refresh-downloads.md) | A monthly workflow refreshes the dcurves download count and pushes it to main |
 | [PR 7: Phone Menu and Centring](./archive/7-phone-menu-and-centering.md) | A natural phone menu, centred phone layout and phone bug fixes |
 | [PR 6: Shared Theme, Editorial Restyle and Agent Files](./archive/6-shared-theme-and-agent-files.md) | Restyle the site on the shared Junto theme and add search and agent files |
 | [PR 5: Resume Wording Fixes, NTU Research Entry, and One Experience Record](./archive/5-resume-wording-fixes.md) | Resume fixes, one JSON experience record, lint, shared generator code, SEO fixes, agent docs, a new palette, and media cleanup |

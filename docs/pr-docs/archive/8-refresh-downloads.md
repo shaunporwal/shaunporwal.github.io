@@ -1,6 +1,6 @@
 # PR 8: Monthly Download Refresh
 
-Status: underway
+Status: done
 
 Branch: `feature/refresh-downloads`
 
@@ -28,11 +28,11 @@ Keep the dcurves download count in `resume.html` fresh with no manual step. A mo
 
 - [x] Update `docs/development.md` and `AGENTS.md`.
 - [x] Run the script against a local bare repository: it pushes as the bot.
-- [ ] Merge the PR. Run the workflow by hand with `republish` on. Check the publish run and the live site.
+- [x] Merge the PR. Merged as `3e0b765`. A by-hand run with `republish` on was green, logged "No change" and started a publish run (`workflow_dispatch`) that passed.
 
 ## Smoke Tests
 
-- [ ] **Refresh run** · as Shaun
+- [x] **Refresh run** · as Shaun
   1. Open the Actions tab. Run "Refresh dcurves downloads" with `republish` on.
 
   **Pass if:** the run is green, the log says "No change", and a "Publish static site" run follows.
@@ -52,4 +52,4 @@ Keep the dcurves download count in `resume.html` fresh with no manual step. A mo
 
 ## Related Docs
 
-- [PR 7: Phone Menu and Centring](./archive/7-phone-menu-and-centering.md)
+- [PR 7: Phone Menu and Centring](./7-phone-menu-and-centering.md)
