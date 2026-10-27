@@ -1,4 +1,4 @@
-/** Motion for the site: scroll reveal, header state and the sliding nav indicator. Every page works without it. */
+/** Motion for the site: scroll reveal, header state, the sliding nav indicator and the pointer light. Every page works without it. */
 const REVEAL_SELECTOR = "[data-reveal-item]"
 const REVEAL_MARGIN = "0px 0px -8% 0px"
 const VIEWPORT_FRACTION = 0.92
@@ -6,6 +6,11 @@ const STAGGER_MS = 70
 const MAX_STAGGER_STEPS = 3
 const SCROLLED_AFTER_PX = 8
 const NAV_SELECTOR = "[data-nav-links]"
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
+const GLOW_TARGETS = [
+  { selector: ".btn, .card", x: "--gx", y: "--gy" },
+  { selector: ".hero", x: "--hx", y: "--hy" },
+]
 let revealObserver = null
 
 function prefersReducedMotion() {
@@ -103,10 +108,34 @@ function armNav() {
   settleIndicator()
 }
 
+function canFollowPointer() {
+  return window.matchMedia(HOVER_QUERY).matches && !prefersReducedMotion()
+}
+
+function placeGlow(event, element, target) {
+  const box = element.getBoundingClientRect()
+  element.style.setProperty(target.x, `${Math.round(event.clientX - box.left)}px`)
+  element.style.setProperty(target.y, `${Math.round(event.clientY - box.top)}px`)
+}
+
+function followTarget(event, target) {
+  const element = event.target.closest(target.selector)
+  if (element) placeGlow(event, element, target)
+}
+
+function followPointer(event) {
+  for (const target of GLOW_TARGETS) followTarget(event, target)
+}
+
+function armGlow() {
+  if (canFollowPointer()) document.addEventListener("pointermove", followPointer, { passive: true })
+}
+
 function start() {
   armReveal()
   armHeader()
   armNav()
+  armGlow()
 }
 
 start()
