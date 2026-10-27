@@ -134,7 +134,8 @@
         "radius",
         "ease-out",
         "shell",
-        "measure"
+        "measure",
+        "shadow-menu"
       ],
       "additionalProperties": false,
       "properties": {
@@ -154,6 +155,10 @@
           "type": "string"
         },
         "measure": {
+          "type": "string"
+        },
+        "shadow-menu": {
+          "description": "The drop shadow under the open phone menu.",
           "type": "string"
         }
       }

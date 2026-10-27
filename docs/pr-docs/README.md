@@ -6,6 +6,7 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
+| [PR 7: Phone Menu and Centring](./7-phone-menu-and-centering.md) | A natural phone menu, centred phone layout and phone bug fixes |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive

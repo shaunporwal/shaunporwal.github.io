@@ -34,6 +34,8 @@ Never edit generated content. Edit its source in `data/`, `templates/`, or the p
 - Respect reduced motion. The stylesheet and `js/motion.js` must show every page as a still page when the visitor asks for less motion.
 - No generated file, no discovery file and no structured data holds the email address. `tests/test_site_contract.py` fails if one does. `resume.html` shows it as a normal resume contact line.
 - Every page except `resume.html` has one `<main id="main">`. The skip link targets it.
+- On phones the hero, each home section heading, and the plain pages (`page-plain`: Stuff and 404) are centred. Posts, lists and card text stay left-aligned. Every link and button is 44 px tall and wide or more.
+- The phone menu is a column of rows that keeps its content height. `tests/test_menu_css.py` guards this, because some WebKit browsers stretch grid rows over the whole panel.
 - Do not add analytics, tracking, or third-party scripts without Shaun's named approval.
 - Large files in `media/` are published and downloaded by visitors. Keep new images small. The default social image is `media/og-image.jpg`.
 - Every file in `media/` must be used. `tests/test_media_refs.py` fails on an unused file, because an unused file is still published.
