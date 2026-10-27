@@ -1,6 +1,6 @@
-# PR planned: Picture-First Work Cards
+# PR 10: Picture-First Work Cards
 
-Status: planned
+Status: underway
 
 Branch: `feature/picture-first-cards`
 
