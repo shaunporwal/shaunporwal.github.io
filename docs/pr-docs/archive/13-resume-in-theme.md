@@ -1,6 +1,6 @@
 # PR 13: Resume in the Site Theme, With a PDF Download
 
-Status: underway
+Status: done (merged on 2026-10-27, commit `e53292a`)
 
 Branch: `feature/resume-in-theme`
 
@@ -47,8 +47,8 @@ Ordered from least consequential to most consequential. Tests come first.
 - [x] Open `/resume.html` at 360, 390, 430, 820 and 1440 px in the light and the dark mode. The header and footer show. The page has no sideways scroll. The button is 44 px high.
 - [x] Open the phone menu. The Resume link is current and opens in the same tab.
 - [x] Run `make pdf`. The PDF has two pages and selectable text. It shows no header, no footer and no button. Its links work.
-- [ ] After the merge, open `https://www.shaunporwal.com/resume.pdf`. It returns 200 and `application/pdf`.
-- [ ] After the merge, press Download PDF on the live page. The file is named `Shaun-Porwal-Resume.pdf`.
+- [x] After the merge, open `https://www.shaunporwal.com/resume.pdf`. It returns 200 and `application/pdf`. The PDF has two pages, ten links and no header, footer or button.
+- [x] After the merge, press Download PDF on the live page. The file is named `Shaun-Porwal-Resume.pdf`. Chromium saved it (checked with a script).
 
 ## Product Decisions
 
@@ -58,6 +58,7 @@ Ordered from least consequential to most consequential. Tests come first.
 - External links in the resume open in a new tab, as before. Each link now says so, because the page no longer sets `<base target>`.
 - The Chrome finder also accepts the Chromium that Playwright downloaded, so `make test` and `make pdf` work on a machine with no Google Chrome.
 - CI and the publish step run Chrome with `--no-sandbox`. The runner is a throwaway machine and the page is ours.
+- The Playwright step also ran `apt-get update`. The test workflow now runs it before it installs `poppler-utils`, or the install fails with a 404.
 
 ## Scope
 
@@ -71,5 +72,5 @@ Ordered from least consequential to most consequential. Tests come first.
 
 ## Related Docs
 
-- [PR 5: Resume Wording Fixes](./archive/5-resume-wording-fixes.md)
-- [PR 4: Rebuild as Plain Static HTML + Resume Page](./archive/4-static-resume-site.md)
+- [PR 5: Resume Wording Fixes](./5-resume-wording-fixes.md)
+- [PR 4: Rebuild as Plain Static HTML + Resume Page](./4-static-resume-site.md)
