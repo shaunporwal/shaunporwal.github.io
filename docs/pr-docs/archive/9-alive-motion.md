@@ -1,6 +1,6 @@
 # PR 9: Alive Motion and Junto Wording
 
-Status: underway
+Status: done
 
 Branch: `feature/alive-motion`
 
@@ -41,17 +41,17 @@ Ordered from least consequential to most consequential.
 
 Manual checks Shaun performs in the previewed site.
 
-- [ ] **Home on a desktop** · move the pointer over the hero and the buttons
+- [x] **Home on a desktop** · move the pointer over the hero and the buttons
   1. Open the home page in a desktop browser.
 
   **Pass if:** dots light up near the pointer, buttons and cards show a soft light, and the main button has a light that circles its edge.
 
-- [ ] **Home on a phone** · scroll the page
+- [x] **Home on a phone** · scroll the page
   1. Open the home page on a phone.
 
   **Pass if:** no hover effect shows, nothing scrolls sideways, and the header shows a soft shadow after you scroll.
 
-- [ ] **Reduced motion** · turn on "reduce motion" in the system settings
+- [x] **Reduced motion** · turn on "reduce motion" in the system settings
   1. Open the home page.
 
   **Pass if:** the page is still. No light circles the button.
@@ -74,4 +74,4 @@ Manual checks Shaun performs in the previewed site.
 
 ## Related Docs
 
-- [PR 7: Phone Menu and Centring](./archive/7-phone-menu-and-centering.md)
+- [PR 7: Phone Menu and Centring](./7-phone-menu-and-centering.md)
