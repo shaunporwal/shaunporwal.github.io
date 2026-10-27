@@ -1,0 +1,33 @@
+name: Refresh dcurves downloads
+
+# Monthly. Shaun asked on 2026-10-27 for an automatic refresh that pushes straight to main.
+on:
+  schedule:
+    - cron: "17 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      republish:
+        description: "Publish the site even when the count did not change"
+        type: boolean
+        default: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Refresh the count and push it to main
+        id: refresh
+        run: ./scripts/commit-downloads.sh
+
+      # A push made with the workflow token does not start the publish workflow, so start it here.
+      - name: Publish the site
+        if: steps.refresh.outputs.changed == 'true' || inputs.republish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yaml --ref main

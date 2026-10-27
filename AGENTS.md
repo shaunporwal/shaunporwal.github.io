@@ -94,6 +94,7 @@ Two hidden directories also matter. `.githooks/pre-commit` runs lint and regener
 ### Rules
 
 - Shaun's authorization of 2026-10-27 covers a merge to `main` and the publish that follows. Any other production change needs named confirmation.
+- Shaun also authorized one bot push to `main` each month: `.github/workflows/refresh-downloads.yaml` refreshes the dcurves download count in `resume.html`. It touches that one line only.
 - Keep each fact in one source. When a fact must show in a second place, generate it.
 - Write all documentation, including every `AGENTS.md`, in ASD-STE100 Simplified Technical English.
 - Fix a lint failure by restructuring the code. Do not raise a limit in `ruff.toml`.

@@ -107,3 +107,7 @@ Each is a thin `main()` around testable functions. The `lib_*.py` modules hold t
 `tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
 
 `make sync` runs all of the above. The `Makefile` is the only list of generators and their order. The pre-commit hook runs `make -k sync`, so a failed generator (for example, no network for the dcurves count) gives a warning, and the others still run.
+
+## Monthly download refresh
+
+`.github/workflows/refresh-downloads.yaml` runs on the 1st of each month and by hand. It runs `scripts/commit-downloads.sh`, which refreshes the dcurves download count in `resume.html`, commits it as the bot and pushes it to `main`. Shaun asked for this on 2026-10-27, with no PR. A push made with the workflow token does not start the publish workflow, so the refresh starts `publish.yaml` itself. A by-hand run has a `republish` switch that publishes with no count change. The script stops when the diff is not exactly the one count line. The pre-commit hook still refreshes the count at each commit.
