@@ -11,10 +11,10 @@
 
 ## Work
 
-- [Junto Technologies](https://juntotechnologies.com/): My company. It modernizes chemistry labs and applies machine learning and statistics to biomedical questions.
-- [ChemInventory](https://cheminventory.co/): Chemical inventory, orders and batch documents in one app.
-- [Bench Bridge](https://bench-bridge.juntotechnologies.com/): A demo of how older lab instruments can feed a laboratory information management system (LIMS) and a controlled-substance ledger.
-- [dcurves](https://github.com/MSKCC-Epi-Bio/dcurves): A Python package for decision curve analysis. I created it at Memorial Sloan Kettering Cancer Center.
+- [Junto Technologies](https://juntotechnologies.com/): My company. It modernizes chemistry labs.
+- [ChemInventory](https://cheminventory.co/): Chemical inventory, orders and batch documents.
+- [Bench Bridge](https://bench-bridge.juntotechnologies.com/): A demo of older lab instruments feeding a lab system.
+- [dcurves](https://github.com/MSKCC-Epi-Bio/dcurves): Decision curve analysis in Python. I created it at Memorial Sloan Kettering Cancer Center.
 
 ## Posts
 

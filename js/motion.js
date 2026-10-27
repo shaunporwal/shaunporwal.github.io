@@ -1,4 +1,4 @@
-/** Motion for the site: scroll reveal, header state, the sliding nav indicator and the pointer light. Every page works without it. */
+/** Motion for the site: scroll reveal, header state, the sliding nav indicator, the pointer light and the card pictures. Every page works without it. */
 const REVEAL_SELECTOR = "[data-reveal-item]"
 const REVEAL_MARGIN = "0px 0px -8% 0px"
 const VIEWPORT_FRACTION = 0.92
@@ -7,6 +7,8 @@ const MAX_STAGGER_STEPS = 3
 const SCROLLED_AFTER_PX = 8
 const NAV_SELECTOR = "[data-nav-links]"
 const HOVER_QUERY = "(hover: hover) and (pointer: fine)"
+const PICTURE_SELECTOR = ".card-media"
+const PICTURE_THRESHOLD = 0.35
 const GLOW_TARGETS = [
   { selector: ".btn, .card", x: "--gx", y: "--gy" },
   { selector: ".hero", x: "--hx", y: "--hy" },
@@ -131,11 +133,63 @@ function armGlow() {
   if (canFollowPointer()) document.addEventListener("pointermove", followPointer, { passive: true })
 }
 
+function saveDataOn() {
+  return Boolean(navigator.connection && navigator.connection.saveData)
+}
+
+function canPlayPictures() {
+  return !prefersReducedMotion() && !saveDataOn()
+}
+
+function ignoreRejection() {
+  // A play request that a later pause cancels is expected. The still stays on screen.
+}
+
+function startClip(clip) {
+  const started = clip.play()
+  if (started) started.catch(ignoreRejection)
+}
+
+function setPlaying(media, playing) {
+  media.dataset.playing = String(playing)
+  const clip = media.querySelector("video")
+  if (!clip) return
+  if (playing) startClip(clip)
+  else clip.pause()
+}
+
+function isShowing(media) {
+  return media.dataset.onscreen === "true" && !document.hidden
+}
+
+function syncPlayback(media) {
+  setPlaying(media, isShowing(media))
+}
+
+function onPictureIntersect(entries) {
+  for (const entry of entries) {
+    entry.target.dataset.onscreen = String(entry.isIntersecting)
+    syncPlayback(entry.target)
+  }
+}
+
+function onVisibilityChange() {
+  for (const media of document.querySelectorAll(PICTURE_SELECTOR)) syncPlayback(media)
+}
+
+function armPictures() {
+  if (!canPlayPictures()) return
+  const observer = new IntersectionObserver(onPictureIntersect, { threshold: PICTURE_THRESHOLD })
+  for (const media of document.querySelectorAll(PICTURE_SELECTOR)) observer.observe(media)
+  document.addEventListener("visibilitychange", onVisibilityChange)
+}
+
 function start() {
   armReveal()
   armHeader()
   armNav()
   armGlow()
+  armPictures()
 }
 
 start()
