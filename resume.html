@@ -107,6 +107,12 @@
     border-radius: 6px;
   }
 
+  @media screen and (max-width: 560px) {
+    .print-note { display: none; }
+    header.resume-header .contact span { display: block; }
+    header.resume-header .contact span:not(:last-child)::after { content: none; }
+  }
+
   @media (max-width: 420px) {
     .entry-head { flex-wrap: wrap; }
     .entry-meta { white-space: normal; }
