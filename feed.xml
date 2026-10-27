@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Shaun Porwal</title>
+  <subtitle>Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software.</subtitle>
+  <link href="https://www.shaunporwal.com/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://www.shaunporwal.com/" rel="alternate" type="text/html"/>
+  <id>https://www.shaunporwal.com/</id>
+  <updated>2025-04-12T00:00:00Z</updated>
+  <author><name>Shaun Porwal</name><uri>https://www.shaunporwal.com/</uri></author>
+  <entry>
+    <title>Thoughts After Coding for 113 Days Straight</title>
+    <link href="https://www.shaunporwal.com/posts/hundred-day-coding-streak/" rel="alternate" type="text/html"/>
+    <id>https://www.shaunporwal.com/posts/hundred-day-coding-streak/</id>
+    <updated>2025-04-12T00:00:00Z</updated>
+    <summary>How did this all begin? If you look at my GitHub, you’ll see a sea of black in 2024 followed by a relatively abrupt yet sustained wall of green. What’s...</summary>
+    <category term="Consistency"/>
+    <category term="Habits"/>
+    <category term="Goals"/>
+  </entry>
+  <entry>
+    <title>Why I Will Never Put Outside Punctuation Inside Quotes</title>
+    <link href="https://www.shaunporwal.com/posts/no-punctuation-in-quotes/" rel="alternate" type="text/html"/>
+    <id>https://www.shaunporwal.com/posts/no-punctuation-in-quotes/</id>
+    <updated>2025-01-11T00:00:00Z</updated>
+    <summary>Have you ever heard of the rule that certain punctuation around quotes should be inside the quotes? For example:</summary>
+    <category term="Personality"/>
+    <category term="Purposeful Disobedience"/>
+    <category term="Grammar"/>
+  </entry>
+  <entry>
+    <title>How I completely automated my Python Package Development Workflow</title>
+    <link href="https://www.shaunporwal.com/posts/python-package-automation/" rel="alternate" type="text/html"/>
+    <id>https://www.shaunporwal.com/posts/python-package-automation/</id>
+    <updated>2025-01-10T00:00:00Z</updated>
+    <summary>Whenever you start doing something, whatever it is, you will be extremely far from efficient at it. I think it’s probably a law of the universe. There...</summary>
+    <category term="Python"/>
+    <category term="Packages"/>
+    <category term="CI/CD"/>
+  </entry>
+  <entry>
+    <title>The Best Resume Builder I Have Ever Used</title>
+    <link href="https://www.shaunporwal.com/posts/best-resume-builder/" rel="alternate" type="text/html"/>
+    <id>https://www.shaunporwal.com/posts/best-resume-builder/</id>
+    <updated>2024-12-12T00:00:00Z</updated>
+    <summary>As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first...</summary>
+    <category term="resume"/>
+    <category term="convenience"/>
+    <category term="UI/UX"/>
+  </entry>
+  <entry>
+    <title>It's all in the framework!</title>
+    <link href="https://www.shaunporwal.com/posts/webdev-is-tricky/" rel="alternate" type="text/html"/>
+    <id>https://www.shaunporwal.com/posts/webdev-is-tricky/</id>
+    <updated>2024-12-08T00:00:00Z</updated>
+    <summary>Getting to the point of having a decent site for myself was a very long and arduous journey. Unlucky for me, I never took any HTML/CSS/JavaScript...</summary>
+    <category term="webdev"/>
+    <category term="code"/>
+  </entry>
+</feed>
