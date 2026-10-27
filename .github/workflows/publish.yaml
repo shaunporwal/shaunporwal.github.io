@@ -14,6 +14,12 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
+      - name: Print the PDFs that pages name in data/pages.json
+        run: python3 scripts/render_pdf.py
+        env:
+          # The runner is a throwaway machine and the page is ours, so Chrome may run without its sandbox.
+          CHROME_ARGS: --no-sandbox
+
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

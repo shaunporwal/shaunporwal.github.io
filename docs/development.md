@@ -37,6 +37,16 @@ On the resume, a project's title and links share a row (like experience/educatio
 
 Need a plain-text copy for LinkedIn or anywhere else that doesn't take HTML: `make resume-text` (prints to stdout, links rendered as `label (url)`, dcurves count fetched live).
 
+## Resume page and PDF
+
+`site/resume.html` is a normal site page. It has the site header, the footer and the theme. `site/styles/resume.css` holds its styles. On a screen the page reads the theme tokens, so it follows the light and the dark theme. When printed, the page hides the header, the footer and the Download PDF button, and it uses a plain light print palette.
+
+The Download PDF button links to the PDF that the resume entry names in `data/pages.json` (the `pdf` key). Git does not hold the PDF. `scripts/render_pdf.py` prints it from the page with headless Chrome, so it always matches the page and `data/experiences.json`.
+
+- Publish: `.github/workflows/publish.yaml` runs the script before it publishes `site/`. The runner has Google Chrome. The step sets `CHROME_ARGS=--no-sandbox`, because the runner is a throwaway machine.
+- Local: `make pdf` writes `site/resume.pdf`. The script looks for Chrome in the `CHROME` variable, then on the PATH, then in `/Applications`, then in the Chromium that Playwright downloaded. It stops with a message when it finds none. `make dev` does not print the PDF, so the button gives a 404 until you run `make pdf`.
+- Check: `tests/test_resume_pdf.py` fails when the button, `.gitignore`, `make pdf`, the workflow and the discovery files do not follow the one name in `data/pages.json`.
+
 ## Lint
 
 `ruff.toml` sets the lint rules for `scripts/` and `tests/`, including limits on complexity, statements, branches, and nested blocks. `tests/test_code_shape.py` adds two checks that ruff does not have: no nested functions and no lambdas.
@@ -94,13 +104,13 @@ Each file below is generated. Change its source, then run `make sync`.
 | `feed.xml` | the posts | `gen_feed.py` |
 | `manifest.webmanifest` | `data/site.json`, `data/theme.json` | `gen_manifest.py` |
 
-No discovery file and no structured data holds the email address. The contact link is the booking link. `tests/test_site_contract.py` checks this. `resume.html` shows the email as a resume contact line.
+No discovery file and no structured data holds the email address. The contact link is the booking link. `tests/test_site_contract.py` checks this. `resume.html` and the PDF printed from it show the email as a resume contact line. No discovery file lists the PDF.
 
 `scripts/gen_crawler_files.py` generates `site/CNAME` (the host of `base_url`), `site/robots.txt`, and `site/llms.txt` from `data/site.json`, `data/pages.json`, the current role in `data/experiences.json`, and the published posts. Do not edit these files by hand. `base_url` must be the domain that GitHub Pages serves without a redirect (`www.shaunporwal.com`), because every canonical URL starts with it.
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/` (with `media/projects/` for the card pictures), `styles/site.css`, `js/motion.js`, and the generated discovery files (see above).
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/` (with `media/projects/` for the card pictures), `styles/site.css`, `styles/resume.css`, `js/motion.js`, and the generated discovery files (see above).
 - `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
 - `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).
@@ -118,7 +128,7 @@ Each is a thin `main()` around testable functions. The `lib_*.py` modules hold t
 
 `scripts/AGENTS.md` lists every script with a one-line summary. That list is generated from each script's docstring, so this guide does not repeat it.
 
-`tests/test_resume_print_layout.py` (run via `make test`) renders `site/resume.html` to PDF with Chromium. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/resume.html`. The test needs `npx` and `pdftotext`. Install `pdftotext` with `brew install poppler`. Install Chromium with `npx playwright install chromium`.
+`tests/test_resume_print_layout.py` (run via `make test`) prints `site/resume.html` to PDF with Chrome, through the same code as the publish step. It reads the PDF text with `pdftotext`. The test fails when a page break splits an entry or a short section. It also fails when a heading sits alone at the bottom of a page. The resume has no page limit. If the test fails, change the `@media print` rules in `site/styles/resume.css`. The test needs Chrome and `pdftotext`. Install `pdftotext` with `brew install poppler`. `scripts/render_pdf.py` finds Chrome (see Resume page and PDF).
 
 `make sync` runs all of the above. The `Makefile` is the only list of generators and their order. The pre-commit hook runs `make -k sync`, so a failed generator (for example, no network for the dcurves count) gives a warning, and the others still run.
 

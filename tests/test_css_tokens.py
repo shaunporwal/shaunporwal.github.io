@@ -1,11 +1,11 @@
-"""Every color in site/styles/site.css is a :root token, so the palette has
-one home and a color change is one edit."""
+"""Every color in a stylesheet under site/styles/ is a :root token, so the palette has
+one home and a color change is one edit. The resume print palette is a :root block too."""
 import re
 import unittest
 
 import context
 
-CSS_PATH = context.REPO_ROOT / "site" / "styles" / "site.css"
+CSS_PATHS = sorted((context.REPO_ROOT / "site" / "styles").glob("*.css"))
 COMMENT_RE = re.compile(r"/\*.*?\*/", re.DOTALL)
 ROOT_RE = re.compile(r":root\s*\{[^}]*\}")
 COLOR_RE = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?)\(")
@@ -24,8 +24,11 @@ class TestCssTokens(unittest.TestCase):
         css = ":root { --x: rgba(0, 0, 0, 0.5); }\n/* #abc */\na { color: var(--x); }"
         self.assertEqual(color_literals_outside_root(css), [])
 
-    def test_site_css_uses_only_tokens(self):
-        self.assertEqual(color_literals_outside_root(CSS_PATH.read_text()), [])
+    def test_every_stylesheet_uses_only_tokens(self):
+        self.assertTrue(CSS_PATHS)
+        for path in CSS_PATHS:
+            with self.subTest(stylesheet=path.name):
+                self.assertEqual(color_literals_outside_root(path.read_text()), [])
 
 
 if __name__ == "__main__":
