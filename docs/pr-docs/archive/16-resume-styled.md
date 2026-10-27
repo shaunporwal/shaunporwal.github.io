@@ -1,6 +1,6 @@
 # PR 16: Styled Resume, One Source for the Page and the PDF
 
-Status: in progress
+Status: done
 
 Branch: `feature/resume-styled`
 
@@ -35,19 +35,19 @@ Give the resume a designed look on the screen and in the PDF. One page of markup
 
 ## Smoke Tests
 
-Manual checks Shaun performs on the live site after the merge.
+Checks on the live site after the merge. An agent ran them at 360, 390, 820 and 1440 px and on the downloaded PDF.
 
-- [ ] **Resume on a phone** · open `/resume.html`
+- [x] **Resume on a phone** · open `/resume.html`
   1. Open the page at phone width.
 
   **Pass if:** one column, nothing scrolls sideways, and the Download PDF button is easy to tap.
 
-- [ ] **Resume on a desktop** · open `/resume.html`
+- [x] **Resume on a desktop** · open `/resume.html`
   1. Open the page in a wide window.
 
   **Pass if:** dates sit in a rail at the left of each entry.
 
-- [ ] **PDF** · press Download PDF
+- [x] **PDF** · press Download PDF
   1. Open the PDF.
 
   **Pass if:** it has 2 Letter pages, the email address shows, and the text copies cleanly.
@@ -72,4 +72,4 @@ Manual checks Shaun performs on the live site after the merge.
 
 ## Related Docs
 
-- [PR 13: Resume in the Site Theme, With a PDF Download](./archive/13-resume-in-theme.md)
+- [PR 13: Resume in the Site Theme, With a PDF Download](./13-resume-in-theme.md)

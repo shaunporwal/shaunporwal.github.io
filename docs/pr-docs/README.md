@@ -6,13 +6,13 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
-| [PR 16: Styled Resume, One Source for the Page and the PDF](./16-resume-styled.md) | A designed resume on the screen and in a two-page Letter PDF, with a check that the PDF carries the record |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive
 
 | Doc | Description |
 |-----|-------------|
+| [PR 16: Styled Resume, One Source for the Page and the PDF](./archive/16-resume-styled.md) | A designed resume on the screen and in a two-page Letter PDF, with a check that the PDF carries the record |
 | [PR 13: Resume in the Site Theme, With a PDF Download](./archive/13-resume-in-theme.md) | The resume page uses the site header, footer and theme, and the publish step prints a PDF from it |
 | [PR 12: Refresh the Bench Bridge and ChemInventory Pictures](./archive/12-refresh-bench-bridge-media.md) | Copy the new stills and clips from the hub so the Work cards show the current look. |
 | [PR 10: Picture-First Work Cards](./archive/10-picture-first-cards.md) | Each Work card on the home page leads with a clip, a logo or a sample decision curve |
