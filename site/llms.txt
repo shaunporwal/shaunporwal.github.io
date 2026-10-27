@@ -1,17 +1,17 @@
 # Shaun Porwal
 
-> Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software. Currently Founder & Engineer at Junto Technologies.
+> Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory. Currently Founder & Engineer at Junto Technologies.
 
 ## Pages
 
 - [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal is a software and machine learning engineer. Notes on building, coding and thinking clearly.
-- [About — Shaun Porwal](https://www.shaunporwal.com/about.html): About Shaun Porwal — engineer working across AI/ML, biomedical data science, and chemical inventory software.
+- [About — Shaun Porwal](https://www.shaunporwal.com/about.html): About Shaun Porwal — engineer working across AI/ML, biomedical data science, and chemical inventory.
 - [Stuff — Shaun Porwal](https://www.shaunporwal.com/stuff.html): Odds and ends from Shaun Porwal, including an iPhone macro photo of an eye.
 - [Shaun Porwal — Resume](https://www.shaunporwal.com/resume.html): Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.
 
 ## Work
 
-- [Junto Technologies](https://juntotechnologies.com/): My company. It builds software for chemistry labs and applies machine learning and statistics to biomedical questions.
+- [Junto Technologies](https://juntotechnologies.com/): My company. It modernizes chemistry labs and applies machine learning and statistics to biomedical questions.
 - [ChemInventory](https://cheminventory.co/): Chemical inventory, orders and batch documents in one app.
 - [Bench Bridge](https://bench-bridge.juntotechnologies.com/): A demo of how older lab instruments can feed a laboratory information management system (LIMS) and a controlled-substance ledger.
 - [dcurves](https://github.com/MSKCC-Epi-Bio/dcurves): A Python package for decision curve analysis. I created it at Memorial Sloan Kettering Cancer Center.

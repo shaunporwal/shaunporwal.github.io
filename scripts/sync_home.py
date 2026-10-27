@@ -23,6 +23,7 @@ ARROW = (
 
 
 HERO_TEMPLATE = """<section class="hero" id="top">
+  <div class="hero-art" aria-hidden="true"><span class="hero-dots"></span><span class="hero-lit"></span></div>
   <div class="shell hero-grid">
     <div class="hero-copy">
       <p class="eyebrow rise rise-0">{role}</p>
@@ -47,7 +48,7 @@ def role_line(record: dict) -> str:
 def hero_links(site: dict) -> str:
     github_label, github_url = profile(site, "github")
     return (
-        f'<a class="btn btn-primary" href="{site["cal"]}"{NEW_TAB}>Book a call</a>\n'
+        f'<a class="btn btn-primary btn-sheen" href="{site["cal"]}"{NEW_TAB}>Book a call</a>\n'
         f'        <a class="btn btn-outline" href="resume.html"{NEW_TAB}>Resume</a>\n'
         f'        <a class="btn btn-outline" href="{github_url}"{PROFILE_TAB}>{github_label}</a>'
     )

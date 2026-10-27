@@ -63,15 +63,32 @@ FAKE_PAGES = [
 ]
 
 
+ALIVE_TOKENS = {
+    "glow-tint": "rgba(1, 2, 3, 0.1)",
+    "glow-on-primary": "rgba(255, 255, 255, 0.2)",
+    "sheen": "rgba(255, 255, 255, 0.9)",
+    "shadow-raise": "0 0 0 black",
+    "shadow-raise-primary": "0 0 0 black",
+    "shadow-header": "0 0 0 black",
+}
 FAKE_THEME = {
-    "light": {"background": "#ffffff", "foreground": "#111111", "card": "#ffffff", "secondary": "#eeeeee",
-              "muted-foreground": "#555555", "border": "#dddddd", "input": "#cccccc",
-              "primary": "#aa3300", "primary-foreground": "#ffffff", "ring": "#aa3300"},
-    "dark": {"background": "#000000", "foreground": "#eeeeee", "card": "#111111", "secondary": "#222222",
-             "muted-foreground": "#aaaaaa", "border": "#333333", "input": "#444444",
-             "primary": "#ff9966", "primary-foreground": "#000000", "ring": "#ff9966"},
-    "fixed": {"font-sans": "sans-serif", "font-serif": "serif", "radius": "0.5rem",
-              "ease-out": "ease-out", "shell": "72rem", "measure": "40rem", "shadow-menu": "0 0 0 black"},
+    "light": {
+        **ALIVE_TOKENS,
+        "background": "#ffffff", "foreground": "#111111", "card": "#ffffff", "secondary": "#eeeeee",
+        "muted-foreground": "#555555", "border": "#dddddd", "input": "#cccccc",
+        "primary": "#aa3300", "primary-foreground": "#ffffff", "ring": "#aa3300",
+    },
+    "dark": {
+        **ALIVE_TOKENS,
+        "background": "#000000", "foreground": "#eeeeee", "card": "#111111", "secondary": "#222222",
+        "muted-foreground": "#aaaaaa", "border": "#333333", "input": "#444444",
+        "primary": "#ff9966", "primary-foreground": "#000000", "ring": "#ff9966",
+    },
+    "fixed": {
+        "font-sans": "sans-serif", "font-serif": "serif", "radius": "0.5rem",
+        "ease-out": "ease-out", "shell": "72rem", "measure": "40rem", "shadow-menu": "0 0 0 black",
+        "glow-size": "220px", "motion-glow": "400ms", "motion-follow": "220ms", "sheen-duration": "6s",
+    },
 }
 
 

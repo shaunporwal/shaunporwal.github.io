@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Shaun Porwal</title>
-  <subtitle>Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software.</subtitle>
+  <subtitle>Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory.</subtitle>
   <link href="https://www.shaunporwal.com/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://www.shaunporwal.com/" rel="alternate" type="text/html"/>
   <id>https://www.shaunporwal.com/</id>

@@ -1,6 +1,6 @@
 # Shaun Porwal: full text
 
-> Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software.
+> Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory.
 
 Index: https://www.shaunporwal.com/llms.txt
 

@@ -14,7 +14,7 @@
   {
     "file": "about.html",
     "title": "About — {name}",
-    "description": "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory software.",
+    "description": "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory.",
     "og_type": "website",
     "sitemap": true,
     "nav": true,

@@ -158,6 +158,20 @@
         }
       }
     },
+    "brand": {
+      "description": "Phrases that the built pages and discovery files must never hold. Junto is the company that makes the lab modern, not a software company. tests/test_brand_copy.py enforces it.",
+      "type": "object",
+      "required": ["avoid"],
+      "additionalProperties": false,
+      "properties": {
+        "avoid": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "avatar_path": {
       "description": "The portrait on the home page and in the Person JSON-LD, as a path from the site root.",
       "type": "string",

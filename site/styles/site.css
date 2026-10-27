@@ -14,6 +14,12 @@
   --primary: #c2410c;
   --primary-foreground: #ffffff;
   --ring: #c2410c;
+  --glow-tint: rgba(194, 65, 12, 0.14);
+  --glow-on-primary: rgba(255, 255, 255, 0.28);
+  --sheen: rgba(255, 255, 255, 0.9);
+  --shadow-raise: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(21, 24, 30, 0.08), 0 0 0 1px rgba(21, 24, 30, 0.04);
+  --shadow-raise-primary: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.15), 0 1px 2px rgba(124, 45, 18, 0.35), 0 10px 20px -10px rgba(194, 65, 12, 0.5);
+  --shadow-header: 0 10px 24px -18px rgba(21, 24, 30, 0.28);
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --radius: 0.5rem;
@@ -21,6 +27,10 @@
   --shell: 72rem;
   --measure: 40rem;
   --shadow-menu: 0 1.5rem 2rem -1rem rgb(0 0 0 / 0.28);
+  --glow-size: 220px;
+  --motion-glow: 400ms;
+  --motion-follow: 220ms;
+  --sheen-duration: 6s;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,6 +46,12 @@
     --primary: #ff9d70;
     --primary-foreground: #1d0e07;
     --ring: #ff9d70;
+    --glow-tint: rgba(255, 157, 112, 0.18);
+    --glow-on-primary: rgba(255, 255, 255, 0.35);
+    --sheen: rgba(255, 255, 255, 0.8);
+    --shadow-raise: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03);
+    --shadow-raise-primary: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 22px -10px rgba(255, 157, 112, 0.4);
+    --shadow-header: 0 10px 24px -18px rgba(0, 0, 0, 0.7);
   }
 }
 /* THEME:END */
@@ -157,6 +173,7 @@ a {
   top: 0;
   z-index: 50;
   background: var(--background);
+  transition: box-shadow 200ms var(--ease-out);
 }
 
 .site-header::after {
@@ -170,6 +187,7 @@ a {
 }
 
 .site-header[data-scrolled="true"]::after { opacity: 1; }
+.site-header[data-scrolled="true"] { box-shadow: var(--shadow-header); }
 
 .header-row {
   display: flex;
@@ -337,7 +355,7 @@ a {
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
-  transition: transform 150ms ease-out;
+  transition: transform 150ms ease-out, --glow var(--motion-glow) var(--ease-out), --gx var(--motion-follow) var(--ease-out), --gy var(--motion-follow) var(--ease-out);
 }
 
 .btn::before {
@@ -355,14 +373,77 @@ a {
 .btn:active { transform: translateY(1px); }
 
 .btn-primary {
-  background: var(--primary);
+  background-color: var(--primary);
   color: var(--primary-foreground);
+  box-shadow: var(--shadow-raise-primary);
 }
 
 .btn-outline {
   border-color: var(--input);
-  background: transparent;
+  background-color: transparent;
   color: var(--foreground);
+  box-shadow: var(--shadow-raise);
+}
+
+/* Alive. Light follows the pointer. motion.js writes --gx and --gy. The registered properties let CSS ease them and fade --glow. */
+@property --glow {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --gx {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --gy {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --hx {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --hy {
+  syntax: "<length-percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --turn {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.btn,
+.card {
+  --glow-color: var(--glow-tint);
+  background-image: radial-gradient(var(--glow-size) circle at var(--gx) var(--gy), color-mix(in srgb, var(--glow-color) calc(var(--glow) * 100%), transparent), transparent);
+}
+
+.btn-primary { --glow-color: var(--glow-on-primary); }
+
+/* The main button has a light that circles its edge: a conic gradient cut to a 2 px ring. */
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--turn), transparent 0 62%, var(--sheen) 90%, transparent 100%);
+  -webkit-mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: sheen var(--sheen-duration) linear infinite;
 }
 
 .btn-sm {
@@ -379,7 +460,50 @@ a {
 }
 
 /* Hero: portrait first and centered on phones, text left and portrait right from 1024 px. */
-.hero { padding-block: 2.5rem 4rem; }
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: 2.5rem 4rem;
+  transition: --hx var(--motion-follow) var(--ease-out), --hy var(--motion-follow) var(--ease-out);
+}
+
+/* Faint dots sit behind the hero. Dots near the pointer light up. The hero holds --hx and --hy, so the lit layer reads them. */
+.hero-art {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  overflow: clip;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 85% 90% at 50% 30%, black 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 85% 90% at 50% 30%, black 20%, transparent 78%);
+}
+
+.hero-dots,
+.hero-lit::before {
+  position: absolute;
+  inset: -24px;
+  background-size: 24px 24px;
+  animation: drift 48s linear infinite;
+}
+
+.hero-dots {
+  background-image: radial-gradient(circle, var(--border) 1.25px, transparent 1.75px);
+}
+
+.hero-lit {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  -webkit-mask-image: radial-gradient(circle var(--glow-size) at var(--hx) var(--hy), black, transparent);
+  mask-image: radial-gradient(circle var(--glow-size) at var(--hx) var(--hy), black, transparent);
+  transition: opacity var(--motion-glow) var(--ease-out);
+}
+
+.hero-lit::before {
+  content: "";
+  background-image: radial-gradient(circle, var(--primary) 1.25px, transparent 1.75px);
+}
 
 .hero-grid {
   display: grid;
@@ -421,12 +545,12 @@ a {
 .card {
   border: 1px solid var(--border);
   border-radius: calc(var(--radius) * 1.5);
-  background: var(--card);
+  background-color: var(--card);
 }
 
 .lift {
   position: relative;
-  transition: transform 220ms var(--ease-out);
+  transition: transform 220ms var(--ease-out), --glow var(--motion-glow) var(--ease-out), --gx var(--motion-follow) var(--ease-out), --gy var(--motion-follow) var(--ease-out);
 }
 
 .lift::after {
@@ -700,8 +824,25 @@ a {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(12px) scale(0.985);
+    filter: blur(4px);
   }
+}
+
+@keyframes sheen {
+  to { --turn: 360deg; }
+}
+
+@keyframes drift {
+  to { transform: translate(24px, 24px); }
+}
+
+/* Hover effects run only where a pointer can hover, so a touch screen never keeps a hover state. */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover,
+  .card:hover { --glow: 1; }
+
+  .hero:hover .hero-lit { opacity: 0.55; }
 }
 
 @media (min-width: 640px) {
@@ -817,4 +958,7 @@ a {
     opacity: 1;
     transform: none;
   }
+
+  .btn-sheen::after,
+  .hero-lit { display: none; }
 }
