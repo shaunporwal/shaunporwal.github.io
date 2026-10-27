@@ -2,16 +2,19 @@
 """Stamps the hero and the Work cards into site/index.html from data/site.json and the experience record.
 
 The hero holds the current role, the name, the lead text, three links and the portrait.
-Each card in the Work section links one project in `projects` in data/site.json. Stamped
+Each card in the Work section links one project in `projects` in data/site.json. It leads with the
+project's picture (see lib_pictures.py), then the name and one line. Stamped
 between <!-- HERO:START --> / <!-- HERO:END --> and <!-- WORK:START --> / <!-- WORK:END -->
 markers. Run directly (`python3 scripts/sync_home.py`), wired into the pre-commit hook.
 """
 import html
 import pathlib
+import textwrap
 
 from lib_blocks import replace_block, wrap, write_if_changed
 from lib_html import NEW_TAB, PROFILE_TAB
 from lib_images import size_attributes
+from lib_pictures import render_picture
 from lib_record import current_roles, load_record
 from lib_site import REPO_ROOT, load_site, profile
 
@@ -20,6 +23,7 @@ ARROW = (
     'stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
     '<path d="M7 17 17 7M8 7h9v9"/></svg>'
 )
+PICTURE_INDENT = " " * 10
 
 
 HERO_TEMPLATE = """<section class="hero" id="top">
@@ -71,18 +75,22 @@ def render_hero(site: dict, record: dict, site_dir: pathlib.Path) -> str:
     )
 
 
-def render_card(project: dict) -> str:
+def render_card(project: dict, site_dir: pathlib.Path) -> str:
     name, summary = html.escape(project["name"]), html.escape(project["summary"])
+    picture = textwrap.indent(render_picture(project["picture"], site_dir), PICTURE_INDENT).lstrip()
     return f"""      <li class="card lift" data-reveal-item>
         <a class="card-link" href="{project["url"]}"{NEW_TAB}>
-          <h3 class="card-title">{name}{ARROW}</h3>
-          <p class="card-text">{summary}</p>
+          {picture}
+          <div class="card-body">
+            <h3 class="card-title">{name}{ARROW}</h3>
+            <p class="card-text">{summary}</p>
+          </div>
         </a>
       </li>"""
 
 
-def render_work(site: dict) -> str:
-    cards = "\n".join(render_card(project) for project in site["projects"])
+def render_work(site: dict, site_dir: pathlib.Path) -> str:
+    cards = "\n".join(render_card(project, site_dir) for project in site["projects"])
     return f"""<section class="section" id="work">
   <div class="shell">
     <p class="eyebrow" data-reveal-item>{html.escape(site["work"]["eyebrow"])}</p>
@@ -105,7 +113,7 @@ def sync(repo_root: pathlib.Path) -> bool:
     """Writes the hero and work blocks into site/index.html. Returns whether the file changed."""
     site_dir = repo_root / "site"
     site, record = load_site(repo_root), load_record(repo_root)
-    blocks = {"HERO": render_hero(site, record, site_dir), "WORK": render_work(site)}
+    blocks = {"HERO": render_hero(site, record, site_dir), "WORK": render_work(site, site_dir)}
     path = site_dir / "index.html"
     return path.exists() and write_if_changed(path, stamp(path.read_text(), blocks))
 

@@ -1,12 +1,9 @@
 """Tests for scripts/sync_home.py."""
-import struct
 import unittest
 
 import context
 import sync_home
-from lib_images import PNG_SIGNATURE
 
-PNG_8X8 = PNG_SIGNATURE + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 8, 8) + b"\x08\x06\x00\x00\x00"
 INDEX = "<main>\n<!-- HERO:START -->\nold\n<!-- HERO:END -->\n<!-- WORK:START -->\nold\n<!-- WORK:END -->\n</main>\n"
 
 
@@ -15,7 +12,8 @@ class TestRender(unittest.TestCase):
         self.repo_root = context.temp_repo(self)
         self.site_dir = self.repo_root / "site"
         (self.site_dir / "media").mkdir()
-        (self.site_dir / "media" / "avatar.jpg").write_bytes(PNG_8X8)
+        (self.site_dir / "media" / "avatar.jpg").write_bytes(context.PNG_8X8)
+        context.write_project_media(self.site_dir)
 
     def test_hero_has_the_role_the_name_the_lead_and_three_links(self):
         hero = sync_home.render_hero(context.FAKE_SITE, context.SAMPLE_RECORD, self.site_dir)
@@ -44,14 +42,40 @@ class TestRender(unittest.TestCase):
         self.assertIn('<img src="media/avatar.jpg" alt="Portrait of Test Person" width="8" height="8"', hero)
 
     def test_work_has_one_card_per_project_that_reveals_on_scroll(self):
-        work = sync_home.render_work(context.FAKE_SITE)
+        work = sync_home.render_work(context.FAKE_SITE, self.site_dir)
         self.assertEqual(work.count('<li class="card lift" data-reveal-item>'), 2)
         self.assertIn('href="https://gadget.example/"', work)
         self.assertIn("Makes gadgets.", work)
 
+    def test_each_card_leads_with_its_picture_then_the_name_then_the_summary(self):
+        card = sync_home.render_card(context.FAKE_SITE["projects"][0], self.site_dir)
+        parts = ('class="card-media', 'class="card-title"', 'class="card-text"')
+        positions = [card.index(part) for part in parts]
+        self.assertEqual(positions, sorted(positions))
+
+    def test_the_name_keeps_its_arrow_and_the_whole_card_is_one_link(self):
+        card = sync_home.render_card(context.FAKE_SITE["projects"][0], self.site_dir)
+        self.assertIn(f"Acme Company{sync_home.ARROW}</h3>", card)
+        self.assertEqual(card.count("<a "), 1)
+        self.assertEqual(card.count("</a>"), 1)
+
+    def test_the_title_and_the_summary_sit_in_one_body_under_the_picture(self):
+        card = sync_home.render_card(context.FAKE_SITE["projects"][0], self.site_dir)
+        self.assertRegex(card, r'</div>\s*<div class="card-body">\s*<h3 class="card-title">')
+
+    def test_each_kind_of_picture_reaches_its_card(self):
+        work = sync_home.render_work(context.FAKE_SITE, self.site_dir)
+        self.assertIn('class="card-media card-media-logo"', work)
+        self.assertIn('class="card-media card-media-clip"', work)
+
+    def test_the_cards_hold_no_email_address(self):
+        work = sync_home.render_work(context.FAKE_SITE, self.site_dir)
+        self.assertNotIn(context.FAKE_SITE["email"], work)
+        self.assertNotIn("@", work)
+
     def test_text_is_escaped(self):
-        project = {"name": "A & B", "url": "https://x.example/", "summary": "<b>"}
-        card = sync_home.render_card(project)
+        project = {**context.FAKE_SITE["projects"][0], "name": "A & B", "summary": "<b>"}
+        card = sync_home.render_card(project, self.site_dir)
         self.assertIn("A &amp; B", card)
         self.assertIn("&lt;b&gt;", card)
 
@@ -61,7 +85,8 @@ class TestSync(unittest.TestCase):
         self.repo_root = context.temp_repo(self)
         context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
         (self.repo_root / "site" / "media").mkdir()
-        (self.repo_root / "site" / "media" / "avatar.jpg").write_bytes(PNG_8X8)
+        (self.repo_root / "site" / "media" / "avatar.jpg").write_bytes(context.PNG_8X8)
+        context.write_project_media(self.repo_root / "site")
         self.index = self.repo_root / "site" / "index.html"
 
     def test_replaces_both_blocks(self):

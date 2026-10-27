@@ -2,6 +2,7 @@
 without scripts/ needing to be a package. Also holds the shared test fixtures."""
 import json
 import pathlib
+import struct
 import sys
 import tempfile
 import unittest
@@ -11,6 +12,28 @@ SCRIPTS_DIR = REPO_ROOT / "scripts"
 
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
+
+from lib_images import PNG_SIGNATURE  # noqa: E402  (needs scripts/ on sys.path)
+
+PNG_8X8 = PNG_SIGNATURE + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 8, 8) + b"\x08\x06\x00\x00\x00"
+
+CLIP_PICTURE = {
+    "kind": "clip",
+    "alt": "A clip of the Gadget app: a table of gadgets.",
+    "still": "/media/projects/gadget.png",
+    "mp4": "/media/projects/gadget.mp4",
+    "webm": "/media/projects/gadget.webm",
+}
+LOGO_PICTURE = {"kind": "logo", "alt": "The Acme logo, a letter A.", "image": "/media/projects/acme.png"}
+CURVE_PICTURE = {
+    "kind": "decision-curve",
+    "alt": "A sample decision curve: the model line stays above both reference lines.",
+    "note": "Illustration only. Not real data.",
+    "prevalence": 0.2,
+    "separation": 1.5,
+    "threshold": 0.15,
+    "lines": {"model": "Model", "all": "Treat all", "none": "Treat none"},
+}
 
 
 FAKE_SITE = {
@@ -39,8 +62,8 @@ FAKE_SITE = {
     },
     "hero": {"lead": "A test lead."},
     "projects": [
-        {"name": "Acme Company", "url": "https://acme.example/", "summary": "Makes widgets."},
-        {"name": "Gadget", "url": "https://gadget.example/", "summary": "Makes gadgets."},
+        {"name": "Acme Company", "url": "https://acme.example/", "summary": "Makes widgets.", "picture": LOGO_PICTURE},
+        {"name": "Gadget", "url": "https://gadget.example/", "summary": "Makes gadgets.", "picture": CLIP_PICTURE},
     ],
     "seo": {
         "crawlers": ["*", "TestBot"],
@@ -102,6 +125,14 @@ def write_fake_site_data(repo_root: pathlib.Path) -> None:
     (data_dir / "theme.json").write_text(json.dumps(FAKE_THEME))
     for schema in ("site.schema.json", "pages.schema.json", "theme.schema.json"):
         (data_dir / schema).write_text((REPO_ROOT / "data" / schema).read_text())
+
+
+def write_project_media(site_dir: pathlib.Path) -> None:
+    """Writes the still and the logo that LOGO_PICTURE and CLIP_PICTURE name, as 8 by 8 PNG files."""
+    projects_dir = site_dir / "media" / "projects"
+    projects_dir.mkdir(parents=True, exist_ok=True)
+    for name in ("acme.png", "gadget.png"):
+        (projects_dir / name).write_bytes(PNG_8X8)
 
 
 def temp_repo(test: unittest.TestCase) -> pathlib.Path:

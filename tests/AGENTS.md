@@ -10,7 +10,10 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `test_css_tokens.py`: fails on a color literal outside the `:root` block of `site/styles/site.css`.
 - `test_media_refs.py`: fails if a file in `site/media/` is not used by a page, the stylesheet, or a data file.
 - `test_site_contract.py`: fails if a page has no `<main id="main">`, or if a discovery file or structured data holds the email address.
-- `test_media_sizes.py`: fails if a rendered icon or the social image has the wrong size.
+- `test_media_sizes.py`: fails if a rendered icon or the social image has the wrong size, or if a card picture is over its size budget.
+- `test_site_cards.py`: fails if a Work card has no picture file, differs from the data, says "software", holds an email address or claims compliance.
+- `test_card_css.py`: fails if the card picture rules lose the 16:10 plate, a token color, or the reduced motion switch.
+- `test_motion_pictures.py`: fails if `site/js/motion.js` loses the on-screen, visible-tab, reduced motion and `saveData` rules for the card pictures.
 - `test_theme_contrast.py`: fails if a theme color pair falls below WCAG AA in the light or dark mode.
 - `test_js_shape.py`: fails if `site/js/` breaks the code-shape rules.
 - `test_agents_docs.py`: fails if a top-level directory has no `AGENTS.md`, or if the root `AGENTS.md` does not link to it.

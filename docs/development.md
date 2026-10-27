@@ -63,9 +63,21 @@ The resume `contact` list in `data/experiences.json` chooses which contact lines
 
 The theme matches `cheminventory.co`: the same neutrals, radius, easing and grid. The accent is vermilion, and the display face is a system serif. Change a color once, in `data/theme.json`, then run `make sync`.
 
-`site/js/motion.js` is the only script. It reveals sections on scroll, sets the header state, slides the nav marker, and writes the pointer position for the pointer light. It is first-party, has no framework and no build step. Every page works without it. A visitor who asks for reduced motion sees a still page.
+`site/js/motion.js` is the only script. It reveals sections on scroll, sets the header state, slides the nav marker, writes the pointer position for the pointer light, and plays the card pictures. It is first-party, has no framework and no build step. Every page works without it. A visitor who asks for reduced motion sees a still page.
 
 The pointer light, the raised buttons, the edge light on the Book a call button and the lit hero dots read the `glow-tint`, `glow-on-primary`, `sheen` and `shadow-*` tokens and the `glow-size`, `motion-glow`, `motion-follow` and `sheen-duration` tokens in `data/theme.json`. Hover effects sit inside `@media (hover: hover) and (pointer: fine)`. Reduced motion hides the edge light and the lit dots. `tests/test_alive_css.py` guards these rules.
+
+## Work cards
+
+Each card on the home page leads with a picture, then the name and one line. The picture is the `picture` object of a project in `data/site.json`. `data/site.schema.json` declares it. `scripts/sync_home.py` stamps the cards into the `WORK` block of `site/index.html`. `scripts/lib_pictures.py` draws each picture by its `kind`:
+
+| `kind` | Picture | Keys |
+|---|---|---|
+| `clip` | A silent looping video. The still is its poster. | `still`, `mp4`, `webm`, `alt` |
+| `logo` | An image, centred on the plate. | `image`, `alt` |
+| `decision-curve` | An SVG that `scripts/lib_curve_svg.py` draws from the maths in `scripts/lib_curve.py`. | `prevalence`, `separation`, `threshold`, `lines`, `note`, `alt` |
+
+The files live in `site/media/projects/`. A clip loads nothing until `js/motion.js` plays it. The script plays a picture only while it is on screen and the tab is visible. Reduced motion and `saveData` keep the still. `tests/test_media_sizes.py` limits each clip to 450 KB and each still to 100 KB. The sample curve says "Illustration only. Not real data." in its `note`. To add a kind, add one renderer function and one entry in `RENDERERS`, then add the kind to the schema.
 
 The PNG icons and `site/media/og-image.jpg` are rendered from `favicon.svg` and the data. No generator makes them. `tests/test_media_sizes.py` checks their sizes. After a change to the theme colors, the name or the hero lead, render them again.
 
@@ -88,7 +100,7 @@ No discovery file and no structured data holds the email address. The contact li
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, `js/motion.js`, and the generated discovery files (see above).
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/` (with `media/projects/` for the card pictures), `styles/site.css`, `js/motion.js`, and the generated discovery files (see above).
 - `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
 - `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).

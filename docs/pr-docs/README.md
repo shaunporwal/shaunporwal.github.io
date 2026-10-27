@@ -6,6 +6,7 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
+| [PR 10: Picture-First Work Cards](./10-picture-first-cards.md) | Each Work card on the home page leads with a clip, a logo or a sample decision curve |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive
