@@ -91,6 +91,7 @@ Shared design rules: skill `site-taste` in `agent-skills`. This repo keeps its o
 - `make lint`: run ruff and the code-shape check.
 - `make test`: run lint, then every test.
 - `make resume-text`: print the resume as plain text.
+- `make pdf`: print `site/resume.pdf` from the resume page with Chrome. Git ignores the file.
 - Enable the pre-commit hook once per clone: `git config core.hooksPath .githooks`. Install ruff once: `uv tool install ruff`.
 
 ### Rules
@@ -103,6 +104,7 @@ Shared design rules: skill `site-taste` in `agent-skills`. This repo keeps its o
 - Run ruff only as the installed, pinned tool (`make lint`). Do not run `uv run --with ruff` or `npx --yes <package>`: they download unpinned code and ignore the pinned version in `ruff.toml`.
 - `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. The `resume` key on an item puts it on the resume.
 - The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
+- Never commit a PDF. The publish workflow prints `resume.pdf` from `resume.html` with `scripts/render_pdf.py`. `data/pages.json` names the file.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.
 - When you add a top-level directory, add an `AGENTS.md` to it and a row to the map above. `tests/test_agents_docs.py` fails until you do.
 

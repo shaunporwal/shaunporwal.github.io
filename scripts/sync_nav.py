@@ -44,8 +44,7 @@ def build_block(nav_template: str, **substitutions) -> str:
 
 
 def find_targets(site_dir: pathlib.Path, pages: list[dict]) -> list[pathlib.Path]:
-    """Every page and post, except pages whose `nav` is off in data/pages.json
-    (resume.html is a standalone print document with no site nav)."""
+    """Every page and post, except pages whose `nav` is off in data/pages.json."""
     no_nav = {page["file"] for page in pages if not page["nav"]}
     targets = list(site_dir.glob("*.html")) + list(site_dir.glob("posts/*/index.html"))
     return [p for p in targets if p.relative_to(site_dir).as_posix() not in no_nav]

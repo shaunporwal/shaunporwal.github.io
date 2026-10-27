@@ -82,7 +82,7 @@ FAKE_PAGES = [
     {"file": "about.html", "title": "About — {name}", "description": "About {name}.", "og_type": "website",
      "sitemap": True, "nav": True, "menu": {"label": "About", "new_tab": False}},
     {"file": "resume.html", "title": "{name} — Resume", "description": "Resume of {name}.", "og_type": "website",
-     "sitemap": True, "nav": False, "menu": {"label": "Resume", "new_tab": True}},
+     "sitemap": True, "nav": False, "menu": {"label": "Resume", "new_tab": True}, "pdf": "resume.pdf"},
 ]
 
 

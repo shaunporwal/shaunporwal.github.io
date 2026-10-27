@@ -50,5 +50,15 @@ def profile(site: dict, key: str) -> tuple[str, str]:
     return label, site[key]
 
 
+def pdf_pages(pages: list[dict]) -> list[dict]:
+    """The pages that name a `pdf` in data/pages.json: the publish step prints each one to that PDF."""
+    return [page for page in pages if "pdf" in page]
+
+
+def pdf_of(pages: list[dict], file: str) -> str:
+    """The PDF name that the page `file` prints to."""
+    return next(page["pdf"] for page in pdf_pages(pages) if page["file"] == file)
+
+
 def page_url(base_url: str, file: str) -> str:
     return f"{base_url}/" if file == "index.html" else f"{base_url}/{file}"

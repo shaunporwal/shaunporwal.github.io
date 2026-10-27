@@ -8,3 +8,6 @@ _site/
 # Python
 __pycache__/
 *.pyc
+
+# The publish step prints these from the pages (scripts/render_pdf.py). Never commit them.
+/site/resume.pdf

@@ -41,11 +41,12 @@
     "description": "{name}'s resume: software engineering, machine learning, and biomedical data science experience.",
     "og_type": "website",
     "sitemap": true,
-    "nav": false,
+    "nav": true,
     "menu": {
       "label": "Resume",
-      "new_tab": true
-    }
+      "new_tab": false
+    },
+    "pdf": "resume.pdf"
   },
   {
     "file": "404.html",

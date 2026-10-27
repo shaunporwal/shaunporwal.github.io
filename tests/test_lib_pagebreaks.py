@@ -78,15 +78,15 @@ class TestFindProblems(unittest.TestCase):
 
 SAMPLE_HTML = """
 <section class="resume-section resume-section-long">
-<h2 class="section">Experience</h2>
+<h2 class="resume-heading">Experience</h2>
 <div class="entry"><div class="entry-head"><div class="entry-head-title"><span class="entry-title">Founder &amp; Engineer</span> — <span class="entry-org">Acme</span></div></div></div>
 </section>
 <section class="resume-section">
-<h2 class="section">Selected Projects</h2>
+<h2 class="resume-heading">Selected Projects</h2>
 <div class="entry"><div class="entry-head"><div class="entry-title">widget</div></div></div>
 </section>
 <section class="resume-section">
-<h2 class="section">Skills &amp; Certifications</h2>
+<h2 class="resume-heading">Skills &amp; Certifications</h2>
 <dl><dt>Programming</dt><dd>Python</dd></dl>
 </section>
 """

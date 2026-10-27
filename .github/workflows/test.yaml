@@ -12,14 +12,6 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Set up Node (for the resume print-layout check)
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install Chromium for Playwright
-        run: npx --yes playwright install --with-deps chromium
-
       - name: Install pdftotext (for the resume print-layout check)
         run: sudo apt-get install -y poppler-utils
 
@@ -28,3 +20,6 @@ jobs:
 
       - name: Run tests
         run: make test
+        env:
+          # The print-layout check prints with the runner's Google Chrome, as the publish step does.
+          CHROME_ARGS: --no-sandbox

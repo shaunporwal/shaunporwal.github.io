@@ -53,7 +53,7 @@ def hero_links(site: dict) -> str:
     github_label, github_url = profile(site, "github")
     return (
         f'<a class="btn btn-primary btn-sheen" href="{site["cal"]}"{NEW_TAB}>Book a call</a>\n'
-        f'        <a class="btn btn-outline" href="resume.html"{NEW_TAB}>Resume</a>\n'
+        f'        <a class="btn btn-outline" href="resume.html">Resume</a>\n'
         f'        <a class="btn btn-outline" href="{github_url}"{PROFILE_TAB}>{github_label}</a>'
     )
 

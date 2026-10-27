@@ -8,7 +8,7 @@ PYTHON ?= python3
 SYNC_TARGETS := sync-resume sync-record sync-dcurves sync-theme sync-icon sync-nav sync-footer sync-seo sync-social sync-home \
 	sync-blog-index sync-sitemap sync-crawler-files sync-agent-files sync-llms-full sync-feed sync-manifest sync-script-index
 
-.PHONY: dev lint test sync $(SYNC_TARGETS) resume-text
+.PHONY: dev lint test sync $(SYNC_TARGETS) resume-text pdf
 
 dev:
 	./scripts/dev.sh
@@ -79,3 +79,6 @@ sync-script-index:
 
 resume-text:
 	$(PYTHON) scripts/gen_resume.py --text
+
+pdf:
+	$(PYTHON) scripts/render_pdf.py

@@ -21,7 +21,7 @@ class TestRender(unittest.TestCase):
         self.assertIn('<h1 class="display rise rise-1">Test Person</h1>', hero)
         self.assertIn('<p class="lead rise rise-2">A test lead.</p>', hero)
         self.assertIn('href="https://cal.com/testperson" target="_blank" rel="noopener">Book a call</a>', hero)
-        self.assertIn('href="resume.html" target="_blank" rel="noopener">Resume</a>', hero)
+        self.assertIn('href="resume.html">Resume</a>', hero)
         self.assertIn('rel="me noopener">GitHub</a>', hero)
 
     def test_hero_has_a_decorative_dot_field_and_a_lit_layer_that_screen_readers_skip(self):

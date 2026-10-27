@@ -19,6 +19,7 @@ same `dcurves-downloads` CSS class, so ordering matters but content
 doesn't need to be re-fetched here.
 """
 import argparse
+import html
 import pathlib
 import re
 import urllib.request
@@ -26,7 +27,7 @@ import urllib.request
 from lib_blocks import sync_block, wrap
 from lib_record import load_record, resume_view
 from lib_resume import DCURVES_PLACEHOLDER_TEXT, render_html, render_text
-from lib_site import REPO_ROOT, load_site
+from lib_site import REPO_ROOT, load_pages, load_site, pdf_of
 
 
 def load_data(repo_root: pathlib.Path) -> dict:
@@ -98,21 +99,30 @@ def _education_html(ed: dict) -> str:
     )
 
 
-PRINT_NOTE = (
-    '<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy '
-    '(no date/title/page-number strip), open "More settings" in the print dialog and uncheck '
-    '"Headers and footers".</div>'
-)
+RESUME_FILE = "resume.html"
 
 
-def _header_html(data: dict) -> str:
+def pdf_link(pages: list[dict], site: dict) -> dict:
+    """The PDF the resume links to: its name from data/pages.json, and the file name a download gets."""
+    person = site["name"].replace(" ", "-")
+    return {"href": pdf_of(pages, RESUME_FILE), "filename": f"{person}-Resume.pdf"}
+
+
+def _actions_html(pdf: dict) -> str:
+    href, filename = html.escape(pdf["href"]), html.escape(pdf["filename"])
+    button = f'<a class="btn btn-primary" href="{href}" download="{filename}">Download PDF</a>'
+    return f'  <div class="btn-row resume-actions">\n    {button}\n  </div>\n'
+
+
+def _header_html(data: dict, pdf: dict) -> str:
     contact = "\n".join(f"    <span>{render_html(c)}</span>" for c in data["contact"])
     return (
         '<header class="resume-header">\n'
-        f'  <h1>{render_html(data["name"])}</h1>\n'
+        f'  <h1 class="title">{render_html(data["name"])}</h1>\n'
         '  <div class="contact">\n'
         f"{contact}\n"
         "  </div>\n"
+        f"{_actions_html(pdf)}"
         "</header>"
     )
 
@@ -128,22 +138,23 @@ def _section_html(heading: str, content: str, long: bool = False) -> str:
     """Wraps a heading and its content so the print stylesheet can keep a short
     section on one page. Only a long section (Experience) may span pages."""
     css_class = "resume-section resume-section-long" if long else "resume-section"
-    return f'<section class="{css_class}">\n<h2 class="section">{heading}</h2>\n\n{content}\n</section>'
+    return f'<section class="{css_class}">\n<h2 class="resume-heading">{heading}</h2>\n\n{content}\n</section>'
 
 
-def build_html_block(data: dict) -> str:
+def build_html_block(data: dict, pdf: dict) -> str:
     sections = [
         _section_html("Experience", "\n\n".join(_experience_html(e) for e in data["experience"]), long=True),
         _section_html("Selected Projects", "\n".join(_project_html(p) for p in data["projects"])),
         _section_html("Education", "\n".join(_education_html(ed) for ed in data["education"])),
         _section_html("Skills &amp; Certifications", _skills_html(data["skills"])),
     ]
-    body = "\n\n".join([PRINT_NOTE, _header_html(data), *sections])
+    body = "\n\n".join([_header_html(data, pdf), *sections])
     return wrap("RESUME", body)
 
 
 def sync(repo_root: pathlib.Path) -> bool:
-    return sync_block(repo_root / "site" / "resume.html", "RESUME", build_html_block(load_data(repo_root)))
+    pdf = pdf_link(load_pages(repo_root), load_site(repo_root))
+    return sync_block(repo_root / "site" / RESUME_FILE, "RESUME", build_html_block(load_data(repo_root), pdf))
 
 
 def fetch_live_dcurves_label() -> str | None:

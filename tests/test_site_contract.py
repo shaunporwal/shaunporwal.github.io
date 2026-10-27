@@ -20,12 +20,10 @@ DISCOVERY_FILES = (
 )
 MAIN_LANDMARK = re.compile(r'<main id="main"[ >]')
 JSON_LD = re.compile(r'<script type="application/ld\+json">(.*?)</script>', re.DOTALL)
-# resume.html is a standalone print document. It shows the email as a normal resume contact.
-STANDALONE_PAGES = ("resume.html",)
 
 
 def site_pages(site_dir: pathlib.Path) -> list[pathlib.Path]:
-    return sorted(path for path in site_dir.rglob("*.html") if path.name not in STANDALONE_PAGES)
+    return sorted(site_dir.rglob("*.html"))
 
 
 def pages_without_main(pages: list[pathlib.Path]) -> list[str]:

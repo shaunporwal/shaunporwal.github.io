@@ -4,7 +4,7 @@
 The footer holds the links to the author's other profiles, the feed and llms.txt, and the
 script tag that loads the motion script. It goes between <!-- FOOTER:START --> / <!-- FOOTER:END -->
 markers just before </body>. A page with no markers gets the block added. Pages follow the same rules
-as the header: a page with `nav` off in data/pages.json, such as the resume, gets no footer.
+as the header: a page with `nav` off in data/pages.json gets no footer.
 Run directly (`python3 scripts/sync_footer.py`), wired into the pre-commit hook.
 """
 import pathlib

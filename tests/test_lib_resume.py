@@ -11,7 +11,7 @@ class TestRenderHtml(unittest.TestCase):
     def test_link_renders_anchor(self):
         self.assertEqual(
             render_html("See [my site](https://example.com) for more"),
-            'See <a href="https://example.com">my site</a> for more',
+            'See <a href="https://example.com" target="_blank" rel="noopener">my site</a> for more',
         )
 
     def test_code_renders_code_tag(self):
@@ -47,7 +47,7 @@ class TestRenderHtml(unittest.TestCase):
 
     def test_mixed_tokens(self):
         result = render_html("[a](https://a.com) & `b` {dcurves} **c**")
-        self.assertIn('<a href="https://a.com">a</a>', result)
+        self.assertIn('<a href="https://a.com" target="_blank" rel="noopener">a</a>', result)
         self.assertIn("&amp;", result)
         self.assertIn("<code>b</code>", result)
         self.assertIn('<span class="dcurves-downloads">', result)

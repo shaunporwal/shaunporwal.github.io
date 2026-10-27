@@ -22,7 +22,7 @@ PAGE_BREAK = "\f"
 
 SECTION_RE = re.compile(
     r'<section class="resume-section(?P<long> resume-section-long)?">\s*'
-    r'<h2 class="section">(?P<heading>.*?)</h2>(?P<body>.*?)</section>',
+    r'<h2 class="resume-heading">(?P<heading>.*?)</h2>(?P<body>.*?)</section>',
     re.DOTALL,
 )
 ENTRY_TITLE_RE = re.compile(r'class="entry-title">(?P<title>.*?)</(?:span|div)>', re.DOTALL)

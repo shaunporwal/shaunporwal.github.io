@@ -3,7 +3,7 @@ import unittest
 
 import context
 from lib_schema import SchemaError
-from lib_site import REPO_ROOT, load_pages, load_site, load_theme, page_url, profile, profile_links
+from lib_site import REPO_ROOT, load_pages, load_site, load_theme, page_url, pdf_of, pdf_pages, profile, profile_links
 
 
 class TestProfiles(unittest.TestCase):
@@ -122,6 +122,24 @@ class TestLoadPages(unittest.TestCase):
 
     def test_the_real_page_list_is_valid(self):
         self.assertTrue(load_pages(REPO_ROOT))
+
+
+class TestPdfPages(unittest.TestCase):
+    def test_lists_the_pages_that_name_a_pdf(self):
+        self.assertEqual([page["file"] for page in pdf_pages(context.FAKE_PAGES)], ["resume.html"])
+
+    def test_names_the_pdf_of_one_page(self):
+        self.assertEqual(pdf_of(context.FAKE_PAGES, "resume.html"), "resume.pdf")
+
+    def test_rejects_a_pdf_name_with_a_path(self):
+        repo_root = context.temp_repo(self)
+        pages = [{**context.FAKE_PAGES[2], "pdf": "../resume.pdf"}]
+        (repo_root / "data" / "pages.json").write_text(json.dumps(pages))
+        with self.assertRaises(SchemaError):
+            load_pages(repo_root)
+
+    def test_the_real_resume_names_a_pdf(self):
+        self.assertTrue(pdf_of(load_pages(REPO_ROOT), "resume.html").endswith(".pdf"))
 
 
 class TestPageUrl(unittest.TestCase):

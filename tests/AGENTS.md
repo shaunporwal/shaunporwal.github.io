@@ -7,7 +7,7 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `context.py`: puts `scripts/` on the import path and holds the shared fixtures. Every test file imports it first.
 - `test_<module>.py`: the tests for `scripts/<module>.py`.
 - `test_code_shape.py`: fails on a nested function or a lambda in `scripts/` or `tests/`.
-- `test_css_tokens.py`: fails on a color literal outside the `:root` block of `site/styles/site.css`.
+- `test_css_tokens.py`: fails on a color literal outside a `:root` block in any stylesheet in `site/styles/`.
 - `test_media_refs.py`: fails if a file in `site/media/` is not used by a page, the stylesheet, or a data file.
 - `test_site_contract.py`: fails if a page has no `<main id="main">`, or if a discovery file or structured data holds the email address.
 - `test_media_sizes.py`: fails if a rendered icon or the social image has the wrong size, or if a card picture is over its size budget.
@@ -17,7 +17,10 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `test_theme_contrast.py`: fails if a theme color pair falls below WCAG AA in the light or dark mode.
 - `test_js_shape.py`: fails if `site/js/` breaks the code-shape rules.
 - `test_agents_docs.py`: fails if a top-level directory has no `AGENTS.md`, or if the root `AGENTS.md` does not link to it.
-- `test_resume_print_layout.py`: prints the real resume to PDF with Playwright Chromium, reads it with `pdftotext`, and checks the page breaks.
+- `test_resume_print_layout.py`: prints the real resume to PDF with Chrome, through the same code as the publish step, reads it with `pdftotext`, and checks the page breaks.
+- `test_render_pdf.py`: tests how `scripts/render_pdf.py` finds Chrome, builds its command and reports a failure.
+- `test_resume_pdf.py`: fails if the download button, `.gitignore`, `make pdf`, the publish workflow and the discovery files disagree on the one PDF that `data/pages.json` names, or if git tracks a PDF.
+- `test_resume_css.py`: fails if the print rules stop hiding the site header, the footer and the download button.
 - `test_update_dcurves_downloads.sh`: checks the dcurves download count updater.
 
 ## Rules
@@ -26,4 +29,4 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - Use `context.temp_repo(self)` for a temporary repo. It has `site/`, a fake `data/site.json`, and a fake `data/pages.json`. Add `context.write_record_fixture` when a test needs the experience record.
 - Use the shared fixtures in `context.py`. Do not copy a fixture into a test file.
 - A test that changes the output of `make sync` must also change the matching source in `data/` or `templates/`.
-- The print layout check needs `npx` with Playwright Chromium and `pdftotext` (poppler). Install them without asking. CI installs them in `.github/workflows/test.yaml`.
+- The print layout check needs Chrome and `pdftotext` (poppler). `scripts/render_pdf.py` finds Chrome: set `CHROME` to use another binary. Install `pdftotext` without asking. CI uses the runner's Google Chrome and installs `pdftotext` in `.github/workflows/test.yaml`.

@@ -35,6 +35,7 @@ This list comes from the first sentence of each script's docstring. `gen_script_
 - `lib_resume.py`: Shared mini-markup parser for resume strings in data/experiences.json.
 - `lib_schema.py`: Validates JSON data against a JSON Schema, with the standard library only.
 - `lib_site.py`: Single source of truth for site-wide constants (name, base URL, social links) in data/site.json, for the top-level pages in data/pages.json, and for the color and type tokens in data/theme.json.
+- `render_pdf.py`: Prints each page that names a `pdf` in data/pages.json to that PDF in site/, with headless Chrome.
 - `sync_footer.py`: Keeps every page's footer block in sync with templates/footer.html.
 - `sync_home.py`: Stamps the hero and the Work cards into site/index.html from data/site.json and the experience record.
 - `sync_nav.py`: Keeps every page's header block in sync with templates/nav.html.

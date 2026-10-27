@@ -14,7 +14,7 @@ Bullet/sub/title strings that reach the resume may contain:
                    to carry the right CSS class/marker through)
 
 render_html() escapes plain-text runs and emits real <a>/<code>/<strong>/
-<em>/<span> tags for the rest. render_text() produces a plain-text version
+<em>/<span> tags for the rest. A link opens in a new tab. render_text() produces a plain-text version
 (links as "text (url)", code/bold/italic as bare text) for pasting into
 LinkedIn etc. — plain text can't carry bold or italics, so the **/* markers
 are just stripped there.
@@ -27,6 +27,8 @@ side by side instead of nested (e.g. "**bold** {dcurves}", not
 """
 import html
 import re
+
+from lib_html import NEW_TAB
 
 TOKEN_RE = re.compile(
     r"(?P<dcurves>\{dcurves\})"
@@ -88,7 +90,7 @@ def _html_text(tok):
 
 def _html_link(tok):
     _, label, url = tok
-    return f'<a href="{html.escape(url)}">{html.escape(label)}</a>'
+    return f'<a href="{html.escape(url)}"{NEW_TAB}>{html.escape(label)}</a>'
 
 
 def _html_bold(tok):

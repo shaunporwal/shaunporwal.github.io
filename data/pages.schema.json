@@ -60,6 +60,11 @@
         "description": "Adds a noindex tag, so search engines skip the page.",
         "type": "boolean"
       },
+      "pdf": {
+        "description": "Names a PDF that scripts/render_pdf.py prints from this page when the site publishes. The page links to it. It is never committed.",
+        "type": "string",
+        "pattern": "^[a-z0-9-]+\\.pdf$"
+      },
       "absolute": {
         "description": "Writes root-relative links (/styles/site.css) in the nav and footer, for a page served at any depth, such as 404.html.",
         "type": "boolean"

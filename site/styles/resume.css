@@ -1,0 +1,113 @@
+/* The resume page. It reads the site tokens in site.css. The print block swaps in a plain print palette. */
+:root {
+  --resume-title: var(--foreground);
+  --resume-meta: var(--muted-foreground);
+}
+
+.resume {
+  width: min(100% - 3rem, 48rem);
+  margin-inline: auto;
+  padding-block: 2.5rem 4rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.resume strong,
+.resume .dcurves-downloads { color: var(--foreground); font-weight: 700; }
+
+.resume-header { text-align: center; margin-bottom: 1.75rem; }
+.resume-header .title { margin-top: 0; }
+.resume-header .contact { margin-top: 0.5rem; color: var(--muted-foreground); font-size: 0.9rem; }
+.resume-header .contact span:not(:last-child)::after { content: "  |  "; color: var(--border); }
+.resume-actions { margin: 1.25rem auto 0; }
+
+.resume-heading {
+  margin: 1.75rem 0 0.75rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.entry { margin-bottom: 1rem; }
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 0.25rem 1rem;
+}
+
+/* The title and organisation shrink and wrap, so the dates never drop onto a line of their own. */
+.entry-head > *:first-child { flex: 1 1 auto; min-width: 0; }
+.entry-head .entry-meta { flex: 0 0 auto; }
+.entry-title { color: var(--resume-title); font-weight: 700; }
+.entry-org { color: var(--resume-title); font-weight: 400; }
+.entry-meta { color: var(--resume-meta); font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+.entry-sub { margin-top: 0.05rem; color: var(--muted-foreground); font-size: 0.88rem; }
+
+/* Each bullet is a block with a dash in its text. A pasted copy keeps the dash and the gap. */
+.bullets { margin: 0.35rem 0 0; padding-left: 1.3rem; }
+.bullets .bullet { margin-bottom: 0.2rem; padding-left: 1.1em; text-indent: -1.1em; }
+.bullets .bullet-break { height: 0.5em; }
+
+.skills-grid,
+.edu-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; }
+.skills-grid dt,
+.edu-grid dt { font-weight: 600; white-space: nowrap; }
+.skills-grid dd,
+.edu-grid dd { margin: 0; }
+
+.projects .entry-title { font-weight: 600; }
+.projects .entry-meta { font-weight: 400; }
+
+.resume code { font-size: 0.9em; }
+
+@media (max-width: 560px) {
+  .resume-header .contact span { display: block; }
+  .resume-header .contact span:not(:last-child)::after { content: none; }
+}
+
+@media (max-width: 420px) {
+  .entry-head { flex-wrap: wrap; }
+  .entry-meta { white-space: normal; }
+  .skills-grid,
+  .edu-grid { grid-template-columns: 1fr; }
+  .skills-grid dt,
+  .edu-grid dt { margin-top: 0.5rem; }
+}
+
+/* Print: a plain page with no site chrome, in the palette the printed resume has always used. */
+@page { margin: 0.5in; }
+
+@media print {
+  :root {
+    color-scheme: light;
+    --background: #fff;
+    --foreground: #1a1a1a;
+    --muted-foreground: #555;
+    --border: #ccc;
+    --resume-title: #1a5276;
+    --resume-meta: #4a7590;
+  }
+
+  body { display: block; min-height: 0; font-size: 12px; line-height: 1.35; }
+  .skip-link,
+  .site-header,
+  .site-footer,
+  .resume-actions { display: none; }
+  .resume { width: auto; padding: 0; font-size: 12px; line-height: 1.35; }
+  .resume a { color: var(--foreground); text-decoration: none; }
+  .resume-header { margin-bottom: 1rem; }
+  .resume-header .title { font-family: var(--font-sans); font-size: 1.7rem; letter-spacing: 0.02em; }
+  .resume-heading { break-after: avoid; margin: 1rem 0 0.4rem; }
+  .resume-section { break-inside: avoid; }
+  .resume-section-long { break-inside: auto; }
+  .entry { break-inside: avoid; margin-bottom: 0.6rem; }
+  .bullets { margin-top: 0.2rem; }
+  .bullets .bullet { margin-bottom: 0.1rem; }
+  .bullets .bullet-break { height: 0.3em; }
+}

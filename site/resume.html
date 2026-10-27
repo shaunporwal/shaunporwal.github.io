@@ -29,130 +29,57 @@
 <meta property="og:image:height" content="630">
 <!-- SEO:END -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<base target="_blank" rel="noopener">
-<style>
-  :root {
-    --ink: #1a1a1a;
-    --muted: #555;
-    --line: #ccc;
-    --link: #1a5276;
-    --accent-muted: #4a7590;
-    --bg: #fff;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0 auto;
-    max-width: 780px;
-    padding: 2.5rem 1.5rem 4rem;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
-  }
-  a { color: var(--link); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  strong, .dcurves-downloads { font-weight: 700; color: var(--ink); }
-
-  header.resume-header { text-align: center; margin-bottom: 1.75rem; }
-  header.resume-header h1 { margin: 0 0 0.25rem; font-size: 1.7rem; letter-spacing: 0.02em; }
-  header.resume-header .contact { color: var(--muted); font-size: 0.92rem; }
-  header.resume-header .contact span:not(:last-child)::after { content: "  |  "; color: var(--line); }
-
-  h2.section {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--line);
-    margin: 1.75rem 0 0.75rem;
-    padding-bottom: 0.2rem;
-  }
-
-  .entry { margin-bottom: 1rem; }
-  .entry-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: nowrap;
-    gap: 0.25rem 1rem;
-  }
-  /* Title/org shrinks and wraps its own text internally rather than
-     pushing the date/location meta onto its own line below. */
-  .entry-head > *:first-child { flex: 1 1 auto; min-width: 0; }
-  .entry-head .entry-meta { flex: 0 0 auto; }
-  .entry-title { font-weight: 700; color: var(--link); }
-  .entry-org { font-weight: 400; color: var(--link); }
-  .entry-meta { color: var(--accent-muted); font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
-  .entry-sub { color: var(--muted); font-size: 0.88rem; margin-top: 0.05rem; }
-
-  .bullets { margin: 0.35rem 0 0; padding-left: 1.3rem; }
-  .bullets .bullet { margin-bottom: 0.2rem; padding-left: 1.1em; text-indent: -1.1em; }
-  .bullets .bullet-break { height: 0.5em; }
-
-  .skills-grid, .edu-grid { display: grid; grid-template-columns: auto 1fr; gap: 0.3rem 0.75rem; }
-  .skills-grid dt, .edu-grid dt { font-weight: 600; white-space: nowrap; }
-  .skills-grid dd, .edu-grid dd { margin: 0; color: var(--ink); }
-
-  .projects .entry-title { font-weight: 600; color: var(--link); }
-  .projects .entry-meta { font-weight: 400; }
-
-  .print-note {
-    margin-bottom: 1.5rem;
-    padding: 0.6rem 0.9rem;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.8rem;
-    background: #f4f4f4;
-    border-radius: 6px;
-  }
-
-  @media screen and (max-width: 560px) {
-    .print-note { display: none; }
-    header.resume-header .contact span { display: block; }
-    header.resume-header .contact span:not(:last-child)::after { content: none; }
-  }
-
-  @media (max-width: 420px) {
-    .entry-head { flex-wrap: wrap; }
-    .entry-meta { white-space: normal; }
-    .skills-grid, .edu-grid { grid-template-columns: 1fr; }
-    .skills-grid dt, .edu-grid dt { margin-top: 0.5rem; }
-  }
-
-  @media print {
-    body { padding: 0; font-size: 12px; max-width: none; line-height: 1.35; }
-    a { color: var(--ink); }
-    .print-note { display: none; }
-    header.resume-header { margin-bottom: 1rem; }
-    h2.section { break-after: avoid; margin: 1rem 0 0.4rem; }
-    .resume-section { break-inside: avoid; }
-    .resume-section-long { break-inside: auto; }
-    .entry { break-inside: avoid; margin-bottom: 0.6rem; }
-    .bullets { margin-top: 0.2rem; }
-    .bullets .bullet { margin-bottom: 0.1rem; }
-    .bullets .bullet-break { height: 0.3em; }
-  }
-</style>
+<link rel="stylesheet" href="./styles/site.css">
+<link rel="stylesheet" href="./styles/resume.css">
 </head>
 <body>
 
-<!-- RESUME:START -->
-<div class="print-note">To save as PDF: File → Print → Save as PDF. For a clean copy (no date/title/page-number strip), open "More settings" in the print dialog and uncheck "Headers and footers".</div>
+<!-- NAV:START -->
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="brand" href="index.html">Shaun Porwal</a>
+    <nav class="nav-links" aria-label="Main" data-nav-links>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="stuff.html">Stuff</a>
+      <a class="nav-link" href="resume.html" aria-current="page">Resume</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <a class="btn btn-primary btn-sm header-cta" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a call</a>
+    <button class="menu-button" type="button" popovertarget="menu" aria-label="Menu">
+      <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav id="menu" class="menu-panel" popover aria-label="Menu">
+      <a class="menu-link" href="index.html">Home</a>
+      <a class="menu-link" href="about.html">About</a>
+      <a class="menu-link" href="stuff.html">Stuff</a>
+      <a class="menu-link" href="resume.html" aria-current="page">Resume</a>
+      <a class="btn btn-primary" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+  </div>
+</header>
+<!-- NAV:END -->
 
+<main id="main" class="resume">
+<!-- RESUME:START -->
 <header class="resume-header">
-  <h1>Shaun Porwal</h1>
+  <h1 class="title">Shaun Porwal</h1>
   <div class="contact">
     <span>Metuchen, NJ</span>
     <span>shaun.porwal@gmail.com</span>
-    <span><a href="https://www.shaunporwal.com">shaunporwal.com</a></span>
-    <span><a href="https://github.com/shaunporwal">github.com/shaunporwal</a></span>
-    <span><a href="https://cheminventory.co">cheminventory.co</a></span>
+    <span><a href="https://www.shaunporwal.com" target="_blank" rel="noopener">shaunporwal.com</a></span>
+    <span><a href="https://github.com/shaunporwal" target="_blank" rel="noopener">github.com/shaunporwal</a></span>
+    <span><a href="https://cheminventory.co" target="_blank" rel="noopener">cheminventory.co</a></span>
+  </div>
+  <div class="btn-row resume-actions">
+    <a class="btn btn-primary" href="resume.pdf" download="Shaun-Porwal-Resume.pdf">Download PDF</a>
   </div>
 </header>
 
 <section class="resume-section resume-section-long">
-<h2 class="section">Experience</h2>
+<h2 class="resume-heading">Experience</h2>
 
 <div class="entry">
   <div class="entry-head">
@@ -160,7 +87,7 @@
     <div class="entry-meta">Mar 2026 – Present · Metuchen, NJ</div>
   </div>
   <div class="bullets">
-    <div class="bullet">- Built a full-stack (design, client, server, database, authentication) <strong>chemical inventory management system</strong> (<a href="https://cheminventory.co">cheminventory.co</a>) that tracks <strong>$1M+</strong> in yearly chemical order volume with regulatory document management and version-controlled provenance</div>
+    <div class="bullet">- Built a full-stack (design, client, server, database, authentication) <strong>chemical inventory management system</strong> (<a href="https://cheminventory.co" target="_blank" rel="noopener">cheminventory.co</a>) that tracks <strong>$1M+</strong> in yearly chemical order volume with regulatory document management and version-controlled provenance</div>
     <div class="bullet-break">&nbsp;</div>
     <div class="bullet">- Built a self-hosted <strong>multi-agent AI system</strong> (local LLMs via vLLM/llama.cpp, scheduled runs, evals) for <strong>market research</strong> and <strong>competitive analysis</strong>; delivered a full ICP/GTM report and verified competitor benchmarks</div>
     <div class="bullet-break">&nbsp;</div>
@@ -192,13 +119,13 @@
     <div class="entry-meta">Mar 2021 – May 2025 · New York, NY</div>
   </div>
   <div class="bullets">
-    <div class="bullet">- Engineered SQL-sourced data pipelines and statistical code for <a href="https://www.mskcc.org/amplio-system">Amplio</a>, enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to <strong>benchmark patient outcomes</strong> against peers</div>
+    <div class="bullet">- Engineered SQL-sourced data pipelines and statistical code for <a href="https://www.mskcc.org/amplio-system" target="_blank" rel="noopener">Amplio</a>, enabling sarcoma, melanoma, Whipple, gastrectomy, and liver surgeons to <strong>benchmark patient outcomes</strong> against peers</div>
     <div class="bullet-break">&nbsp;</div>
     <div class="bullet">- Built an <strong>AI radiology pipeline</strong> (Llama 3.1, SAM image segmentation, RShiny dashboard) to assist radiologists</div>
     <div class="bullet-break">&nbsp;</div>
-    <div class="bullet">- Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a <a href="https://pubmed.ncbi.nlm.nih.gov/40073938/">landmark study</a> on <strong>post-chemotherapy RPLND policy</strong> in testicular cancer, published in Annals of Oncology; contributed statistics to additional <a href="https://scholar.google.com/citations?user=eR7hro0AAAAJ&amp;hl=en">publications</a> on prostate cancer and robot-assisted surgery outcomes</div>
+    <div class="bullet">- Led statistical analyses (GAM, logistic regression, Kaplan-Meier, CoxPH, Decision Curve Analysis) for a <a href="https://pubmed.ncbi.nlm.nih.gov/40073938/" target="_blank" rel="noopener">landmark study</a> on <strong>post-chemotherapy RPLND policy</strong> in testicular cancer, published in Annals of Oncology; contributed statistics to additional <a href="https://scholar.google.com/citations?user=eR7hro0AAAAJ&amp;hl=en" target="_blank" rel="noopener">publications</a> on prostate cancer and robot-assisted surgery outcomes</div>
     <div class="bullet-break">&nbsp;</div>
-    <div class="bullet">- Developed <a href="https://pypi.org/project/dcurves/">dcurves</a>, a Python package for <strong>Decision Curve Analysis</strong> (<span class="dcurves-downloads">79k+</span> PyPI downloads); built and maintain the instructional site <a href="https://decisioncurveanalysis.org">decisioncurveanalysis.org</a></div>
+    <div class="bullet">- Developed <a href="https://pypi.org/project/dcurves/" target="_blank" rel="noopener">dcurves</a>, a Python package for <strong>Decision Curve Analysis</strong> (<span class="dcurves-downloads">79k+</span> PyPI downloads); built and maintain the instructional site <a href="https://decisioncurveanalysis.org" target="_blank" rel="noopener">decisioncurveanalysis.org</a></div>
     <div class="bullet-break">&nbsp;</div>
     <div class="bullet">- Engineered a Llama 3.1:70B + RAG <strong>text-to-SQL tool</strong> (<code>no-more-sql</code>) with Streamlit and FAISS for natural-language querying of MSKCC&#x27;s SQL databases</div>
     <div class="bullet-break">&nbsp;</div>
@@ -256,33 +183,33 @@
 </section>
 
 <section class="resume-section">
-<h2 class="section">Selected Projects</h2>
+<h2 class="resume-heading">Selected Projects</h2>
 
 <div class="entry projects">
   <div class="entry-head">
     <div class="entry-title">dcurves</div>
-    <div class="entry-meta"><a href="https://pypi.org/project/dcurves/">pypi.org/project/dcurves</a> · <a href="https://github.com/MSKCC-Epi-Bio/dcurves">GitHub</a></div>
+    <div class="entry-meta"><a href="https://pypi.org/project/dcurves/" target="_blank" rel="noopener">pypi.org/project/dcurves</a> · <a href="https://github.com/MSKCC-Epi-Bio/dcurves" target="_blank" rel="noopener">GitHub</a></div>
   </div>
   <div class="entry-sub">Python package for Decision Curve Analysis, evaluating the clinical value of prediction models and diagnostic tests; <span class="dcurves-downloads">79k+</span> PyPI downloads and used in peer-reviewed research.</div>
 </div>
 <div class="entry projects">
   <div class="entry-head">
     <div class="entry-title">no-more-sql</div>
-    <div class="entry-meta"><a href="https://github.com/juntotechnologies/no-more-sql">GitHub</a></div>
+    <div class="entry-meta"><a href="https://github.com/juntotechnologies/no-more-sql" target="_blank" rel="noopener">GitHub</a></div>
   </div>
   <div class="entry-sub">Llama 3.1:70B + RAG pipeline (Streamlit, FAISS) for natural-language querying of SQL databases without writing SQL.</div>
 </div>
 <div class="entry projects">
   <div class="entry-head">
     <div class="entry-title">cheminventory.co</div>
-    <div class="entry-meta"><a href="https://cheminventory.co">cheminventory.co</a></div>
+    <div class="entry-meta"><a href="https://cheminventory.co" target="_blank" rel="noopener">cheminventory.co</a></div>
   </div>
   <div class="entry-sub">Full-stack chemical inventory management and regulatory compliance platform built for Junto Technologies.</div>
 </div>
 </section>
 
 <section class="resume-section">
-<h2 class="section">Education</h2>
+<h2 class="resume-heading">Education</h2>
 
 <div class="entry">
   <div class="entry-head">
@@ -309,7 +236,7 @@
 </section>
 
 <section class="resume-section">
-<h2 class="section">Skills &amp; Certifications</h2>
+<h2 class="resume-heading">Skills &amp; Certifications</h2>
 
 <dl class="skills-grid">
   <dt>Programming</dt><dd>Python, R, TypeScript, SQL, Bash, HTML/CSS, Docker, Git</dd>
@@ -321,6 +248,22 @@
 </dl>
 </section>
 <!-- RESUME:END -->
+</main>
 
+<!-- FOOTER:START -->
+<footer class="site-footer">
+  <div class="shell footer-row">
+    <a class="footer-brand" href="index.html">Shaun Porwal</a>
+    <nav class="footer-links" aria-label="Elsewhere">
+      <a href="https://github.com/shaunporwal" target="_blank" rel="me noopener">GitHub</a>
+      <a href="https://x.com/shaunporwal" target="_blank" rel="me noopener">X</a>
+      <a href="https://linkedin.com/in/shaunporwal" target="_blank" rel="me noopener">LinkedIn</a>
+      <a href="feed.xml">Feed</a>
+      <a href="llms.txt">llms.txt</a>
+    </nav>
+  </div>
+</footer>
+<script src="js/motion.js" defer></script>
+<!-- FOOTER:END -->
 </body>
 </html>
