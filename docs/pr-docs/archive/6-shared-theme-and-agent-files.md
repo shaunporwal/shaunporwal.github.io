@@ -1,6 +1,6 @@
 # PR 6: Shared Theme, Editorial Restyle and Agent Files
 
-Status: underway
+Status: done
 
 Branch: `feature/shared-theme-and-agent-files`
 
@@ -55,7 +55,7 @@ write the focused failing test before implementing changed behavior.
 - [x] Walk every page at 360, 390, 430, 820 and 1440 px, light and dark, on the tailnet link.
 - [x] Update `AGENTS.md`, `site/AGENTS.md`, `data/AGENTS.md`, `templates/AGENTS.md` and `docs/development.md`.
 - [x] Fix the findings of the independent review: the `<main id="main">` parsers, image-only paragraphs in `llms-full.txt`, entity escaping, impossible dates, CSS specificity on posts, the hover lift after reveal, one profile list, `dev.sh` errors, WebP image sizes, the no-popover header, print reveal, footer tap size, docs drift.
-- [ ] Merge the PR. Shaun authorized the merge on 2026-10-27. Watch the publish run. Check the live site.
+- [x] Merge the PR. Shaun authorized the merge on 2026-10-27. Merged as `ab8c749`. The publish run passed. The live site passed the checks below.
 
 ## Smoke Tests
 
@@ -66,8 +66,8 @@ Run on the tailnet dev link, then on the live site after the merge. A ticked box
 - [x] Dark mode follows the operating system. Text keeps its contrast.
 - [x] With reduced motion on: nothing animates and all content shows.
 - [x] One post: the reading column is narrow. Images fit. The nav marks Home as current.
-- [ ] `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`, `/agents.txt`, `/.well-known/agents.json` and `/feed.xml` return 200 with the right type.
-- [ ] A missing URL shows the 404 page.
+- [x] `/robots.txt`, `/sitemap.xml`, `/llms.txt`, `/llms-full.txt`, `/agents.txt`, `/.well-known/agents.json` and `/feed.xml` return 200 with the right type.
+- [x] A missing URL shows the 404 page.
 - [x] `resume.html` still prints with clean page breaks.
 
 ## Product Decisions
@@ -94,4 +94,4 @@ Run on the tailnet dev link, then on the live site after the merge. A ticked box
 
 ## Related Docs
 
-- [PR 3: 3D Print Shop](./3-3d-print-shop.md)
+- [PR 3: 3D Print Shop](../3-3d-print-shop.md)
