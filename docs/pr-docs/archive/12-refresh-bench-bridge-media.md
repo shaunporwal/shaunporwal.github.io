@@ -1,6 +1,6 @@
 # PR 12: Refresh the Bench Bridge and ChemInventory Pictures
 
-Status: underway
+Status: done (merged on 2026-10-27, commit `1c65b34`)
 
 Branch: `chore/refresh-bench-bridge-media`
 
@@ -21,8 +21,8 @@ The Work cards show the current look of Bench Bridge and ChemInventory. The file
 
 ## Smoke Tests
 
-- [ ] Open the home page. The Bench Bridge clip shows the sample-data tag and plays on screen.
-- [ ] Open the page at 390 px. The ChemInventory clip shows sample data only.
+- [x] The live files equal the hub files byte for byte (the agent compared all six with `cmp` on 2026-10-27).
+- [ ] Play the clips on a phone. The agent did not watch them play.
 
 ## Product Decisions
 
@@ -38,4 +38,4 @@ The Work cards show the current look of Bench Bridge and ChemInventory. The file
 
 ## Related Docs
 
-- [PR 10: Picture-First Work Cards](./archive/10-picture-first-cards.md)
+- [PR 10: Picture-First Work Cards](./10-picture-first-cards.md)
