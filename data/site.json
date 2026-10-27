@@ -21,22 +21,54 @@
     {
       "name": "Junto Technologies",
       "url": "https://juntotechnologies.com/",
-      "summary": "My company. It modernizes chemistry labs and applies machine learning and statistics to biomedical questions."
+      "summary": "My company. It modernizes chemistry labs.",
+      "picture": {
+        "kind": "logo",
+        "image": "/media/projects/junto-logo.webp",
+        "alt": "The Junto Technologies logo: a letter J on a copper apron."
+      }
     },
     {
       "name": "ChemInventory",
       "url": "https://cheminventory.co/",
-      "summary": "Chemical inventory, orders and batch documents in one app."
+      "summary": "Chemical inventory, orders and batch documents.",
+      "picture": {
+        "kind": "clip",
+        "still": "/media/projects/cheminventory.webp",
+        "mp4": "/media/projects/cheminventory.mp4",
+        "webm": "/media/projects/cheminventory.webm",
+        "alt": "The ChemInventory demo: a table of chemicals with product number, batch, name, CAS number and actions."
+      }
     },
     {
       "name": "Bench Bridge",
       "url": "https://bench-bridge.juntotechnologies.com/",
-      "summary": "A demo of how older lab instruments can feed a laboratory information management system (LIMS) and a controlled-substance ledger."
+      "summary": "A demo of older lab instruments feeding a lab system.",
+      "picture": {
+        "kind": "clip",
+        "still": "/media/projects/bench-bridge.webp",
+        "mp4": "/media/projects/bench-bridge.mp4",
+        "webm": "/media/projects/bench-bridge.webm",
+        "alt": "The Bench Bridge demo with sample data: a drawing of an analytical balance, the instrument list and the five pipeline steps."
+      }
     },
     {
       "name": "dcurves",
       "url": "https://github.com/MSKCC-Epi-Bio/dcurves",
-      "summary": "A Python package for decision curve analysis. I created it at Memorial Sloan Kettering Cancer Center."
+      "summary": "Decision curve analysis in Python. I created it at Memorial Sloan Kettering Cancer Center.",
+      "picture": {
+        "kind": "decision-curve",
+        "alt": "A sample decision curve. The model line stays above the lines for treating all and treating none.",
+        "note": "Illustration only. Not real data.",
+        "prevalence": 0.2,
+        "separation": 1.5,
+        "threshold": 0.15,
+        "lines": {
+          "model": "Model",
+          "all": "Treat all",
+          "none": "Treat none"
+        }
+      }
     }
   ],
   "seo": {

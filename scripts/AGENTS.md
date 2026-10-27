@@ -22,11 +22,14 @@ This list comes from the first sentence of each script's docstring. `gen_script_
 - `gen_sitemap.py`: Regenerates site/sitemap.xml from the top-level pages + non-draft posts under site/.
 - `gen_theme.py`: Generates the THEME token block in site/styles/site.css from data/theme.json.
 - `lib_blocks.py`: Generated blocks between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers.
+- `lib_curve.py`: Decision curve maths and plot geometry for the dcurves card picture, with the standard library only.
+- `lib_curve_svg.py`: Draws the sample decision curve on the dcurves card as inline SVG, with the standard library only.
 - `lib_html.py`: Small HTML text helpers shared by the generators and checks.
 - `lib_images.py`: Reads the pixel size of a PNG, JPEG or WebP file, with the standard library only.
 - `lib_jsonld.py`: Builds the schema.org JSON-LD for the site: Person, WebSite, ProfilePage, BlogPosting and BreadcrumbList.
 - `lib_markdown.py`: Converts the body of a post's index.html to Markdown for llms-full.txt.
 - `lib_pagebreaks.py`: Pure checks for where printed page breaks fall in the resume.
+- `lib_pictures.py`: Renders the picture at the top of each Work card from the `picture` object of a project in data/site.json.
 - `lib_posts.py`: Shared helpers for reading post metadata straight out of each post's index.html.
 - `lib_record.py`: Loads data/experiences.json, the single record of every experience fact, and builds the resume view of it.
 - `lib_resume.py`: Shared mini-markup parser for resume strings in data/experiences.json.

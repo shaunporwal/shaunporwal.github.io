@@ -45,6 +45,52 @@ class TestLoadSite(unittest.TestCase):
         self.assertTrue(load_site(REPO_ROOT))
 
 
+def site_with_project(project: dict) -> dict:
+    return {**context.FAKE_SITE, "projects": [project]}
+
+
+def without(mapping: dict, key: str) -> dict:
+    return {name: value for name, value in mapping.items() if name != key}
+
+
+class TestPictureSchema(unittest.TestCase):
+    def setUp(self):
+        self.repo_root = context.temp_repo(self)
+        self.project = context.FAKE_SITE["projects"][0]
+
+    def assert_rejected(self, project: dict):
+        (self.repo_root / "data" / "site.json").write_text(json.dumps(site_with_project(project)))
+        with self.assertRaises(SchemaError):
+            load_site(self.repo_root)
+
+    def test_accepts_a_project_with_each_kind_of_picture(self):
+        for picture in (context.LOGO_PICTURE, context.CLIP_PICTURE, context.CURVE_PICTURE):
+            site = site_with_project({**self.project, "picture": picture})
+            (self.repo_root / "data" / "site.json").write_text(json.dumps(site))
+            self.assertTrue(load_site(self.repo_root))
+
+    def test_rejects_a_project_with_no_picture(self):
+        self.assert_rejected(without(self.project, "picture"))
+
+    def test_rejects_a_picture_with_an_unknown_kind(self):
+        self.assert_rejected({**self.project, "picture": {**context.LOGO_PICTURE, "kind": "gif"}})
+
+    def test_rejects_a_picture_with_no_alt_text(self):
+        self.assert_rejected({**self.project, "picture": without(context.LOGO_PICTURE, "alt")})
+
+    def test_rejects_a_clip_with_no_webm_source(self):
+        self.assert_rejected({**self.project, "picture": without(context.CLIP_PICTURE, "webm")})
+
+    def test_rejects_a_logo_with_no_image(self):
+        self.assert_rejected({**self.project, "picture": without(context.LOGO_PICTURE, "image")})
+
+    def test_rejects_a_curve_with_no_prevalence(self):
+        self.assert_rejected({**self.project, "picture": without(context.CURVE_PICTURE, "prevalence")})
+
+    def test_rejects_a_picture_key_the_schema_does_not_name(self):
+        self.assert_rejected({**self.project, "picture": {**context.LOGO_PICTURE, "caption": "x"}})
+
+
 class TestLoadTheme(unittest.TestCase):
     def test_loads_both_color_modes_and_the_fixed_tokens(self):
         theme = load_theme(context.temp_repo(self))

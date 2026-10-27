@@ -3,6 +3,50 @@
   "title": "Site constants",
   "description": "The name, canonical base URL, summary, and contact links for the whole site.",
   "type": "object",
+  "$defs": {
+    "mediaPath": {
+      "description": "A file in site/media, as a path from the site root.",
+      "type": "string",
+      "pattern": "^/media/"
+    },
+    "picture": {
+      "description": "The picture that leads a Work card. Its kind picks how scripts/lib_pictures.py draws it: a clip (a looping silent video with a still), a logo, or a decision curve that scripts/lib_curve_svg.py draws as inline SVG. Each kind needs its own keys.",
+      "type": "object",
+      "required": ["kind", "alt"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["clip", "logo", "decision-curve"] },
+        "alt": { "description": "What the picture shows, for a screen reader.", "type": "string" },
+        "still": { "description": "A clip: the poster image, 16:10.", "$ref": "#/$defs/mediaPath" },
+        "mp4": { "description": "A clip: the MP4 source.", "$ref": "#/$defs/mediaPath" },
+        "webm": { "description": "A clip: the WebM source.", "$ref": "#/$defs/mediaPath" },
+        "image": { "description": "A logo: the image.", "$ref": "#/$defs/mediaPath" },
+        "note": { "description": "A decision curve: the visible label that says the curve is not real data.", "type": "string" },
+        "prevalence": { "description": "A decision curve: the share of cases, between 0 and 1.", "type": "number" },
+        "separation": { "description": "A decision curve: how far apart the model scores of the two groups are.", "type": "number" },
+        "threshold": { "description": "A decision curve: where the live point sits, between 0 and 0.5.", "type": "number" },
+        "lines": {
+          "description": "A decision curve: the direct label of each line.",
+          "type": "object",
+          "required": ["model", "all", "none"],
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string" },
+            "all": { "type": "string" },
+            "none": { "type": "string" }
+          }
+        }
+      },
+      "anyOf": [
+        { "properties": { "kind": { "enum": ["clip"] } }, "required": ["still", "mp4", "webm"] },
+        { "properties": { "kind": { "enum": ["logo"] } }, "required": ["image"] },
+        {
+          "properties": { "kind": { "enum": ["decision-curve"] } },
+          "required": ["note", "prevalence", "separation", "threshold", "lines"]
+        }
+      ]
+    }
+  },
   "required": [
     "name",
     "base_url",
@@ -98,7 +142,8 @@
         "required": [
           "name",
           "url",
-          "summary"
+          "summary",
+          "picture"
         ],
         "additionalProperties": false,
         "properties": {
@@ -110,7 +155,11 @@
             "pattern": "^https://"
           },
           "summary": {
+            "description": "One short sentence under the name on the card.",
             "type": "string"
+          },
+          "picture": {
+            "$ref": "#/$defs/picture"
           }
         }
       }
