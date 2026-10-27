@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Theme tokens",
+  "description": "The color, type and motion tokens of the Junto theme family. Generates the THEME block in site/styles/site.css. The neutrals, radius, ease and grid match cheminventory.co. The primary color is this site's accent.",
+  "type": "object",
+  "required": [
+    "light",
+    "dark",
+    "fixed"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "light": {
+      "type": "object",
+      "required": [
+        "background",
+        "foreground",
+        "card",
+        "secondary",
+        "muted-foreground",
+        "border",
+        "input",
+        "primary",
+        "primary-foreground",
+        "ring"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "card": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "secondary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "muted-foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "border": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "input": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary-foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ring": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    },
+    "dark": {
+      "type": "object",
+      "required": [
+        "background",
+        "foreground",
+        "card",
+        "secondary",
+        "muted-foreground",
+        "border",
+        "input",
+        "primary",
+        "primary-foreground",
+        "ring"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "card": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "secondary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "muted-foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "border": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "input": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "primary-foreground": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "ring": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      }
+    },
+    "fixed": {
+      "type": "object",
+      "required": [
+        "font-sans",
+        "font-serif",
+        "radius",
+        "ease-out",
+        "shell",
+        "measure"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "font-sans": {
+          "type": "string"
+        },
+        "font-serif": {
+          "type": "string"
+        },
+        "radius": {
+          "type": "string"
+        },
+        "ease-out": {
+          "type": "string"
+        },
+        "shell": {
+          "type": "string"
+        },
+        "measure": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

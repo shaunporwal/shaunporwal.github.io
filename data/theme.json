@@ -1,0 +1,34 @@
+{
+  "light": {
+    "background": "#fbfbf9",
+    "foreground": "#15181e",
+    "card": "#ffffff",
+    "secondary": "#f1f1ee",
+    "muted-foreground": "#565d6b",
+    "border": "#e2e2dd",
+    "input": "#d3d4ce",
+    "primary": "#c2410c",
+    "primary-foreground": "#ffffff",
+    "ring": "#c2410c"
+  },
+  "dark": {
+    "background": "#0f1217",
+    "foreground": "#eceef2",
+    "card": "#151a21",
+    "secondary": "#1b212a",
+    "muted-foreground": "#98a1b0",
+    "border": "#262d38",
+    "input": "#313947",
+    "primary": "#ff9d70",
+    "primary-foreground": "#1d0e07",
+    "ring": "#ff9d70"
+  },
+  "fixed": {
+    "font-sans": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif",
+    "font-serif": "ui-serif, \"Iowan Old Style\", \"Palatino Linotype\", Palatino, \"Book Antiqua\", Georgia, serif",
+    "radius": "0.5rem",
+    "ease-out": "cubic-bezier(0.22, 0.7, 0.2, 1)",
+    "shell": "72rem",
+    "measure": "40rem"
+  }
+}

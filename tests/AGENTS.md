@@ -9,6 +9,10 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `test_code_shape.py`: fails on a nested function or a lambda in `scripts/` or `tests/`.
 - `test_css_tokens.py`: fails on a color literal outside the `:root` block of `site/styles/site.css`.
 - `test_media_refs.py`: fails if a file in `site/media/` is not used by a page, the stylesheet, or a data file.
+- `test_site_contract.py`: fails if a page has no `<main id="main">`, or if a discovery file or structured data holds the email address.
+- `test_media_sizes.py`: fails if a rendered icon or the social image has the wrong size.
+- `test_theme_contrast.py`: fails if a theme color pair falls below WCAG AA in the light or dark mode.
+- `test_js_shape.py`: fails if `site/js/` breaks the code-shape rules.
 - `test_agents_docs.py`: fails if a top-level directory has no `AGENTS.md`, or if the root `AGENTS.md` does not link to it.
 - `test_resume_print_layout.py`: prints the real resume to PDF with Playwright Chromium, reads it with `pdftotext`, and checks the page breaks.
 - `test_update_dcurves_downloads.sh`: checks the dcurves download count updater.

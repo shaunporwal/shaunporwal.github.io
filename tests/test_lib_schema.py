@@ -52,6 +52,12 @@ class TestValidate(unittest.TestCase):
     def test_boolean_is_not_an_integer_or_a_string(self):
         self.assert_rejected({"name": True}, "$.name")
 
+    def test_number_accepts_an_int_or_a_float_and_rejects_a_boolean(self):
+        validate(1, {"type": "number"})
+        validate(1.5, {"type": "number"})
+        with self.assertRaises(SchemaError):
+            validate(True, {"type": "number"})
+
     def test_rejects_an_unsupported_keyword(self):
         with self.assertRaises(SchemaError):
             validate(1, {"minimum": 0})

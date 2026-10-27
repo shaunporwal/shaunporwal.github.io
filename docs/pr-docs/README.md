@@ -6,6 +6,7 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
+| [PR 6: Shared Theme, Editorial Restyle and Agent Files](./6-shared-theme-and-agent-files.md) | Restyle the site on the shared Junto theme and add search and agent files |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive

@@ -11,6 +11,15 @@ class TestWrap(unittest.TestCase):
         self.assertEqual(wrap("X", "body"), "<!-- X:START -->\nbody\n<!-- X:END -->")
 
 
+class TestWrapCss(unittest.TestCase):
+    def test_wraps_body_in_comment_markers(self):
+        self.assertEqual(wrap("X", "body", css=True), "/* X:START */\nbody\n/* X:END */")
+
+    def test_replace_block_finds_css_markers(self):
+        result = replace_block("a {}\n/* X:START */\nold\n/* X:END */\n", "X", wrap("X", "new", css=True))
+        self.assertEqual(result, "a {}\n/* X:START */\nnew\n/* X:END */\n")
+
+
 class TestReplaceBlock(unittest.TestCase):
     def test_replaces_only_the_named_block(self):
         text = PAGE + "<!-- Y:START -->\nkeep\n<!-- Y:END -->\n"

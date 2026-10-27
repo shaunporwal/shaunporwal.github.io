@@ -8,23 +8,34 @@ This list comes from the first sentence of each script's docstring. `gen_script_
 
 <!-- SCRIPTS:START -->
 - `dev.sh`: Local dev server for site/.
+- `gen_agent_files.py`: Generates site/agents.txt and site/.well-known/agents.json, the rules for AI agents, from data/site.json.
 - `gen_blog_index.py`: Regenerates the post listing in site/index.html from posts under site/posts/ (auto-discovered via lib_posts, newest first, drafts excluded).
 - `gen_crawler_files.py`: Generates site/CNAME, site/robots.txt, and site/llms.txt from the data files and the published posts.
+- `gen_feed.py`: Generates site/feed.xml, an Atom feed of the published posts, newest first, from the posts.
+- `gen_icon.py`: Generates site/media/favicon.svg, the site icon, from the light colors in data/theme.json.
+- `gen_llms_full.py`: Generates site/llms-full.txt, the full text of every published post as Markdown, from the posts.
+- `gen_manifest.py`: Generates site/manifest.webmanifest, the web app manifest, from data/site.json and data/theme.json.
 - `gen_record.py`: Generates the `<!-- RECORD:START -->` block in docs/all-experiences.md from data/experiences.json, the single record behind the resume.
 - `gen_resume.py`: Renders the resume from data/experiences.json, the single experience record.
 - `gen_script_index.py`: Generates the script list in scripts/AGENTS.md from the first sentence of each script's docstring or leading comment.
 - `gen_sitemap.py`: Regenerates site/sitemap.xml from the top-level pages + non-draft posts under site/.
+- `gen_theme.py`: Generates the THEME token block in site/styles/site.css from data/theme.json.
 - `lib_blocks.py`: Generated blocks between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers.
 - `lib_html.py`: Small HTML text helpers shared by the generators and checks.
+- `lib_images.py`: Reads the pixel size of a PNG, JPEG or WebP file, with the standard library only.
+- `lib_jsonld.py`: Builds the schema.org JSON-LD for the site: Person, WebSite, ProfilePage, BlogPosting and BreadcrumbList.
+- `lib_markdown.py`: Converts the body of a post's index.html to Markdown for llms-full.txt.
 - `lib_pagebreaks.py`: Pure checks for where printed page breaks fall in the resume.
 - `lib_posts.py`: Shared helpers for reading post metadata straight out of each post's index.html.
 - `lib_record.py`: Loads data/experiences.json, the single record of every experience fact, and builds the resume view of it.
 - `lib_resume.py`: Shared mini-markup parser for resume strings in data/experiences.json.
 - `lib_schema.py`: Validates JSON data against a JSON Schema, with the standard library only.
-- `lib_site.py`: Single source of truth for site-wide constants (name, base URL, social links) in data/site.json, and for the top-level pages in data/pages.json.
-- `sync_nav.py`: Keeps every page's `<nav class="site-nav">` block in sync with templates/nav.html.
-- `sync_seo.py`: Stamps SEO/social meta tags (description, canonical, OpenGraph, Twitter card) into every page under site/, between `<!-- SEO:START -->` / `<!-- SEO:END -->` markers.
-- `sync_social.py`: Regenerates the JSON-LD Person block and the visible social-links row on site/about.html from data/site.json.
+- `lib_site.py`: Single source of truth for site-wide constants (name, base URL, social links) in data/site.json, for the top-level pages in data/pages.json, and for the color and type tokens in data/theme.json.
+- `sync_footer.py`: Keeps every page's footer block in sync with templates/footer.html.
+- `sync_home.py`: Stamps the hero and the Work cards into site/index.html from data/site.json and the experience record.
+- `sync_nav.py`: Keeps every page's header block in sync with templates/nav.html.
+- `sync_seo.py`: Stamps SEO/social meta tags (description, canonical, OpenGraph, Twitter card, icons, theme colors, feed link, structured data) into every page under site/, between `<!-- SEO:START -->` / `<!-- SEO:END -->` markers.
+- `sync_social.py`: Regenerates the ProfilePage JSON-LD block and the visible link buttons on site/about.html from data/site.json.
 - `update-dcurves-downloads.sh`: Refreshes the dcurves PyPI download count shown in resume.html from pepy.tech's public badge endpoint (no API key required, unlike api.pepy.tech).
 <!-- SCRIPTS:END -->
 

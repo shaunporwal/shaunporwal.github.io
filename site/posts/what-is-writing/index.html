@@ -15,39 +15,74 @@
 <meta name="twitter:title" content="What Writing Actually Is — Shaun Porwal">
 <meta name="twitter:description" content="(content missing)">
 <meta name="twitter:image" content="https://www.shaunporwal.com/posts/what-is-writing/250927-writer.png">
+<meta name="author" content="Shaun Porwal">
+<meta property="og:site_name" content="Shaun Porwal">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1217" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="https://www.shaunporwal.com/media/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="https://www.shaunporwal.com/media/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="https://www.shaunporwal.com/media/apple-touch-icon.png">
+<link rel="manifest" href="https://www.shaunporwal.com/manifest.webmanifest">
+<link rel="alternate" type="application/atom+xml" title="Shaun Porwal" href="https://www.shaunporwal.com/feed.xml">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
 <meta name="robots" content="noindex">
 <!-- SEO:END -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="../../media/favicon.png">
 <link rel="stylesheet" href="../../styles/site.css">
 </head>
 <body>
 
 <!-- NAV:START -->
-<nav class="site-nav">
-  <div class="site-nav-inner">
-    <a class="site-nav-title" href="../../index.html">Shaun Porwal</a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">☰</label>
-    <div class="site-nav-links">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="brand" href="../../index.html">Shaun Porwal</a>
+    <nav class="nav-links" aria-label="Main" data-nav-links>
+      <a class="nav-link" href="../../index.html" aria-current="true">Home</a>
       <a class="nav-link" href="../../about.html">About</a>
       <a class="nav-link" href="../../stuff.html">Stuff</a>
-      <a class="nav-link" href="../../index.html">Blog</a>
       <a class="nav-link" href="../../resume.html" target="_blank" rel="noopener">Resume</a>
-      <a class="nav-link" href="https://github.com/shaunporwal" target="_blank" rel="noopener">GitHub</a>
-      <a class="nav-link" href="https://x.com/shaunporwal" target="_blank" rel="noopener">X</a>
-      <a class="nav-link" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">📅 Book a Call</a>
-    </div>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </nav>
+    <a class="btn btn-primary btn-sm header-cta" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a call</a>
+    <button class="menu-button" type="button" popovertarget="menu" aria-label="Menu">
+      <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <nav id="menu" class="menu-panel" popover aria-label="Menu">
+      <a class="menu-link" href="../../index.html" aria-current="true">Home</a>
+      <a class="menu-link" href="../../about.html">About</a>
+      <a class="menu-link" href="../../stuff.html">Stuff</a>
+      <a class="menu-link" href="../../resume.html" target="_blank" rel="noopener">Resume</a>
+      <a class="btn btn-primary" href="https://cal.com/shaun-porwal/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a call</a>
+    </nav>
   </div>
-</nav>
+</header>
 <!-- NAV:END -->
 
-<main class="page">
+<main id="main" class="page">
   <h1 class="page-title">What Writing Actually Is</h1>
   <p class="page-meta">September 27, 2025 &middot; <span class="cat">Writing</span><span class="cat">Building</span><span class="cat">Manifesting</span><span class="cat">Statistics</span></p>
 
 <p>(content missing)</p>
 </main>
 
+<!-- FOOTER:START -->
+<footer class="site-footer">
+  <div class="shell footer-row">
+    <a class="footer-brand" href="../../index.html">Shaun Porwal</a>
+    <nav class="footer-links" aria-label="Elsewhere">
+      <a href="https://github.com/shaunporwal" target="_blank" rel="me noopener">GitHub</a>
+      <a href="https://x.com/shaunporwal" target="_blank" rel="me noopener">X</a>
+      <a href="https://linkedin.com/in/shaunporwal" target="_blank" rel="me noopener">LinkedIn</a>
+      <a href="../../feed.xml">Feed</a>
+      <a href="../../llms.txt">llms.txt</a>
+    </nav>
+  </div>
+</footer>
+<script src="../../js/motion.js" defer></script>
+<!-- FOOTER:END -->
 </body>
 </html>

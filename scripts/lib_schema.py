@@ -1,8 +1,9 @@
 """Validates JSON data against a JSON Schema, with the standard library only.
 
-Supports the subset of JSON Schema that data/experiences.schema.json uses:
-type, properties, required, additionalProperties (false), items, enum,
-pattern, anyOf, and local $ref ("#/$defs/<name>"). An unsupported keyword
+Supports the subset of JSON Schema that the files in data/ use:
+type (object, array, string, boolean, number), properties, required,
+additionalProperties (false), items, enum, pattern, anyOf, and local $ref
+("#/$defs/<name>"). An unsupported keyword
 raises SchemaError, so the schema can never ask for a check that silently
 does not run.
 """
@@ -13,6 +14,7 @@ TYPES = {
     "array": list,
     "string": str,
     "boolean": bool,
+    "number": (int, float),
 }
 
 ANNOTATIONS = {"$schema", "$id", "$defs", "title", "description"}

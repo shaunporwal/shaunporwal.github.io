@@ -1,8 +1,9 @@
 """Generated blocks between <!-- NAME:START --> and <!-- NAME:END --> markers.
 
 Every generator stamps its output into a file this way, so the files stay
-plain static HTML or Markdown while the content keeps one source. Text
-outside the markers is never touched.
+plain static HTML or Markdown while the content keeps one source. A CSS file
+uses /* NAME:START */ and /* NAME:END */ markers instead. Text outside the
+markers is never touched.
 """
 import functools
 import pathlib
@@ -11,11 +12,19 @@ import re
 
 @functools.cache
 def _marker_re(name: str) -> re.Pattern:
-    return re.compile(rf"<!-- {name}:START -->.*?<!-- {name}:END -->", re.DOTALL)
+    start = rf"(?:<!-- {name}:START -->|/\* {name}:START \*/)"
+    end = rf"(?:<!-- {name}:END -->|/\* {name}:END \*/)"
+    return re.compile(f"{start}.*?{end}", re.DOTALL)
 
 
-def wrap(name: str, body: str) -> str:
-    return f"<!-- {name}:START -->\n{body}\n<!-- {name}:END -->"
+HTML_MARKER = "<!-- {name}:{edge} -->"
+CSS_MARKER = "/* {name}:{edge} */"
+
+
+def wrap(name: str, body: str, css: bool = False) -> str:
+    """body between START and END markers. css=True writes /* */ markers for a stylesheet."""
+    marker = CSS_MARKER if css else HTML_MARKER
+    return f"{marker.format(name=name, edge='START')}\n{body}\n{marker.format(name=name, edge='END')}"
 
 
 def replace_block(text: str, name: str, block: str) -> str | None:

@@ -1,17 +1,21 @@
 import json
 import pathlib
 import re
+import struct
 import unittest
 
 import context
 import sync_seo
+from lib_images import PNG_SIGNATURE
+
+PNG_8X8 = PNG_SIGNATURE + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 8, 8) + b"\x08\x06\x00\x00\x00"
 
 PAGE_TEMPLATE = """<!doctype html>
 <html><head>
 <meta charset="utf-8">
 <title>{title}</title>
 </head><body>
-<main class="page">
+<main id="main" class="page">
   <h1 class="page-title">{h1}</h1>
   <p class="page-meta">March 5, 2025</p>
 <p>{excerpt}</p>
@@ -21,6 +25,13 @@ PAGE_TEMPLATE = """<!doctype html>
 
 
 class TestBuildBlockAndInject(unittest.TestCase):
+    def test_build_block_escapes_an_ampersand_and_angle_bracket_once(self):
+        meta = sync_seo.SeoMeta("https://example.com/", "Cats & Dogs", "R&D <draft>", "website", "https://example.com/i.png")
+        block = sync_seo.build_block(meta)
+        self.assertIn('content="Cats &amp; Dogs"', block)
+        self.assertIn('content="R&amp;D &lt;draft&gt;"', block)
+        self.assertNotIn("&amp;amp;", block)
+
     def test_build_block_contains_expected_tags(self):
         block = sync_seo.build_block(
             sync_seo.SeoMeta("https://example.com/", "A Title", 'A "quoted" description', "website", "https://example.com/img.png")
@@ -54,15 +65,31 @@ class TestBuildBlockAndInject(unittest.TestCase):
         block = sync_seo.build_block(sync_seo.SeoMeta("u", "t", "d", "website", "i"))
         self.assertIsNone(sync_seo.inject("<html></html>", block))
 
-    def test_json_ld_cannot_close_its_script_tag(self):
-        tag = sync_seo.json_ld({"headline": "A </script> title"})
-        self.assertIn("A <\\/script> title", tag)
-        self.assertEqual(tag.count("</script>"), 1)
+    def test_build_block_adds_the_common_head_lines_before_the_extra_lines(self):
+        meta = sync_seo.SeoMeta("u", "t", "d", "website", "i", ("<extra>",))
+        block = sync_seo.build_block(meta, ("<common>",))
+        self.assertLess(block.index("<common>"), block.index("<extra>"))
+
+
+class TestCommonHead(unittest.TestCase):
+    def setUp(self):
+        self.head = "\n".join(sync_seo.common_head(context.FAKE_SITE, context.FAKE_THEME))
+
+    def test_has_a_theme_color_for_each_color_scheme(self):
+        self.assertIn('<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">', self.head)
+        self.assertIn('<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">', self.head)
+
+    def test_has_the_icons_the_manifest_and_the_feed_with_absolute_urls(self):
+        self.assertIn('<link rel="icon" href="https://example.com/media/favicon.svg" type="image/svg+xml">', self.head)
+        self.assertIn('<link rel="apple-touch-icon" href="https://example.com/media/apple-touch-icon.png">', self.head)
+        self.assertIn('<link rel="manifest" href="https://example.com/manifest.webmanifest">', self.head)
+        self.assertIn('href="https://example.com/feed.xml"', self.head)
 
 
 class TestSync(unittest.TestCase):
     def setUp(self):
         self.repo_root = context.temp_repo(self)
+        context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
         self.site_dir = self.repo_root / "site"
 
     def test_top_level_pages_get_seo_tags(self):
@@ -112,6 +139,40 @@ class TestSync(unittest.TestCase):
         self.assertEqual(data["headline"], "Hello World")
         self.assertEqual(data["datePublished"], "2025-03-05")
         self.assertEqual(data["author"], {"@type": "Person", "name": "Test Person", "url": "https://example.com/"})
+
+    def test_the_home_page_gets_the_website_and_person_data_and_no_email(self):
+        (self.site_dir / "index.html").write_text(PAGE_TEMPLATE.format(title="x", h1="Home", excerpt="hi"))
+        sync_seo.sync(self.repo_root)
+        text = (self.site_dir / "index.html").read_text()
+        self.assertIn('"@type": "WebSite"', text)
+        self.assertIn('"@type": "Person"', text)
+        self.assertNotIn("test@example.com", text)
+
+    def test_every_page_gets_the_common_head_lines(self):
+        (self.site_dir / "about.html").write_text(PAGE_TEMPLATE.format(title="x", h1="About", excerpt="hi"))
+        sync_seo.sync(self.repo_root)
+        self.assertIn('<link rel="manifest"', (self.site_dir / "about.html").read_text())
+
+    def test_a_page_with_the_noindex_switch_gets_a_noindex_tag(self):
+        pages = [{**context.FAKE_PAGES[1], "file": "404.html", "noindex": True}]
+        (self.repo_root / "data" / "pages.json").write_text(json.dumps(pages))
+        (self.site_dir / "404.html").write_text(PAGE_TEMPLATE.format(title="x", h1="Missing", excerpt="hi"))
+        sync_seo.sync(self.repo_root)
+        self.assertIn('<meta name="robots" content="noindex">', (self.site_dir / "404.html").read_text())
+
+    def test_the_social_image_gets_its_size_when_the_file_exists(self):
+        (self.site_dir / "media").mkdir()
+        (self.site_dir / "media" / "avatar.jpg").write_bytes(PNG_8X8)
+        (self.site_dir / "about.html").write_text(PAGE_TEMPLATE.format(title="x", h1="About", excerpt="hi"))
+        sync_seo.sync(self.repo_root)
+        text = (self.site_dir / "about.html").read_text()
+        self.assertIn('<meta property="og:image:width" content="8">', text)
+        self.assertIn('<meta property="og:image:height" content="8">', text)
+
+    def test_published_post_gets_breadcrumb_data(self):
+        path = self.make_post("hello", "Hello World")
+        sync_seo.sync(self.repo_root)
+        self.assertIn('"@type": "BreadcrumbList"', path.read_text())
 
     def test_page_title_tag_comes_from_page_data(self):
         (self.site_dir / "about.html").write_text(PAGE_TEMPLATE.format(title="Old title", h1="About", excerpt="hi"))

@@ -23,26 +23,33 @@ ABOUT_WITHOUT_MARKERS = "<html><body>no social markers here</body></html>"
 
 
 class TestBuildBlocks(unittest.TestCase):
-    def test_jsonld_block_uses_site_fields(self):
-        block = sync_social.build_jsonld_block(context.FAKE_SITE)
+    def test_jsonld_block_is_a_profile_page_with_the_profile_links(self):
+        block = sync_social.build_jsonld_block(context.FAKE_SITE, context.SAMPLE_RECORD)
+        self.assertIn('"@type": "ProfilePage"', block)
         self.assertIn('"name": "Test Person"', block)
-        self.assertIn('"url": "https://example.com"', block)
-        self.assertIn('"email": "mailto:test@example.com"', block)
         self.assertIn('"https://github.com/testperson"', block)
         self.assertIn('"https://x.com/testperson"', block)
         self.assertIn('"https://linkedin.com/in/testperson"', block)
 
-    def test_links_block_uses_site_fields(self):
+    def test_no_block_holds_the_email_address(self):
+        text = sync_social.build_jsonld_block(context.FAKE_SITE, context.SAMPLE_RECORD)
+        text += sync_social.build_links_block(context.FAKE_SITE)
+        self.assertNotIn("test@example.com", text)
+        self.assertNotIn("mailto", text)
+
+    def test_links_block_has_a_button_for_each_profile_and_the_booking_page(self):
         block = sync_social.build_links_block(context.FAKE_SITE)
-        self.assertIn('href="https://x.com/testperson"', block)
+        self.assertIn('class="btn btn-outline" href="https://x.com/testperson"', block)
+        self.assertIn('rel="me noopener">X</a>', block)
         self.assertIn('href="https://linkedin.com/in/testperson"', block)
         self.assertIn('href="https://github.com/testperson"', block)
-        self.assertIn('href="mailto:test@example.com"', block)
+        self.assertIn('href="https://cal.com/testperson" target="_blank" rel="noopener">Book a call</a>', block)
 
 
 class TestSync(unittest.TestCase):
     def setUp(self):
         self.repo_root = context.temp_repo(self)
+        context.write_record_fixture(self.repo_root, context.SAMPLE_RECORD)
         self.site_dir = self.repo_root / "site"
 
     def test_replaces_both_marker_blocks(self):

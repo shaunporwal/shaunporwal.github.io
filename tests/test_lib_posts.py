@@ -6,7 +6,7 @@ from lib_posts import all_posts, parse_post
 
 POST_HTML = """<!doctype html>
 <html><head><title>Test Post</title></head><body>
-<main class="page">
+<main id="main" class="page">
   <h1 class="page-title">A Test Post</h1>
   <p class="page-meta">March 5, 2025 &middot; <span class="cat">Testing</span><span class="cat">Python</span></p>
 <p>This is the first paragraph, used as the excerpt for SEO purposes.</p>
@@ -17,7 +17,7 @@ POST_HTML = """<!doctype html>
 
 POST_HTML_NO_META = """<!doctype html>
 <html><head><title>No Meta</title></head><body>
-<main class="page">
+<main id="main" class="page">
   <h1 class="page-title">No Meta Post</h1>
 <p>Just one paragraph here.</p>
 </main>
@@ -91,6 +91,33 @@ class TestParsePost(unittest.TestCase):
         self.make_post("newer", POST_HTML.replace("March 5, 2025", "January 1, 2026"))
         posts = all_posts(self.site_dir)
         self.assertEqual([p["slug"] for p in posts], ["newer", "older"])
+
+    def test_decodes_entities_in_title_excerpt_and_categories(self):
+        html = (
+            POST_HTML.replace("A Test Post", "Cats &amp; Dogs")
+            .replace("Testing", "R &amp; D")
+            .replace("This is the first paragraph", "Tom &amp; Jerry")
+        )
+        post = parse_post(self.make_post("entities", html))
+        self.assertEqual(post["title"], "Cats & Dogs")
+        self.assertEqual(post["categories"], ["R & D", "Python"])
+        self.assertTrue(post["excerpt"].startswith("Tom & Jerry"))
+
+    def test_impossible_date_leaves_the_date_empty(self):
+        html = POST_HTML.replace("March 5, 2025", "February 30, 2025")
+        self.assertIsNone(parse_post(self.make_post("bad-date", html))["date"])
+
+    def test_excerpt_skips_an_image_only_paragraph(self):
+        html = POST_HTML.replace(
+            "<p>This is the first paragraph",
+            '<p><img src="a.png" alt="A"></p>\n<p>This is the first paragraph',
+        )
+        post = parse_post(self.make_post("image-first", html))
+        self.assertTrue(post["excerpt"].startswith("This is the first paragraph"))
+
+    def test_reads_a_page_whose_main_has_an_id_and_extra_classes(self):
+        html = POST_HTML.replace('class="page-title"', 'class="page-title wide"')
+        self.assertEqual(parse_post(self.make_post("wide-title", html))["title"], "A Test Post")
 
     def test_all_posts_on_missing_posts_dir(self):
         empty_site = context.temp_repo(self) / "site"

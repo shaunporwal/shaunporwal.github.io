@@ -3,10 +3,11 @@
 
 - CNAME holds the host of `base_url` in data/site.json, so GitHub Pages and
   every canonical URL agree on one domain.
-- robots.txt allows every crawler, AI crawlers included, and names the sitemap.
+- robots.txt allows each crawler named in `seo.crawlers`, AI crawlers included,
+  and names the sitemap.
 - llms.txt (https://llmstxt.org) gives language models a short map of the
-  site: the summary and current role, the pages, the published posts, and
-  the contact links.
+  site: the summary and current role, the pages, the work, the published posts,
+  and the links to the author's other profiles. It holds no email address.
 Run directly (`python3 scripts/gen_crawler_files.py`) or through `make sync`.
 """
 import pathlib
@@ -14,10 +15,8 @@ from urllib.parse import urlparse
 
 from lib_blocks import write_if_changed
 from lib_posts import all_posts
-from lib_record import load_record
-from lib_site import REPO_ROOT, load_pages, load_site, page_url
-
-CONTACT_LABELS = (("Email", "email"), ("GitHub", "github"), ("X", "x"), ("LinkedIn", "linkedin"))
+from lib_record import current_roles, load_record
+from lib_site import REPO_ROOT, load_pages, load_site, page_url, profile_links
 
 
 def load_inputs(repo_root: pathlib.Path) -> dict:
@@ -29,16 +28,22 @@ def load_inputs(repo_root: pathlib.Path) -> dict:
     }
 
 
+def elsewhere_links(site: dict) -> list[tuple[str, str]]:
+    return [*profile_links(site), ("Book a call", site["cal"])]
+
+
 def render_cname(inputs: dict) -> str:
     return urlparse(inputs["site"]["base_url"]).netloc + "\n"
 
 
 def render_robots(inputs: dict) -> str:
-    return f"User-agent: *\nAllow: /\n\nSitemap: {inputs['site']['base_url']}/sitemap.xml\n"
+    site = inputs["site"]
+    groups = [f"User-agent: {crawler}\nAllow: /" for crawler in site["seo"]["crawlers"]]
+    return "\n\n".join(groups) + f"\n\nSitemap: {site['base_url']}/sitemap.xml\n"
 
 
 def current_role(record: dict) -> str:
-    roles = [f"{e['title']} at {e['org']}" for e in record["experience"] if e["end"] == "present"]
+    roles = [f"{role['title']} at {role['org']}" for role in current_roles(record)]
     return f" Currently {' and '.join(roles)}." if roles else ""
 
 
@@ -52,13 +57,28 @@ def _post_line(site: dict, post: dict) -> str:
     return f"- [{post['title']}]({site['base_url']}/posts/{post['slug']}/): {post['excerpt']}"
 
 
+def _project_line(project: dict) -> str:
+    return f"- [{project['name']}]({project['url']}): {project['summary']}"
+
+
+def _optional_lines(site: dict) -> list[str]:
+    base = site["base_url"]
+    return [
+        f"- [Full text of every post]({base}/llms-full.txt)",
+        f"- [Atom feed]({base}/feed.xml)",
+        f"- [Rules for agents]({base}/agents.txt)",
+    ]
+
+
 def render_llms(inputs: dict) -> str:
     site = inputs["site"]
     sections = [
         f"# {site['name']}\n\n> {site['summary']}{current_role(inputs['record'])}",
         "## Pages\n\n" + "\n".join(_page_line(site, p) for p in inputs["pages"] if p["sitemap"]),
+        "## Work\n\n" + "\n".join(_project_line(p) for p in site["projects"]),
         "## Posts\n\n" + "\n".join(_post_line(site, p) for p in inputs["posts"]),
-        "## Contact\n\n" + "\n".join(f"- {label}: {site[key]}" for label, key in CONTACT_LABELS),
+        "## Elsewhere\n\n" + "\n".join(f"- [{label}]({url})" for label, url in elsewhere_links(site)),
+        "## Optional\n\n" + "\n".join(_optional_lines(site)),
     ]
     return "\n\n".join(sections) + "\n"
 

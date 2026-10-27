@@ -16,6 +16,10 @@ if ! command -v ruff >/dev/null; then
   echo "pre-commit: ruff is missing. Install it with: uv tool install ruff" >&2
   exit 1
 fi
+# Run the generators and tests with uv when it is installed, so no bare python3 runs.
+if command -v uv >/dev/null; then
+  export PYTHON="uv run --no-project python"
+fi
 make -C "$repo_root" --no-print-directory lint
 
 if ! make -C "$repo_root" --no-print-directory -k sync; then

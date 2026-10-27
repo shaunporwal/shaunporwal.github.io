@@ -11,6 +11,12 @@ from lib_schema import SchemaError
 SAMPLE_RECORD = context.SAMPLE_RECORD
 
 
+class TestCurrentRoles(unittest.TestCase):
+    def test_returns_only_entries_with_no_end_date(self):
+        roles = lib_record.current_roles(context.SAMPLE_RECORD)
+        self.assertEqual([role["org"] for role in roles], ["Acme Company"])
+
+
 class TestFormatPeriod(unittest.TestCase):
     def test_resume_range(self):
         self.assertEqual(lib_record.format_period("2020-01", "2021-03", "resume"), "Jan 2020 – Mar 2021")

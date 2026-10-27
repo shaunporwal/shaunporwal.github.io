@@ -1,13 +1,20 @@
 # Shaun Porwal
 
-> Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software. Currently Founder & Engineer at Junto Technologies.
+> Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software. Currently Founder & Engineer at Junto Technologies.
 
 ## Pages
 
+- [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal is a software and machine learning engineer. Notes on building, coding and thinking clearly.
 - [About — Shaun Porwal](https://www.shaunporwal.com/about.html): About Shaun Porwal — engineer working across AI/ML, biomedical data science, and chemical inventory software.
 - [Stuff — Shaun Porwal](https://www.shaunporwal.com/stuff.html): Odds and ends from Shaun Porwal, including an iPhone macro photo of an eye.
-- [Shaun Porwal](https://www.shaunporwal.com/): Shaun Porwal's blog: writing in public about building, coding, and thinking clearly.
 - [Shaun Porwal — Resume](https://www.shaunporwal.com/resume.html): Shaun Porwal's resume: software engineering, machine learning, and biomedical data science experience.
+
+## Work
+
+- [Junto Technologies](https://juntotechnologies.com/): My company. It builds software for chemistry labs and applies machine learning and statistics to biomedical questions.
+- [ChemInventory](https://cheminventory.co/): Chemical inventory, orders and batch documents in one app.
+- [Bench Bridge](https://bench-bridge.juntotechnologies.com/): A demo of how older lab instruments can feed a laboratory information management system (LIMS) and a controlled-substance ledger.
+- [dcurves](https://github.com/MSKCC-Epi-Bio/dcurves): A Python package for decision curve analysis. I created it at Memorial Sloan Kettering Cancer Center.
 
 ## Posts
 
@@ -17,9 +24,15 @@
 - [The Best Resume Builder I Have Ever Used](https://www.shaunporwal.com/posts/best-resume-builder/): As with most of us, I have been creating, updating, and sending resumes for a non-trivial amount of time. It all started with Microsoft Word. I first...
 - [It's all in the framework!](https://www.shaunporwal.com/posts/webdev-is-tricky/): Getting to the point of having a decent site for myself was a very long and arduous journey. Unlucky for me, I never took any HTML/CSS/JavaScript...
 
-## Contact
+## Elsewhere
 
-- Email: shaun.porwal@gmail.com
-- GitHub: https://github.com/shaunporwal
-- X: https://x.com/shaunporwal
-- LinkedIn: https://linkedin.com/in/shaunporwal
+- [GitHub](https://github.com/shaunporwal)
+- [X](https://x.com/shaunporwal)
+- [LinkedIn](https://linkedin.com/in/shaunporwal)
+- [Book a call](https://cal.com/shaun-porwal/30min?overlayCalendar=true)
+
+## Optional
+
+- [Full text of every post](https://www.shaunporwal.com/llms-full.txt)
+- [Atom feed](https://www.shaunporwal.com/feed.xml)
+- [Rules for agents](https://www.shaunporwal.com/agents.txt)

@@ -1,0 +1,17 @@
+{
+  "name": "Shaun Porwal",
+  "url": "https://www.shaunporwal.com/",
+  "summary": "This site is the personal site of Shaun Porwal. It has no login and no form.",
+  "mayDo": [
+    "Read each public page.",
+    "Follow each link on a page."
+  ],
+  "mayNotDo": [
+    "Post a form.",
+    "Send a message for a person.",
+    "Book a call for a person."
+  ],
+  "contact": "https://cal.com/shaun-porwal/30min?overlayCalendar=true",
+  "sitemap": "https://www.shaunporwal.com/sitemap.xml",
+  "llms": "https://www.shaunporwal.com/llms.txt"
+}

@@ -1,5 +1,6 @@
 """Single source of truth for site-wide constants (name, base URL, social
-links) in data/site.json, and for the top-level pages in data/pages.json.
+links) in data/site.json, for the top-level pages in data/pages.json, and for
+the color and type tokens in data/theme.json.
 Everything that needs these (sync_seo.py, gen_sitemap.py, sync_nav.py, the
 about.html social block) reads them from here instead of hardcoding its own
 copy.
@@ -28,6 +29,25 @@ def load_pages(repo_root: pathlib.Path) -> list[dict]:
     pages = json.loads((data_dir / "pages.json").read_text())
     validate(pages, json.loads((data_dir / "pages.schema.json").read_text()))
     return pages
+
+
+def load_theme(repo_root: pathlib.Path) -> dict:
+    """Reads data/theme.json and validates it against data/theme.schema.json."""
+    data_dir = repo_root / "data"
+    theme = json.loads((data_dir / "theme.json").read_text())
+    validate(theme, json.loads((data_dir / "theme.schema.json").read_text()))
+    return theme
+
+
+def profile_links(site: dict) -> list[tuple[str, str]]:
+    """(label, url) for each of the author's profiles, in display order."""
+    return [(profile["label"], site[profile["key"]]) for profile in site["profiles"]]
+
+
+def profile(site: dict, key: str) -> tuple[str, str]:
+    """(label, url) of the profile with this key."""
+    label = next(entry["label"] for entry in site["profiles"] if entry["key"] == key)
+    return label, site[key]
 
 
 def page_url(base_url: str, file: str) -> str:
