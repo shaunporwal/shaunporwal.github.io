@@ -41,6 +41,11 @@ def load_record(repo_root: pathlib.Path) -> dict:
     return record
 
 
+def current_roles(record: dict) -> list[dict]:
+    """The experience entries that have no end date yet, in record order."""
+    return [entry for entry in record["experience"] if entry["end"] == "present"]
+
+
 def site_link(url: str) -> str:
     """[example.com](https://www.example.com): the link text drops the scheme and www."""
     return f"[{SCHEME_RE.sub('', url)}]({url})"

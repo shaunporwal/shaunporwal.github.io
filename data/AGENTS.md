@@ -5,7 +5,8 @@ This directory holds the JSON sources of truth for the site. Generators in `scri
 ## Files
 
 - `experiences.json`: every experience fact (jobs, education, projects, skills, languages, publications). It generates the resume (`site/resume.html`) and the full record (`docs/all-experiences.md`).
-- `site.json`: the name, the canonical base URL, the summary, and the contact links.
+- `site.json`: the name, the canonical base URL, the summary, the contact links, the hero lead, the work cards, the icon paths, and the crawler and agent rules in `seo`.
+- `theme.json`: the color, type and motion tokens. It generates the `THEME` block of `site/styles/site.css`, `site/media/favicon.svg` and the web app manifest colors. The neutrals, radius and ease match `cheminventory.co`. The accent is this site's own.
 - `pages.json`: each top-level page in `site/`, in nav menu order, with its title, SEO text, `sitemap` and `nav` switches, and an optional `menu` entry for the nav link.
 - `*.schema.json`: the declared format of each JSON file with the same name. The loaders validate each file against its schema when they read it.
 

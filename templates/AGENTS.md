@@ -4,7 +4,8 @@ This directory holds HTML fragments that generators stamp into pages.
 
 ## Files
 
-- `nav.html`: the site nav. `scripts/sync_nav.py` stamps it between the `NAV` markers of every page whose `nav` switch is on in `data/pages.json`.
+- `nav.html`: the site header and menu. `scripts/sync_nav.py` stamps it between the `NAV` markers of every page whose `nav` switch is on in `data/pages.json`.
+- `footer.html`: the site footer and the script tag for `js/motion.js`. `scripts/sync_footer.py` stamps it between the `FOOTER` markers.
 
 ## Rules
 

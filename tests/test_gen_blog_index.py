@@ -1,8 +1,12 @@
 import datetime
+import struct
 import unittest
 
 import context
 import gen_blog_index
+from lib_images import PNG_SIGNATURE
+
+PNG_640X480 = PNG_SIGNATURE + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 640, 480) + b"\x08\x06\x00\x00\x00"
 
 POST_HTML = """<main class="page">
   <h1 class="page-title">{title}</h1>
@@ -26,42 +30,43 @@ INDEX_WITHOUT_MARKERS = "<html><body><main>no listing here</main></body></html>"
 
 
 class TestRenderItem(unittest.TestCase):
-    def test_includes_title_date_and_categories(self):
-        post = {
+    def setUp(self):
+        self.site_dir = context.temp_repo(self) / "site"
+        self.post = {
             "slug": "hello-world",
             "title": "Hello World",
             "date": datetime.date(2025, 3, 5),
             "categories": ["A", "B"],
             "image": None,
         }
-        item = gen_blog_index.render_item(post)
-        self.assertIn('href="posts/hello-world/index.html"', item)
-        self.assertIn("Hello World", item)
-        self.assertIn("March 5, 2025", item)
-        self.assertIn('<span class="cat">A</span><span class="cat">B</span>', item)
 
-    def test_includes_thumbnail_when_post_has_an_image(self):
-        post = {
-            "slug": "hello-world",
-            "title": "Hello World",
-            "date": None,
-            "categories": [],
-            "image": "cover.png",
-        }
-        item = gen_blog_index.render_item(post)
-        self.assertIn('<img src="posts/hello-world/cover.png"', item)
-        self.assertIn('class="post-card-thumb"', item)
+    def test_includes_title_link_date_and_categories(self):
+        item = gen_blog_index.render_item(self.post, self.site_dir)
+        self.assertIn('<a class="post-title" href="posts/hello-world/index.html">Hello World</a>', item)
+        self.assertIn('<time class="post-date" datetime="2025-03-05">March 5, 2025</time>', item)
+        self.assertIn('<p class="post-cats"><span class="cat">A</span><span class="cat">B</span></p>', item)
+
+    def test_the_row_reveals_on_scroll(self):
+        item = gen_blog_index.render_item(self.post, self.site_dir)
+        self.assertIn('<li class="post-row" data-reveal-item>', item)
+
+    def test_no_date_or_categories_leave_those_parts_out(self):
+        item = gen_blog_index.render_item({**self.post, "date": None, "categories": []}, self.site_dir)
+        self.assertNotIn("<time", item)
+        self.assertNotIn("post-cats", item)
+
+    def test_thumbnail_has_a_lazy_decorative_image_with_its_size(self):
+        (self.site_dir / "posts" / "hello-world").mkdir(parents=True)
+        (self.site_dir / "posts" / "hello-world" / "cover.png").write_bytes(PNG_640X480)
+        item = gen_blog_index.render_item({**self.post, "image": "cover.png"}, self.site_dir)
+        self.assertIn(
+            '<img class="post-thumb" src="posts/hello-world/cover.png" alt="" width="640" height="480" '
+            'loading="lazy" decoding="async">',
+            item,
+        )
 
     def test_no_thumbnail_when_post_has_no_image(self):
-        post = {
-            "slug": "hello-world",
-            "title": "Hello World",
-            "date": None,
-            "categories": [],
-            "image": None,
-        }
-        item = gen_blog_index.render_item(post)
-        self.assertNotIn("post-card-thumb", item)
+        self.assertNotIn("post-thumb", gen_blog_index.render_item(self.post, self.site_dir))
 
 
 class TestSync(unittest.TestCase):

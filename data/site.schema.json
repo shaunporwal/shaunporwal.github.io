@@ -3,17 +3,213 @@
   "title": "Site constants",
   "description": "The name, canonical base URL, summary, and contact links for the whole site.",
   "type": "object",
-  "required": ["name", "base_url", "email", "github", "x", "linkedin", "cal", "og_image_path", "summary"],
+  "required": [
+    "name",
+    "base_url",
+    "email",
+    "github",
+    "x",
+    "linkedin",
+    "cal",
+    "og_image_path",
+    "summary",
+    "job_title",
+    "hero",
+    "projects",
+    "seo",
+    "avatar_path",
+    "work",
+    "icons"
+  ],
   "additionalProperties": false,
   "properties": {
-    "name": {"type": "string"},
-    "base_url": {"description": "The canonical origin, with no trailing slash. site/CNAME is generated from its host.", "type": "string", "pattern": "^https://[a-z0-9.-]+$"},
-    "email": {"type": "string"},
-    "github": {"type": "string", "pattern": "^https://"},
-    "x": {"type": "string", "pattern": "^https://"},
-    "linkedin": {"type": "string", "pattern": "^https://"},
-    "cal": {"type": "string", "pattern": "^https://"},
-    "og_image_path": {"description": "The default social preview image, as a path from the site root.", "type": "string", "pattern": "^/"},
-    "summary": {"description": "One sentence about the site, used at the top of site/llms.txt.", "type": "string"}
+    "name": {
+      "type": "string"
+    },
+    "base_url": {
+      "description": "The canonical origin, with no trailing slash. site/CNAME is generated from its host.",
+      "type": "string",
+      "pattern": "^https://[a-z0-9.-]+$"
+    },
+    "email": {
+      "type": "string"
+    },
+    "github": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "x": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "linkedin": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "cal": {
+      "type": "string",
+      "pattern": "^https://"
+    },
+    "og_image_path": {
+      "description": "The default social preview image, as a path from the site root.",
+      "type": "string",
+      "pattern": "^/"
+    },
+    "summary": {
+      "description": "One sentence about the site, used at the top of site/llms.txt.",
+      "type": "string"
+    },
+    "job_title": {
+      "description": "The job title in the Person JSON-LD and the agent files.",
+      "type": "string"
+    },
+    "hero": {
+      "description": "The home page hero text.",
+      "type": "object",
+      "required": [
+        "lead"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "lead": {
+          "type": "string"
+        }
+      }
+    },
+    "projects": {
+      "description": "The Work cards on the home page and the Work list in llms.txt.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "url",
+          "summary"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "seo": {
+      "description": "What crawlers and agents may do. Generates robots.txt, agents.txt and agents.json.",
+      "type": "object",
+      "required": [
+        "crawlers",
+        "agents"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "crawlers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "agents": {
+          "type": "object",
+          "required": [
+            "summary",
+            "may",
+            "may_not"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "may": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "may_not": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "avatar_path": {
+      "description": "The portrait on the home page and in the Person JSON-LD, as a path from the site root.",
+      "type": "string",
+      "pattern": "^/"
+    },
+    "work": {
+      "description": "The heading of the Work cards on the home page.",
+      "type": "object",
+      "required": [
+        "eyebrow",
+        "title"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "eyebrow": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "icons": {
+      "description": "The icon files in site/media, as paths from the site root. They go in the head of every page and in manifest.webmanifest.",
+      "type": "object",
+      "required": [
+        "svg",
+        "png",
+        "apple",
+        "manifest"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "svg": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "png": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "apple": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "manifest": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "size"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^/"
+              },
+              "size": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

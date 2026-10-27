@@ -20,7 +20,7 @@ When working on coding with me, follow this workflow.
 - Create a branch from current `main`, carry the approved changes into it, push to origin, and open a filled-in PR.
 - Branch naming convention: `<type>/<pithy-theme-with-dashes>`.
 - Use the PR Doc Open skill when opening the PR. Do this as soon as I approve the plan and the PR doc is written. Do not ask first. Do not wait for a separate "ready".
-- Never merge to `main`. Shaun is the only person allowed to merge PRs to `main`.
+- Merge a PR to `main` only after CI is green, the local walk passes at 360, 390, 820 and 1440 px, and no review is open. Shaun authorized merges to `main` for his own sites on 2026-10-27. Walk the live site after the merge. Never merge a PR in another repo.
 
 ## 4. Build with TDD
 
@@ -60,7 +60,7 @@ Read this section first if you have no other context. Then read the `AGENTS.md` 
 
 ### What This Repo Is
 
-This repo is Shaun Porwal's personal website, `https://www.shaunporwal.com`. It is plain static HTML and CSS. It has no framework and no build step. GitHub Pages serves the `site/` directory. A push to `main` publishes it through `.github/workflows/publish.yaml`. Only Shaun merges to `main`.
+This repo is Shaun Porwal's personal website, `https://www.shaunporwal.com`. It is plain static HTML and CSS, with one first-party script, `site/js/motion.js`, for motion. It has no framework and no build step. GitHub Pages serves the `site/` directory. A push to `main` publishes it through `.github/workflows/publish.yaml`. Merge rules are in section 3.
 
 ### Map
 
@@ -84,7 +84,7 @@ Two hidden directories also matter. `.githooks/pre-commit` runs lint and regener
 
 ### Commands
 
-- `make dev`: serve `site/` at `http://localhost:8000` with live reload.
+- `make dev`: serve `site/` with live reload. It prints the one tailnet link.
 - `make sync`: run every generator. The `Makefile` is the only list of generators and their order.
 - `make lint`: run ruff and the code-shape check.
 - `make test`: run lint, then every test.
@@ -93,7 +93,7 @@ Two hidden directories also matter. `.githooks/pre-commit` runs lint and regener
 
 ### Rules
 
-- Treat publishing to `main` or GitHub Pages as a production deployment. It needs named confirmation.
+- Shaun's authorization of 2026-10-27 covers a merge to `main` and the publish that follows. Any other production change needs named confirmation.
 - Keep each fact in one source. When a fact must show in a second place, generate it.
 - Write all documentation, including every `AGENTS.md`, in ASD-STE100 Simplified Technical English.
 - Fix a lint failure by restructuring the code. Do not raise a limit in `ruff.toml`.

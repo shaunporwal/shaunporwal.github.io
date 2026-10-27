@@ -3,7 +3,7 @@ import unittest
 
 import context
 from lib_schema import SchemaError
-from lib_site import REPO_ROOT, load_pages, load_site, page_url
+from lib_site import REPO_ROOT, load_pages, load_site, load_theme, page_url
 
 
 class TestLoadSite(unittest.TestCase):
@@ -28,6 +28,23 @@ class TestLoadSite(unittest.TestCase):
 
     def test_the_real_site_data_is_valid(self):
         self.assertTrue(load_site(REPO_ROOT))
+
+
+class TestLoadTheme(unittest.TestCase):
+    def test_loads_both_color_modes_and_the_fixed_tokens(self):
+        theme = load_theme(context.temp_repo(self))
+        self.assertEqual(theme["light"]["primary"], "#aa3300")
+        self.assertEqual(theme["fixed"]["radius"], "0.5rem")
+
+    def test_rejects_a_color_that_is_not_six_digit_hex(self):
+        repo_root = context.temp_repo(self)
+        theme = {**context.FAKE_THEME, "light": {**context.FAKE_THEME["light"], "primary": "red"}}
+        (repo_root / "data" / "theme.json").write_text(json.dumps(theme))
+        with self.assertRaises(SchemaError):
+            load_theme(repo_root)
+
+    def test_the_real_theme_is_valid(self):
+        self.assertTrue(load_theme(REPO_ROOT))
 
 
 class TestLoadPages(unittest.TestCase):

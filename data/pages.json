@@ -1,5 +1,17 @@
 [
   {
+    "file": "index.html",
+    "title": "{name}",
+    "description": "{name} is a software and machine learning engineer. Notes on building, coding and thinking clearly.",
+    "og_type": "website",
+    "sitemap": true,
+    "nav": true,
+    "menu": {
+      "label": "Home",
+      "new_tab": false
+    }
+  },
+  {
     "file": "about.html",
     "title": "About — {name}",
     "description": "About {name} — engineer working across AI/ML, biomedical data science, and chemical inventory software.",
@@ -24,18 +36,6 @@
     }
   },
   {
-    "file": "index.html",
-    "title": "{name}",
-    "description": "{name}'s blog: writing in public about building, coding, and thinking clearly.",
-    "og_type": "website",
-    "sitemap": true,
-    "nav": true,
-    "menu": {
-      "label": "Blog",
-      "new_tab": false
-    }
-  },
-  {
     "file": "resume.html",
     "title": "{name} — Resume",
     "description": "{name}'s resume: software engineering, machine learning, and biomedical data science experience.",
@@ -46,5 +46,15 @@
       "label": "Resume",
       "new_tab": true
     }
+  },
+  {
+    "file": "404.html",
+    "title": "Page not found — {name}",
+    "description": "This page does not exist on the site of {name}.",
+    "og_type": "website",
+    "sitemap": false,
+    "nav": true,
+    "noindex": true,
+    "absolute": true
   }
 ]

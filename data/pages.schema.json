@@ -55,6 +55,14 @@
             "type": "boolean"
           }
         }
+      },
+      "noindex": {
+        "description": "Adds a noindex tag, so search engines skip the page.",
+        "type": "boolean"
+      },
+      "absolute": {
+        "description": "Writes root-relative links (/styles/site.css) in the nav and footer, for a page served at any depth, such as 404.html.",
+        "type": "boolean"
       }
     }
   }

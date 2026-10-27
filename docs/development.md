@@ -2,7 +2,7 @@
 
 ## Local dev server
 
-`make dev` serves `site/` with hot reload (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). Falls back to `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port: `PORT=3000 make dev`.
+`make dev` serves `site/` with hot reload on all interfaces (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). It prints only the tailnet link. It falls back to `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port: `PORT=3000 make dev`. `live-server` hides dotfiles, so `/.well-known/agents.json` answers 404 in dev only. The live site serves it.
 
 You can also open any `.html` file under `site/` directly in a browser. Everything works through `file://`.
 
@@ -55,16 +55,42 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 
 The resume `contact` list in `data/experiences.json` chooses which contact lines the resume shows. A line that `data/site.json` already holds names its key (`"site": "email"`) instead of a copy of the value. Only lines with no other home, such as the location, hold a literal `value`. The resume name also comes from `data/site.json`.
 
+## Theme and motion
+
+`data/theme.json` holds the color, type and motion tokens. `scripts/gen_theme.py` writes them into the `THEME` block of `site/styles/site.css`. `scripts/gen_icon.py` draws `site/media/favicon.svg` from the same colors. `tests/test_theme_contrast.py` checks the text pairs against WCAG AA in the light and dark modes.
+
+The theme matches `cheminventory.co`: the same neutrals, radius, easing and grid. The accent is vermilion, and the display face is a system serif. Change a color once, in `data/theme.json`, then run `make sync`.
+
+`site/js/motion.js` is the only script. It reveals sections on scroll, sets the header state, and slides the nav marker. It is first-party, has no framework and no build step. Every page works without it. A visitor who asks for reduced motion sees a still page.
+
+The PNG icons and `site/media/og-image.jpg` are rendered from `favicon.svg` and the data. No generator makes them. `tests/test_media_sizes.py` checks their sizes. After a change to the theme colors, the name or the hero lead, render them again.
+
+## Discovery files
+
+Each file below is generated. Change its source, then run `make sync`.
+
+| File | Source | Script |
+|---|---|---|
+| `robots.txt`, `llms.txt`, `CNAME` | `data/site.json`, `data/pages.json`, the posts | `gen_crawler_files.py` |
+| `sitemap.xml` | `data/pages.json`, the posts | `gen_sitemap.py` |
+| `agents.txt`, `.well-known/agents.json` | `data/site.json` (`seo.agents`) | `gen_agent_files.py` |
+| `llms-full.txt` | the posts | `gen_llms_full.py` |
+| `feed.xml` | the posts | `gen_feed.py` |
+| `manifest.webmanifest` | `data/site.json`, `data/theme.json` | `gen_manifest.py` |
+
+No discovery file and no structured data holds the email address. The contact link is the booking link. `tests/test_site_contract.py` checks this. `resume.html` shows the email as a resume contact line.
+
 `scripts/gen_crawler_files.py` generates `site/CNAME` (the host of `base_url`), `site/robots.txt`, and `site/llms.txt` from `data/site.json`, `data/pages.json`, the current role in `data/experiences.json`, and the published posts. Do not edit these files by hand. `base_url` must be the domain that GitHub Pages serves without a redirect (`www.shaunporwal.com`), because every canonical URL starts with it.
 
 ## Project structure
 
-- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, and the generated `robots.txt`, `sitemap.xml`, `llms.txt`, and `CNAME`.
+- `site/` — the entire published website: top-level pages (listed in `data/pages.json`), `posts/`, `media/`, `styles/site.css`, `js/motion.js`, and the generated discovery files (see above).
 - `data/experiences.json` — every experience fact; generates the resume and the full record (source of truth; see above).
 - `data/experiences.schema.json` — the declared format of `data/experiences.json`.
 - `data/site.json` — site-wide name/URL/social constants (source of truth; see above).
 - `data/pages.json` — the top-level pages and their SEO, sitemap, and nav settings (source of truth; see above).
-- `templates/nav.html` — single source of truth for the nav bar.
+- `data/theme.json` — the color, type and motion tokens (source of truth; see above).
+- `templates/nav.html`, `templates/footer.html` — single sources of truth for the header and the footer.
 - `scripts/` — maintenance scripts (below), run via the pre-commit hook or `make sync`.
 - `tests/` — unit tests for `scripts/` (`make test`).
 - `docs/pr-docs/` — planning docs for each feature/PR.

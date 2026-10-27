@@ -1,56 +1,37 @@
 #!/usr/bin/env python3
-"""Regenerates the JSON-LD Person block and the visible social-links row on site/about.html from data/site.json.
+"""Regenerates the ProfilePage JSON-LD block and the visible link buttons on site/about.html from data/site.json.
 
-Those github/x/linkedin/email URLs used to be hand-duplicated in two places
-on that one page. Stamped between
-<!-- SOCIAL_JSONLD:START/END --> and <!-- SOCIAL_LINKS:START/END --> markers.
-Run directly (`python3 scripts/sync_social.py`), wired into the pre-commit
-hook.
+The profile URLs used to be hand-duplicated in two places on that one page. Stamped between
+<!-- SOCIAL_JSONLD:START/END --> and <!-- SOCIAL_LINKS:START/END --> markers. The page holds no email
+address: the buttons link the profiles and the booking page. Run directly
+(`python3 scripts/sync_social.py`), wired into the pre-commit hook.
 """
 import pathlib
 
 from lib_blocks import replace_block, wrap, write_if_changed
+from lib_jsonld import profile_page, script_tag
+from lib_record import load_record
 from lib_site import REPO_ROOT, load_site
 
+LINK_BUTTON = '      <a class="btn btn-outline" href="{href}" target="_blank" rel="{rel}">{label}</a>'
+LINKS = (("X", "x", "me noopener"), ("LinkedIn", "linkedin", "me noopener"), ("GitHub", "github", "me noopener"),
+         ("Book a call", "cal", "noopener"))
 
-def build_jsonld_block(site: dict) -> str:
-    body = (
-        "{\n"
-        '  "@context": "https://schema.org",\n'
-        '  "@type": "Person",\n'
-        f'  "name": "{site["name"]}",\n'
-        f'  "url": "{site["base_url"]}",\n'
-        f'  "email": "mailto:{site["email"]}",\n'
-        '  "sameAs": [\n'
-        f'    "{site["github"]}",\n'
-        f'    "{site["x"]}",\n'
-        f'    "{site["linkedin"]}"\n'
-        "  ]\n"
-        "}"
-    )
-    return wrap("SOCIAL_JSONLD", f'<script type="application/ld+json">\n{body}\n</script>')
+
+def build_jsonld_block(site: dict, record: dict) -> str:
+    return wrap("SOCIAL_JSONLD", script_tag(profile_page(site, record)))
 
 
 def build_links_block(site: dict) -> str:
-    return (
-        "<!-- SOCIAL_LINKS:START -->\n"
-        f'      <a class="nav-link" href="{site["x"]}" target="_blank" rel="noopener">X</a>\n'
-        f'      <a class="nav-link" href="{site["linkedin"]}" target="_blank" rel="noopener">LinkedIn</a>\n'
-        f'      <a class="nav-link" href="{site["github"]}" target="_blank" rel="noopener">GitHub</a>\n'
-        f'      <a class="nav-link" href="mailto:{site["email"]}" target="_blank" rel="noopener">Email</a>\n'
-        "      <!-- SOCIAL_LINKS:END -->"
-    )
+    buttons = [LINK_BUTTON.format(href=site[key], rel=rel, label=label) for label, key, rel in LINKS]
+    return "<!-- SOCIAL_LINKS:START -->\n" + "\n".join(buttons) + "\n      <!-- SOCIAL_LINKS:END -->"
 
 
-BLOCKS = (("SOCIAL_JSONLD", build_jsonld_block), ("SOCIAL_LINKS", build_links_block))
-
-
-def apply_blocks(text: str, site: dict) -> str:
+def apply_blocks(text: str, site: dict, record: dict) -> str:
     """Stamps every social block into text."""
-    for name, build in BLOCKS:
-        new_text = replace_block(text, name, build(site))
-        if new_text is not None:
-            text = new_text
+    blocks = {"SOCIAL_JSONLD": build_jsonld_block(site, record), "SOCIAL_LINKS": build_links_block(site)}
+    for name, block in blocks.items():
+        text = replace_block(text, name, block) or text
     return text
 
 
@@ -59,8 +40,8 @@ def sync(repo_root: pathlib.Path) -> bool:
     about_path = repo_root / "site" / "about.html"
     if not about_path.exists():
         return False
-    text = about_path.read_text()
-    return write_if_changed(about_path, apply_blocks(text, load_site(repo_root)))
+    text = apply_blocks(about_path.read_text(), load_site(repo_root), load_record(repo_root))
+    return write_if_changed(about_path, text)
 
 
 def main():

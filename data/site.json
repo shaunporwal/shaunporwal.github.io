@@ -7,5 +7,73 @@
   "linkedin": "https://linkedin.com/in/shaunporwal",
   "cal": "https://cal.com/shaun-porwal/30min?overlayCalendar=true",
   "og_image_path": "/media/og-image.jpg",
-  "summary": "Personal site of Shaun Porwal: software/ML engineer working across AI agent systems, biomedical data science, and chemical inventory/compliance software."
+  "summary": "Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software.",
+  "job_title": "Software and machine learning engineer",
+  "hero": {
+    "lead": "I build software and machine learning systems for chemistry labs and biomedical data. I write here about building, coding and thinking clearly."
+  },
+  "projects": [
+    {
+      "name": "Junto Technologies",
+      "url": "https://juntotechnologies.com/",
+      "summary": "My company. It builds software for chemistry labs and applies machine learning and statistics to biomedical questions."
+    },
+    {
+      "name": "ChemInventory",
+      "url": "https://cheminventory.co/",
+      "summary": "Chemical inventory, orders and batch documents in one app."
+    },
+    {
+      "name": "Bench Bridge",
+      "url": "https://bench-bridge.juntotechnologies.com/",
+      "summary": "A demo of how older lab instruments can feed a laboratory information management system (LIMS) and a controlled-substance ledger."
+    },
+    {
+      "name": "dcurves",
+      "url": "https://github.com/MSKCC-Epi-Bio/dcurves",
+      "summary": "A Python package for decision curve analysis. I created it at Memorial Sloan Kettering Cancer Center."
+    }
+  ],
+  "seo": {
+    "crawlers": [
+      "*",
+      "GPTBot",
+      "ClaudeBot",
+      "PerplexityBot",
+      "Google-Extended",
+      "CCBot"
+    ],
+    "agents": {
+      "summary": "This site is the personal site of Shaun Porwal. It has no login and no form.",
+      "may": [
+        "Read each public page.",
+        "Follow each link on a page."
+      ],
+      "may_not": [
+        "Post a form.",
+        "Send a message for a person.",
+        "Book a call for a person."
+      ]
+    }
+  },
+  "avatar_path": "/media/avatar.jpg",
+  "work": {
+    "eyebrow": "Work",
+    "title": "What I am building"
+  },
+  "icons": {
+    "svg": "/media/favicon.svg",
+    "png": "/media/favicon-48.png",
+    "apple": "/media/apple-touch-icon.png",
+    "manifest": [
+      {
+        "path": "/media/icon-192.png",
+        "size": 192
+      },
+      {
+        "path": "/media/icon-512.png",
+        "size": 512
+      }
+    ]
+  }
 }

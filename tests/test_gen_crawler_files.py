@@ -37,6 +37,9 @@ class TestGenCrawlerFiles(unittest.TestCase):
         self.assertIn("User-agent: *\nAllow: /", self.read("robots.txt"))
         self.assertIn("Sitemap: https://example.com/sitemap.xml", self.read("robots.txt"))
 
+    def test_robots_allows_each_named_crawler(self):
+        self.assertIn("User-agent: TestBot\nAllow: /", self.read("robots.txt"))
+
     def test_llms_has_summary_and_current_role(self):
         self.assertIn("# Test Person\n\n> A test summary. Currently Engineer at Acme Company.", self.read("llms.txt"))
 
@@ -49,8 +52,20 @@ class TestGenCrawlerFiles(unittest.TestCase):
         self.assertIn("- [Published Post](https://example.com/posts/published/): An intro to Published Post.", llms)
         self.assertNotIn("Hidden Post", llms)
 
-    def test_llms_lists_contact_links(self):
-        self.assertIn("- Email: test@example.com\n- GitHub: https://github.com/testperson", self.read("llms.txt"))
+    def test_llms_lists_the_work(self):
+        self.assertIn("- [Acme Company](https://acme.example/): Makes widgets.", self.read("llms.txt"))
+
+    def test_llms_lists_the_other_profiles_and_no_email_address(self):
+        llms = self.read("llms.txt")
+        self.assertIn("- [GitHub](https://github.com/testperson)\n- [X](https://x.com/testperson)", llms)
+        self.assertIn("- [Book a call](https://cal.com/testperson)", llms)
+        self.assertNotIn("test@example.com", llms)
+
+    def test_llms_links_the_full_text_the_feed_and_the_agent_rules(self):
+        llms = self.read("llms.txt")
+        self.assertIn("- [Full text of every post](https://example.com/llms-full.txt)", llms)
+        self.assertIn("- [Atom feed](https://example.com/feed.xml)", llms)
+        self.assertIn("- [Rules for agents](https://example.com/agents.txt)", llms)
 
     def test_first_run_writes_every_file(self):
         self.assertEqual(sorted(self.changed), ["CNAME", "llms.txt", "robots.txt"])
