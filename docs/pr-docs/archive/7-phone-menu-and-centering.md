@@ -1,6 +1,6 @@
 # PR 7: Phone Menu and Centring
 
-Status: underway
+Status: done
 
 Branch: `fix/phone-menu-and-centering`
 
@@ -37,7 +37,7 @@ Make the phone menu look natural. Centre the phone layout of every page. Remove 
 - [x] `make test` passes (295 tests).
 - [x] Audit all 15 pages at 360, 390 and 430 px: no broken image, no off-centre text, no small target.
 - [x] Walk five sizes in light and dark: no sideways scroll, no console error.
-- [ ] Merge the PR. Watch the publish run. Check the live site.
+- [x] Merge the PR. Merged as `a85f55c`. The publish run passed. The live site passed the audit at 360, 390 and 430 px in light and dark.
 
 ## Smoke Tests
 
@@ -70,4 +70,4 @@ Make the phone menu look natural. Centre the phone layout of every page. Remove 
 
 ## Related Docs
 
-- [PR 6: Shared Theme, Editorial Restyle and Agent Files](./archive/6-shared-theme-and-agent-files.md)
+- [PR 6: Shared Theme, Editorial Restyle and Agent Files](./6-shared-theme-and-agent-files.md)
