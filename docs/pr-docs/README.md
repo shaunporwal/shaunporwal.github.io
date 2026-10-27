@@ -6,13 +6,13 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
-| [PR 10: Picture-First Work Cards](./10-picture-first-cards.md) | Each Work card on the home page leads with a clip, a logo or a sample decision curve |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive
 
 | Doc | Description |
 |-----|-------------|
+| [PR 10: Picture-First Work Cards](./archive/10-picture-first-cards.md) | Each Work card on the home page leads with a clip, a logo or a sample decision curve |
 | [PR 9: Alive Motion and Junto Wording](./archive/9-alive-motion.md) | Quiet pointer light, raised buttons and an edge light on the site, and Junto no longer called software |
 | [PR 8: Monthly Download Refresh](./archive/8-refresh-downloads.md) | A monthly workflow refreshes the dcurves download count and pushes it to main |
 | [PR 7: Phone Menu and Centring](./archive/7-phone-menu-and-centering.md) | A natural phone menu, centred phone layout and phone bug fixes |

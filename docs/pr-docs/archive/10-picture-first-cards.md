@@ -1,6 +1,6 @@
 # PR 10: Picture-First Work Cards
 
-Status: underway
+Status: done
 
 Branch: `feature/picture-first-cards`
 
@@ -72,7 +72,7 @@ Walked with Playwright Chromium at the tailnet link of the dev server (`make dev
 
   **Pass if:** each card shows its still, the curve is whole, and no player bar shows.
 
-- [ ] **Live site** · after the merge and the Pages run
+- [x] **Live site** · after the merge and the Pages run
   1. Open the live home page and scroll to Work.
 
   **Pass if:** the same result as the local walk.
@@ -97,4 +97,4 @@ Walked with Playwright Chromium at the tailnet link of the dev server (`make dev
 
 ## Related Docs
 
-- [PR 9: Alive Motion and Junto Wording](./archive/9-alive-motion.md): the pointer light, `.lift` and the rise that these cards keep.
+- [PR 9: Alive Motion and Junto Wording](./9-alive-motion.md): the pointer light, `.lift` and the rise that these cards keep.
