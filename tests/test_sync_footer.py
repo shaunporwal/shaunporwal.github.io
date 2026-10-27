@@ -1,3 +1,4 @@
+"""Tests for scripts/sync_footer.py."""
 import unittest
 
 import context
@@ -25,6 +26,14 @@ class TestInject(unittest.TestCase):
 
     def test_a_page_with_no_body_returns_none(self):
         self.assertIsNone(sync_footer.inject("<p>fragment</p>", "<!-- FOOTER:START -->x<!-- FOOTER:END -->"))
+
+
+class TestProfileAnchors(unittest.TestCase):
+    def test_one_anchor_per_profile_in_order_that_opens_a_new_tab_as_me(self):
+        anchors = sync_footer.profile_anchors(context.FAKE_SITE).splitlines()
+        self.assertEqual(len(anchors), 3)
+        self.assertIn('href="https://github.com/testperson" target="_blank" rel="me noopener">GitHub</a>', anchors[0])
+        self.assertTrue(anchors[2].endswith(">LinkedIn</a>"))
 
 
 class TestSync(unittest.TestCase):

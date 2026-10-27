@@ -1,3 +1,4 @@
+"""Tests for scripts/gen_manifest.py."""
 import json
 import unittest
 

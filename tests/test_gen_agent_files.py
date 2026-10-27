@@ -1,3 +1,4 @@
+"""Tests for scripts/gen_agent_files.py."""
 import json
 import unittest
 

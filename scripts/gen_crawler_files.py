@@ -16,9 +16,7 @@ from urllib.parse import urlparse
 from lib_blocks import write_if_changed
 from lib_posts import all_posts
 from lib_record import current_roles, load_record
-from lib_site import REPO_ROOT, load_pages, load_site, page_url
-
-ELSEWHERE_LABELS = (("GitHub", "github"), ("X", "x"), ("LinkedIn", "linkedin"), ("Book a call", "cal"))
+from lib_site import REPO_ROOT, load_pages, load_site, page_url, profile_links
 
 
 def load_inputs(repo_root: pathlib.Path) -> dict:
@@ -28,6 +26,10 @@ def load_inputs(repo_root: pathlib.Path) -> dict:
         "posts": [post for post in all_posts(repo_root / "site") if not post["draft"]],
         "record": load_record(repo_root),
     }
+
+
+def elsewhere_links(site: dict) -> list[tuple[str, str]]:
+    return [*profile_links(site), ("Book a call", site["cal"])]
 
 
 def render_cname(inputs: dict) -> str:
@@ -75,7 +77,7 @@ def render_llms(inputs: dict) -> str:
         "## Pages\n\n" + "\n".join(_page_line(site, p) for p in inputs["pages"] if p["sitemap"]),
         "## Work\n\n" + "\n".join(_project_line(p) for p in site["projects"]),
         "## Posts\n\n" + "\n".join(_post_line(site, p) for p in inputs["posts"]),
-        "## Elsewhere\n\n" + "\n".join(f"- [{label}]({site[key]})" for label, key in ELSEWHERE_LABELS),
+        "## Elsewhere\n\n" + "\n".join(f"- [{label}]({url})" for label, url in elsewhere_links(site)),
         "## Optional\n\n" + "\n".join(_optional_lines(site)),
     ]
     return "\n\n".join(sections) + "\n"

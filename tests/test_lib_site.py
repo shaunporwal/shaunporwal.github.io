@@ -3,7 +3,22 @@ import unittest
 
 import context
 from lib_schema import SchemaError
-from lib_site import REPO_ROOT, load_pages, load_site, load_theme, page_url
+from lib_site import REPO_ROOT, load_pages, load_site, load_theme, page_url, profile, profile_links
+
+
+class TestProfiles(unittest.TestCase):
+    def test_lists_label_and_url_in_the_order_of_the_data(self):
+        self.assertEqual(
+            profile_links(context.FAKE_SITE),
+            [
+                ("GitHub", "https://github.com/testperson"),
+                ("X", "https://x.com/testperson"),
+                ("LinkedIn", "https://linkedin.com/in/testperson"),
+            ],
+        )
+
+    def test_finds_one_profile_by_its_key(self):
+        self.assertEqual(profile(context.FAKE_SITE, "x"), ("X", "https://x.com/testperson"))
 
 
 class TestLoadSite(unittest.TestCase):

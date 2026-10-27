@@ -54,6 +54,7 @@ write the focused failing test before implementing changed behavior.
 - [x] Run `make test` with `ruff`. All checks must pass.
 - [x] Walk every page at 360, 390, 430, 820 and 1440 px, light and dark, on the tailnet link.
 - [x] Update `AGENTS.md`, `site/AGENTS.md`, `data/AGENTS.md`, `templates/AGENTS.md` and `docs/development.md`.
+- [x] Fix the findings of the independent review: the `<main id="main">` parsers, image-only paragraphs in `llms-full.txt`, entity escaping, impossible dates, CSS specificity on posts, the hover lift after reveal, one profile list, `dev.sh` errors, WebP image sizes, the no-popover header, print reveal, footer tap size, docs drift.
 - [ ] Merge the PR. Shaun authorized the merge on 2026-10-27. Watch the publish run. Check the live site.
 
 ## Smoke Tests

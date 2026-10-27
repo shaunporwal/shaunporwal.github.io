@@ -6,11 +6,11 @@ the meta line are left out, because the caller writes them as a header.
 """
 import html
 import re
+import urllib.parse
 
-from lib_html import strip_tags
+from lib_html import main_inner, strip_tags
 
-MAIN_RE = re.compile(r'<main class="page">(.*?)</main>', re.DOTALL)
-META_END_RE = re.compile(r'<p class="page-meta">.*?</p>', re.DOTALL)
+META_END_RE = re.compile(r'<p class="[^"]*\bpage-meta\b[^"]*">.*?</p>', re.DOTALL)
 BLOCK_RE = re.compile(
     r"(?P<img><img\b[^>]*>)|<(?P<tag>p|h[2-4]|li|pre|blockquote|figcaption)\b[^>]*>(?P<body>.*?)</(?P=tag)>",
     re.DOTALL,
@@ -22,6 +22,7 @@ INLINE = (
     (re.compile(r"<code>(.*?)</code>", re.DOTALL), r"`\1`"),
 )
 ATTRIBUTE_RE = re.compile(r'(\w+)="([^"]*)"')
+IMAGE_PARAGRAPH_RE = re.compile(r"<p>\s*(<img\b[^>]*>)\s*</p>")
 
 
 def inline_text(markup: str) -> str:
@@ -41,7 +42,7 @@ def code_block(body: str) -> str:
 
 def image(tag: str, base: str) -> str:
     attributes = dict(ATTRIBUTE_RE.findall(tag))
-    return f"![{attributes.get('alt', '')}]({base}{attributes.get('src', '')})"
+    return f"![{attributes.get('alt', '')}]({urllib.parse.urljoin(base, attributes.get('src', ''))})"
 
 
 def list_item(body: str) -> str:
@@ -72,8 +73,9 @@ def block_markdown(match: re.Match, base: str) -> str:
 
 
 def main_body(page: str) -> str:
-    match = MAIN_RE.search(page)
-    return META_END_RE.sub("", match.group(1) if match else page, count=1)
+    """The post body with the meta line removed and each image-only paragraph reduced to its image."""
+    body = META_END_RE.sub("", main_inner(page), count=1)
+    return IMAGE_PARAGRAPH_RE.sub(r"\1", body)
 
 
 def post_markdown(page: str, base: str) -> str:

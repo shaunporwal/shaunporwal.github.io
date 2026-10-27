@@ -77,9 +77,13 @@ Anyways, around 3-4 years ago, I was asked at work to build a Python package by 
 
 His workflow I probably used for a good while, maybe around 2 years or so, before I was introduced to more experienced people in the field who integrated `CI/CD` and `Poetry`, for example, and automating all of the testing. It was when I was using the old workflow that I had people sending me messages about how they’re using my package and like my implementation, and that they’d like this improvement or that bugfix. Case in point:
 
+![Package user CLI output](https://www.shaunporwal.com/posts/python-package-automation/package_user.png)
+
 *User feedback on my Python package*
 
 After several years of maintaining and improving the package I made, now I have a very fast, headache-free workflow that has allowed me to build something that can cater to a larger audience. I was shocked to learn this, but my package recently hit 25k downloads! Have a gander at [pepy.tech](https://pepy.tech/projects/dcurves):
+
+![dcurves PyPI download stats](https://www.shaunporwal.com/posts/python-package-automation/dcurves_downloads.png)
 
 *Download Count for my Python Package*
 

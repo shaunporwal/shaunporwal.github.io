@@ -27,7 +27,8 @@ NOINDEX = '<meta name="robots" content="noindex">'
 
 
 def esc(s: str) -> str:
-    return s.replace('"', "&quot;")
+    """s as a double-quoted HTML attribute value: & and < and > and the quote, nothing else."""
+    return html.escape(s, quote=False).replace('"', "&quot;")
 
 
 @dataclass(frozen=True)
@@ -67,19 +68,31 @@ def common_head(site: dict, theme: dict) -> tuple[str, ...]:
     )
 
 
-def build_block(meta: SeoMeta, common: tuple[str, ...] = ()) -> str:
-    lines = [
-        f'<meta name="description" content="{esc(meta.description)}">',
-        f'<link rel="canonical" href="{meta.url}">',
+def open_graph_lines(meta: SeoMeta) -> list[str]:
+    return [
         f'<meta property="og:type" content="{meta.og_type}">',
         f'<meta property="og:title" content="{esc(meta.title)}">',
         f'<meta property="og:description" content="{esc(meta.description)}">',
         f'<meta property="og:url" content="{meta.url}">',
         f'<meta property="og:image" content="{meta.image}">',
+    ]
+
+
+def twitter_lines(meta: SeoMeta) -> list[str]:
+    return [
         '<meta name="twitter:card" content="summary_large_image">',
         f'<meta name="twitter:title" content="{esc(meta.title)}">',
         f'<meta name="twitter:description" content="{esc(meta.description)}">',
         f'<meta name="twitter:image" content="{meta.image}">',
+    ]
+
+
+def build_block(meta: SeoMeta, common: tuple[str, ...] = ()) -> str:
+    lines = [
+        f'<meta name="description" content="{esc(meta.description)}">',
+        f'<link rel="canonical" href="{meta.url}">',
+        *open_graph_lines(meta),
+        *twitter_lines(meta),
         *common,
         *meta.extra,
     ]

@@ -1,10 +1,11 @@
+"""Tests for scripts/gen_feed.py."""
 import unittest
 import xml.etree.ElementTree as ET
 
 import context
 import gen_feed
 
-POST_HTML = """<main class="page">
+POST_HTML = """<main id="main" class="page">
   <h1 class="page-title">{title}</h1>
   <p class="page-meta">{date} &middot; <span class="cat">Habits</span></p>
 <p>An intro to {title} &amp; more.</p>
@@ -47,6 +48,29 @@ class TestGenFeed(unittest.TestCase):
 
     def test_second_run_changes_nothing(self):
         self.assertFalse(gen_feed.sync(self.repo_root))
+
+
+class TestSpecialTitles(unittest.TestCase):
+    def setUp(self):
+        self.repo_root = context.temp_repo(self)
+        post_dir = self.repo_root / "site" / "posts" / "odd"
+        post_dir.mkdir(parents=True)
+        html = POST_HTML.format(title="Cats &amp; Dogs &lt;3", date="March 5, 2025")
+        (post_dir / "index.html").write_text(html)
+
+    def test_the_title_is_decoded_once_and_escaped_once(self):
+        gen_feed.sync(self.repo_root)
+        feed = ET.fromstring((self.repo_root / "site" / "feed.xml").read_text())
+        self.assertEqual(feed.find("a:entry", NS).findtext("a:title", namespaces=NS), "Cats & Dogs <3")
+
+
+class TestEmptyFeed(unittest.TestCase):
+    def test_a_site_with_no_posts_gets_a_valid_feed_with_no_entries(self):
+        repo_root = context.temp_repo(self)
+        gen_feed.sync(repo_root)
+        feed = ET.fromstring((repo_root / "site" / "feed.xml").read_text())
+        self.assertEqual(feed.findall("a:entry", NS), [])
+        self.assertIsNotNone(feed.find("a:updated", NS))
 
 
 if __name__ == "__main__":

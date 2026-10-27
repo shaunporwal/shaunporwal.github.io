@@ -2,7 +2,7 @@
 
 ## Local dev server
 
-`make dev` serves `site/` with hot reload on all interfaces (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). It prints only the tailnet link. It falls back to `python3 -m http.server` (no reload) if `npx`/Node isn't installed. Override the port: `PORT=3000 make dev`. `live-server` hides dotfiles, so `/.well-known/agents.json` answers 404 in dev only. The live site serves it.
+`make dev` serves `site/` with hot reload on all interfaces (via `npx live-server`, downloaded ad hoc — nothing committed to the repo). It prints only the tailnet link. It falls back to Python's static server, run with `uv` (no reload), if `npx`/Node isn't installed. The server log goes to `$TMPDIR/shaunporwal-site-dev-<port>.log`. The script exits with a message when the port is busy. Override the port: `PORT=3000 make dev`. `live-server` hides dotfiles, so `/.well-known/agents.json` answers 404 in dev only. The live site serves it.
 
 You can also open any `.html` file under `site/` directly in a browser. Everything works through `file://`.
 
@@ -50,6 +50,8 @@ Fix a lint failure by restructuring the code. Do not raise a limit to make a che
 ## Site-wide constants (name, URLs, socials)
 
 `data/site.json` is the single source of truth for the name, canonical base URL, and social/contact links (GitHub, X, LinkedIn, email, cal.com, default OG image). Anything that needs one of these — `sync_seo.py`, `gen_sitemap.py`, `sync_nav.py` (via `templates/nav.html`'s `{name}`/`{github}`/`{x}`/`{cal}` placeholders), `sync_social.py` (the JSON-LD + social links on `about.html`) — reads it from there via `scripts/lib_site.py`, instead of each hardcoding its own copy. Change a handle or URL once, in `data/site.json`, and it propagates everywhere on the next `make sync`/commit.
+
+The `profiles` list in `data/site.json` names the profiles (GitHub, X, LinkedIn) and their order. The footer, the About buttons, the `llms.txt` Elsewhere list and the Person `sameAs` list all read it through `profile_links()` in `scripts/lib_site.py`. To add a profile, add its URL key to the schema, then add one `profiles` entry.
 
 `data/pages.json` lists every top-level page, in nav menu order, with its title, SEO description, page type, and two switches: `sitemap` (list it in `sitemap.xml`) and `nav` (stamp the shared nav into it). A `menu` entry puts a link to the page in the nav. `sync_seo.py` writes each page's `<title>` and SEO tags from it, `gen_sitemap.py` lists it, and `sync_nav.py` builds the nav links from it. To add a top-level page, create the HTML file and add one entry to `data/pages.json`. `data/pages.schema.json` declares the format.
 

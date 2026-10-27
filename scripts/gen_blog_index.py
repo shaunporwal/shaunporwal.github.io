@@ -5,6 +5,7 @@ post needs no edits here — just create posts/<slug>/index.html. Stamped
 between <!-- POSTLIST:START --> / <!-- POSTLIST:END --> markers. Run directly
 (`python3 scripts/gen_blog_index.py`), wired into the pre-commit hook.
 """
+import html
 import pathlib
 
 from lib_blocks import sync_block, wrap
@@ -21,7 +22,7 @@ def date_markup(post: dict) -> str:
 
 
 def categories_markup(post: dict) -> str:
-    cats = "".join(f'<span class="cat">{category}</span>' for category in post["categories"])
+    cats = "".join(f'<span class="cat">{html.escape(category)}</span>' for category in post["categories"])
     return f'      <p class="post-cats">{cats}</p>\n' if cats else ""
 
 
@@ -39,7 +40,7 @@ def render_item(post: dict, site_dir: pathlib.Path) -> str:
         '  <li class="post-row" data-reveal-item>\n'
         f"{date_markup(post)}"
         '    <div class="post-body">\n'
-        f'      <a class="post-title" href="{href}">{post["title"]}</a>\n'
+        f'      <a class="post-title" href="{href}">{html.escape(post["title"])}</a>\n'
         f"{categories_markup(post)}"
         "    </div>\n"
         f"{thumb_markup(post, site_dir)}"

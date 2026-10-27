@@ -11,6 +11,7 @@
     "x",
     "linkedin",
     "cal",
+    "profiles",
     "og_image_path",
     "summary",
     "job_title",
@@ -49,6 +50,19 @@
     "cal": {
       "type": "string",
       "pattern": "^https://"
+    },
+    "profiles": {
+      "description": "The author's profiles in display order. Each key names a profile URL above. The footer, the About buttons, llms.txt and the Person JSON-LD list them.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "key"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "key": { "enum": ["github", "x", "linkedin"] }
+        }
+      }
     },
     "og_image_path": {
       "description": "The default social preview image, as a path from the site root.",

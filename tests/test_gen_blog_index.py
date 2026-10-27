@@ -8,7 +8,7 @@ from lib_images import PNG_SIGNATURE
 
 PNG_640X480 = PNG_SIGNATURE + struct.pack(">I", 13) + b"IHDR" + struct.pack(">II", 640, 480) + b"\x08\x06\x00\x00\x00"
 
-POST_HTML = """<main class="page">
+POST_HTML = """<main id="main" class="page">
   <h1 class="page-title">{title}</h1>
   <p class="page-meta">{date} &middot; <span class="cat">{cat}</span></p>
 <p>Excerpt.</p>
@@ -16,7 +16,7 @@ POST_HTML = """<main class="page">
 """
 
 INDEX_TEMPLATE = """<html><body>
-<main class="page">
+<main id="main" class="page">
   <ul class="post-list">
 <!-- POSTLIST:START -->
 OLD CONTENT
@@ -45,6 +45,12 @@ class TestRenderItem(unittest.TestCase):
         self.assertIn('<a class="post-title" href="posts/hello-world/index.html">Hello World</a>', item)
         self.assertIn('<time class="post-date" datetime="2025-03-05">March 5, 2025</time>', item)
         self.assertIn('<p class="post-cats"><span class="cat">A</span><span class="cat">B</span></p>', item)
+
+    def test_escapes_the_title_and_the_categories_once(self):
+        post = {**self.post, "title": "Cats & <Dogs>", "categories": ["R&D"]}
+        item = gen_blog_index.render_item(post, self.site_dir)
+        self.assertIn(">Cats &amp; &lt;Dogs&gt;</a>", item)
+        self.assertIn('<span class="cat">R&amp;D</span>', item)
 
     def test_the_row_reveals_on_scroll(self):
         item = gen_blog_index.render_item(self.post, self.site_dir)

@@ -22,7 +22,7 @@ This list comes from the first sentence of each script's docstring. `gen_script_
 - `gen_theme.py`: Generates the THEME token block in site/styles/site.css from data/theme.json.
 - `lib_blocks.py`: Generated blocks between `<!-- NAME:START -->` and `<!-- NAME:END -->` markers.
 - `lib_html.py`: Small HTML text helpers shared by the generators and checks.
-- `lib_images.py`: Reads the pixel size of a PNG or JPEG file, with the standard library only.
+- `lib_images.py`: Reads the pixel size of a PNG, JPEG or WebP file, with the standard library only.
 - `lib_jsonld.py`: Builds the schema.org JSON-LD for the site: Person, WebSite, ProfilePage, BlogPosting and BreadcrumbList.
 - `lib_markdown.py`: Converts the body of a post's index.html to Markdown for llms-full.txt.
 - `lib_pagebreaks.py`: Pure checks for where printed page breaks fall in the resume.

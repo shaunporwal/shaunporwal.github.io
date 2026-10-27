@@ -21,6 +21,11 @@ FAKE_SITE = {
     "x": "https://x.com/testperson",
     "linkedin": "https://linkedin.com/in/testperson",
     "cal": "https://cal.com/testperson",
+    "profiles": [
+        {"label": "GitHub", "key": "github"},
+        {"label": "X", "key": "x"},
+        {"label": "LinkedIn", "key": "linkedin"},
+    ],
     "og_image_path": "/media/avatar.jpg",
     "summary": "A test summary.",
     "job_title": "Test engineer",

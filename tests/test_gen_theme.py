@@ -1,3 +1,4 @@
+"""Tests for scripts/gen_theme.py."""
 import unittest
 
 import context

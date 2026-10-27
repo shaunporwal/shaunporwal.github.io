@@ -25,7 +25,7 @@ Never edit generated content. Edit its source in `data/`, `templates/`, or the p
 - Add a post: create `posts/<slug>/index.html`. Copy the structure of an existing post, including its marker comments. Commit, and the hook fills in the nav, the SEO tags, the listing, and the sitemap.
 - The title goes in `<h1 class="page-title">`. The date and categories go in `<p class="page-meta">`. The first paragraph becomes the description.
 - The first image file in the post directory becomes the social image.
-- A `.draft` file in the post directory keeps the post out of the listing, the sitemap, and `llms.txt`, and adds `noindex`. The URL still works.
+- A `.draft` file in the post directory keeps the post out of the listing, the sitemap, `feed.xml`, `llms.txt` and `llms-full.txt`, and adds `noindex`. The URL still works.
 
 ## Rules
 
@@ -33,7 +33,7 @@ Never edit generated content. Edit its source in `data/`, `templates/`, or the p
 - Keep pages plain HTML and CSS. The only script is `js/motion.js`. It is first-party, has no framework and no build step, and every page works without it. `tests/test_js_shape.py` holds it to the code-shape rules. Add no other script.
 - Respect reduced motion. The stylesheet and `js/motion.js` must show every page as a still page when the visitor asks for less motion.
 - No generated file, no discovery file and no structured data holds the email address. `tests/test_site_contract.py` fails if one does. `resume.html` shows it as a normal resume contact line.
-- Every page has one `<main id="main">`. The skip link targets it.
+- Every page except `resume.html` has one `<main id="main">`. The skip link targets it.
 - Do not add analytics, tracking, or third-party scripts without Shaun's named approval.
 - Large files in `media/` are published and downloaded by visitors. Keep new images small. The default social image is `media/og-image.jpg`.
 - Every file in `media/` must be used. `tests/test_media_refs.py` fails on an unused file, because an unused file is still published.

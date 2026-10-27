@@ -15,7 +15,7 @@ PAGE_TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <title>{title}</title>
 </head><body>
-<main class="page">
+<main id="main" class="page">
   <h1 class="page-title">{h1}</h1>
   <p class="page-meta">March 5, 2025</p>
 <p>{excerpt}</p>
@@ -25,6 +25,13 @@ PAGE_TEMPLATE = """<!doctype html>
 
 
 class TestBuildBlockAndInject(unittest.TestCase):
+    def test_build_block_escapes_an_ampersand_and_angle_bracket_once(self):
+        meta = sync_seo.SeoMeta("https://example.com/", "Cats & Dogs", "R&D <draft>", "website", "https://example.com/i.png")
+        block = sync_seo.build_block(meta)
+        self.assertIn('content="Cats &amp; Dogs"', block)
+        self.assertIn('content="R&amp;D &lt;draft&gt;"', block)
+        self.assertNotIn("&amp;amp;", block)
+
     def test_build_block_contains_expected_tags(self):
         block = sync_seo.build_block(
             sync_seo.SeoMeta("https://example.com/", "A Title", 'A "quoted" description', "website", "https://example.com/img.png")

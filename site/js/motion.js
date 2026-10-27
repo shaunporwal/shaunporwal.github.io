@@ -20,8 +20,17 @@ function isEntering(entry) {
   return entry.isIntersecting
 }
 
+function settleReveal(event) {
+  if (event.target !== event.currentTarget || event.propertyName !== "transform") return
+  const element = event.currentTarget
+  element.removeEventListener("transitionend", settleReveal)
+  element.style.removeProperty("--reveal-delay")
+  delete element.dataset.reveal
+}
+
 function markShown(element, source) {
   element.dataset.reveal = "shown"
+  element.addEventListener("transitionend", settleReveal)
   source.unobserve(element)
 }
 

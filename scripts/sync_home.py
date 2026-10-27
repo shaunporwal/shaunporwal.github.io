@@ -10,16 +10,33 @@ import html
 import pathlib
 
 from lib_blocks import replace_block, wrap, write_if_changed
+from lib_html import NEW_TAB, PROFILE_TAB
 from lib_images import size_attributes
 from lib_record import current_roles, load_record
-from lib_site import REPO_ROOT, load_site
+from lib_site import REPO_ROOT, load_site, profile
 
 ARROW = (
     '<svg class="card-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" '
     'stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
     '<path d="M7 17 17 7M8 7h9v9"/></svg>'
 )
-NEW_TAB = ' target="_blank" rel="noopener"'
+
+
+HERO_TEMPLATE = """<section class="hero" id="top">
+  <div class="shell hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow rise rise-0">{role}</p>
+      <h1 class="display rise rise-1">{name}</h1>
+      <p class="lead rise rise-2">{lead}</p>
+      <div class="btn-row rise rise-3">
+        {links}
+      </div>
+    </div>
+    <figure class="hero-portrait rise rise-2">
+      {portrait}
+    </figure>
+  </div>
+</section>"""
 
 
 def role_line(record: dict) -> str:
@@ -28,10 +45,11 @@ def role_line(record: dict) -> str:
 
 
 def hero_links(site: dict) -> str:
+    github_label, github_url = profile(site, "github")
     return (
         f'<a class="btn btn-primary" href="{site["cal"]}"{NEW_TAB}>Book a call</a>\n'
         f'        <a class="btn btn-outline" href="resume.html"{NEW_TAB}>Resume</a>\n'
-        f'        <a class="btn btn-outline" href="{site["github"]}" target="_blank" rel="me noopener">GitHub</a>'
+        f'        <a class="btn btn-outline" href="{github_url}"{PROFILE_TAB}>{github_label}</a>'
     )
 
 
@@ -43,22 +61,13 @@ def portrait(site: dict, site_dir: pathlib.Path) -> str:
 
 
 def render_hero(site: dict, record: dict, site_dir: pathlib.Path) -> str:
-    name, lead = html.escape(site["name"]), html.escape(site["hero"]["lead"])
-    return f"""<section class="hero" id="top">
-  <div class="shell hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow rise rise-0">{role_line(record)}</p>
-      <h1 class="display rise rise-1">{name}</h1>
-      <p class="lead rise rise-2">{lead}</p>
-      <div class="btn-row rise rise-3">
-        {hero_links(site)}
-      </div>
-    </div>
-    <figure class="hero-portrait rise rise-2">
-      {portrait(site, site_dir)}
-    </figure>
-  </div>
-</section>"""
+    return HERO_TEMPLATE.format(
+        role=role_line(record),
+        name=html.escape(site["name"]),
+        lead=html.escape(site["hero"]["lead"]),
+        links=hero_links(site),
+        portrait=portrait(site, site_dir),
+    )
 
 
 def render_card(project: dict) -> str:

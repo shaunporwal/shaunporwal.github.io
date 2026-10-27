@@ -13,9 +13,9 @@ wired into the pre-commit hook.
 import pathlib
 
 from lib_blocks import sync_block, wrap
+from lib_html import NEW_TAB
 from lib_site import REPO_ROOT, load_pages, load_site
 
-NEW_TAB = ' target="_blank" rel="noopener"'
 HOME_FILE = "index.html"
 LINK_STYLES = {
     "nav": '      <a class="nav-link" href="{href}"{current}{target}>{label}</a>',

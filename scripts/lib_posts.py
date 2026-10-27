@@ -8,13 +8,14 @@ directory. This one parser backs sync-seo.py, gen-sitemap.py, and
 gen-blog-index.py so all three agree on what a "post" is.
 """
 import datetime
+import html
 import pathlib
 import re
 
-from lib_html import strip_tags
+from lib_html import main_inner, strip_tags
 
-TITLE_RE = re.compile(r'<h1 class="page-title">(.*?)</h1>', re.DOTALL)
-META_RE = re.compile(r'<p class="page-meta">(.*?)</p>', re.DOTALL)
+TITLE_RE = re.compile(r'<h1 class="[^"]*\bpage-title\b[^"]*">(.*?)</h1>', re.DOTALL)
+META_RE = re.compile(r'<p class="[^"]*\bpage-meta\b[^"]*">(.*?)</p>', re.DOTALL)
 CAT_RE = re.compile(r'<span class="cat">(.*?)</span>')
 FIRST_P_RE = re.compile(r"<p>(.*?)</p>", re.DOTALL)
 
@@ -37,7 +38,7 @@ EXCERPT_LIMIT = 155
 
 def _title(text: str, fallback: str) -> str:
     match = TITLE_RE.search(text)
-    return strip_tags(match.group(1)) if match else fallback
+    return html.unescape(strip_tags(match.group(1))) if match else fallback
 
 
 def _date(meta_raw: str):
@@ -46,7 +47,10 @@ def _date(meta_raw: str):
     month = MONTHS.get(match.group(1)) if match else None
     if not month:
         return None
-    return datetime.date(int(match.group(3)), month, int(match.group(2)))
+    try:
+        return datetime.date(int(match.group(3)), month, int(match.group(2)))
+    except ValueError:
+        return None
 
 
 def _meta(text: str) -> tuple:
@@ -55,14 +59,20 @@ def _meta(text: str) -> tuple:
     if not match:
         return None, []
     meta_raw = match.group(1)
-    return _date(meta_raw), [strip_tags(c) for c in CAT_RE.findall(meta_raw)]
+    return _date(meta_raw), [html.unescape(strip_tags(c)) for c in CAT_RE.findall(meta_raw)]
+
+
+def _first_text(body: str, fallback: str) -> str:
+    """The text of the first plain paragraph that holds any, so an image-only paragraph is skipped."""
+    for match in FIRST_P_RE.finditer(body):
+        text = strip_tags(match.group(1))
+        if text:
+            return text
+    return fallback
 
 
 def _excerpt(text: str, fallback: str) -> str:
-    main_start = text.find('<main class="page">')
-    body = text[main_start:] if main_start != -1 else text
-    match = FIRST_P_RE.search(body)
-    excerpt = re.sub(r"\s+", " ", strip_tags(match.group(1)) if match else fallback)
+    excerpt = re.sub(r"\s+", " ", html.unescape(_first_text(main_inner(text), fallback)))
     if len(excerpt) > EXCERPT_LIMIT:
         excerpt = excerpt[: EXCERPT_LIMIT - 3].rsplit(" ", 1)[0] + "..."
     return excerpt

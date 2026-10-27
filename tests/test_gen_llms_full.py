@@ -1,9 +1,10 @@
+"""Tests for scripts/gen_llms_full.py."""
 import unittest
 
 import context
 import gen_llms_full
 
-POST_HTML = """<main class="page">
+POST_HTML = """<main id="main" class="page">
   <h1 class="page-title">{title}</h1>
   <p class="page-meta">March 5, 2025 &middot; <span class="cat">Habits</span></p>
 <p>The body of {title}.</p>

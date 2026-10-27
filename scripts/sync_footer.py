@@ -10,10 +10,21 @@ Run directly (`python3 scripts/sync_footer.py`), wired into the pre-commit hook.
 import pathlib
 
 from lib_blocks import replace_block, wrap, write_if_changed
-from lib_site import REPO_ROOT, load_pages, load_site
+from lib_html import PROFILE_TAB
+from lib_site import REPO_ROOT, load_pages, load_site, profile_links
 from sync_nav import find_targets, page_root
 
 BODY_END = "</body>"
+PROFILE_ANCHOR = '      <a href="{url}"{tab}>{label}</a>'
+
+
+def profile_anchors(site: dict) -> str:
+    return "\n".join(PROFILE_ANCHOR.format(url=url, tab=PROFILE_TAB, label=label) for label, url in profile_links(site))
+
+
+def footer_values(site: dict, root: str) -> dict:
+    """The values the footer template fills in: the site facts, the page root and the profile links."""
+    return {**site, "root": root, "profile_anchors": profile_anchors(site)}
 
 
 def build_block(footer_template: str, **substitutions) -> str:
@@ -43,7 +54,7 @@ def sync(repo_root: pathlib.Path) -> list[pathlib.Path]:
     changed = []
     for path in find_targets(site_dir, pages):
         relative = path.relative_to(site_dir)
-        block = build_block(footer_template, root=page_root(relative, pages), **site)
+        block = build_block(footer_template, **footer_values(site, page_root(relative, pages)))
         if write_footer(path, block):
             changed.append(relative)
     return changed

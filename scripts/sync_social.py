@@ -9,13 +9,12 @@ address: the buttons link the profiles and the booking page. Run directly
 import pathlib
 
 from lib_blocks import replace_block, wrap, write_if_changed
+from lib_html import NEW_TAB, PROFILE_TAB
 from lib_jsonld import profile_page, script_tag
 from lib_record import load_record
-from lib_site import REPO_ROOT, load_site
+from lib_site import REPO_ROOT, load_site, profile_links
 
-LINK_BUTTON = '      <a class="btn btn-outline" href="{href}" target="_blank" rel="{rel}">{label}</a>'
-LINKS = (("X", "x", "me noopener"), ("LinkedIn", "linkedin", "me noopener"), ("GitHub", "github", "me noopener"),
-         ("Book a call", "cal", "noopener"))
+LINK_BUTTON = '      <a class="btn btn-outline" href="{href}"{tab}>{label}</a>'
 
 
 def build_jsonld_block(site: dict, record: dict) -> str:
@@ -23,7 +22,8 @@ def build_jsonld_block(site: dict, record: dict) -> str:
 
 
 def build_links_block(site: dict) -> str:
-    buttons = [LINK_BUTTON.format(href=site[key], rel=rel, label=label) for label, key, rel in LINKS]
+    profiles = [LINK_BUTTON.format(href=url, tab=PROFILE_TAB, label=label) for label, url in profile_links(site)]
+    buttons = [*profiles, LINK_BUTTON.format(href=site["cal"], tab=NEW_TAB, label="Book a call")]
     return "<!-- SOCIAL_LINKS:START -->\n" + "\n".join(buttons) + "\n      <!-- SOCIAL_LINKS:END -->"
 
 

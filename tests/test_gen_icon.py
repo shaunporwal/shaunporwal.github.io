@@ -1,3 +1,4 @@
+"""Tests for scripts/gen_icon.py."""
 import unittest
 
 import context

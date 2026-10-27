@@ -547,7 +547,7 @@ a {
 
 .page-meta .cat { margin-right: 0.25rem; }
 
-.page > p:not(.eyebrow),
+.page > p:not([class]),
 .page > ul,
 .page > ol,
 .page > blockquote {
@@ -612,6 +612,9 @@ a {
 }
 
 .footer-brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   color: var(--foreground);
   font-family: var(--font-serif);
   font-weight: 600;
@@ -727,6 +730,38 @@ a {
 
   .hero-copy .lead { margin-inline: 0; }
   .btn-row { margin-inline: 0; }
+}
+
+/* Browsers with no popover support: show the links in the header and hide the menu. */
+@supports not selector(:popover-open) {
+  .menu-button,
+  .menu-panel,
+  .btn.header-cta { display: none; }
+
+  .header-row {
+    flex-wrap: wrap;
+    height: auto;
+    padding-block: 0.25rem;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    order: 3;
+    width: 100%;
+  }
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .site-header { position: static; }
+  .menu-button,
+  .menu-panel { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

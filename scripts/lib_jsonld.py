@@ -7,6 +7,7 @@ address, so no structured data on the site holds one.
 import json
 
 from lib_record import current_roles
+from lib_site import profile_links
 
 CONTEXT = "https://schema.org"
 
@@ -37,7 +38,7 @@ def person(site: dict, record: dict) -> dict:
         "image": f"{base}{site['avatar_path']}",
         "jobTitle": site["job_title"],
         "description": site["summary"],
-        "sameAs": [site["github"], site["x"], site["linkedin"]],
+        "sameAs": [url for _, url in profile_links(site)],
     }
     works_for = employer(record, site["projects"])
     return {**node, "worksFor": works_for} if works_for else node

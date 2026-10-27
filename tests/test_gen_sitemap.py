@@ -4,7 +4,7 @@ import unittest
 import context
 import gen_sitemap
 
-POST_HTML = """<main class="page">
+POST_HTML = """<main id="main" class="page">
   <h1 class="page-title">A Post</h1>
   <p class="page-meta">March 5, 2025</p>
 <p>Excerpt.</p>

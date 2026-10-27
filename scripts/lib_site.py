@@ -39,5 +39,16 @@ def load_theme(repo_root: pathlib.Path) -> dict:
     return theme
 
 
+def profile_links(site: dict) -> list[tuple[str, str]]:
+    """(label, url) for each of the author's profiles, in display order."""
+    return [(profile["label"], site[profile["key"]]) for profile in site["profiles"]]
+
+
+def profile(site: dict, key: str) -> tuple[str, str]:
+    """(label, url) of the profile with this key."""
+    label = next(entry["label"] for entry in site["profiles"] if entry["key"] == key)
+    return label, site[key]
+
+
 def page_url(base_url: str, file: str) -> str:
     return f"{base_url}/" if file == "index.html" else f"{base_url}/{file}"

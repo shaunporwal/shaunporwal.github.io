@@ -1,3 +1,4 @@
+"""Tests for scripts/sync_home.py."""
 import struct
 import unittest
 

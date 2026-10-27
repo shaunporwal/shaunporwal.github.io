@@ -5,7 +5,6 @@ Readers and agents use the feed to find new posts. Each entry holds the title, t
 date, the excerpt and the categories. Drafts stay out, and so do posts with no date. Run
 directly (`python3 scripts/gen_feed.py`) or through `make sync`.
 """
-import html
 import pathlib
 from xml.sax.saxutils import escape, quoteattr
 
@@ -17,8 +16,8 @@ EMPTY_FEED_DATE = "1970-01-01T00:00:00Z"
 
 
 def xml_text(text: str) -> str:
-    """text from a post, with its HTML entities decoded and then XML-escaped."""
-    return escape(html.unescape(text))
+    """text from a post, XML-escaped. The post parser has already decoded its HTML entities."""
+    return escape(text)
 
 
 def timestamp(date) -> str:
@@ -27,7 +26,7 @@ def timestamp(date) -> str:
 
 def render_entry(site: dict, post: dict) -> str:
     url = f"{site['base_url']}/posts/{post['slug']}/"
-    categories = [f"    <category term={quoteattr(html.unescape(name))}/>" for name in post["categories"]]
+    categories = [f"    <category term={quoteattr(name)}/>" for name in post["categories"]]
     lines = [
         "  <entry>",
         f"    <title>{xml_text(post['title'])}</title>",
@@ -41,10 +40,10 @@ def render_entry(site: dict, post: dict) -> str:
     return "\n".join(lines)
 
 
-def render_feed(site: dict, posts: list[dict]) -> str:
+def feed_head(site: dict, updated: str) -> list[str]:
+    """The lines of the feed from the XML declaration to the author."""
     base = site["base_url"]
-    updated = timestamp(posts[0]["date"]) if posts else EMPTY_FEED_DATE
-    lines = [
+    return [
         '<?xml version="1.0" encoding="utf-8"?>',
         '<feed xmlns="http://www.w3.org/2005/Atom">',
         f"  <title>{escape(site['name'])}</title>",
@@ -54,10 +53,13 @@ def render_feed(site: dict, posts: list[dict]) -> str:
         f"  <id>{base}/</id>",
         f"  <updated>{updated}</updated>",
         f"  <author><name>{escape(site['name'])}</name><uri>{base}/</uri></author>",
-        *[render_entry(site, post) for post in posts],
-        "</feed>",
     ]
-    return "\n".join(lines) + "\n"
+
+
+def render_feed(site: dict, posts: list[dict]) -> str:
+    updated = timestamp(posts[0]["date"]) if posts else EMPTY_FEED_DATE
+    entries = [render_entry(site, post) for post in posts]
+    return "\n".join([*feed_head(site, updated), *entries, "</feed>"]) + "\n"
 
 
 def dated_posts(site_dir: pathlib.Path) -> list[dict]:
