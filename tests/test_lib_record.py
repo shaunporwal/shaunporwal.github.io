@@ -47,6 +47,11 @@ class TestResumeView(unittest.TestCase):
     def test_experience_meta_uses_resume_dates(self):
         self.assertEqual(self.view["experience"][0]["meta"], "Jan 2020 – Present · City, ST")
 
+    def test_experience_holds_the_period_and_the_place_that_make_the_meta(self):
+        entry = self.view["experience"][0]
+        self.assertEqual((entry["period"], entry["place"]), ("Jan 2020 – Present", "City, ST"))
+        self.assertEqual(entry["meta"], entry["period"] + " · " + entry["place"])
+
     def test_bullets_follow_overrides_flags_and_group_summaries(self):
         self.assertEqual(
             self.view["experience"][0]["bullets"],
@@ -60,6 +65,8 @@ class TestResumeView(unittest.TestCase):
                 {
                     "degree": "B.S., Widgetry",
                     "school": "Acme University",
+                    "period": "May 2019",
+                    "place": "City, ST",
                     "meta": "May 2019 · City, ST",
                     "sub": "Cum laude",
                 }

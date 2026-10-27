@@ -17,7 +17,8 @@ render_html() escapes plain-text runs and emits real <a>/<code>/<strong>/
 <em>/<span> tags for the rest. A link opens in a new tab. render_text() produces a plain-text version
 (links as "text (url)", code/bold/italic as bare text) for pasting into
 LinkedIn etc. — plain text can't carry bold or italics, so the **/* markers
-are just stripped there.
+are just stripped there. render_visible() produces what a reader of the page or the PDF sees: the
+same as render_text(), except that a link shows its label and no url.
 
 No nesting: **bold {dcurves}** or **[link](url)** etc. won't work — the
 inner token is captured as literal text, not re-parsed. Keep tokens
@@ -142,9 +143,20 @@ TEXT_RENDERERS = {
 }
 
 
+def _visible_link(tok):
+    return tok[1]
+
+
+VISIBLE_RENDERERS = {**TEXT_RENDERERS, "link": _visible_link}
+
+
 def render_html(text: str) -> str:
     return "".join(HTML_RENDERERS[tok[0]](tok) for tok in _tokenize(text))
 
 
 def render_text(text: str) -> str:
     return "".join(TEXT_RENDERERS[tok[0]](tok) for tok in _tokenize(text))
+
+
+def render_visible(text: str) -> str:
+    return "".join(VISIBLE_RENDERERS[tok[0]](tok) for tok in _tokenize(text))

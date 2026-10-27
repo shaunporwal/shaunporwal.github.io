@@ -103,7 +103,8 @@ Shared design rules: skill `site-taste` in `agent-skills`. This repo keeps its o
 - Fix a lint failure by restructuring the code. Do not raise a limit in `ruff.toml`.
 - Run ruff only as the installed, pinned tool (`make lint`). Do not run `uv run --with ruff` or `npx --yes <package>`: they download unpinned code and ignore the pinned version in `ruff.toml`.
 - `data/experiences.json` is the single source of truth for every experience fact. It generates the resume and `docs/all-experiences.md`. The `resume` key on an item puts it on the resume.
-- The resume has no page limit. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way.
+- The PDF is the resume. It is Letter size and has at most the pages that `pdf_max_pages` in `data/pages.json` allows. Its print layout must never split an entry across pages, leave a heading alone at the bottom of a page, or break in any other unattractive way. `tests/test_resume_pdf_matches_record.py` prints the page and fails when the PDF lacks an item of the resume, holds an item that the record keeps off the resume, or embeds another typeface.
+- The resume must stay readable by a parser: real text in the order of the page, standard section headings, and no letter spacing of 0.1 em or more on the headings, because a parser then returns "E X P E R I E N C E".
 - Never commit a PDF. The publish workflow prints `resume.pdf` from `resume.html` with `scripts/render_pdf.py`. `data/pages.json` names the file.
 - The pre-commit hook regenerates files under `site/`, including the dcurves download count. This is normal. Do not report it or ask about it.
 - When you add a top-level directory, add an `AGENTS.md` to it and a row to the map above. `tests/test_agents_docs.py` fails until you do.

@@ -29,6 +29,7 @@ This list comes from the first sentence of each script's docstring. `gen_script_
 - `lib_jsonld.py`: Builds the schema.org JSON-LD for the site: Person, WebSite, ProfilePage, BlogPosting and BreadcrumbList.
 - `lib_markdown.py`: Converts the body of a post's index.html to Markdown for llms-full.txt.
 - `lib_pagebreaks.py`: Pure checks for where printed page breaks fall in the resume.
+- `lib_pdfcheck.py`: Pure checks that the printed resume PDF carries the record and nothing else.
 - `lib_pictures.py`: Renders the picture at the top of each Work card from the `picture` object of a project in data/site.json.
 - `lib_posts.py`: Shared helpers for reading post metadata straight out of each post's index.html.
 - `lib_record.py`: Loads data/experiences.json, the single record of every experience fact, and builds the resume view of it.

@@ -7,7 +7,7 @@ This directory holds the JSON sources of truth for the site. Generators in `scri
 - `experiences.json`: every experience fact (jobs, education, projects, skills, languages, publications). It generates the resume (`site/resume.html`) and the full record (`docs/all-experiences.md`).
 - `site.json`: the name, the canonical base URL, the summary, the contact links, the `profiles` list (label and key of each profile, in display order), the hero lead, the work cards, the icon paths, the crawler and agent rules in `seo`, and the phrases in `brand.avoid` that no built page may hold (Junto is the company that makes the lab modern, not a software company; `tests/test_brand_copy.py` enforces it).
 - `theme.json`: the color, type, motion and shadow tokens. It generates the `THEME` block of `site/styles/site.css`, `site/media/favicon.svg` and the web app manifest colors. The neutrals, radius and ease match `cheminventory.co`. The accent is this site's own.
-- `pages.json`: each top-level page in `site/`, in nav menu order, with its title, SEO text, `sitemap` and `nav` switches, an optional `menu` entry for the nav link, and an optional `pdf` name. A page with a `pdf` name gets a PDF that `scripts/render_pdf.py` prints from it at publish.
+- `pages.json`: each top-level page in `site/`, in nav menu order, with its title, SEO text, `sitemap` and `nav` switches, an optional `menu` entry for the nav link, an optional `pdf` name and the `pdf_max_pages` limit for it. A page with a `pdf` name gets a PDF that `scripts/render_pdf.py` prints from it at publish.
 - `*.schema.json`: the declared format of each JSON file with the same name. The loaders validate each file against its schema when they read it.
 
 ## Rules

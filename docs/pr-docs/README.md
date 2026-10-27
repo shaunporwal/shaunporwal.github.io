@@ -6,6 +6,7 @@ Short PR-specific plans and implementation records for the personal site.
 
 | Doc | Description |
 |-----|-------------|
+| [PR 16: Styled Resume, One Source for the Page and the PDF](./16-resume-styled.md) | A designed resume on the screen and in a two-page Letter PDF, with a check that the PDF carries the record |
 | [PR 3: 3D Print Shop & Multi-Channel Sales Funnel](./3-3d-print-shop.md) | Add a static shop page backed by hosted Stripe checkout and cross-channel fulfillment |
 
 ### Archive
