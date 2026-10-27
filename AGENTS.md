@@ -75,6 +75,8 @@ This repo is Shaun Porwal's personal website, `https://www.shaunporwal.com`. It 
 
 Two hidden directories also matter. `.githooks/pre-commit` runs lint and regenerates files before each commit. `.github/workflows/` holds CI (`test.yaml`) and publishing (`publish.yaml`).
 
+Shared design rules: skill `site-taste` in `agent-skills`. This repo keeps its own design choices in `docs/development.md` (Theme and motion). Run the skill's `taste.py sites` command after a design change to find drift.
+
 ### How Content Flows
 
 - Each fact has one source: a JSON file in `data/`, a template in `templates/`, or a post's own HTML.
