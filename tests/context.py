@@ -71,7 +71,7 @@ FAKE_THEME = {
              "muted-foreground": "#aaaaaa", "border": "#333333", "input": "#444444",
              "primary": "#ff9966", "primary-foreground": "#000000", "ring": "#ff9966"},
     "fixed": {"font-sans": "sans-serif", "font-serif": "serif", "radius": "0.5rem",
-              "ease-out": "ease-out", "shell": "72rem", "measure": "40rem"},
+              "ease-out": "ease-out", "shell": "72rem", "measure": "40rem", "shadow-menu": "0 0 0 black"},
 }
 
 

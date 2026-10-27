@@ -20,6 +20,7 @@
   --ease-out: cubic-bezier(0.22, 0.7, 0.2, 1);
   --shell: 72rem;
   --measure: 40rem;
+  --shadow-menu: 0 1.5rem 2rem -1rem rgb(0 0 0 / 0.28);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -130,6 +131,10 @@ a {
   letter-spacing: -0.02em;
 }
 
+/* Phones and tablets centre each section heading, like the hero. Large screens align them left with the hero. */
+.section > .shell > .eyebrow,
+.section > .shell > .title { text-align: center; }
+
 .lead {
   margin: 1.5rem 0 0;
   color: var(--muted-foreground);
@@ -229,6 +234,7 @@ a {
 /* Phone menu: the browser popover handles open, close, Escape and outside taps. */
 .menu-button {
   display: inline-flex;
+  margin-right: -0.75rem;
   align-items: center;
   justify-content: center;
   width: 2.75rem;
@@ -251,13 +257,16 @@ a {
   inset: 4rem 0 auto 0;
   margin: 0;
   width: 100%;
+  height: fit-content;
   max-height: calc(100dvh - 4rem);
   overflow-y: auto;
   border: 0;
   border-bottom: 1px solid var(--border);
+  border-radius: 0 0 calc(var(--radius) * 2) calc(var(--radius) * 2);
   background: var(--background);
+  box-shadow: var(--shadow-menu);
   color: var(--foreground);
-  padding: 0.5rem 1.5rem 1.5rem;
+  padding: 0.25rem 1.5rem 1.5rem;
   opacity: 0;
   transform: translateY(-0.5rem);
   transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), display 180ms allow-discrete,
@@ -265,8 +274,9 @@ a {
 }
 
 .menu-panel:popover-open {
-  display: grid;
-  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   opacity: 1;
   transform: none;
 }
@@ -282,15 +292,34 @@ a {
 
 .menu-link {
   display: flex;
+  flex: none;
   align-items: center;
-  min-height: 2.75rem;
+  justify-content: space-between;
+  min-height: 3.25rem;
+  border-bottom: 1px solid var(--border);
   color: var(--foreground);
+  font-size: 1.0625rem;
   font-weight: 500;
   text-decoration: none;
 }
 
 .menu-link[aria-current] { color: var(--primary); }
-.menu-panel .btn { margin-top: 0.75rem; }
+
+.menu-link[aria-current]::after {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.menu-link[target="_blank"]::after {
+  content: "\2197" / "";
+  color: var(--muted-foreground);
+  font-size: 0.9375rem;
+}
+
+.menu-panel .btn { flex: none; margin-top: 1.25rem; }
 
 /* Buttons: hover fades a tint of the text color in. Press moves the button down 1 px. */
 .btn {
@@ -531,6 +560,8 @@ a {
   padding-block: 3rem 5rem;
 }
 
+.page-plain { text-align: center; }
+
 .page-title {
   margin: 0.5rem 0 0;
   font-size: clamp(2rem, 1.5rem + 2.2vw, 3rem);
@@ -625,13 +656,16 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0 1.25rem;
+  gap: 0 0.25rem;
 }
 
 .footer-links a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
   height: 2.75rem;
+  padding-inline: 0.375rem;
   color: var(--muted-foreground);
   font-size: 0.875rem;
   text-decoration: none;
@@ -727,6 +761,9 @@ a {
   .about-portrait {
     justify-self: start;
   }
+
+  .section > .shell > .eyebrow,
+  .section > .shell > .title { text-align: left; }
 
   .hero-copy .lead { margin-inline: 0; }
   .btn-row { margin-inline: 0; }
