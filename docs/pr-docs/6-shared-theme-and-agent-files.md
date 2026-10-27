@@ -1,4 +1,4 @@
-# PR planned: Shared Theme, Editorial Restyle and Agent Files
+# PR 6: Shared Theme, Editorial Restyle and Agent Files
 
 Status: underway
 
