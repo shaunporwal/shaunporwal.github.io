@@ -63,7 +63,9 @@ The resume `contact` list in `data/experiences.json` chooses which contact lines
 
 The theme matches `cheminventory.co`: the same neutrals, radius, easing and grid. The accent is vermilion, and the display face is a system serif. Change a color once, in `data/theme.json`, then run `make sync`.
 
-`site/js/motion.js` is the only script. It reveals sections on scroll, sets the header state, and slides the nav marker. It is first-party, has no framework and no build step. Every page works without it. A visitor who asks for reduced motion sees a still page.
+`site/js/motion.js` is the only script. It reveals sections on scroll, sets the header state, slides the nav marker, and writes the pointer position for the pointer light. It is first-party, has no framework and no build step. Every page works without it. A visitor who asks for reduced motion sees a still page.
+
+The pointer light, the raised buttons, the edge light on the Book a call button and the lit hero dots read the `glow-tint`, `glow-on-primary`, `sheen` and `shadow-*` tokens and the `glow-size`, `motion-glow`, `motion-follow` and `sheen-duration` tokens in `data/theme.json`. Hover effects sit inside `@media (hover: hover) and (pointer: fine)`. Reduced motion hides the edge light and the lit dots. `tests/test_alive_css.py` guards these rules.
 
 The PNG icons and `site/media/og-image.jpg` are rendered from `favicon.svg` and the data. No generator makes them. `tests/test_media_sizes.py` checks their sizes. After a change to the theme colors, the name or the hero lead, render them again.
 

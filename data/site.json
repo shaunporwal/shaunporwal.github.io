@@ -12,16 +12,16 @@
     { "label": "LinkedIn", "key": "linkedin" }
   ],
   "og_image_path": "/media/og-image.jpg",
-  "summary": "Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory software.",
+  "summary": "Personal site of Shaun Porwal: software and machine learning engineer working across AI agent systems, biomedical data science and chemical inventory.",
   "job_title": "Software and machine learning engineer",
   "hero": {
-    "lead": "I build software and machine learning systems for chemistry labs and biomedical data. I write here about building, coding and thinking clearly."
+    "lead": "I build tools and machine learning systems for chemistry labs and biomedical data. I write here about building, coding and thinking clearly."
   },
   "projects": [
     {
       "name": "Junto Technologies",
       "url": "https://juntotechnologies.com/",
-      "summary": "My company. It builds software for chemistry labs and applies machine learning and statistics to biomedical questions."
+      "summary": "My company. It modernizes chemistry labs and applies machine learning and statistics to biomedical questions."
     },
     {
       "name": "ChemInventory",
@@ -62,6 +62,9 @@
     }
   },
   "avatar_path": "/media/avatar.jpg",
+  "brand": {
+    "avoid": ["builds software", "build software", "software for chemistry", "inventory software"]
+  },
   "work": {
     "eyebrow": "Work",
     "title": "What I am building"

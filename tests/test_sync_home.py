@@ -26,6 +26,19 @@ class TestRender(unittest.TestCase):
         self.assertIn('href="resume.html" target="_blank" rel="noopener">Resume</a>', hero)
         self.assertIn('rel="me noopener">GitHub</a>', hero)
 
+    def test_hero_has_a_decorative_dot_field_and_a_lit_layer_that_screen_readers_skip(self):
+        hero = sync_home.render_hero(context.FAKE_SITE, context.SAMPLE_RECORD, self.site_dir)
+        art = (
+            '<div class="hero-art" aria-hidden="true">'
+            '<span class="hero-dots"></span><span class="hero-lit"></span></div>'
+        )
+        self.assertIn(art, hero)
+
+    def test_only_the_book_a_call_button_has_the_edge_light(self):
+        hero = sync_home.render_hero(context.FAKE_SITE, context.SAMPLE_RECORD, self.site_dir)
+        self.assertEqual(hero.count("btn-sheen"), 1)
+        self.assertIn('class="btn btn-primary btn-sheen"', hero)
+
     def test_hero_portrait_has_alt_text_and_its_size(self):
         hero = sync_home.render_hero(context.FAKE_SITE, context.SAMPLE_RECORD, self.site_dir)
         self.assertIn('<img src="media/avatar.jpg" alt="Portrait of Test Person" width="8" height="8"', hero)
