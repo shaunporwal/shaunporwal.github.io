@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Renders the resume from data/experiences.json, the single experience record.
 
 Only the items whose `resume` switch is set reach the resume (see

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Stamps SEO/social meta tags (description, canonical, OpenGraph, Twitter card, icons,
 theme colors, feed link, structured data) into every page under site/, between
 <!-- SEO:START --> / <!-- SEO:END --> markers. Top-level pages come from data/pages.json;

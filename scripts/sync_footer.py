@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Keeps every page's footer block in sync with templates/footer.html.
 
 The footer holds the links to the author's other profiles, the feed and llms.txt, and the

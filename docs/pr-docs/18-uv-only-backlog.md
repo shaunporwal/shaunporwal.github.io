@@ -6,26 +6,27 @@ Branch: `chore/uv-only-backlog`
 
 ## Goal
 
-`make` and the tests workflow start Python only through `uv`. One publish-workflow hit stays, listed under Non-Goals.
+`make`, the pre-commit hook, the tests workflow and every script shebang start Python only through `uv`. One publish-workflow hit stays, listed under Non-Goals.
 
 ## Context
 
-The `uv-only` rule lints changed lines only. A full scan (`ops check --all --lint-only`) finds 3 older hits: `Makefile:3` (`PYTHON ?= python3`), `.github/workflows/test.yaml:19` (`pipx install`), `.github/workflows/publish.yaml:18` (`python3`). All scripts and tests import only the standard library.
+The `uv-only` rule lints changed lines only. A full scan (`ops check --all --lint-only`) found 3 hits: `Makefile:3` (`PYTHON ?= python3`), `.github/workflows/test.yaml:19` (`pipx install`), `.github/workflows/publish.yaml:18` (`python3`). The checker then gained the shebang rule (agent-skills PR 56): 18 more hits, `#!/usr/bin/env python3` in `scripts/*.py`. All scripts and tests import only the standard library.
 
 ## Implementation Checklist
 
 ### Tier 1 - Tests first
 
-- [ ] `tests/test_uv_only.py`: the Makefile default starts with `uv run`, the pre-commit hook does not restate it, the tests workflow uses `astral-sh/setup-uv` and `uv tool install`, and no `pipx`. Fails first.
+- [x] `tests/test_uv_only.py`: the Makefile default starts with `uv run`, the pre-commit hook does not restate it, the tests workflow uses `astral-sh/setup-uv` and `uv tool install` and no `pipx`, every script shebang is the uv one. Failed first.
 
-### Tier 2 - Make and hook
+### Tier 2 - Make, hook, scripts
 
-- [ ] `Makefile`: `PYTHON ?= uv run --quiet --no-project python`.
-- [ ] `.githooks/pre-commit`: drop the `PYTHON` export. The Makefile default now holds it.
+- [x] `Makefile`: `PYTHON ?= uv run --quiet --no-project python`.
+- [x] `.githooks/pre-commit`: drop the `PYTHON` export. The Makefile default now holds it.
+- [x] 18 `scripts/*.py`: line 1 becomes `#!/usr/bin/env -S uv run --script`. No file is executable, nothing runs a script by its shebang.
 
 ### Tier 3 - CI
 
-- [ ] `test.yaml`: add `astral-sh/setup-uv` (same pin as swarm-infra). Install ruff with `uv tool install`, version still read from `ruff.toml`.
+- [x] `test.yaml`: add `astral-sh/setup-uv` (same pin as swarm-infra). Install ruff with `uv tool install`, version still read from `ruff.toml`.
 
 ## Smoke Tests
 
@@ -44,7 +45,8 @@ Not applicable: no UI, no site output change. Covered by:
 
 ## Scope
 
-- 2 of 3 `uv-only` hits.
+- 20 of 21 `uv-only` hits (2 in the Makefile and `test.yaml`, 18 shebangs).
+- Proved: `make test` passes locally (ruff clean, 473 tests OK). `make sync` leaves no diff.
 
 ## Non-Goals
 

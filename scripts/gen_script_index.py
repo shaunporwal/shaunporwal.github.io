@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates the script list in scripts/AGENTS.md from the first sentence of each script's docstring or leading comment.
 
 Each script describes itself once, in its own file. The list in

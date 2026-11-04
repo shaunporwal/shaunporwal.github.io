@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Keeps every page's header block in sync with templates/nav.html.
 
 Single source of truth for the header lives in templates/nav.html (with a {root}

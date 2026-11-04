@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/manifest.webmanifest, the web app manifest, from data/site.json and data/theme.json.
 
 The manifest names the site, its colors and its icons for browsers and phones. The icon files and

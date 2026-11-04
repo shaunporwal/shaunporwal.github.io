@@ -1,6 +1,6 @@
-# PYTHON is `python3` by default. Set it to `uv run --no-project python` to run the
-# generators and tests with uv.
-PYTHON ?= python3
+# PYTHON starts every generator and test through uv. The scripts import only the standard
+# library, so no project environment is needed.
+PYTHON ?= uv run --quiet --no-project python
 
 # One target per generator, so `make -k sync` (the pre-commit hook) still runs
 # the rest when one fails. sync-dcurves overwrites a placeholder that

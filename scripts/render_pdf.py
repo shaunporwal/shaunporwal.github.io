@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Prints each page that names a `pdf` in data/pages.json to that PDF in site/, with headless Chrome.
 
 The resume page names `resume.pdf`, so the PDF always matches the page. The publish workflow and

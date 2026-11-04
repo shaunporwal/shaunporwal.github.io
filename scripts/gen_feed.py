@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/feed.xml, an Atom feed of the published posts, newest first, from the posts.
 
 Readers and agents use the feed to find new posts. Each entry holds the title, the link, the

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates the THEME token block in site/styles/site.css from data/theme.json.
 
 The block holds the light colors, the fixed tokens (fonts, radius, ease, grid) and a
