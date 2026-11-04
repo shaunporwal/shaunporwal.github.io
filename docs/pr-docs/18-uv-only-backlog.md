@@ -1,6 +1,6 @@
-# PR planned: uv-only backlog
+# PR 18: uv-only backlog
 
-Status: planned
+Status: underway
 
 Branch: `chore/uv-only-backlog`
 
