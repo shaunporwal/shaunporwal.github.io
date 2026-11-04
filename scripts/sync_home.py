@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Stamps the hero and the Work cards into site/index.html from data/site.json and the experience record.
 
 The hero holds the current role, the name, the lead text, three links and the portrait.

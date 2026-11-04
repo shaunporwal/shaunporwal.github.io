@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/media/favicon.svg, the site icon, from the light colors in data/theme.json.
 
 The icon is a rounded square in the primary color with a white-on-accent S drawn as one stroke, so it needs no font.

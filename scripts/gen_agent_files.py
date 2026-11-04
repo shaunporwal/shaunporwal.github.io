@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/agents.txt and site/.well-known/agents.json, the rules for AI agents, from data/site.json.
 
 Both files say what an agent may and may not do on the site, and point to the

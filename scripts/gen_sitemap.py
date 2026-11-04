@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Regenerates site/sitemap.xml from the top-level pages + non-draft posts
 under site/. Top-level pages come from data/pages.json; add a new post by just creating
 posts/<slug>/index.html (auto-discovered, no registration needed) — drop a

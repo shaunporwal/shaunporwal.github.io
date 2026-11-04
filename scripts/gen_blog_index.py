@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Regenerates the post listing in site/index.html from posts under site/posts/
 (auto-discovered via lib_posts, newest first, drafts excluded). Adding a new
 post needs no edits here — just create posts/<slug>/index.html. Stamped

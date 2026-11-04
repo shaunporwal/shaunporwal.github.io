@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/CNAME, site/robots.txt, and site/llms.txt from the data files and the published posts.
 
 - CNAME holds the host of `base_url` in data/site.json, so GitHub Pages and

@@ -24,6 +24,7 @@ This directory holds the unit tests for `scripts/`, the lint checks, and the res
 - `test_render_pdf.py`: tests how `scripts/render_pdf.py` finds Chrome, builds its command and reports a failure.
 - `test_resume_pdf.py`: fails if the download button, `.gitignore`, `make pdf`, the publish workflow and the discovery files disagree on the one PDF that `data/pages.json` names, or if git tracks a PDF.
 - `test_resume_css.py`: fails if the print rules stop hiding the site header, the footer and the download button, or if the font files, the stylesheet and the preload links disagree.
+- `test_uv_only.py`: fails if the Makefile default, the pre-commit hook, the tests workflow or a script shebang starts Python or installs ruff outside uv.
 - `test_update_dcurves_downloads.sh`: checks the dcurves download count updater.
 
 ## Rules

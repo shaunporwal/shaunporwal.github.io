@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates site/llms-full.txt, the full text of every published post as Markdown, from the posts.
 
 A language model can read the whole blog from this one file. It follows the

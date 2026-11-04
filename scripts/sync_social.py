@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Regenerates the ProfilePage JSON-LD block and the visible link buttons on site/about.html from data/site.json.
 
 The profile URLs used to be hand-duplicated in two places on that one page. Stamped between

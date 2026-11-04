@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
 """Generates the <!-- RECORD:START --> block in docs/all-experiences.md from
 data/experiences.json, the single record behind the resume.
 
