@@ -1,6 +1,6 @@
 # PR 18: uv-only backlog
 
-Status: underway
+Status: done
 
 Branch: `chore/uv-only-backlog`
 
